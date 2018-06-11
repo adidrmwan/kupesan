@@ -13,6 +13,22 @@
                                 <h3>Login</h3>
                                 <form class="form-horizontal" method="POST" action="{{ route('login') }}"> 
                                     {{ csrf_field() }}
+
+                                     @if ($message = Session::get('success'))
+                                      <div class="alert alert-success">
+                                        <p>
+                                          {{ $message }}
+                                        </p>
+                                      </div>
+                                    @endif
+                                    @if ($message = Session::get('warning'))
+                                      <div class="alert alert-warning">
+                                        <p>
+                                          {{ $message }}
+                                        </p>
+                                      </div>
+                                    @endif
+                                    
                                     <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}" >
                                          <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus />
                                          @if ($errors->has('email'))

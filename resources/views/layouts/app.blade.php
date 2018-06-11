@@ -117,5 +117,9 @@
     <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
     <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
+
+    <!-- Scripts -->
+    <script src="{{ URL::asset('js/app.js') }}"></script>
+    @yield('script')
 </body>
 </html>

@@ -45,15 +45,15 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
+        // 'admin' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admins',
+        // ],
 
-        'api-admin' => [
-            'driver' => 'token',
-            'provider' => 'admins',
-        ],
+        // 'api-admin' => [
+        //     'driver' => 'token',
+        //     'provider' => 'admins',
+        // ],
     ],
 
     /*
