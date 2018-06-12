@@ -1,17 +1,31 @@
 <?php
+
 namespace App;
+
 use Illuminate\Database\Eloquent\Model;
-class Role extends Model
+
+class UserRole extends Model
 {
-	public $timestamps = false;
-	protected $fillable = [
-		'role_name', 'created_at', 'updated_at'
-	];
-    	/*
-    	* Method untuk yang mendefinisikan relasi antara model user dan model Role
-    	*/ 
-    	public function getUserObject()
-    	{
-    		return $this->belongsToMany(User::class)->using(UserRole::class);
-    	}
+    protected $primaryKey = 'user_id';
+    protected $table = 'role_user';
+    public $timestamps = false;
+    
+    protected $fillable = [
+        'user_id', 'role_id'
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function getUserObject()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getRoleObject()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

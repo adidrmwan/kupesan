@@ -41,9 +41,16 @@
     
     <!-- Magnific Gallery -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/magnific-popup.css') }} ">
+
+    <!--Date-Picker Stylesheet-->
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }}">
     
     <!-- Color Panel -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/jquery.colorpanel.css') }} ">
+
+    <!-- Slick Stylesheet -->
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick-theme.css') }}">
 </head>
 <body id="main-homepage">
 
@@ -109,11 +116,13 @@
     <script src="{{ URL::asset('dist/js/jquery.magnific-popup.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
+    <script src="{{ URL::asset('dist/js/slick.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-navigation.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-flex.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-owl.js') }} "></script>
+    <script src="{{ URL::asset('dist/js/custom-slick.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
     <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
