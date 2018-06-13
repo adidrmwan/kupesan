@@ -2712,7 +2712,11 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 }
 
 .side-bar .filter-block{
-	padding:33px 25px 50px;
+	padding:33px 25px 0px 25px;
+}
+
+.padding-price{
+padding-bottom: 30px;
 }
 
 .side-bar .filter-block h3{

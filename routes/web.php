@@ -75,5 +75,6 @@ Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation')
 
 //Route untuk studio foto
 Route::get('/studiodetail', 'studioController@studiodetail')->name('studio-detail');
+Route::get('/studiolist', 'studioController@studiolist')->name('studio-list');
 
 Auth::routes();

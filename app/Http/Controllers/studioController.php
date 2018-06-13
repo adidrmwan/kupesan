@@ -11,4 +11,9 @@ class studioController extends Controller
         return view('foto-studio.studiodetail');
     }
 
+    public function studiolist()
+    {
+        return view('foto-studio.studiolist');
+    }
+
 }
