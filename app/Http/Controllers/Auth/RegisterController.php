@@ -85,7 +85,7 @@ class RegisterController extends Controller
 
         Mail::send('emails.activation', $user, function($message) use ($user){
           $message->to($user['email']);
-          $message->subject('www.hc-kr.com - Activation Code');
+          $message->subject('Kupesan - Activation Code');
         });
         return redirect()->to('login')->with('success',"We sent activation code. Please check your mail.");
       }
