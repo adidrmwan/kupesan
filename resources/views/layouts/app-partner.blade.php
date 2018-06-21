@@ -11,10 +11,14 @@
     <title>kupesan.id - @yield('title')</title>
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
    <!-- Bootstrap core CSS     -->
     <link href=" {{ URL::asset('partner/css/bootstrap.min.css ') }}" rel="stylesheet" />
+
+    <!-- File Input -->
+    <link href=" {{ URL::asset('partner/css/fileinput.min.css ') }}" rel="stylesheet" />
+    <link href=" {{ URL::asset('partner/css/fileinput-rtl.min.css ') }}" rel="stylesheet" />
+
 
     <!-- Animation library for notifications   -->
     <link href=" {{ URL::asset('partner/css/animate.min.css ') }}" rel="stylesheet"/>
@@ -26,18 +30,15 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href=" {{ URL::asset('partner/css/demo.css" rel="stylesheet ') }}" />
 
-
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href=" {{ URL::asset('partner/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
 
 </head>
-<body id="main-homepage">
+<body>
 
-       <div class="loader"></div>
-
-        <div class="sidebar" data-color="purple" data-image="partner/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="red" data-image=" {{URL::asset('partner/img/sidebar-4.jpg') }} ">
 
     <!--
 
@@ -46,65 +47,43 @@
 
     -->
 
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
-                    </a>
-                </div>
-
-                <ul class="nav">
-                    <li class="active">
-                        <a href="dashboard.html">
-                            <i class="pe-7s-graph"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="user.html">
-                            <i class="pe-7s-user"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table.html">
-                            <i class="pe-7s-note2"></i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="typography.html">
-                            <i class="pe-7s-news-paper"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="icons.html">
-                            <i class="pe-7s-science"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="maps.html">
-                            <i class="pe-7s-map-marker"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notifications.html">
-                            <i class="pe-7s-bell"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="active-pro">
-                        <a href="upgrade.html">
-                            <i class="pe-7s-rocket"></i>
-                            <p>Upgrade to PRO</p>
-                        </a>
-                    </li>
-                </ul>
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    Adventure Studio
+                </a>
             </div>
+
+            <ul class="nav">
+                <li >
+                    <a href="homepartner">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="userpartner">
+                        <i class="pe-7s-user"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-photo"></i>
+                        <p>Photo Package</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="pe-7s-note2"></i>
+                        <p>Schedule</p>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </div>
+
+    <div class="main-panel">
 
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
@@ -115,7 +94,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#">Kupesan</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -184,49 +163,52 @@
                 </div>
             </div>
         </nav>
-        <!-- @include('layouts.sidebar') -->
 
         @yield('content')
 
+    </div>
     <!-- Scripts -->
     <!--   Core JS Files   -->
-    <script src=" {{ URL::asset('assets/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
-    <script src=" {{ URL::asset('assets/js/bootstrap.min.js') }} " type="text/javascript"></script>
+    <script src=" {{ URL::asset('partner/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
+    <script src=" {{ URL::asset('partner/js/bootstrap.min.js') }} " type="text/javascript"></script>
 
     <!--  Charts Plugin -->
-    <script src=" {{ URL::asset('assets/js/chartist.min.js') }} "></script>
+    <script src=" {{ URL::asset('partner/js/chartist.min.js') }} "></script>
+
+    <!--  File Input Plugin    -->
+    <script src=" {{ URL::asset('partner/js/plugins/purify.min.js') }} "></script>
+    <script src=" {{ URL::asset('partner/js/fileinput.min.js') }} "></script>
+    <script src=" {{ URL::asset('partner/js/theme.min.js') }} "></script>
 
     <!--  Notifications Plugin    -->
-    <script src=" {{ URL::asset('assets/js/bootstrap-notify.js') }} "></script>
+    <script src=" {{ URL::asset('partner/js/bootstrap-notify.js') }} "></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src=" {{ URL::asset('assets/js/light-bootstrap-dashboard.js?v=1.4.0') }} "></script>
+    <script src=" {{ URL::asset('partner/js/light-bootstrap-dashboard.js?v=1.4.0') }} "></script>
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src=" {{ URL::asset('assets/js/demo.js') }} "></script>
+    <script src=" {{ URL::asset('partner/js/demo.js') }} "></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
 
             demo.initChartist();
 
-            $.notify({
-                icon: 'pe-7s-gift',
-                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+        });
+    </script>
 
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
+    <script>
+        $("#file-0a").fileinput({
+                theme: 'fa',
+                'allowedFileExtensions': ['jpg', 'png']
         });
     </script>
 
     <!-- Scripts -->
-    <script src="{{ URL::asset('js/app.js') }}"></script>
+    <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
     @yield('script')
 </body>
 </html>

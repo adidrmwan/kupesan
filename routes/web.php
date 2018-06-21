@@ -77,4 +77,8 @@ Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation')
 Route::get('/studiodetail', 'studioController@studiodetail')->name('studio-detail');
 Route::get('/studiolist', 'studioController@studiolist')->name('studio-list');
 
+//Route untuk partner
+Route::get('/homepartner', 'partnerController@homepartner')->name('partner-home');
+Route::get('/userpartner', 'partnerController@userpartner')->name('partner-user');
+
 Auth::routes();
