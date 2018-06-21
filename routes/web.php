@@ -29,7 +29,7 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 //         }
 
 //         elseif ( $userrole = 3 ) {
-//            return redirect()->route('welcome');
+//            return redirect()->route('partner.home');
 //         }
 
 
@@ -66,7 +66,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','role:user']], functio
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
 	Route::get('/', function(){
 		$data['users'] = \App\User::whereDoesntHave('roles')->get();
-		return view('welcome', $data);
+		return view('partner.home', $data);
 	});
 });
 

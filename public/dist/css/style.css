@@ -77,7 +77,8 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 
 .page-heading{
 	text-align:center;
-	margin-bottom:40px;
+	/*margin-bottom:40px;*/
+	padding-top: 20px;
 }
 
 .page-heading h2{
@@ -1278,7 +1279,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
    ----------------------------------------------------- */
 
 #owl-hotel-offers .item{
-	padding:10px 15px;
+	padding:15px 15px;
 }
   
 .main-img .main-mask{

@@ -17,6 +17,9 @@
     <!-- Google Fonts -->   
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
+    <!-- Owl Carousel Stylesheet -->
+    <link rel="stylesheet" href=" {{ URL::asset('dist/css/owl.carousel.css') }} ">
+    <link rel="stylesheet" href=" {{ URL::asset('dist/css/owl.theme.css') }} ">
     
     <!-- Bootstrap Stylesheet -->   
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/bootstrap.min.css') }} ">
@@ -28,12 +31,22 @@
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/style.css') }} ">
     <link rel="stylesheet" id="cpswitch" href="{{ URL::asset ('dist/css/orange.css') }} ">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/responsive.css') }} ">
+
+    <!-- Flex Slider Stylesheet -->
+    <link rel="stylesheet" href=" {{ URL::asset('dist/css/flexslider.css') }} " type="text/css" />
+    
+    <!--Date-Picker Stylesheet-->
+    <link rel="stylesheet" href=" {{ URL::asset('dist/css/datepicker.css') }} ">
+    
+    <!-- Magnific Gallery -->
+    <link rel="stylesheet" href=" {{ URL::asset('dist/css/magnific-popup.css') }} ">
     
     <!-- Color Panel -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/jquery.colorpanel.css') }} ">
 
-   <style type="text/css">
-      .cntr {
+<style type="text/css">
+
+.cntr {
   margin: auto;
 }
 
@@ -95,7 +108,8 @@
   display: inline-block;
   vertical-align: middle;
 }
-   </style>
+
+</style>
 
 </head>
 <body id="main-homepage">
@@ -158,11 +172,19 @@
 
     <!-- Scripts -->
     <script type="text/javascript" src="{{ URL::asset('dist/js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('dist/js/jquery.colorpanel.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/jquery-ui.min.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/custom-navigation.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/custom-price-slider.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/jquery.colorpanel.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/jquery-ui.min.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/jquery.magnific-popup.min.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-navigation.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-price-slider.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-flex.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-owl.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
 
     @yield('script')
 </body>
