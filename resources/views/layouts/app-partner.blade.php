@@ -15,6 +15,8 @@
    <!-- Bootstrap core CSS     -->
     <link href=" {{ URL::asset('partner/css/bootstrap.min.css ') }}" rel="stylesheet" />
 
+     <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
     <!-- File Input -->
     <link href=" {{ URL::asset('partner/css/fileinput.min.css ') }}" rel="stylesheet" />
     <link href=" {{ URL::asset('partner/css/fileinput-rtl.min.css ') }}" rel="stylesheet" />
@@ -34,6 +36,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href=" {{ URL::asset('partner/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
+
 
 </head>
 <body>
@@ -68,10 +71,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="pe-7s-photo"></i>
-                        <p>Photo Package</p>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="pe-7s-photo"> </i> <p> Photo Package &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
                     </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li style="margin-left: 35px;">
+                            <a href="addpackagepartner">
+                                <i class="pe-7s-plus"></i>
+                                <p> Add photo package </p>
+                            </a>
+                        </li>
+                        <li style="margin-left: 35px;">
+                            <a href="editpackagepartner">
+                                <i class="pe-7s-note2"></i>
+                                <p> Edit photo package </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">
@@ -175,6 +191,9 @@
     <!--  Charts Plugin -->
     <script src=" {{ URL::asset('partner/js/chartist.min.js') }} "></script>
 
+    <!--  Pagination -->
+    <script src=" {{ URL::asset('partner/js/pagination.js') }} "></script>
+
     <!--  File Input Plugin    -->
     <script src=" {{ URL::asset('partner/js/plugins/purify.min.js') }} "></script>
     <script src=" {{ URL::asset('partner/js/fileinput.min.js') }} "></script>
@@ -192,6 +211,9 @@
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src=" {{ URL::asset('partner/js/demo.js') }} "></script>
 
+    <!--  Notifications Plugin    -->
+    <script src=" {{ URL::asset('partner/js/bootstrap-notify.js') }} "></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -205,6 +227,14 @@
                 theme: 'fa',
                 'allowedFileExtensions': ['jpg', 'png']
         });
+    </script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+
     </script>
 
     <!-- Scripts -->

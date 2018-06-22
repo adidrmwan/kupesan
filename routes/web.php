@@ -80,5 +80,7 @@ Route::get('/studiolist', 'studioController@studiolist')->name('studio-list');
 //Route untuk partner
 Route::get('/homepartner', 'partnerController@homepartner')->name('partner-home');
 Route::get('/userpartner', 'partnerController@userpartner')->name('partner-user');
+Route::get('/addpackagepartner', 'partnerController@addpackagepartner')->name('partner-addpackage');
+Route::get('/editpackagepartner', 'partnerController@editpackagepartner')->name('partner-editpackage');
 
 Auth::routes();
