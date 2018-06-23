@@ -82,5 +82,7 @@ Route::get('/homepartner', 'partnerController@homepartner')->name('partner-home'
 Route::get('/userpartner', 'partnerController@userpartner')->name('partner-user');
 Route::get('/addpackagepartner', 'partnerController@addpackagepartner')->name('partner-addpackage');
 Route::get('/editpackagepartner', 'partnerController@editpackagepartner')->name('partner-editpackage');
+Route::get('/schedulepartner', 'partnerController@schedulepartner')->name('partner-schedule');
+Route::get('/testingpartner', 'partnerController@testingpartner')->name('testingpartner');
 
 Auth::routes();

@@ -5772,3 +5772,8 @@ padding-bottom: 30px;
 	padding:7px 55px 8px;
 	margin-top:15px;
 }
+
+.zmdi::before {
+	 padding-left: 30px;
+	 padding-right: 30px;
+}

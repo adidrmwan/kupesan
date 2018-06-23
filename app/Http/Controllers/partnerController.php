@@ -22,4 +22,12 @@ class partnerController extends Controller
     {
         return view('partner.edit-package');
     }
+    public function schedulepartner()
+    {
+        return view('partner.schedule');
+    }
+    public function testingpartner()
+    {
+        return view('testing');
+    }
 }

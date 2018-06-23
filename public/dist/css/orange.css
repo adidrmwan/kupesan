@@ -70,7 +70,7 @@ p{
 }
 
 .page-heading.white-heading h2{
-	color:white;
+	color:#B91414;
 }
 
 
@@ -1371,7 +1371,7 @@ p{
 /*************** ROOMS-OFFER ***************/
 
 #luxury-rooms .row{
-	background:#faa61a;
+	/*background:#faa61a;*/
 }
 
 .luxury-room-text{

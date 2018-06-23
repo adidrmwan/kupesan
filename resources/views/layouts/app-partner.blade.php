@@ -34,7 +34,7 @@
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partner/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
 
 
@@ -90,7 +90,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="schedulepartner">
                         <i class="pe-7s-note2"></i>
                         <p>Schedule</p>
                     </a>
