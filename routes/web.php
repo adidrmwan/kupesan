@@ -1,43 +1,33 @@
 <?php
-
-Route::get('/', function () {
-    return view('home');
-});
-
-
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
-// Route::get('/', function () {
+Route::get('/', function () {
     
-//     if(Auth::check()) {
-    
-//     $user = Auth::user();
-    
-//     $userrole = DB::select("select role_id from role_user where user_id = '$user->id' ");
-//         if ( $userrole = 1 ) {
-//            return redirect()->route('admin');
-//         }
+    if(Auth::check()) {    
         
-//         elseif ( $userrole = 2 ) {
-//            return redirect()->route('home');
-//         }
+        $user = Auth::user();
+        $userrole = DB::table('role_user')
+                    ->where('user_id', $user->id)
+                    ->select('role_id')
+                    ->first();
+		// dd($userrole);
+        if ( $userrole->role_id == '1' ) {
+               return redirect()->route('admin.dashboard');
+        }
+        elseif ( $userrole->role_id == '3' ) {
+               return redirect()->route('partner.dashboard');
+        }      
+    }
 
-//         elseif ( $userrole = 3 ) {
-//            return redirect()->route('partner.home');
-//         }
+    return view('home');       
 
-
-//     }
-
-//     return view('home');     
-    
-// });
+})->name('index');
 
 
 // Route untuk user yang baru register
@@ -49,10 +39,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth']], function(){
 
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
-	Route::get('/', function(){
-		$data['users'] = \App\User::whereDoesntHave('roles')->get();
-		return view('admin', $data);
-	});
+	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 });
 
 // Route untuk user yang member
@@ -64,10 +51,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','role:user']], functio
 
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
-	Route::get('/', function(){
-		$data['users'] = \App\User::whereDoesntHave('roles')->get();
-		return view('partner.home', $data);
-	});
+	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
 });
 
 // Route untuk email verification
@@ -84,5 +68,3 @@ Route::get('/addpackagepartner', 'partnerController@addpackagepartner')->name('p
 Route::get('/editpackagepartner', 'partnerController@editpackagepartner')->name('partner-editpackage');
 Route::get('/schedulepartner', 'partnerController@schedulepartner')->name('partner-schedule');
 Route::get('/testingpartner', 'partnerController@testingpartner')->name('testingpartner');
-
-Auth::routes();

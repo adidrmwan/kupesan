@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Closure;
 
 class RoleMiddleware
@@ -13,10 +14,11 @@ class RoleMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next, $roleName)
-    {
+    {   
         if(! $request->user()->hasRole($roleName))
         {
-            return redirect()->to('home');
+            return redirect()
+                ->to('/');
         }
         return $next($request);
     }
