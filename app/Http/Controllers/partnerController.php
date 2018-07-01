@@ -14,4 +14,20 @@ class partnerController extends Controller
     {
         return view('partner.user');
     }
+    public function addpackagepartner()
+    {
+        return view('partner.add-package');
+    }
+    public function editpackagepartner()
+    {
+        return view('partner.edit-package');
+    }
+    public function schedulepartner()
+    {
+        return view('partner.schedule');
+    }
+    public function testingpartner()
+    {
+        return view('testing');
+    }
 }
