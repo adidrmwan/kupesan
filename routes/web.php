@@ -16,7 +16,7 @@ Route::get('/', function () {
                     ->where('user_id', $user->id)
                     ->select('role_id')
                     ->first();
-		// dd($userrole);
+        // dd($userrole);
         if ( $userrole->role_id == '1' ) {
                return redirect()->route('admin.dashboard');
         }
@@ -52,6 +52,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','role:user']], functio
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
 	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
+    Route::get('/profile', 'partnerController@dashboard')->name('partner.profile');
 });
 
 // Route untuk email verification

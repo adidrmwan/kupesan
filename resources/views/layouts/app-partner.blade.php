@@ -52,20 +52,22 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Adventure Studio
+                @foreach($partner as $data)
+                <a href="{{ route('partner.dashboard') }}" class="simple-text">
+                    {{$data->partner_name}}
                 </a>
+                @endforeach
             </div>
 
             <ul class="nav">
                 <li >
-                    <a href="homepartner">
+                    <a href="{{ route('partner.dashboard') }}">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="userpartner">
+                    <a href="{{ route('partner.profile') }}">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -170,9 +172,12 @@
                               </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <p>Log out</p>
                             </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> {{ csrf_field() }}
+                            </form>
                         </li>
                         <li class="separator hidden-lg"></li>
                     </ul>
