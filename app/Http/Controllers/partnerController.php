@@ -58,8 +58,8 @@ class partnerController extends Controller
     {
         return view('partner.schedule');
     }
-    public function testingpartner()
+    public function formpartner()
     {
-        return view('testing');
+        return view('partner.form');
     }
 }

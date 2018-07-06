@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-      <section class="section-padding">
+    	<section>
         <div class="wizard">
             <div class="wizard-inner">
                 <div class="connecting-line"></div>

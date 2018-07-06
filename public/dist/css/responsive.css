@@ -2711,6 +2711,7 @@ Author:			Star Travel
 		width: 100%;
 		vertical-align: top;
 		overflow: hidden;
+		max-height: 150px;
 	}
 	
 	.list-img{

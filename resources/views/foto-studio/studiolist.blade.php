@@ -102,18 +102,11 @@
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-1.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="dist/images/hotel-1.jpg" class="img-responsive" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
                                                 <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
@@ -121,7 +114,6 @@
                                     <div class="list-info h-list-info">
                                         <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
                                         <p class="block-minor">From: Scotland</p>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->
@@ -136,13 +128,6 @@
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
                                                 <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
@@ -150,7 +135,7 @@
                                     <div class="list-info h-list-info">
                                         <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
                                         <p class="block-minor">From: Scotland</p>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
+                                        
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->
@@ -165,13 +150,7 @@
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
                                                 <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
+                                                
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
@@ -179,7 +158,7 @@
                                     <div class="list-info h-list-info">
                                         <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
                                         <p class="block-minor">From: Scotland</p>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
+                                        
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->
@@ -194,13 +173,7 @@
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
                                                 <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
+                                                
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
@@ -208,7 +181,7 @@
                                     <div class="list-info h-list-info">
                                         <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
                                         <p class="block-minor">From: Scotland</p>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
+                                        
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->
@@ -223,13 +196,7 @@
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
                                                 <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
+                                                
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
@@ -237,7 +204,7 @@
                                     <div class="list-info h-list-info">
                                         <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
                                         <p class="block-minor">From: Scotland</p>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
+                                        
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->
@@ -252,13 +219,7 @@
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
                                                 <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
+                                                
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
@@ -266,7 +227,7 @@
                                     <div class="list-info h-list-info">
                                         <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
                                         <p class="block-minor">From: Scotland</p>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
+                                        
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->

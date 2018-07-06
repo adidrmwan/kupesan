@@ -3331,6 +3331,7 @@ padding-bottom: 30px;
 
 .list-block .list-info{
 	padding:30px;
+	max-height: 150px;
 }
 
 .list-block .list-info a{
