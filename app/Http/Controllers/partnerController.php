@@ -62,4 +62,8 @@ class partnerController extends Controller
     {
         return view('partner.form');
     }
+    public function registpartner()
+    {
+        return view('partner.register');
+    }
 }

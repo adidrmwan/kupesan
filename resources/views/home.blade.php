@@ -1,23 +1,16 @@
 @extends('layouts.app')
+@section('title', 'Selamat Datang')
 @section('content')
 
 
-<section class="flexslider-container" id="flexslider-container-1">
+<section class="flexslider-container" id="flexslider-container-6">
 
-    <div class="flexslider slider" id="slider-1">
+    <div class="flexslider slider tour-slider" id="slider-6">
         <ul class="slides">
             
-            <li class="item-1" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(dist/images/homepage-slider-1.jpg) 50% 0%;
-    background-size:cover;
-    height:100%;">
-                <div class=" meta">         
-                    <div class="container">
-                        <h2>Kupesanin</h2>
-                        <h1>Pesananamu</h1>
-                        <!-- <a href="#" class="btn btn-default">View More</a> -->
-                    </div><!-- end container -->  
-                </div><!-- end meta -->
-            </li><!-- end item-1 -->
+            <li class="item-1 back-size" style="background: linear-gradient(rgba(234, 65, 12, 0.85),rgba(234, 65, 12, 0.85)),url(dist/images/home-bg.png) 50% 65% no-repeat; background-size:600px; height:100%;">
+               
+            </li><!-- end item-1 -->           
         </ul>
     </div><!-- end slider -->
 
@@ -38,51 +31,21 @@
                         <div id="studio" class="tab-pane in active">
                             <form>
                                 <div class="row">
-
-                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
                                         
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control" placeholder="From" >
-                                                    <i class="fa fa-map-marker"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control" placeholder="To" >
-                                                    <i class="fa fa-map-marker"></i>
-                                                </div>
-                                            </div><!-- end columns -->
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 
+                                        <div class="form-group left-icon">
+                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" >
+                                            <i class="fa fa-calendar"></i>
                                         </div><!-- end row -->                              
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="row">
-                                        
-                                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control dpd1" placeholder="Check In" >
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control dpd2" placeholder="Check Out" >
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-
-                                        </div><!-- end row -->                              
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                         <div class="form-group right-icon">
                                             <select class="form-control">
-                                                <option selected>Adults</option>
+                                                <option selected># (Hastag)</option>
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -94,6 +57,9 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
                                         <button class="btn btn-orange">Search</button>
                                     </div><!-- end columns -->
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
+                                        
+                                    </div>
                                     
                                 </div><!-- end row -->
                             </form>
@@ -103,70 +69,8 @@
                             <form>
                                 <div class="row">
                                     
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                        <div class="row">
-                                        
-                                            <div class="col-xs-12 col-sm-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control dpd1" placeholder="Check In" >
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-12 col-sm-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control dpd2" placeholder="Check Out" >
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-
-                                        </div><!-- end row -->                              
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                                        <div class="row">
-                                        
-                                            <div class="col-xs-12 col-sm-12 col-md-4">
-                                                <div class="form-group right-icon">
-                                                    <select class="form-control">
-                                                        <option selected>Rooms</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                    </select>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-6 col-sm-6 col-md-4">
-                                                <div class="form-group right-icon">
-                                                    <select class="form-control">
-                                                        <option selected>Adults</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                    </select>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-6 col-sm-6 col-md-4">
-                                                <div class="form-group right-icon">
-                                                    <select class="form-control">
-                                                        <option selected>Kids</option>
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                    </select>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                        </div><!-- end row -->
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                        <button class="btn btn-orange">Search</button>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
                                     </div><!-- end columns -->
                                     
                                 </div><!-- end row -->
@@ -177,66 +81,8 @@
                             <form>
                                 <div class="row">
                                 
-                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-                                        <div class="form-group left-icon">
-                                            <input type="text" class="form-control" placeholder="City,Country" />
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                                        <div class="form-group right-icon">
-                                            <select class="form-control">
-                                                <option selected>Month</option>
-                                                <option>January</option>
-                                                <option>February</option>
-                                                <option>March</option>
-                                                <option>April</option>
-                                                <option>May</option>
-                                                <option>June</option>
-                                                <option>July</option>
-                                                <option>August</option>
-                                                <option>September</option>
-                                                <option>October</option>
-                                                <option>November</option>
-                                                <option>December</option>
-                                            </select>
-                                            <i class="fa fa-angle-down"></i>
-                                        </div>
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                                        <div class="row">
-
-                                            <div class="col-xs-12 col-sm-6">
-                                                <div class="form-group right-icon">
-                                                    <select class="form-control">
-                                                        <option selected>Adults</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                    </select>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-12 col-sm-6">
-                                                <div class="form-group right-icon">
-                                                    <select class="form-control">
-                                                        <option selected>Kids</option>
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                    </select>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                        </div><!-- end row -->
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                        <button class="btn btn-orange">Search</button>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
                                     </div><!-- end columns -->
                                     
                                 </div><!-- end row -->
@@ -247,60 +93,8 @@
                             <form>
                                 <div class="row">
                                     
-                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="row">
-                                        
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control" placeholder="From" >
-                                                    <i class="fa fa-map-marker"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control" placeholder="To" >
-                                                    <i class="fa fa-map-marker"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-
-                                        </div><!-- end row -->                              
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="row">
-                                        
-                                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control dpd1" placeholder="Check In" >
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                                <div class="form-group left-icon">
-                                                    <input type="text" class="form-control dpd2" placeholder="Check Out" >
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                            </div><!-- end columns -->
-
-                                        </div><!-- end row -->                              
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                                        <div class="form-group right-icon">
-                                            <select class="form-control">
-                                            <option selected>Adults</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            </select>
-                                            <i class="fa fa-angle-down"></i>
-                                        </div>
-                                    </div><!-- end columns -->
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                        <button class="btn btn-orange">Search</button>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
                                     </div><!-- end columns -->
                                     
                                 </div><!-- end columns -->
@@ -318,35 +112,27 @@
 
 <section id="best-features" class="banner-padding black-features">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-3">
+        <div class="row">           
+           <div class="col-sm-6 col-md-4">
                 <div class="b-feature-block">
-                    <span><i class="fa fa-dollar"></i></span>
-                    <h3>Best Price Guarantee</h3>
+                    <span><i class="fa fa-cogs"></i></span>
+                    <h3>Change How Things Are</h3>
                     <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
                 </div><!-- end b-feature-block -->
            </div><!-- end columns -->
            
-           <div class="col-sm-6 col-md-3">
+           <div class="col-sm-6 col-md-4">
                 <div class="b-feature-block">
-                    <span><i class="fa fa-lock"></i></span>
-                    <h3>Safe and Secure</h3>
+                    <span><i class="fa fa-expand"></i></span>
+                    <h3>Enlarge Every Possibility</h3>
                     <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
                 </div><!-- end b-feature-block -->
            </div><!-- end columns -->
            
-           <div class="col-sm-6 col-md-3">
+           <div class="col-sm-6 col-md-4">
                 <div class="b-feature-block">
                     <span><i class="fa fa-thumbs-up"></i></span>
-                    <h3>Best Travel Agents</h3>
-                    <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-           
-           <div class="col-sm-6 col-md-3">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-bars"></i></span>
-                    <h3>Travel Guidelines</h3>
+                    <h3>Offer One Stop Solution</h3>
                     <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
                 </div><!-- end b-feature-block -->
            </div><!-- end columns -->

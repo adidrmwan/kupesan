@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-sm-12">                            
                             <div class="custom-form custom-form-fields">
-                                <h3>Registration</h3>
+                                <h3>Daftar Jadi Mitra</h3>
                                 <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                                 {{ csrf_field() }}
 
@@ -50,22 +50,12 @@
                                          <span><i class="fa fa-lock"></i></span>
                                     </div>
                                     
-                                    <button class="btn btn-orange btn-block" type="submit">Register</button>
-
-                                    <h5 style="padding-top: 3%; text-align: center;">Or Register With</h5>
-                                    <div class="col-sm-12" style="padding-bottom: 5%;">
-                                        <div class="col-md-6">
-                                            <a href="#" class="btn btn-primary btn-icon btn-block btn-picton btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
-                                         </div>
-                                         <div class="col-md-6">
-                                            <a href="{{ url('auth/google') }}" class="btn btn-primary btn-icon btn-block btn-picton btn-lg"> Google</a>
-                                         </div>
-                                    </div>
+                                    <button class="btn btn-orange btn-block" type="submit">Daftar</button>
                                 </form>
                                 
                                 <div class="other-links">
                                     <p class="link-line">Already Have An Account ? <a href="login">Login Here</a></p>
-                                    <p>By registering, I agree with Terms & Conditions and Privacy Policy of Traveloka.</p>
+                                    <p>By registering, I agree with Terms & Conditions and Privacy Policy of Kupesan.</p>
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->
                             

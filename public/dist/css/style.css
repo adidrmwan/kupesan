@@ -57,7 +57,7 @@ html,body{
 }
 
 p,ul,a,.btn,span,input,select,textarea,label, table, .meta h2, blockquote, small, .newsletter h2, .cruise-offer-text h3, .package h2, .welcome-message h2, #hot-tour h3, #hot-tour h2, #message-banner h2, .member-name h3, #error-text h2, .company-name, #coming-soon-text h2, .booking-form-block .selected-price, #dashboard h2, #dashboard h3, #dashboard h4, #web-name, .tvl-insurance-info .innerpage-heading h1, .big-heading h2, .traveler-info h3, .list-group-heading,.page-search-form h2, .member-info-2 h4, #faq-page .content-side .panel-default .panel-title, .service-intro-text h4, .popup-ad-text h4{
-	font-family: 'Lato', sans-serif;
+	font-family: 'Libre Franklin', sans-serif;
 }
 
 p,ul{
@@ -442,7 +442,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 .main-navbar .nav > li > a{
 	font-size:16px;
 	font-weight:bold;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 }
 
 .main-navbar .navbar-nav > li{
@@ -491,7 +491,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 
 .main-navbar .navbar-nav li .dropdown-menu {
 	width: 250px;
-	padding: 0;
+	padding: 10px;
 }
 
 .main-navbar .navbar-nav li .dropdown-menu li a {
@@ -3838,7 +3838,7 @@ padding-bottom: 30px;
 }
 
 #full-page-form{
-	padding:80px 0px;
+	padding:100px 0px 40px 0px;
 }
 
 .full-page-title{
@@ -5777,4 +5777,19 @@ padding-bottom: 30px;
 .zmdi::before {
 	 padding-left: 30px;
 	 padding-right: 30px;
+}
+
+/* General sizing */
+ul.dropdown-lr {
+  width: 300px;
+}
+
+/* mobile fix */
+@media (max-width: 768px) {
+	.dropdown-lr h3 {
+		color: #eee;
+	}
+	.dropdown-lr label {
+		color: #eee;
+	}
 }

@@ -70,3 +70,4 @@ Route::get('/editpackagepartner', 'partnerController@editpackagepartner')->name(
 Route::get('/schedulepartner', 'partnerController@schedulepartner')->name('partner-schedule');
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
 Route::get('/formpartner', 'partnerController@formpartner')->name('formpartner');
+Route::get('/registpartner', 'partnerController@registpartner')->name('registpartner');
