@@ -66,4 +66,8 @@ class partnerController extends Controller
     {
         return view('partner.register');
     }
+    public function jadimitra()
+    {
+        return view('partner.jadi-mitra');
+    }
 }

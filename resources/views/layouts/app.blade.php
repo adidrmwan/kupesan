@@ -105,7 +105,10 @@
 
                             @endguest
                                 <li>
-                                    <button class="btn btn-orange" style="margin-top:5px; padding: 10px 30px; " >Jadi Mitra</button>
+                                      
+                                    <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
+                                        <a href="jadi-mitra" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                                    </button>
                                 </li>
                                 <li></li>
                                 

@@ -71,3 +71,4 @@ Route::get('/schedulepartner', 'partnerController@schedulepartner')->name('partn
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
 Route::get('/formpartner', 'partnerController@formpartner')->name('formpartner');
 Route::get('/registpartner', 'partnerController@registpartner')->name('registpartner');
+Route::get('/jadi-mitra', 'partnerController@jadimitra')->name('jadi-mitra');
