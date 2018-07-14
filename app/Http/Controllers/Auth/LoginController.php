@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Auth;
 use App\User;
+use App\UserRole;
 
 use Illuminate\Http\Request;
 
@@ -65,12 +66,19 @@ class LoginController extends Controller
         if ($authUser) {
             return $authUser;
         }
-        return User::create([
+
+        $user = User::create([
             'name'          => $user->name,
             'email'         => $user->email,
             'provider'      => strtoupper($provider),
             'provider_id'   => $user->id,
         ]);
+
+        $userRole = UserRole::create([
+            'role_id'       => '2',
+            'user_id'       => $user->id,
+        ]);
+        return $user;
 
     }
 

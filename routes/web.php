@@ -20,9 +20,12 @@ Route::get('/', function () {
         if ( $userrole->role_id == '1' ) {
                return redirect()->route('admin.dashboard');
         }
+        elseif ( $userrole->role_id == '2' ) {
+               return redirect()->route('user.dashboard');
+        }
         elseif ( $userrole->role_id == '3' ) {
                return redirect()->route('partner.dashboard');
-        }      
+        }  
     }
 
     return view('home');       
@@ -43,10 +46,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], funct
 });
 
 // Route untuk user yang member
-Route::group(['prefix' => 'user', 'middleware' => ['auth','role:user']], function(){
+Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function(){
 	Route::get('/', function(){
 		return view('home');
-	});
+	})->name('user.dashboard');
 });
 
 // Role untuk user yang partner
