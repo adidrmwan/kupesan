@@ -1,4 +1,4 @@
-@extends('layouts.form-partner')
+@extends('partner.layouts.app-form')
 
 @section('content')
 <div class="container">

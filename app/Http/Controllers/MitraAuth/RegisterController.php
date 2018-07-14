@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MitraAuth;
 use App\Mitra;
 use App\User;
 use App\UserRole;
+use App\Partner;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -43,6 +44,10 @@ class RegisterController extends Controller
 
         $userRole = UserRole::create([
             'role_id' => '3',
+            'user_id' => $user['id'],
+        ]);
+
+        $partner = Partner::create([
             'user_id' => $user['id'],
         ]);
 

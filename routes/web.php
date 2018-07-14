@@ -53,9 +53,9 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 });
 
 // Role untuk user yang partner
-Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
+Route::group(['prefix' => '3', 'middleware' => ['auth','role:partner']], function(){
 	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
-    Route::get('/profile', 'partnerController@dashboard')->name('partner.profile');
+    Route::get('/profil-mitra', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
 });
 
 // Route untuk email verification
@@ -72,7 +72,6 @@ Route::get('/addpackagepartner', 'PartnerController@addpackagepartner')->name('p
 Route::get('/editpackagepartner', 'PartnerController@editpackagepartner')->name('partner-editpackage');
 Route::get('/schedulepartner', 'PartnerController@schedulepartner')->name('partner-schedule');
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
-Route::get('/formpartner', 'PartnerController@formpartner')->name('formpartner');
 
 
 // Route Jadi Mitra
