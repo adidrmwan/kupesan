@@ -9,7 +9,7 @@
                         <div class="col-sm-12">                            
                             <div class="custom-form custom-form-fields">
                                 <h3>Daftar Jadi Mitra</h3>
-                                <form class="form-horizontal" method="POST" action="#">
+                                <form class="form-horizontal" method="POST" action="{{route('mitra.daftar.submit')}}">
                                 {{ csrf_field() }}
                                     <div class="form-group">
                                           <input id="name" type="text" class="form-control" name="name" placeholder="Your Name" value="{{ old('name') }}" required autofocus>

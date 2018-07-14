@@ -17,7 +17,7 @@
                         	<div id="abt-cnt-2-text">
                                 <h2>Jadilah Bagian dari kami</h2>
                                  <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                        <a href="registpartner" style="color: white; text-decoration: none;">Daftar Mitra </a>
+                                        <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">Daftar Mitra </a>
                                 </button>
                                 
                             </div><!-- end abt-cnt-2-text -->

@@ -62,10 +62,7 @@ class PartnerController extends Controller
     {
         return view('partner.form');
     }
-    public function showRegistrationForm()
-    {
-        return view('auth.register-mitra');
-    }
+    
     public function showJadiMitra()
     {
         return view('partner.jadi-mitra');

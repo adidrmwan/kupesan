@@ -75,7 +75,7 @@ Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpar
 Route::get('/formpartner', 'PartnerController@formpartner')->name('formpartner');
 
 
-
-Route::get('/jadi-mitra-kupesan/daftar', 'PartnerController@showRegistrationForm')->name('mitra.daftar');
-Route::post('/jadi-mitra-kupesan/daftar', 'PartnerController@submitRegistrationForm')->name('mitra.daftar.submit');
+// Route Jadi Mitra
+Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
+Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
