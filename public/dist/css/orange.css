@@ -1300,8 +1300,13 @@ p{
 /************* BLACK-FEATURES *************/
 
 #best-features.black-features{
+<<<<<<< HEAD
 	background:#232323;
 	color:white;
+=======
+	background:#EA410C;
+	color:#372824;
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
 }
 
 #best-features.black-features .b-feature-block .fa{

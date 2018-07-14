@@ -194,6 +194,7 @@
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
+<<<<<<< HEAD
                  <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-fotografer-offers">
                     
                     <div class="item">
@@ -256,10 +257,26 @@
 </section><!-- end tour-offers -->
 
 <section id="mua-offers" class="section-padding">
+=======
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
+                    </div><!-- end columns -->
+                    
+                </div><!-- end row -->
+
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end cruise-offers -->
+
+<section id="tour-offers" class="section-padding">
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
+<<<<<<< HEAD
                     <h2>MUA</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
@@ -320,11 +337,23 @@
                     </div><!-- end item -->
                     
                 </div><!-- end owl-tour-offers -->
+=======
+                    <h2>MUA Offers</h2>
+                    <hr class="heading-line" />
+                </div><!-- end page-heading -->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
+                    </div><!-- end columns -->
+                    
+                </div><!-- end row -->
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end tour-offers -->
 
+<<<<<<< HEAD
 <section id="kebaya-offers" class="section-padding">
             <div class="container">
                 <div class="row">
@@ -604,6 +633,56 @@
         </div><!-- end container -->   
     </div><!-- end contact-us -->
 </section><!-- end innerpage-wrapper -->
+=======
+<section id="flight-offers" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-heading">
+                    <h2>Kebayas Offers</h2>
+                    <hr class="heading-line" />
+                </div><!-- end page-heading -->
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
+                        </div><!-- end columns -->
+                    
+                </div><!-- end row -->
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end flight-offers -->
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
+
+<section id="best-features" class="banner-padding black-features">
+    <div class="container">
+        <div class="row">           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-cogs"></i></span>
+                    <h3>Change How Things Are</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-expand"></i></span>
+                    <h3>Enlarge Every Possibility</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-thumbs-up"></i></span>
+                    <h3>Offer One Stop Solution</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end best-features -->
 
 
 @include('layouts.footer')

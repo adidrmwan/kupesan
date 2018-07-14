@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserRole;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,12 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            ''
         ]);
+
+        $userRole = UserRole::create([
+            'role_id' => '2',
+            'user_id' => $user['id'],
+        ]);
+
+        return $user;
     }
 
     public function register(Request $request) {
@@ -82,7 +89,7 @@ class RegisterController extends Controller
         $user['link'] = str_random(30);
 
         DB::table('user_activations')->insert(['id_user'=>$user['id'],'token'=>$user['link']]);
-
+        
         Mail::send('emails.activation', $user, function($message) use ($user){
           $message->to($user['email']);
           $message->subject('Kupesan - Activation Code');

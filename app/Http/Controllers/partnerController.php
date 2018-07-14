@@ -14,8 +14,11 @@ class PartnerController extends Controller
     	$user = Auth::user();
     	$partner = DB::table('partner')
     				->where('user_id',$user->id)
-    				->select('partner_name')
+    				->select('pr_name')
     				->get();
+        if (empty($partner->pr_name)) {
+            return redirect()->intended(route('partner.profile.form'));
+        }
         return view('partner.home', ['partner' => $partner]);
     }
     public function profile()
@@ -25,7 +28,7 @@ class PartnerController extends Controller
     				->where('user_id',$user->id)
     				->select('*')
     				->get();
-    	$tipe = DB::table('partner_type')
+    	$tipe = DB::table('pr_type')
     			->select('*')
     			->get();
     	$email = DB::table('users')
@@ -39,13 +42,26 @@ class PartnerController extends Controller
     {
     	$user = Auth::user();
     	$partner = Partner::find($user->id);
-    	dd($partner);
+    	// dd($partner);
     	$partner = DB::table('partner')
     				->where('user_id',$user->id)
     				->select('*')
     				->get();
         return view('partner.home', ['partner' => $partner]);
     }
+
+    public function showProfileFormNew()
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('pr_name')
+                    ->get();
+        
+        return view('partner.form', ['partner' => $partner]);        
+        
+    }
+    
     public function addpackagepartner()
     {
         return view('partner.add-package');
@@ -58,15 +74,7 @@ class PartnerController extends Controller
     {
         return view('partner.schedule');
     }
-    public function formpartner()
-    {
-        return view('partner.form');
-    }
-    public function registpartner()
-    {
-        return view('partner.register');
-    }
-    public function jadimitra()
+    public function showJadiMitra()
     {
         return view('partner.jadi-mitra');
     }

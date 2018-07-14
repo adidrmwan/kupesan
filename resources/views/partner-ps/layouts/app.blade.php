@@ -36,20 +36,15 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
-
-
 </head>
 <body>
-
-    @include('partner.layouts.sidebar')
-
+    @include('partner-ps.layouts.sidebar')
+  
     <div class="main-panel">
-
-        @include('partner.layouts.nav')
+        @include('partner-ps.layouts.navbar')
 
         @yield('content')
-
-    </div>
+    </div>    
     <!-- Scripts -->
     <!--   Core JS Files   -->
     <script src=" {{ URL::asset('partners/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
@@ -107,5 +102,6 @@
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
     @yield('script')
+
 </body>
 </html>
