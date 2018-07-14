@@ -59,16 +59,16 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 
 //Route untuk studio foto
-Route::get('/studiodetail', 'studioController@studiodetail')->name('studio-detail');
-Route::get('/studiolist', 'studioController@studiolist')->name('studio-list');
+Route::get('/studiodetail', 'StudioController@studiodetail')->name('studio-detail');
+Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
 
 //Route untuk partner
-Route::get('/homepartner', 'partnerController@homepartner')->name('partner-home');
-Route::get('/userpartner', 'partnerController@userpartner')->name('partner-user');
-Route::get('/addpackagepartner', 'partnerController@addpackagepartner')->name('partner-addpackage');
-Route::get('/editpackagepartner', 'partnerController@editpackagepartner')->name('partner-editpackage');
-Route::get('/schedulepartner', 'partnerController@schedulepartner')->name('partner-schedule');
+Route::get('/homepartner', 'PartnerController@homepartner')->name('partner-home');
+Route::get('/userpartner', 'PartnerController@userpartner')->name('partner-user');
+Route::get('/addpackagepartner', 'PartnerController@addpackagepartner')->name('partner-addpackage');
+Route::get('/editpackagepartner', 'PartnerController@editpackagepartner')->name('partner-editpackage');
+Route::get('/schedulepartner', 'PartnerController@schedulepartner')->name('partner-schedule');
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
-Route::get('/formpartner', 'partnerController@formpartner')->name('formpartner');
-Route::get('/registpartner', 'partnerController@registpartner')->name('registpartner');
-Route::get('/jadi-mitra', 'partnerController@jadimitra')->name('jadi-mitra');
+Route::get('/formpartner', 'PartnerController@formpartner')->name('formpartner');
+Route::get('/registpartner', 'PartnerController@registpartner')->name('registpartner');
+Route::get('/jadi-mitra', 'PartnerController@jadimitra')->name('jadi-mitra');

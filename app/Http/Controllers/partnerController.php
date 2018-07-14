@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Partner;
 
-class partnerController extends Controller
+class PartnerController extends Controller
 {
     public function dashboard()
     {
