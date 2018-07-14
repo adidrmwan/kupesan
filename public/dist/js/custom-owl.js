@@ -3,18 +3,19 @@
 	"use strict";
 	
 	// Cache Selectors
-	var hotelOffers		=$("#owl-hotel-offers"),
-		tourOffers		=$("#owl-tour-offers"),
-		cruiseOffers	=$("#owl-cruise-offers"),
-		carOffers		=$("#owl-car-offers"),
-		holidayTours	=$(".owl-holidays"),
-		testimonials	=$("#owl-testimonials"),
-		team			=$("#owl-team"),
-		companyLogo		=$("#owl-company-logo"),
-		attractions		=$("#owl-attractions");
+	var	studioOffers			=$("#owl-studio-offers"),
+		fotograferOffers		=$("#owl-fotografer-offers"),
+		muaOffers				=$("#owl-mua-offers"),
+		kebayaOffers			=$("#owl-kebaya-offers"),
+		carOffers				=$("#owl-car-offers"),
+		holidayTours			=$(".owl-holidays"),
+		testimonials			=$("#owl-testimonials"),
+		team					=$("#owl-team"),
+		companyLogo				=$("#owl-company-logo"),
+		attractions				=$("#owl-attractions");
 	
-	// Owl Hotel Offers
-	hotelOffers.owlCarousel({
+	// Owl Studio Offers
+	studioOffers.owlCarousel({
 		items : 3,
 		itemsCustom : false,
 		itemsDesktop : [1199,3],
@@ -44,10 +45,39 @@
 		responsiveRefreshRate : 200,
 		responsiveBaseWidth: window,    
 	});
+
+	muaOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
 	
-	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
 	// Owl Tour Offers
-	tourOffers.owlCarousel({
+	fotograferOffers.owlCarousel({
 		items : 3,
 		itemsCustom : false,
 		itemsDesktop : [1199,3],
@@ -80,7 +110,7 @@
 	
 	
 	// Owl Cruise Offers
-	cruiseOffers.owlCarousel({
+	kebayaOffers.owlCarousel({
 		items : 2,
 		itemsCustom : false,
 		itemsDesktop : [1199,2],

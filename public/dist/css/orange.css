@@ -819,6 +819,9 @@ p{
 .flexslider li .meta .highlight-price{
 	background:#EA410C;
 }
+.flexslider li .meta .highlight-h2{
+	background:#EA410C;
+}
 
 .flexslider li .meta .btn{
 	background:transparent;
@@ -1297,28 +1300,28 @@ p{
 /************* BLACK-FEATURES *************/
 
 #best-features.black-features{
-	background:#DDD1CD;
-	color:#372824;
+	background:#232323;
+	color:white;
 }
 
 #best-features.black-features .b-feature-block .fa{
-	border:3px solid #EA410C;
-	color:#EA410C;
+	border:3px solid #faa61a;
+	color:#faa61a;
 }
 
 #best-features.black-features .b-feature-block:hover .fa{
-	background:#EA410C;
-	color:#372824;
+	background:#faa61a;
+	color:white;
 }
 
 #best-features.black-features .b-feature-block p{
-	color:#372824;
+	color:white;
 }
 
 /*********** LIGHTGREY-FEATURES ***********/
 
 #best-features.lightgrey-features{	
-	background:#f5f5f5;
+	background:#F9F9F9;
 	color:#000;
 }
 
@@ -1341,22 +1344,22 @@ p{
 
 #best-features.orange-features{
 	background:#EA410C;
-	color:#000;
+	color:#fff;
 }
 
 #best-features.orange-features .b-feature-block .fa{
-	border:3px solid #000;
-	color:white;
-	background:#000;
+	border:3px solid #fff;
+	color:#EA410C;
+	background:#fff;
 }
 
 #best-features.orange-features .b-feature-block:hover .fa{
-	color:#000;
+	color:#fff;
 	background:transparent;
 }
 
 #best-features.orange-features .b-feature-block p{
-	color:#000;
+	color:#fff;
 }
 
 /* -----------------------------------------------------
