@@ -8,8 +8,13 @@
     <div class="flexslider slider tour-slider" id="slider-6">
         <ul class="slides">
             
-            <li class="item-1 back-size" style="background: linear-gradient(rgba(234, 65, 12, 0.85),rgba(234, 65, 12, 0.85)),url(dist/images/home-bg.png) 50% 65% no-repeat; background-size:600px; height:100%;">
-               
+            <li class="item-1 back-size" style="background:url(dist/images/home-bg.png) 50% 65%; background-size:cover; height:100%;">
+               <div class="meta" >         
+                    <div class="container" style="text-align: center;">
+                        <span class="highlight-price highlight-2">Capture the time of your life with</span>
+                        <h2>KUPESAN.ID</h2>
+                    </div><!-- end container -->  
+                </div><!-- end meta -->
             </li><!-- end item-1 -->           
         </ul>
     </div><!-- end slider -->
@@ -109,36 +114,6 @@
     </div><!-- end search-tabs -->
 
 </section><!-- end flexslider-container -->
-
-<section id="best-features" class="banner-padding black-features">
-    <div class="container">
-        <div class="row">           
-           <div class="col-sm-6 col-md-4">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-cogs"></i></span>
-                    <h3>Change How Things Are</h3>
-                    <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-           
-           <div class="col-sm-6 col-md-4">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-expand"></i></span>
-                    <h3>Enlarge Every Possibility</h3>
-                    <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-           
-           <div class="col-sm-6 col-md-4">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-thumbs-up"></i></span>
-                    <h3>Offer One Stop Solution</h3>
-                    <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end best-features -->
 
 <section id="studio-offers" class="section-padding">
     <div class="container">
@@ -303,154 +278,12 @@
                 </div><!-- end page-heading -->
                 
                 <div class="row">
-                    <div class="col-sm-6 col-md-6">
-                        <div class="main-block cruise-block">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
-                                    <div class="main-img cruise-img">
-                                        <a href="#">
-                                            <img src="dist/images/cruise-1.jpg" class="img-responsive" alt="cruise-img"/>
-                                            <div class="cruise-mask">
-                                                <p>7 Nights, 6 Days</p>
-                                            </div><!-- end cruise-mask -->
-                                        </a>
-                                    </div><!-- end cruise-img -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
-                                    <div class=" main-info cruise-info">
-                                        <div class="main-title cruise-title">
-                                            <a href="#">Spain Boat Tour</a>
-                                            <p>From: Italy to Spain</p>
-                                            <div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star grey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                            <span class="cruise-price">$950.00</span>
-                                        </div><!-- end cruise-title -->
-                                    </div><!-- end cruise-info -->
-                                </div><!-- end columns -->
-                                
-                            </div><!-- end row -->  
-                        </div><!-- end cruise-block -->
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
                     </div><!-- end columns -->
                     
-                    <div class="col-sm-6 col-md-6">
-                        <div class="main-block cruise-block">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
-                                    <div class="main-img cruise-img">
-                                        <a href="#">
-                                            <img src="dist/images/cruise-2.jpg" class="img-responsive" alt="cruise-img"/>
-                                            <div class="cruise-mask">
-                                                <p>7 Nights, 6 Days</p>
-                                            </div><!-- end cruise-mask -->
-                                        </a>
-                                    </div><!-- end cruise-img -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
-                                    <div class=" main-info cruise-info">
-                                        <div class="main-title cruise-title">
-                                            <a href="#">Spain Boat Tour</a>
-                                            <p>From: Italy to Spain</p>
-                                            <div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star grey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                            <span class="cruise-price">$950.00</span>
-                                        </div><!-- end cruise-title -->
-                                    </div><!-- end cruise-info -->
-                                </div><!-- end columns -->
-                                
-                            </div><!-- end row -->  
-                        </div><!-- end cruise-block -->
-                    </div><!-- end columns -->
-                    
-                    <div class="col-sm-6 col-md-6">
-                        <div class="main-block cruise-block">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
-                                    <div class="main-img cruise-img">
-                                        <a href="#">
-                                            <img src="dist/images/cruise-3.jpg" class="img-responsive" alt="cruise-img"/>
-                                            <div class="cruise-mask">
-                                                <p>7 Nights, 6 Days</p>
-                                            </div><!-- end cruise-mask -->
-                                        </a>
-                                    </div><!-- end cruise-img -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
-                                    <div class=" main-info cruise-info">
-                                        <div class="main-title cruise-title">
-                                            <a href="#">Spain Boat Tour</a>
-                                            <p>From: Italy to Spain</p>
-                                            <div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star grey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                            <span class="cruise-price">$950.00</span>
-                                        </div><!-- end cruise-title -->
-                                    </div><!-- end cruise-info -->
-                                </div><!-- end columns -->
-                                
-                            </div><!-- end row -->  
-                        </div><!-- end cruise-block -->
-                    </div><!-- end columns -->
-                    
-                    <div class="col-sm-6 col-md-6">
-                        <div class="main-block cruise-block">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
-                                    <div class="main-img cruise-img">
-                                        <a href="#">
-                                            <img src="dist/images/cruise-4.jpg" class="img-responsive" alt="cruise-img"/>
-                                            <div class="cruise-mask">
-                                                <p>7 Nights, 6 Days</p>
-                                            </div><!-- end cruise-mask -->
-                                        </a>
-                                    </div><!-- end cruise-img -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
-                                    <div class=" main-info cruise-info">
-                                        <div class="main-title cruise-title">
-                                            <a href="#">Spain Boat Tour</a>
-                                            <p>From: Italy to Spain</p>
-                                            <div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star grey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                            <span class="cruise-price">$950.00</span>
-                                        </div><!-- end cruise-title -->
-                                    </div><!-- end cruise-info -->
-                                </div><!-- end columns -->
-                                
-                            </div><!-- end row -->  
-                        </div><!-- end cruise-block -->
-                    </div><!-- end columns -->
                 </div><!-- end row -->
-                
-                <div class="view-all text-center">
-                    <a href="#" class="btn btn-orange">View All</a>
-                </div><!-- end view-all -->
+
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -464,134 +297,12 @@
                     <h2>MUA Offers</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
-                
-                 <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-tour-offers">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
+                    </div><!-- end columns -->
                     
-                    <div class="item">
-                        <div class="main-block tour-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/tour-1.jpg" class="img-responsive" alt="tour-img" />
-                                </a>
-                            </div><!-- end offer-img -->
-                            
-                            <div class="offer-price-2">
-                                <ul class="list-unstyled">
-                                    <li class="price">$568.00<a href="#" ><span class="arrow"><i class="fa fa-angle-right"></i></span></a></li>
-                                </ul>
-                            </div><!-- end offer-price-2 -->
-                                
-                            <div class="main-info tour-info">
-                                <div class="main-title tour-title">
-                                    <a href="#">China Temple Tour</a>
-                                    <p>From: China</p>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star grey"></i></span>
-                                    </div>
-                                </div><!-- end tour-title -->
-                            </div><!-- end tour-info -->
-                        </div><!-- end tour-block -->
-                    </div><!-- end item -->
-                    
-                    <div class="item">
-                        <div class="main-block tour-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/tour-2.jpg" class="img-responsive" alt="tour-img" />
-                                </a>
-                            </div><!-- end offer-img -->
-                            
-                            <div class="offer-price-2">
-                                <ul class="list-unstyled">
-                                    <li class="price">$745.00<a href="#" ><span class="arrow"><i class="fa fa-angle-right"></i></span></a></li>
-                                </ul>
-                            </div><!-- end offer-price-2 -->
-                                
-                            <div class="main-info tour-info">
-                                <div class="main-title tour-title">
-                                    <a href="#">African Safari Tour</a>
-                                    <p>From: Africa</p>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star grey"></i></span>
-                                    </div>
-                                </div><!-- end tour-title -->
-                            </div><!-- end tour-info -->
-                        </div><!-- end tour-block -->
-                    </div><!-- end item -->
-                    
-                    <div class="item">
-                        <div class="main-block tour-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/tour-3.jpg" class="img-responsive" alt="tour-img" />
-                                </a>
-                            </div><!-- end offer-img -->
-                            
-                            <div class="offer-price-2">
-                                <ul class="list-unstyled">
-                                    <li class="price">$459.00<a href="#" ><span class="arrow"><i class="fa fa-angle-right"></i></span></a></li>
-                                </ul>
-                            </div><!-- end offer-price-2 -->
-                                
-                            <div class="main-info tour-info">
-                                <div class="main-title tour-title">
-                                    <a href="#">Paris City Tour</a>
-                                    <p>From: Paris</p>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star grey"></i></span>
-                                    </div>
-                                </div><!-- end tour-title -->
-                            </div><!-- end tour-info -->
-                        </div><!-- end tour-block -->
-                    </div><!-- end item -->
-                    
-                    <div class="item">
-                        <div class="main-block tour-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/tour-4.jpg" class="img-responsive" alt="tour-img" />
-                                </a>
-                            </div><!-- end offer-img -->
-                            
-                            <div class="offer-price-2">
-                                <ul class="list-unstyled">
-                                    <li class="price">$745.00<a href="#" ><span class="arrow"><i class="fa fa-angle-right"></i></span></a></li>
-                                </ul>
-                            </div><!-- end offer-price-2 -->
-                                
-                            <div class="main-info tour-info">
-                                <div class="main-title tour-title">
-                                    <a href="#">China Temple Tour</a>
-                                    <p>From: China</p>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star grey"></i></span>
-                                    </div>
-                                </div><!-- end tour-title -->
-                            </div><!-- end tour-info -->
-                        </div><!-- end tour-block -->
-                    </div><!-- end item -->
-                    
-                </div><!-- end owl-tour-offers -->
-                
-                <div class="view-all text-center">
-                    <a href="#" class="btn btn-orange">View All</a>
-                </div><!-- end view-all -->
+                </div><!-- end row -->
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -605,119 +316,46 @@
                     <h2>Kebayas Offers</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
-                
-                <div class="row">
-                
-                    <div class="col-sm-6 col-md-4">
-                        <div class="main-block flight-block">
-                            <a href="#">
-                                <div class="flight-img">
-                                    <img src="dist/images/flight-1.jpg" class="img-responsive" alt="flight-img" />
-                                </div><!-- end flight-img -->
-                                
-                                <div class="flight-info">
-                                    <div class="flight-title">
-                                        <h3><span class="flight-destination">Spain</span>|<span class="flight-type">OneWay Flight</span></h3>
-                                    </div><!-- end flight-title -->
-                                    
-                                    <div class=" flight-timing">
-                                        <ul class="list-unstyled">
-                                            <li><span><i class="fa fa-plane"></i></span><span class="date">Aug, 02-2017 </span>(8:40 PM)</li>
-                                            <li><span><i class="fa fa-plane"></i></span><span class="date">Aug, 03-2017 </span>(8:40 PM)</li>
-                                        </ul>
-                                    </div><!-- end flight-timing -->
-                                    
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="pkg">Avg/Person</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end flight-info -->
-                            </a>
-                        </div><!-- end flight-block -->
-                    </div><!-- end columns -->
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
+                                        <h1>Coming Soon</h1>        
+                        </div><!-- end columns -->
                     
-                    <div class="col-sm-6 col-md-4">
-                        <div class="main-block flight-block">
-                            <a href="#">
-                                <div class="flight-img">
-                                    <img src="dist/images/flight-2.jpg" class="img-responsive" alt="flight-img" />
-                                </div><!-- end flight-img -->
-                                
-                                <div class="flight-info">
-                                    <div class="flight-title">
-                                        <h3><span class="flight-destination">Spain</span>|<span class="flight-type">OneWay Flight</span></h3>
-                                    </div><!-- end flight-title -->
-                                    
-                                    <div class=" flight-timing">
-                                        <ul class="list-unstyled">
-                                            <li><span><i class="fa fa-plane"></i></span><span class="date">Aug, 02-2017 </span>(8:40 PM)</li>
-                                            <li><span><i class="fa fa-plane"></i></span><span class="date">Aug, 03-2017 </span>(8:40 PM)</li>
-                                        </ul>
-                                    </div><!-- end flight-timing -->
-                                    
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="pkg">Avg/Person</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end flight-info -->
-                            </a>
-                        </div><!-- end flight-block -->
-                    </div><!-- end columns -->
-                    
-                    <div class="col-sm-6 col-md-4">
-                        <div class="main-block flight-block">
-                            <a href="#">
-                                <div class="flight-img">
-                                    <img src="dist/images/flight-3.jpg" class="img-responsive" alt="flight-img" />
-                                </div><!-- end flight-img -->
-                                
-                                <div class="flight-info">
-                                    <div class="flight-title">
-                                        <h3><span class="flight-destination">Spain</span>|<span class="flight-type">OneWay Flight</span></h3>
-                                    </div><!-- end flight-title -->
-                                    
-                                    <div class=" flight-timing">
-                                        <ul class="list-unstyled">
-                                            <li><span><i class="fa fa-plane"></i></span><span class="date">Aug, 02-2017 </span>(8:40 PM)</li>
-                                            <li><span><i class="fa fa-plane"></i></span><span class="date">Aug, 03-2017 </span>(8:40 PM)</li>
-                                        </ul>
-                                    </div><!-- end flight-timing -->
-                                    
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="pkg">Avg/Person</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end flight-info -->
-                            </a>
-                        </div><!-- end flight-block -->
-                    </div><!-- end columns -->      
                 </div><!-- end row -->
-                
-                <div class="view-all text-center">
-                    <a href="#" class="btn btn-orange">View All</a>
-                </div><!-- end view-all -->
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end flight-offers -->
+
+<section id="best-features" class="banner-padding black-features">
+    <div class="container">
+        <div class="row">           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-cogs"></i></span>
+                    <h3>Change How Things Are</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-expand"></i></span>
+                    <h3>Enlarge Every Possibility</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-thumbs-up"></i></span>
+                    <h3>Offer One Stop Solution</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end best-features -->
 
 
 @include('layouts.footer')

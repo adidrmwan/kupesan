@@ -246,6 +246,9 @@ Author:			Star Travel
 	.main-navbar.navbar-custom .navbar-brand{
 		padding-top: 24px;
 	}
+	.navbar-brand img{
+		max-width: 175px;
+	}
 	
 	.main-navbar.navbar-custom .navbar-nav > li {
 		padding: 22px 0;
@@ -394,6 +397,7 @@ Author:			Star Travel
 	#mynavbar .navbar-brand img{
 		max-height:46px;
 		margin-top:3px;
+		max-width: 85px;
 	}
 }
 
@@ -406,6 +410,10 @@ Author:			Star Travel
 		transition: all 0.3s;
 	}
 	
+	.flexslider li.flex-active-slide .meta .highlight-price {
+		margin-top: -40px;
+	}
+
 	.main-navbar.navbar-custom .navbar-brand .fa{
 		font-size: 1.33em;
 		-webkit-transition: all 0.3s;
@@ -454,6 +462,9 @@ Author:			Star Travel
 
 	.main-navbar{
 		z-index:100;
+	}
+	 .navbar-brand img{
+		max-width: 85px;
 	}
 	
 	.main-navbar .navbar-brand{
@@ -1249,6 +1260,9 @@ Author:			Star Travel
 	.search-tabs .nav-tabs li.active a{
 		padding:8px 20px 11px;
 	}
+	.search-tabs {
+		bottom:15px;
+	}
 }
 
 @media(min-width:577px){
@@ -1289,10 +1303,16 @@ Author:			Star Travel
 	}
 }
 
-@media(max-width:360px){
+@media(max-width:360px) and (max-height:640px){
 	
 	.search-tabs .nav-tabs li .fa{
 		font-size:15px;
+	}
+	.search-tabs {
+		bottom:10px;
+	}
+	.meta .container {
+		margin-top: -80px;
 	}
 }
 

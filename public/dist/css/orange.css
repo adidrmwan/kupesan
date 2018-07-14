@@ -819,6 +819,9 @@ p{
 .flexslider li .meta .highlight-price{
 	background:#EA410C;
 }
+.flexslider li .meta .highlight-h2{
+	background:#EA410C;
+}
 
 .flexslider li .meta .btn{
 	background:transparent;
@@ -1297,7 +1300,7 @@ p{
 /************* BLACK-FEATURES *************/
 
 #best-features.black-features{
-	background:#DDD1CD;
+	background:#EA410C;
 	color:#372824;
 }
 

@@ -71,7 +71,7 @@
                             <a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a>
                         </div>
                         <a href="#" class="navbar-brand">
-                            <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " style="max-width: 175px;">
+                            <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->
                     
@@ -107,7 +107,7 @@
                                 <li>
                                       
                                     <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                        <a href="jadi-mitra" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
                                     </button>
                                 </li>
                                 <li></li>

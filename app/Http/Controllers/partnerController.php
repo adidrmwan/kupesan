@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Auth;
 use App\Partner;
+
 class PartnerController extends Controller
 {
     public function dashboard()
@@ -13,11 +14,10 @@ class PartnerController extends Controller
     	$user = Auth::user();
     	$partner = DB::table('partner')
     				->where('user_id',$user->id)
-    				->select('pr_name')
+    				->select('partner_name')
     				->get();
-        return view('partner-ps.form', ['partner' => $partner]);
+        return view('partner.home', ['partner' => $partner]);
     }
-
     public function profile()
     {
         $user = Auth::user();
@@ -39,26 +39,13 @@ class PartnerController extends Controller
     {
     	$user = Auth::user();
     	$partner = Partner::find($user->id);
-    	// dd($partner);
+    	dd($partner);
     	$partner = DB::table('partner')
     				->where('user_id',$user->id)
     				->select('*')
     				->get();
         return view('partner.home', ['partner' => $partner]);
     }
-
-    public function submit(Request $request)
-    {
-        $user = Auth::user();
-        $partner = new Partner();
-        $partner->user_id = $user->id;
-        $partner->pr_name = $request->input('pr_name');
-        $partner->pr_desc = $request->input('pr_desc');
-        
-        $partner->save();
-        return redirect()->back();
-    }
-
     public function addpackagepartner()
     {
         return view('partner.add-package');
@@ -75,11 +62,11 @@ class PartnerController extends Controller
     {
         return view('partner.form');
     }
-    public function registpartner()
+    public function showRegistrationForm()
     {
-        return view('partner.register');
+        return view('auth.register-mitra');
     }
-    public function jadimitra()
+    public function showJadiMitra()
     {
         return view('partner.jadi-mitra');
     }
