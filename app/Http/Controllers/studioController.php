@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class studioController extends Controller
+class StudioController extends Controller
 {
     public function studiodetail()
     {
@@ -15,5 +16,4 @@ class studioController extends Controller
     {
         return view('foto-studio.studiolist');
     }
-
 }
