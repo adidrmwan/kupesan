@@ -51,9 +51,9 @@
                                         <div class="form-group right-icon">
                                             <select class="form-control">
                                                 <option selected># (Hastag)</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
+                                                <option>Kupesan</option>
+                                                <option>Kupesan</option>
+                                                <option>Kupesan</option>
                                             </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>
@@ -120,40 +120,25 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>Foto Studio Offers</h2>
+                    <h2>Foto Studio </h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
-                <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-hotel-offers">
+                <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-studio-offers">
                     
                     <div class="item">
                         <div class="main-block hotel-block">
                             <div class="main-img">
                                 <a href="#">
-                                    <img src="dist/images/hotel-1.jpg" class="img-responsive" alt="hotel-img" />
+                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
                                 </a>
-                                <div class="main-mask">
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end main-mask -->
                             </div><!-- end offer-img -->
                             
                             <div class="main-info hotel-info">
-                                <div class="arrow">
-                                    <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                </div><!-- end arrow -->
-                                
+                               
                                 <div class="main-title hotel-title">
-                                    <a href="#">Herta Berlin Hotel</a>
-                                    <p>From: Scotland</p>
+                                    <a href="">Studio Kupesan.id</a>
+                                    <p>From: Surabaya</p>
                                 </div><!-- end hotel-title -->
                             </div><!-- end hotel-info -->
                         </div><!-- end hotel-block -->
@@ -162,31 +147,16 @@
                     <div class="item">
                         <div class="main-block hotel-block">
                             <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/hotel-2.jpg" class="img-responsive" alt="hotel-img" />
+                                <a href="">
+                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
                                 </a>
-                                <div class="main-mask">
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end main-mask -->
                             </div><!-- end offer-img -->
                             
                             <div class="main-info hotel-info">
-                                <div class="arrow">
-                                    <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                </div><!-- end arrow -->
-                                
+
                                 <div class="main-title hotel-title">
-                                    <a href="#">Roosevelt Hotel</a>
-                                    <p>From: Germany</p>
+                                    <a href="">Studio Kupesan.id</a>
+                                    <p>From: Surabaya</p>
                                 </div><!-- end hotel-title -->
                             </div><!-- end hotel-info -->
                         </div><!-- end hotel-block -->
@@ -195,88 +165,99 @@
                     <div class="item">
                         <div class="main-block hotel-block">
                             <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/hotel-3.jpg" class="img-responsive" alt="hotel-img" />
+                                <a href="">
+                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
                                 </a>
-                                <div class="main-mask">
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end main-mask -->
                             </div><!-- end offer-img -->
                             
                             <div class="main-info hotel-info">
-                                <div class="arrow">
-                                    <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                </div><!-- end arrow -->
-                                
                                 <div class="main-title hotel-title">
-                                    <a href="#">Hotel Fort De</a>
-                                    <p>From: Austria</p>
-                                </div><!-- end hotel-title -->
-                            </div><!-- end hotel-info -->
-                        </div><!-- end hotel-block -->
-                    </div><!-- end item -->
-                    
-                    <div class="item">
-                        <div class="main-block hotel-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/hotel-4.jpg" class="img-responsive" alt="hotel-img" />
-                                </a>
-                                <div class="main-mask">
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                        <li class="rating">
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star orange"></i></span>
-                                            <span><i class="fa fa-star lightgrey"></i></span>
-                                        </li>
-                                    </ul>
-                                </div><!-- end main-mask -->
-                            </div><!-- end offer-img -->
-                            
-                            <div class="main-info hotel-info">
-                                <div class="arrow">
-                                    <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                </div><!-- end arrow -->
-                                
-                                <div class="main-title hotel-title">
-                                    <a href="#">Roosevelt Hotel</a>
-                                    <p>From: Germany</p>
+                                    <a href="">Studio Kupesan.id</a>
+                                    <p>From: Surabaya</p>
                                 </div><!-- end hotel-title -->
                             </div><!-- end hotel-info -->
                         </div><!-- end hotel-block -->
                     </div><!-- end item -->
                     
                 </div><!-- end owl-hotel-offers -->
-                
-                <div class="view-all text-center">
-                    <a href="#" class="btn btn-orange">View All</a>
-                </div><!-- end view-all -->
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end hotel-offers -->
 
-<section id="cruise-offers" class="section-padding">
+<section id="fotografer-offers" class="section-padding">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>Fotografer Offers</h2>
+                    <h2>Fotografer</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
+<<<<<<< HEAD
+                 <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-fotografer-offers">
+                    
+                    <div class="item">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <a href="#">
+                                    <img src="dist/images/fotografer.png" class="img-responsive" alt="tour-img" />
+                                </a>
+                            </div><!-- end offer-img -->
+                                
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                    <a href="">Kupesan.id</a>
+                                    <p>From: Surabaya</p>
+                                    
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                    </div><!-- end item -->
+                    
+                    <div class="item">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <a href="#">
+                                    <img src="dist/images/fotografer.png" class="img-responsive" alt="tour-img" />
+                                </a>
+                            </div><!-- end offer-img -->
+                                
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                     <a href="">Kupesan.id</a>
+                                    <p>From: Surabaya</p>
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                    </div><!-- end item -->
+                    
+                    <div class="item">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <a href="#">
+                                    <img src="dist/images/fotografer.png" class="img-responsive" alt="tour-img" />
+                                </a>
+                            </div><!-- end offer-img -->
+                                
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                     <a href="">Kupesan.id</a>
+                                    <p>From: Surabaya</p>
+                                    
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                    </div><!-- end item -->
+                    
+                </div><!-- end owl-tour-offers -->
+            </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end tour-offers -->
+
+<section id="mua-offers" class="section-padding">
+=======
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
                                         <h1>Coming Soon</h1>        
@@ -290,10 +271,73 @@
 </section><!-- end cruise-offers -->
 
 <section id="tour-offers" class="section-padding">
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
+<<<<<<< HEAD
+                    <h2>MUA</h2>
+                    <hr class="heading-line" />
+                </div><!-- end page-heading -->
+                
+                 <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-mua-offers">
+                    
+                    <div class="item">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <a href="#">
+                                    <img src="dist/images/mua.png" class="img-responsive" alt="tour-img" />
+                                </a>
+                            </div><!-- end offer-img -->
+                                
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                    <a href="">Kupesan.id</a>
+                                    <p>From: Surabaya</p>
+                                    
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                    </div><!-- end item -->
+                    
+                    <div class="item">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <a href="#">
+                                    <img src="dist/images/mua.png" class="img-responsive" alt="tour-img" />
+                                </a>
+                            </div><!-- end offer-img -->
+                                
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                     <a href="">Kupesan.id</a>
+                                    <p>From: Surabaya</p>
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                    </div><!-- end item -->
+                    
+                    <div class="item">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <a href="#">
+                                    <img src="dist/images/mua.png" class="img-responsive" alt="tour-img" />
+                                </a>
+                            </div><!-- end offer-img -->
+                                
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                     <a href="">Kupesan.id</a>
+                                    <p>From: Surabaya</p>
+                                    
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                    </div><!-- end item -->
+                    
+                </div><!-- end owl-tour-offers -->
+=======
                     <h2>MUA Offers</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
@@ -303,11 +347,293 @@
                     </div><!-- end columns -->
                     
                 </div><!-- end row -->
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end tour-offers -->
 
+<<<<<<< HEAD
+<section id="kebaya-offers" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-heading">
+                            <h2>Kebaya</h2>
+                            <hr class="heading-line" />
+                        </div><!-- end page-heading -->
+                        
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="main-block cruise-block">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
+                                            <div class="main-img cruise-img">
+                                                <a href="#">
+                                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="kebaya-img"/>
+                                                    
+                                                </a>
+                                            </div><!-- end cruise-img -->
+                                        </div><!-- end columns -->
+                                        
+                                        <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
+                                            <div class=" main-info cruise-info">
+                                                <div class="main-title cruise-title">
+                                                    <a href="">Kupesan Kebaya</a>
+                                                    <p>From: Surabaya</p>
+
+                                                </div><!-- end cruise-title -->
+                                            </div><!-- end cruise-info -->
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->  
+                                </div><!-- end cruise-block -->
+                            </div><!-- end columns -->
+                            
+                            <div class="col-sm-6 col-md-6">
+                                <div class="main-block cruise-block">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
+                                            <div class="main-img cruise-img">
+                                                <a href="#">
+                                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="kebaya-img"/>
+                                                </a>
+                                            </div><!-- end cruise-img -->
+                                        </div><!-- end columns -->
+                                        
+                                        <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
+                                            <div class=" main-info cruise-info">
+                                                <div class="main-title cruise-title">
+                                                    <a href="">Kupesan Kebaya</a>
+                                                    <p>From: Surabaya</p>
+                                                    
+                                                </div><!-- end cruise-title -->
+                                            </div><!-- end cruise-info -->
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->  
+                                </div><!-- end cruise-block -->
+                            </div><!-- end columns -->
+                            
+                            <div class="col-sm-6 col-md-6">
+                                <div class="main-block cruise-block">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
+                                            <div class="main-img cruise-img">
+                                                <a href="#">
+                                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="kebaya-img"/>
+                                                </a>
+                                            </div><!-- end cruise-img -->
+                                        </div><!-- end columns -->
+                                        
+                                        <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
+                                            <div class=" main-info cruise-info">
+                                                <div class="main-title cruise-title">
+                                                    <a href="">Kupesan Kebaya</a>
+                                                    <p>From: Surabaya</p>
+                                                </div><!-- end cruise-title -->
+                                            </div><!-- end cruise-info -->
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->  
+                                </div><!-- end cruise-block -->
+                            </div><!-- end columns -->
+                            
+                            <div class="col-sm-6 col-md-6">
+                                <div class="main-block cruise-block">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 col-md-push-6 no-pd-l">
+                                            <div class="main-img cruise-img">
+                                                <a href="#">
+                                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="kebaya-img"/>
+                                                </a>
+                                            </div><!-- end cruise-img -->
+                                        </div><!-- end columns -->
+                                        
+                                        <div class="col-sm-12 col-md-6 col-md-pull-6 no-pd-r">
+                                            <div class=" main-info cruise-info">
+                                                <div class="main-title cruise-title">
+                                                    <a href="">Kupesan Kebaya</a>
+                                                    <p>From: Surabaya</p>
+                                                    
+                                                </div><!-- end cruise-title -->
+                                            </div><!-- end cruise-info -->
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->  
+                                </div><!-- end cruise-block -->
+                            </div><!-- end columns -->
+                        </div><!-- end row -->
+
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section><!-- end cruise-offers -->
+
+<section class="innerpage-wrapper lightgrey-features" id="best-features">
+    <div id="about-content-2" class="innerpage-section-padding orange-features">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                    <div id="abt-cnt-2-img">
+                        <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                    </div><!-- end abt-cnt-2-img -->
+                </div><!-- end columns -->
+                
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8">
+                    <div id="abt-cnt-2-text">
+                        <h2>Bergabunglah Menjadi Mitra Kami</h2>
+                        <p>Kami akan menghubungkan anda dengan customer sehingga anda dapat meningkatkan kinerja bisnis anda.</p>
+                        <div class="row">
+                             <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
+                                    <a href="jadi-mitra" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                             </button>
+                        </div><!-- end row -->
+                    </div><!-- end abt-cnt-2-text -->
+                </div><!-- end columns -->
+                
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end about-content-2 -->
+</section><!-- end innerpage-wrapper -->
+
+<section id="best-features" class="banner-padding-orange orange-features">
+    <div class="container">
+            <div style="text-align: center; ">
+                <h2 style="padding: 50px 0;">Mengapa Memilih Kupesan.id ?</h2>           
+            </div>
+        <div class="row">
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-cogs"></i></span>
+                    <h3>Change How Things Are</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-expand"></i></span>
+                    <h3>Enlarge Every Possibility</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+           
+           <div class="col-sm-6 col-md-4">
+                <div class="b-feature-block">
+                    <span><i class="fa fa-thumbs-up"></i></span>
+                    <h3>Offer One Stop Solution</h3>
+                    
+                </div><!-- end b-feature-block -->
+           </div><!-- end columns -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end best-features -->
+
+<section class="innerpage-wrapper">
+    <div id="contact-us-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4"> 
+                            <div class="contact-block-2">  
+                                <span class="border-shape-top"></span>                       
+                                <span><i class="fa fa-map-marker"></i></span>
+                                <h4>Find us at</h4>
+                                <p>Araya Galaxy Bumi Permai 44 Blok 8A4 Tahap 1, Surabaya</p>
+                                <span class="border-shape-bot"></span>
+                            </div><!-- end contact-block-2 -->
+                        </div><!-- end columns -->
+                        
+                        <div class="col-xs-12 col-sm-4"> 
+                            <div class="contact-block-2">   
+                                <span class="border-shape-top"></span>                      
+                                <span><i class="fa fa-envelope"></i></span>
+                                <h4>Email us at</h4>
+                                <p>info@kupesan.id </p>
+                                &nbsp;
+                                <span class="border-shape-bot"></span>
+                            </div><!-- end contact-block-2 -->
+                        </div><!-- end columns -->
+                        
+                        <div class="col-xs-12 col-sm-4"> 
+                            <div class="contact-block-2">          
+                                <span class="border-shape-top"></span>               
+                                <span><i class="fa fa-phone"></i></span>
+                                <h4>Call us at</h4>
+                                <p>+6282 233-610-702</p>
+                                &nbsp;
+                                <span class="border-shape-bot"></span>
+                            </div><!-- end contact-block-2 -->
+                        </div><!-- end columns -->
+                    </div><!-- end row -->
+                    
+                    <div id="contact-form-2" class="innerpage-section-padding">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-10 col-lg-offset-1">
+                                <div class="page-heading">
+                                    <h2>Contact Us</h2>
+                                    <hr class="heading-line" />
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 contact-form-2-text">
+                                        
+                                     
+                                            <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&height=600&hl=en&coord=-7.290330000000001,112.78610000000003&q=Araya%20Galaxy%20Bumi%20Permai%2044%20Blok%208A4%20Tahap%201%2C%20Surabaya+(Your%20Business%20Name)&ie=UTF8&t=&z=13&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/en/custom-google-maps/">Add Google Map to website</a> by <a href="https://www.mapsdirections.info/en/">Measure area on map</a></iframe></div><br/>
+                                        
+
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-6">
+                                    
+                                        <form>
+                                            
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="text" class="form-control" placeholder="Name"  required/>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <div class="form-group">
+                                                         <input type="email" class="form-control" placeholder="Email"  required/>
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                 <input type="text" class="form-control" placeholder="Subject"  required/>
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                                            </div>
+                                            
+                                            <div class="text-center">
+                                                <button class="btn btn-orange">Send</button>
+                                            </div>
+                                        </form>
+                                    
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end columns -->
+            </div><!-- end row -->
+        </div><!-- end container -->   
+    </div><!-- end contact-us -->
+</section><!-- end innerpage-wrapper -->
+=======
 <section id="flight-offers" class="section-padding">
     <div class="container">
         <div class="row">
@@ -326,6 +652,7 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end flight-offers -->
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
 
 <section id="best-features" class="banner-padding black-features">
     <div class="container">

@@ -63,8 +63,8 @@ Route::group(['prefix' => '3', 'middleware' => ['auth','role:partner']], functio
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 
 //Route untuk studio foto
-Route::get('/studiodetail', 'studioController@studiodetail')->name('studio-detail');
-Route::get('/studiolist', 'studioController@studiolist')->name('studio-list');
+Route::get('/studiodetail', 'StudioController@studiodetail')->name('studio-detail');
+Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
 
 //Route untuk partner
 Route::get('/homepartner', 'PartnerController@homepartner')->name('partner-home');
@@ -73,9 +73,15 @@ Route::get('/addpackagepartner', 'PartnerController@addpackagepartner')->name('p
 Route::get('/editpackagepartner', 'PartnerController@editpackagepartner')->name('partner-editpackage');
 Route::get('/schedulepartner', 'PartnerController@schedulepartner')->name('partner-schedule');
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
+<<<<<<< HEAD
+Route::get('/formpartner', 'PartnerController@formpartner')->name('formpartner');
+Route::get('/registpartner', 'PartnerController@registpartner')->name('registpartner');
+Route::get('/jadi-mitra', 'PartnerController@jadimitra')->name('jadi-mitra');
+=======
 
 
 // Route Jadi Mitra
 Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
 Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
+>>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599

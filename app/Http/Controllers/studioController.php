@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class studioController extends Controller
+class StudioController extends Controller
 {
     public function studiodetail()
     {

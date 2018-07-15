@@ -70,14 +70,14 @@ ul{
 }
 
 h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-title a, .block-title a, .detail-block .detail-title a, .side-bar .detail-block-2 .detail-title a, #travel-guide .tv-guide-block .tab-text h3 a{
-	font-family: 'Merriweather', serif;
+	font-family: 'Lato', serif;
 	margin-top:0;
 	line-height:1.3em;
 }
 
 .page-heading{
 	text-align:center;
-	/*margin-bottom:40px;*/
+	margin-bottom:40px;
 	padding-top: 20px;
 }
 
@@ -139,9 +139,13 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 	padding-bottom:50px;
 }
 
+.banner-padding-orange{
+	/*padding-top:86px;*/
+	padding-bottom:106px;
+}
 .banner-padding{
-	padding-top:86px;
-	padding-bottom:86px;
+	padding-top:50px;
+	padding-bottom:50px;
 }
 
 .innerpage-section-padding{

@@ -16,7 +16,7 @@
     <link rel="icon" href="{{ URL::asset('dist/images/logo.png') }}" type="image/x-icon">
         
     <!-- Google Fonts -->   
-    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     
