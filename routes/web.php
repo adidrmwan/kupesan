@@ -56,6 +56,7 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 Route::group(['prefix' => '3', 'middleware' => ['auth','role:partner']], function(){
 	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
     Route::get('/profil-mitra', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
+    Route::post('/profil-mitra', 'PartnerController@submitProfileFormNew')->name('partner.profile.form.submit');
 });
 
 // Route untuk email verification

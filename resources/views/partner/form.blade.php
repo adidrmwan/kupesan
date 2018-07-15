@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-    	<section>
+        <section>
         <div class="wizard">
             <div class="wizard-inner">
                 <div class="connecting-line"></div>
@@ -42,51 +42,104 @@
                 </ul>
             </div>
 
-            <form role="form">
+            @foreach($partner as $data)
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <div class="step1">
+                        <form role="form" action="{{route('partner.profile.form.submit')}}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="row">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">First Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="First Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">Last Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">Confirm Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">Mobile Number</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="col-md-6">
-                            <label for="exampleInputEmail1">Email address</label>
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                      <label>Nama usaha<small> <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="nama usaha"
+                                      name="pr_name" required="" value="{{$data->pr_name}}">
                                     </div>
-                                    <div class="col-md-9 col-xs-9">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                </div>
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                      <label>Nama pemilik usaha<small> <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="nama pemilik usaha"
+                                      name="pr_owner_name" required="" value="{{$data->pr_owner_name}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                      <label>Kategori usaha<small> <b style="color: red;">*</b></small></label>
+                                      <select class="form-control" required="" name="pr_type">
+                                          <option value="">Pilih kategori usaha</option>
+                                          <option value="1">Foto Studio</option>
+                                          <option value="2">Fotografer</option>
+                                          <option value="3">MUA</option>
+                                          <option value="4">Kebaya</option>
+                                      </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                        <ul class="list-inline pull-right">
-                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-                        </ul>
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                      <label>Email<small> <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="Tuliskan alamat usaha"
+                                      disabled="" value="{{$email}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                    <div class="form-group">
+                                      <label>Telepon<small> (1) <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="Telepon"
+                                      name="pr_phone" required="" value="{{$data->pr_phone}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                    <div class="form-group">
+                                      <label>Telepon<small> (2) <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="Telepon (2)"
+                                      name="pr_phone2"  value="{{$data->pr_phone2}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-xs-12">
+                                    <div class="form-group">
+                                      <label>Alamat<small> <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="Tuliskan alamat usaha"
+                                      name="pr_addr" required=""  value="{{$data->pr_addr}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-xs-6">
+                                    <div class="form-group">
+                                      <label>Kode pos<small> <b style="color: red;">*</b></small></label>
+                                      <input type="text" class="form-control" placeholder="kode pos"
+                                      name="pr_postal_code" required=""  value="{{$data->pr_postal_code}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-xs-6">
+                                    <div class="form-group">
+                                      <label>Wilayah<small> <b style="color: red;">*</b></small></label>
+                                      <select class="form-control" required="" name="pr_area">
+                                          <option value="">Pilih wilayah</option>
+                                          <option value="1">Surabaya Timur</option>
+                                          <option value="2">Surabaya Timur</option>
+                                          <option value="3">Surabaya Timur</option>
+                                          <option value="4">Surabaya Timur</option>
+                                          <option value="4">Surabaya Timur</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="form-group">
+                                      <label>Deskripsi usaha<small> <b style="color: red;">*</b></small></label>
+                                        <textarea class="form-control" rows="5" name="pr_desc" required="" placeholder="Tuliskan deskripsi usaha anda">{{$data->pr_desc}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="step2">
@@ -292,7 +345,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-            </form>
+            @endforeach
         </div>
     </section>
    </div>

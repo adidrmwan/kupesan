@@ -2,17 +2,17 @@
         <div class="sidebar-wrapper">
             <div class="logo">
 
-                @foreach($partner as $data)
-                    @if(!empty($data->pr_name))
+                
+                    @if(!empty($partner->pr_name))
                     <a href="{{ route('partner.dashboard') }}" class="simple-text">
-                        {{$data->pr_name}}
+                        {{$partner->pr_name}}
                     </a>
                     @else
                     <a href="{{ route('partner.dashboard') }}" class="simple-text">
                         Nama Usaha Anda
                     </a>
                     @endif
-                @endforeach
+                
             </div>
 
             <ul class="nav">
@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('partner.dashboard') }}">
+                    <a href="{{ route('partner.profile.form') }}">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
