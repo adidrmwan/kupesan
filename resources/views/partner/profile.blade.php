@@ -2,42 +2,46 @@
 
 @section('content')
 <div class="content">
-    @foreach($partner as $data)
+    
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Profil Usaha</h4>
+                        <h4 class="title">Profil Bisnis</h4>
                     </div>
                     <div class="content">
-                        <form role="form" action="{{ route('partner.profile.edit') }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ route('partner.profile.form.submit') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            @foreach($partner as $data)
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label>Nama Usaha</label>
-                                        <input type="text" class="form-control" placeholder="Tuliskan nama usaha Anda" name="partner_name" value="" required>
+                                        <input type="text" class="form-control" placeholder="" name="pr_name" value="{{$data->pr_name}}" disabled required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Kategori Jasa</label>
-                                        <select  class="form-control" id="inlineFormCustomSelectPref" name="partner_type" required>
-                                            <option value="">Pilih Kategori Jasa</option>
-                                            @foreach ($tipe as $listtipe)
-                                            <option value="{{$listtipe->id}}">{{$listtipe->type_name}}</option>
-                                            @endforeach
-                                        </select>
+                                        @if($data->pr_type == '1')
+                                        <input type="text" class="form-control" disabled placeholder=" " value="Foto Studio">
+                                        @elseif($data->pr_type == '2')
+                                        <input type="text" class="form-control" disabled placeholder=" " value="Fotografer">
+                                        @elseif($data->pr_type == '3')
+                                        <input type="text" class="form-control" disabled placeholder=" " value="MUA">
+                                        @elseif($data->pr_type == '4')
+                                        <input type="text" class="form-control" disabled placeholder=" " value="Kebaya">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-
+                            @endforeach
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name Pemilik</label>
-                                        <input type="text" class="form-control" placeholder="Nama Pemilik" name="partner_owner_name" value="" required>
+                                        <input type="text" class="form-control" placeholder="Nama Pemilik" name="pr_owner_name" value="{{$data->pr_owner_name}}" required>
                                     </div>
                                 </div>
                                 @foreach($email as $data)
@@ -50,11 +54,18 @@
                                 @endforeach
                             </div>
 
+                            @foreach($partner as $data)
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <label>Alamat</label>
-                                        <input type="text" class="form-control" placeholder="Alamat" name="partner_address" value="" required>
+                                        <input type="text" class="form-control" placeholder="" name="pr_addr" value="{{$data->pr_addr}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Kode Pos</label>
+                                        <input type="text" class="form-control" placeholder="Kode Pos" name="pr_postal_code" value="{{$data->pr_postal_code}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -63,8 +74,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Wilayah</label>
-                                        <select  class="form-control" id="inlineFormCustomSelectPref" name="partner_area" required>
-                                            <option value="">Pilih Wilayah</option>
+                                        <select  class="form-control" id="inlineFormCustomSelectPref" name="pr_area" required>
+                                            <option selected value="">{{$data->pr_area}}</option>
                                             <option value="Pusat">Surabaya Pusat</option>
                                             <option value="Utara">Surabaya Utara</option>
                                             <option value="Selatan">Surabaya Selatan</option>
@@ -75,14 +86,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Kode Pos</label>
-                                        <input type="text" class="form-control" placeholder="Kode Pos" name="partner_postal_code" value="" required>
+                                        <label>No. Telepon/HP (1)</label>
+                                        <input type="number" class="form-control" placeholder="No. Telepon/HP" name="pr_phone" value="{{$data->pr_phone}}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>No. Telepon/HP</label>
-                                        <input type="number" class="form-control" placeholder="No. Telepon/HP" name="partner_telephone" value="" required>
+                                        <label>No. Telepon/HP (2)</label>
+                                        <input type="number" class="form-control" placeholder="No. Telepon/HP" name="pr_phone2" value="{{$data->pr_phone2}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +102,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Deskripsi</label>
-                                        <textarea rows="5" class="form-control" placeholder="Deskripsikan usaha anda agar customer dapat memahami detail usaha anda" name="partner_description" value="" required></textarea>
+                                        <textarea rows="5" class="form-control" placeholder="" name="pr_desc" required>{{$data->pr_desc}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -101,29 +112,29 @@
                         </form>
 
                         <div class="header">
-                            <h4 class="title">Edit Foto Studio</h4>
+                            <h4 class="title">Portofolio Bisnis</h4>
                         </div>  
 
                          <form enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="file-loading">
-                                        <input id="file-0a" class="file" type="file" multiple>
+                                        <input id="file-0a" class="file" type="file" name="ps_img_port1">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="file-loading">
-                                        <input id="file-0a" class="file" type="file" multiple>
+                                        <input id="file-0a" class="file" type="file" name="ps_img_port2">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="file-loading">
-                                        <input id="file-0a" class="file" type="file" multiple>
+                                        <input id="file-0a" class="file" type="file" name="ps_img_port3">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="file-loading">
-                                        <input id="file-0a" class="file" type="file" multiple>
+                                        <input id="file-0a" class="file" type="file" name="ps_img_port4">
                                     </div>
                                 </div>
                             </div>
@@ -158,12 +169,13 @@
                         <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
 
                     </div>
+                    @endforeach
                 </div>
             </div>
 
         </div>
     </div>
-    @endforeach
+    
 </div>
         
 @endsection

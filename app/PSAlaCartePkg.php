@@ -1,0 +1,28 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class PSAlaCartePkg extends Model
+{
+    protected $primaryKey = 'id';
+    protected $table = 'partner';
+    public $timestamps = true;
+    
+    protected $fillable = [
+        'pr_name',
+        'pr_type',
+        'pr_owner_name',
+        'pr_addr',
+        'pr_area',
+        'pr_postal_code',
+        'pr_desc',
+        'pr_phone ',
+    ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+}

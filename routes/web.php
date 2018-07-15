@@ -55,8 +55,12 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 // Role untuk user yang partner
 Route::group(['prefix' => '3', 'middleware' => ['auth','role:partner']], function(){
 	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
-    Route::get('/profil-mitra', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
-    Route::post('/profil-mitra', 'PartnerController@submitProfileFormNew')->name('partner.profile.form.submit');
+    Route::get('/mitra/profile', 'PartnerController@profile')->name('partner.profile');
+    Route::get('/mitra/profile/new', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
+    Route::post('/mitra/profile/new', 'PartnerController@submitProfileFormNew')->name('partner.profile.form.submit');
+    Route::get('/mitra/package/add', 'PartnerController@addpackagepartner')->name('partner-addpackage');
+    Route::post('/mitra/package/add', 'PartnerController@submitaddpackagepartner')->name('partner-addpackage-submit');
+    Route::get('/editpackagepartner', 'PartnerController@editpackagepartner')->name('partner-editpackage');
 });
 
 // Route untuk email verification
@@ -69,19 +73,11 @@ Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
 //Route untuk partner
 Route::get('/homepartner', 'PartnerController@homepartner')->name('partner-home');
 Route::get('/userpartner', 'PartnerController@userpartner')->name('partner-user');
-Route::get('/addpackagepartner', 'PartnerController@addpackagepartner')->name('partner-addpackage');
-Route::get('/editpackagepartner', 'PartnerController@editpackagepartner')->name('partner-editpackage');
 Route::get('/schedulepartner', 'PartnerController@schedulepartner')->name('partner-schedule');
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
-<<<<<<< HEAD
-Route::get('/formpartner', 'PartnerController@formpartner')->name('formpartner');
-Route::get('/registpartner', 'PartnerController@registpartner')->name('registpartner');
-Route::get('/jadi-mitra', 'PartnerController@jadimitra')->name('jadi-mitra');
-=======
-
 
 // Route Jadi Mitra
 Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
 Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
->>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
+

@@ -10,17 +10,18 @@
                         <h4 class="title">Add Package Thematic</h4>
                     </div>
                     <div class="content">
-                        <form>
+                        <form role="form" action="{{route('partner-addpackage-submit')}}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="file-loading">
-                                        <input id="file-0a" class="file" type="file" multiple>
+                                        <input id="file-0a" class="file" type="file" name="pkg_img_them">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" placeholder="Name" >
+                                        <label>Package Name</label>
+                                        <input type="text" class="form-control" placeholder="Nama Paket" required="" name="pkg_name_them">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -28,14 +29,14 @@
                                         <label>Price</label>
                                         <div class="input-group"> 
                                             <span class="input-group-addon">Rp</span>
-                                            <input type="number" value="100000" min="0" step="1000" class="form-control" placeholder="Price" data-number-stepfactor="100" >
+                                            <input type="number" value="100000" min="0" step="1000" class="form-control" placeholder="Price" data-number-stepfactor="100" name="pkg_price_them">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea rows="5" class="form-control" placeholder="Here can be your description" style="resize: none;">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                        <textarea rows="5" class="form-control" placeholder="Tuliskan deskripsi detail paket anda" style="resize: none;" name="pkg_desc_them"></textarea>
                                     </div>
                                 </div>
                             </div>

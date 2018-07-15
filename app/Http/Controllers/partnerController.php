@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Partner;
+use App\PSThematicPkg;
+use File;
+use Image;
 
 class PartnerController extends Controller
 {
@@ -33,7 +36,7 @@ class PartnerController extends Controller
     				->where('user_id',$user->id)
     				->select('*')
     				->get();
-    	$tipe = DB::table('pr_type')
+    	$tipe = DB::table('partner_type')
     			->select('*')
     			->get();
     	$email = DB::table('users')
@@ -91,6 +94,43 @@ class PartnerController extends Controller
     {
         return view('partner.add-package');
     }
+    
+    public function submitaddpackagepartner(Request $request)
+    {
+        $user = Auth::user();
+        $package = new PSThematicPkg();
+        $package->user_id = $user->id;
+        $package->pkg_name_them = $request->input('pkg_name_them');
+        $package->pkg_desc_them = $request->input('pkg_desc_them');
+        $package->pkg_price_them = $request->input('pkg_price_them');
+        $package->pkg_img_them = $request->input('pkg_img_them');
+        $package->save();
+
+        if ($request->hasFile('pkg_img_them')) {
+            //Found existing file then delete
+            $foto_new = $package->pkg_img_them;
+            // if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+            //     File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            // }
+            // if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+            //     File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            // }
+            // if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+            //     File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            // }
+
+            $foto = $request->file('pkg_img_them');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->resize(300, 300)->save( public_path('/img_pkg/' . $foto_name ) );
+            $user = Auth::user();
+            $package= PSThematicPkg::where('user_id',$user->id)->first();
+            $package->save();
+        }
+
+        return redirect()->intended(route('partner.dashboard'));
+        
+    }
+
     public function editpackagepartner()
     {
         return view('partner.edit-package');

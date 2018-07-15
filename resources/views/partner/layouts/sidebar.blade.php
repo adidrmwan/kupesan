@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('partner.profile.form') }}">
+                    <a href="{{ route('partner.profile') }}">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -34,13 +34,13 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li style="margin-left: 35px;">
-                            <a href="addpackagepartner">
+                            <a href="{{ route('partner-addpackage') }}">
                                 <i class="pe-7s-plus"></i>
                                 <p> Add photo package </p>
                             </a>
                         </li>
                         <li style="margin-left: 35px;">
-                            <a href="editpackagepartner">
+                            <a href="{{ route('partner-editpackage') }}">
                                 <i class="pe-7s-note2"></i>
                                 <p> Edit photo package </p>
                             </a>
