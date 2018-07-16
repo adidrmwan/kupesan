@@ -1155,6 +1155,13 @@ Author:			Star Travel
 	#travel-agency #slider-5 li .meta{
 		margin-top:30px;
 	}
+	.margin-form1 {
+		margin-left: -15px;
+	}
+	.margin-form2 {
+		float: right; 
+		margin-right: -15px
+	}
 }
 
 @media(max-width:1199px){

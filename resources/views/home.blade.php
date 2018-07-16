@@ -194,7 +194,7 @@
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
-<<<<<<< HEAD
+
                  <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-fotografer-offers">
                     
                     <div class="item">
@@ -257,26 +257,12 @@
 </section><!-- end tour-offers -->
 
 <section id="mua-offers" class="section-padding">
-=======
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
-                                        <h1>Coming Soon</h1>        
-                    </div><!-- end columns -->
-                    
-                </div><!-- end row -->
 
-            </div><!-- end columns -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end cruise-offers -->
-
-<section id="tour-offers" class="section-padding">
->>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-<<<<<<< HEAD
+
                     <h2>MUA</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
@@ -337,23 +323,13 @@
                     </div><!-- end item -->
                     
                 </div><!-- end owl-tour-offers -->
-=======
-                    <h2>MUA Offers</h2>
-                    <hr class="heading-line" />
-                </div><!-- end page-heading -->
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
-                                        <h1>Coming Soon</h1>        
-                    </div><!-- end columns -->
-                    
-                </div><!-- end row -->
->>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
+
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end tour-offers -->
 
-<<<<<<< HEAD
+
 <section id="kebaya-offers" class="section-padding">
             <div class="container">
                 <div class="row">
@@ -584,7 +560,8 @@
                                     <div class="col-xs-12 col-sm-6 contact-form-2-text">
                                         
                                      
-                                            <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&height=600&hl=en&coord=-7.290330000000001,112.78610000000003&q=Araya%20Galaxy%20Bumi%20Permai%2044%20Blok%208A4%20Tahap%201%2C%20Surabaya+(Your%20Business%20Name)&ie=UTF8&t=&z=13&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/en/custom-google-maps/">Add Google Map to website</a> by <a href="https://www.mapsdirections.info/en/">Measure area on map</a></iframe></div><br/>
+                                            <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&height=600&hl=en&coord=-7.290330000000001,112.78610000000003&q=Araya%20Galaxy%20Bumi%20Permai%2044%20Blok%208A4%20Tahap%201%2C%20Surabaya+(Your%20Business%20Name)&ie=UTF8&t=&z=13&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                            </div><br/>
                                         
 
                                     </div>
@@ -593,14 +570,14 @@
                                     
                                         <form>
                                             
-                                            <div class="row">
-                                                <div class="col-xs-12 col-sm-6">
+                                            <div >
+                                                <div class="col-xs-12 col-sm-6 margin-form1">
                                                     <div class="form-group">
                                                          <input type="text" class="form-control" placeholder="Name"  required/>
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-xs-12 col-sm-6">
+                                                <div class="col-xs-12 col-sm-6 margin-form2">
                                                     <div class="form-group">
                                                          <input type="email" class="form-control" placeholder="Email"  required/>
                                                     </div>
@@ -633,57 +610,6 @@
         </div><!-- end container -->   
     </div><!-- end contact-us -->
 </section><!-- end innerpage-wrapper -->
-=======
-<section id="flight-offers" class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-heading">
-                    <h2>Kebayas Offers</h2>
-                    <hr class="heading-line" />
-                </div><!-- end page-heading -->
-                    <div class="row">
-                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
-                                        <h1>Coming Soon</h1>        
-                        </div><!-- end columns -->
-                    
-                </div><!-- end row -->
-            </div><!-- end columns -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end flight-offers -->
->>>>>>> 743b277b1b179449ef2afa96a5b711bff35b3599
-
-<section id="best-features" class="banner-padding black-features">
-    <div class="container">
-        <div class="row">           
-           <div class="col-sm-6 col-md-4">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-cogs"></i></span>
-                    <h3>Change How Things Are</h3>
-                    
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-           
-           <div class="col-sm-6 col-md-4">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-expand"></i></span>
-                    <h3>Enlarge Every Possibility</h3>
-                    
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-           
-           <div class="col-sm-6 col-md-4">
-                <div class="b-feature-block">
-                    <span><i class="fa fa-thumbs-up"></i></span>
-                    <h3>Offer One Stop Solution</h3>
-                    
-                </div><!-- end b-feature-block -->
-           </div><!-- end columns -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end best-features -->
-
 
 @include('layouts.footer')
 @endsection
