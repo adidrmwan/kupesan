@@ -58,7 +58,7 @@ Author:			Star Travel
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: url(../images/loader-orange.gif) center no-repeat #fff;
+	background: url(../images/loader.gif) center no-repeat #fff;
 }
 
 p{
@@ -713,12 +713,12 @@ p{
 }
 
 #mySidenav #web-name{
-	background:#EA410C;
-	color:white;
+	background:#f9f9f9;
+	color:#EA410C;
 }
 
 #mySidenav #web-name::after{
-	background:#303030;
+	background:#EA410C;
 	transform:rotate(43deg);
 }
 
@@ -746,7 +746,7 @@ p{
 #main-menu .list-group > .list-group-item.active,
 #main-menu .list-group > .list-group-item:focus,
 #main-menu .list-group > .list-group-item:hover{
-	background:#303030;
+	background:#f9f9f9;
 	color:white;
 }
 
@@ -1845,7 +1845,7 @@ p{
    ----------------------------------------------------- */
 
 .ftr-top-grey{
-	background:#231f20;
+	background:#f9f9f9;
 }
 
 .ftr-top-black{
@@ -1853,7 +1853,7 @@ p{
 }
 
 .ftr-bot-black{
-	background:#0a0909;
+	background:#EA410C;
 }
 
 #footer.ftr-heading-o .footer-heading{
@@ -1867,7 +1867,7 @@ p{
 #footer-top.ftr-text-white,
 #footer-top.ftr-text-white p,
 #footer-top.ftr-text-white a{
-	color:white;
+	color:#EA410C;
 }
 
 #footer-top.ftr-text-grey,
@@ -1926,7 +1926,7 @@ p{
 #footer-bottom p,
 #footer-bottom a,
 #footer-bottom .line{
-	color:#979797;
+	color:white;
 }
 
 #footer-bottom li:first-child:after{

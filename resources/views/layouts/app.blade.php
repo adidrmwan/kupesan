@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/owl.theme.css') }} ">
     
     <!-- Flex Slider Stylesheet -->
-    <link rel="stylesheet" href="{{ URL::asset ('ist/css/flexslider.css') }} " type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/flexslider.css') }} " type="text/css" />
     
     <!--Date-Picker Stylesheet-->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
@@ -67,10 +67,8 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>                        
                         </button>
-                        <div class="header-search hidden-lg">
-                            <a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a>
-                        </div>
-                        <a href="#" class="navbar-brand">
+
+                        <a href="home" class="navbar-brand">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->

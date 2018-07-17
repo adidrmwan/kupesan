@@ -2507,7 +2507,8 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 }
 
 .footer-widget.ftr-links li{
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
+	text-decoration: none;
 	margin-bottom:9px;
 }
 
