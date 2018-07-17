@@ -30,7 +30,7 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-about">
                     <h3 class="footer-heading">About US</h3>
-                    <p>Kupesan merupakan ...</p>
+                    <p style="text-align: justify;">Kupesan.id adalah sebuah marketplace online yang ingin membawa perubahan dalam bentuk memudahkan masyarakat untuk mencari persewaan spot foto (dalam atau luar ruangan), persewaan gaun dan kebaya, penyedia jasa fotografer, serta penyedia jasa tata rias (make-up artist).</p>
                     
                 </div><!-- end columns -->
                 

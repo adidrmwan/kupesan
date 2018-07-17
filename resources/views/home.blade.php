@@ -463,7 +463,7 @@
                         <p>Kami akan menghubungkan anda dengan customer sehingga anda dapat meningkatkan kinerja bisnis anda.</p>
                         <div class="row">
                              <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                    <a href="jadi-mitra" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                                    <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
                              </button>
                         </div><!-- end row -->
                     </div><!-- end abt-cnt-2-text -->

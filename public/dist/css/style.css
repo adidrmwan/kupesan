@@ -153,6 +153,11 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 	padding-bottom:147px;
 }
 
+.innerpage-section-padding-mitra{
+	padding-top:103px;
+	/*padding-bottom:147px;*/
+}
+
 .innerpage-banner-padding{
 	padding-top:100px;
 	padding-bottom:100px;
