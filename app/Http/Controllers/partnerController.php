@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Partner;
-use App\PSThematicPkg;
+use App\PSPkg;
 use File;
 use Image;
 
@@ -92,20 +92,25 @@ class PartnerController extends Controller
     
     public function addpackagepartner()
     {
-        return view('partner.add-package');
+        return view('partner.ps.add-package');
     }
     
     public function submitaddpackagepartner(Request $request)
     {
         $user = Auth::user();
-        $package = new PSThematicPkg();
+        $package = new PSPkg();
         $package->user_id = $user->id;
+        $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');
         $package->pkg_desc_them = $request->input('pkg_desc_them');
         $package->pkg_price_them = $request->input('pkg_price_them');
-        $package->pkg_img_them = $request->input('pkg_img_them');
+        $package->status = '1';
+        
         $package->save();
 
+        $package = PSPkg::find($package->id);
+        $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them;
+        $package->save();
         if ($request->hasFile('pkg_img_them')) {
             //Found existing file then delete
             $foto_new = $package->pkg_img_them;
@@ -123,18 +128,45 @@ class PartnerController extends Controller
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->resize(300, 300)->save( public_path('/img_pkg/' . $foto_name ) );
             $user = Auth::user();
-            $package= PSThematicPkg::where('user_id',$user->id)->first();
+            $package= PSPkg::where('user_id',$user->id)->first();
+
             $package->save();
         }
 
-        return redirect()->intended(route('partner.dashboard'));
+        return redirect()->intended(route('partner-editpackage'));
         
     }
 
-    public function editpackagepartner()
+    public function listpackagepartner()
     {
-        return view('partner.edit-package');
+        $user = Auth::user();
+        $partner = DB::table('ps_package')
+                    ->where('user_id',$user->id)
+                    ->where('status', '1')
+                    ->select('*')
+                    ->get();
+                    // dd($partner);
+        return view('partner.ps.list-package', ['partner' => $partner]);
     }
+
+    public function EditPackagePartner($id)
+    {
+        $partner = PSPkg::find($id);
+                    dd($partner);
+        return view('partner.ps.edit-package', ['partner' => $partner]);
+    }
+
+    public function deletepackagepartner($id)
+    {
+        $user = Auth::user();
+        $partner = DB::table('ps_package')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->get();
+                    // dd($partner);
+        return view('partner.ps.edit-package', ['partner' => $partner]);
+    }
+
     public function schedulepartner()
     {
         return view('partner.schedule');
