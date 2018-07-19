@@ -34,14 +34,6 @@ Route::get('/', function () {
 
 })->name('index');
 
-
-// Route untuk user yang baru register
-// Route::group(['prefix' => 'home', 'middleware' => ['auth']], function(){
-// 	Route::get('/', function(){
-// 		return view('home');
-// 	});
-// });
-
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
@@ -55,21 +47,24 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 });
 
 // Role untuk user yang partner
-Route::group(['prefix' => '3', 'middleware' => ['auth','role:partner']], function(){
+Route::group(['prefix' => 'mitra', 'middleware' => ['auth','role:partner']], function(){
 	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
-    Route::get('/mitra/profile', 'PartnerController@profile')->name('partner.profile');
-    Route::get('/mitra/profile/new', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
-    Route::post('/mitra/profile/new', 'PartnerController@submitProfileFormNew')->name('partner.profile.form.submit');
-    Route::get('/mitra/package/add', 'PartnerController@addpackagepartner')->name('partner-addpackage');
-    Route::post('/mitra/package/add', 'PartnerController@submitaddpackagepartner')->name('partner-addpackage-submit');
-    Route::get('/editpackagepartner', 'PartnerController@editpackagepartner')->name('partner-editpackage');
+    Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
+    Route::get('/profile/new', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
+    Route::post('/profile/new', 'PartnerController@submitProfileFormNew')->name('partner.profile.form.submit');
+    Route::get('/package/add', 'PartnerController@addpackagepartner')->name('partner-addpackage');
+    Route::post('/package/add', 'PartnerController@submitaddpackagepartner')->name('partner-addpackage-submit');
+    Route::get('/package/list', 'PartnerController@listpackagepartner')->name('partner-editpackage');
+    Route::post('/package/edit', 'PackageController@EditPackagePS')->name('partner.edit.pkg');
+    Route::post('/package/delete', 'PackageController@DeletePackagePS')->name('partner.delete.pkg');
+    Route::get('/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
 });
 
 // Route untuk email verification
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 
 //Route untuk studio foto
-Route::get('/studiodetail', 'StudioController@studiodetail')->name('studio-detail');
+Route::get('/studio/detail', 'StudioController@studiodetail')->name('studio-detail');
 Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
 
 //Route untuk partner
@@ -83,6 +78,8 @@ Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegis
 Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
 
+
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
 
 Route::get('/booking', 'BookingController@booking')->name('booking');
+

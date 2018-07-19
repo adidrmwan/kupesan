@@ -42,7 +42,7 @@
                         <li style="margin-left: 35px;">
                             <a href="{{ route('partner-editpackage') }}">
                                 <i class="pe-7s-note2"></i>
-                                <p> Edit photo package </p>
+                                <p> List photo package </p>
                             </a>
                         </li>
                     </ul>
