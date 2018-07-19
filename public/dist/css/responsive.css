@@ -86,6 +86,10 @@ Author:			Star Travel
 
 @media(max-width:768px){
 	
+	#myNavbar2 {
+		margin-top: -50px;
+	}
+
 	.btn{
 		font-size:14px;
 	}
@@ -121,6 +125,10 @@ Author:			Star Travel
 	.view-all{
 		margin-top:50px;
 	}
+
+	#myNavbar2 {
+		margin-top: -50px;
+	}
 }
 
 @media(max-width:400px){
@@ -131,6 +139,10 @@ Author:			Star Travel
 	
 	.innerpage-heading h1{
 		font-size:28px;
+	}
+
+	#myNavbar2 {
+		margin-top: -50px;
 	}
 }
 	
@@ -222,7 +234,7 @@ Author:			Star Travel
 /************* CRUISE HOMEPAGE *************/
 
 @media(min-width:768px) and (max-width:991px){
-
+	
 	#cruise-homepage #top-bar #info li:first-child{
 		margin-right:5px;
 	}
@@ -242,14 +254,28 @@ Author:			Star Travel
    ----------------------------------------------------- */
 
 @media(min-width:1200px){
+
+	#myNavbar2 {
+		display: none;
+	}
 	
 	.main-navbar.navbar-custom .navbar-brand{
 		padding-top: 24px;
 	}
+
+	.main-navbar.navbar-custom .navbar-payment{
+		padding-top: 24px;
+	}
+
 	.navbar-brand img{
 		max-width: 175px;
 	}
 	
+	.navbar-payment img{
+		max-width: 175px;
+		padding-top: 1px;
+	}
+
 	.main-navbar.navbar-custom .navbar-nav > li {
 		padding: 22px 0;
 		-webkit-transition: padding 0.3s;
@@ -259,6 +285,11 @@ Author:			Star Travel
   	}
 	
 	.main-navbar .nav > li > a{
+		padding-left:0px;
+		padding-right:0px;
+		margin:0px 13px;
+	}
+	.payment-navbar{
 		padding-left:0px;
 		padding-right:0px;
 		margin:0px 13px;
@@ -283,6 +314,10 @@ Author:			Star Travel
 	
 	.main-navbar.navbar-custom.affix .navbar-brand{
 		padding-top: 12px;
+	}
+
+	.main-navbar.navbar-custom.affix .navbar-payment{
+		padding-top: 19px;
 	}
 	
 	.main-navbar .navbar-nav > li.active::before{
@@ -390,14 +425,24 @@ Author:			Star Travel
 	.main-navbar.navbar-custom .navbar-brand{
 		padding-top: 3px;
 	}
+
+	.main-navbar.navbar-custom .navbar-payment{
+		padding-top: 3px;
+	}
 }
 
 @media(min-width:768px) and (max-width:991px){
 	
 	#mynavbar .navbar-brand img{
-		max-height:46px;
-		margin-top:3px;
-		max-width: 85px;
+		max-height:100%;
+		margin-top:5px;
+		max-width: 200px;
+	}
+	
+	#mynavbar .navbar-payment img{
+		max-height:100%;
+		margin-top:5px;
+		max-width: 200px;
 	}
 }
 
@@ -409,12 +454,24 @@ Author:			Star Travel
 		-moz-transition: all 0.3s;
 		transition: all 0.3s;
 	}
+	.main-navbar.navbar-custom .navbar-payment {
+		font-size: 2.0em;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+	}
 	
 	.flexslider li.flex-active-slide .meta .highlight-price {
 		margin-top: -40px;
 	}
 
 	.main-navbar.navbar-custom .navbar-brand .fa{
+		font-size: 1.33em;
+		-webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+		transition: all 0.3s;
+	}
+	.main-navbar.navbar-custom .navbar-payment .fa{
 		font-size: 1.33em;
 		-webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
@@ -466,13 +523,27 @@ Author:			Star Travel
 	 .navbar-brand img{
 		max-width: 85px;
 	}
+
+	.navbar-payment img{
+		max-width: 85px;
+	}
 	
 	.main-navbar .navbar-brand{
 		padding-bottom:0px;
 		padding-top:17px;
 	}
+
+	.main-navbar .navbar-payment{
+		padding-bottom:0px;
+		padding-top:17px;
+	}
 	
 	.main-navbar .navbar-brand .fa{
+		top:0px;
+		margin-right:6px;
+	}
+
+	.main-navbar .navbar-payment .fa{
 		top:0px;
 		margin-right:6px;
 	}

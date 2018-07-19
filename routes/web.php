@@ -1,7 +1,9 @@
 <?php
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+        return view('home');
+    })->name('');
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -34,11 +36,11 @@ Route::get('/', function () {
 
 
 // Route untuk user yang baru register
-Route::group(['prefix' => 'home', 'middleware' => ['auth']], function(){
-	Route::get('/', function(){
-		return view('home');
-	});
-});
+// Route::group(['prefix' => 'home', 'middleware' => ['auth']], function(){
+// 	Route::get('/', function(){
+// 		return view('home');
+// 	});
+// });
 
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
@@ -81,3 +83,6 @@ Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegis
 Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
 
+Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
+
+Route::get('/booking', 'BookingController@booking')->name('booking');

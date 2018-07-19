@@ -370,6 +370,15 @@ p{
 	color:black;
 }
 
+.black-payment {
+	text-align: center;
+	color:#58595b;
+}
+.orange-payment {
+	text-align: center;
+	color:#EA410C;
+}
+
 .main-navbar .navbar-nav > .dropdown:hover > a{
 	color:#EA410C;
 }
@@ -3144,7 +3153,7 @@ p{
 /************** ERROR PAGE 2 *************/
 
 .full-page-back{
-	background:linear-gradient(rgba(255, 255, 255,0.95),rgba(255, 255, 255,0.95)),url('../images/error-page-2.jpg') center;
+	background:linear-gradient(rgba(255, 255, 255,0.95),rgba(255, 255, 255,0.95)) center;
 	background-size:cover;
 }
 
