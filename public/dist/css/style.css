@@ -459,8 +459,8 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 }
 
 .main-navbar .navbar-nav > li::before{
-	width: 0;
-	height: 4px;
+	/*width: 0;*/
+	/*height: 4px;*/
 	transition: all 0.25s linear;
 	position: absolute;
 	content: "";
