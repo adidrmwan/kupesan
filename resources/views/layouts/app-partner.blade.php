@@ -37,6 +37,12 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
 
+  <!-- ... -->
+  <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
+  <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+  <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
 
 </head>
 <body>
@@ -80,7 +86,6 @@
 
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
-
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -103,6 +108,13 @@
         } );
 
     </script>
+    <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+            });
+        </script>
 
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->

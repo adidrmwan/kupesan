@@ -11,14 +11,16 @@ class Partner extends Model
     public $timestamps = true;
     
     protected $fillable = [
-        'pr_name',
         'pr_type',
+        'pr_name',
         'pr_owner_name',
         'pr_addr',
         'pr_area',
         'pr_postal_code',
         'pr_desc',
-        'pr_phone ',
+        'pr_phone',
+        'pr_phone2',
+        'status',
     ];
 
     public function users()

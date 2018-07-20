@@ -5,7 +5,7 @@
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Profil Bisnis</h4>
@@ -15,7 +15,7 @@
                             {{ csrf_field() }}
                             @foreach($partner as $data)
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nama Usaha</label>
                                         <input type="text" class="form-control" placeholder="" name="pr_name" value="{{$data->pr_name}}" disabled required>
@@ -35,28 +35,68 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            @endforeach
-                            <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Name Pemilik</label>
                                         <input type="text" class="form-control" placeholder="Nama Pemilik" name="pr_owner_name" value="{{$data->pr_owner_name}}" required>
                                     </div>
                                 </div>
+                            </div>
+                            @endforeach
+                            <div class="row">
+                                
                                 @foreach($email as $data)
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input type="email" class="form-control" disabled placeholder="Email" value="{{$data->email}}">
                                     </div>
                                 </div>
                                 @endforeach
+                            @foreach($partner as $data)
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div class="content">
+        <h1>DateTimePicker Styles</h1>
+        <label>Date & Time</label>
+        <div class="input-group date-time" id="datetimepicker">
+          <input class="form-control"/><span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        <label>Date</label>
+        <div class="input-group date" id="datepicker">
+          <input class="form-control"/><span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+        </div>
+        <label>Time</label>
+        <div class="input-group time" id="timepicker">
+          <input class="form-control"/><span class="input-group-addon"><span class="fa fa-clock-o"></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker2').datetimepicker({
+                                            format: 'LT'
+                                        });
+                                    });
+                                </script>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Jam Tutup</label>
+                                        <input type="text" class="form-control" placeholder="Nama Pemilik" name="pr_owner_name" value="{{$data->pr_owner_name}}" required>
+                                    </div>
+                                </div>
                             </div>
 
-                            @foreach($partner as $data)
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Alamat</label>
                                         <input type="text" class="form-control" placeholder="" name="pr_addr" value="{{$data->pr_addr}}" required>
@@ -142,37 +182,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card card-user">
-                    <div class="image">
-                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
-                    </div>
-                    <div class="content">
-                        <div class="author">
-                             <a href="#">
-                            <img class="avatar border-gray" src="partner/img/faces/face-3.jpg" alt="..."/>
 
-                              <h4 class="title">Mike Andrew<br />
-                                 <small>michael24</small>
-                              </h4>
-                            </a>
-                        </div>
-                        <p class="description text-center"> "Lamborghini Mercy <br>
-                                            Your chick she so thirsty <br>
-                                            I'm in that two seat Lambo"
-                        </p>
-                    </div>
-                    <hr>
-                    <div class="text-center">
-                        <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                        <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                        <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-
-                    </div>
                     @endforeach
-                </div>
-            </div>
-
         </div>
     </div>
     
