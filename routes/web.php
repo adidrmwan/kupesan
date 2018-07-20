@@ -55,7 +55,8 @@ Route::group(['prefix' => 'mitra', 'middleware' => ['auth','role:partner']], fun
     Route::get('/package/add', 'PartnerController@addpackagepartner')->name('partner-addpackage');
     Route::post('/package/add', 'PartnerController@submitaddpackagepartner')->name('partner-addpackage-submit');
     Route::get('/package/list', 'PartnerController@listpackagepartner')->name('partner-editpackage');
-    Route::post('/package/edit', 'PackageController@EditPackagePS')->name('partner.edit.pkg');
+    Route::get('/package/edit', 'PackageController@ShowEditPackagePS')->name('partner.edit.pkg');
+    Route::post('/package/edit', 'PackageController@EditPackagePS')->name('partner.edit.pkg.submit');
     Route::post('/package/delete', 'PackageController@DeletePackagePS')->name('partner.delete.pkg');
     Route::get('/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
 });
