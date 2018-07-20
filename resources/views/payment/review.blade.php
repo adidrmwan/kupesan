@@ -44,17 +44,14 @@
                     
                     <div class="collapse navbar-collapse" id="myNavbar1">
                         <ul class="nav navbar-nav navbar-right navbar-search-link">
-                            <li class="active" style="cursor: default;"> 
+                            <li style="cursor: default;"> 
                                 <a>
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 1 </strong>
-                                    </span>
+                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
                                     Pesan
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
-                                <a>
+                            <li style="cursor: default;"> 
+                                <a style="color:#EA410C">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 2 </strong>
@@ -62,7 +59,7 @@
                                     Review
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a>
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -71,7 +68,7 @@
                                     Bayar
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a>
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -97,16 +94,14 @@
 
                     <div class="navbar-collapse" id="myNavbar2" >
                         <ul class="nav navbar-nav navbar-search-link" style="display: inline-flex;">
-                            <li class="active" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a class="orange-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 1 </strong>
+                                    <span><i class="fa fa-check" aria-hidden="true"></i> 
                                     </span>
                                     Pesan
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li class="active" style="cursor: default;"> 
                                 <a class="black-payment">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -115,7 +110,7 @@
                                     Review
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a class="black-payment">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -124,7 +119,7 @@
                                     Bayar
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a class="black-payment">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
@@ -142,7 +137,7 @@
                         	<form class="lg-booking-form">
                                 <div class="lg-booking-form-heading">
                                 	
-                                	<h3>Personal Information</h3>
+                                	<h3>Your Information</h3>
                                 </div><!-- end lg-bform-heading -->
                                 
                                 <div class="personal-info">

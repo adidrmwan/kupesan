@@ -82,4 +82,5 @@ Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
 
 Route::get('/booking', 'BookingController@booking')->name('booking');
+Route::get('/review', 'BookingController@review')->name('review');
 

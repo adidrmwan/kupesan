@@ -466,7 +466,7 @@ p{
 	.main-navbar.navbar-transparent .nav > li.active > a:focus,
 	.main-navbar.navbar-transparent .nav > li.active > a:hover,
 	.main-navbar.navbar-transparent .nav > li.active > a:focus:hover  {
-		color: #EA410C;
+		/*color: #EA410C;*/
 	}
 	
 	.main-navbar.navbar-transparent.affix .navbar-nav > li > a{
@@ -480,7 +480,7 @@ p{
 	.main-navbar.navbar-transparent.affix .nav > li.active > a:focus,
 	.main-navbar.navbar-transparent.affix .nav > li.active > a:hover,
 	.main-navbar.navbar-transparent.affix .nav > li.active > a:focus:hover  {
-		color: #EA410C;
+		/*color: #EA410C;*/
 	}
 }
 

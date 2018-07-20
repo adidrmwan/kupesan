@@ -10,4 +10,8 @@ class BookingController extends Controller
     {
         return view('payment.booking');
     }
+    public function review()
+    {
+        return view('payment.review');
+    }
 }

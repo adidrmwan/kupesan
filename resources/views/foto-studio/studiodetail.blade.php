@@ -2,21 +2,20 @@
 @section('title', 'Studio Foto')
 @section('content')
 
-<section class="page-cover" id="cover-hotel-detail">
+<section class="page-cover section-padding" id="cover-hotel-detail" style="margin-top: 4.5%;">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-title">Hotel Detail Right Sidebar</h1>
+                <h1 class="page-title">Studio Kupesan</h1>
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Hotel Detail Right Sidebar</li>
+                    <li class="active">Jalan Ambarawa</li>
                 </ul>
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end page-cover -->
 
-<section id="luxury-rooms" class="section-padding">
+<section id="studio" class="section-padding">
             <!-- <div class="container"> -->
                 <div class="row">
                         <div class="col-sm-4 col-md-4">
@@ -25,26 +24,26 @@
                                     <div class=" luxury-img luxury-room-imgs">
                                         <div class="row">
                                             <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="dist/images/luxury-room-1.jpg" title="image-1" class="with-caption gallery image-link">
-                                                <img class="img-responsive" src="dist/images/luxury-room-1.jpg" alt="">
+                                                <a href="../dist/images/studio-foto.png" title="image-1" class="with-caption gallery image-link">
+                                                <img class="img-responsive" src="../dist/images/mua.png" alt="">
                                                 </a>
                                             </div>
                                             
                                             <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="dist/images/luxury-room-2.jpg" title="image-2" class="with-caption gallery image-link">
-                                                <img class="img-responsive" src="dist/images/luxury-room-2.jpg" alt="">
+                                                <a href="../dist/images/studio-foto.png" title="image-2" class="with-caption gallery image-link">
+                                                <img class="img-responsive" src="../dist/images/studio-foto.png" alt="">
                                                 </a>
                                             </div>
                                             
                                             <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="dist/images/luxury-room-3.jpg" title="image-3" class="with-caption gallery image-link">
-                                                <img class="img-responsive" src="dist/images/luxury-room-3.jpg" alt="">
+                                                <a href="../dist/images/studio-foto.png" title="image-3" class="with-caption gallery image-link">
+                                                <img class="img-responsive" src="../dist/images/studio-foto.png" alt="">
                                                 </a>
                                             </div>
                                             
                                             <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="dist/images/luxury-room-4.jpg" title="image-4" class="with-caption gallery image-link">
-                                                <img class="img-responsive" src="dist/images/luxury-room-4.jpg" alt="">
+                                                <a href="../dist/images/studio-foto.png" title="image-4" class="with-caption gallery image-link">
+                                                <img class="img-responsive" src="../dist/images/studio-foto.png" alt="">
                                                 </a>
                                             </div>
                                         </div>
@@ -55,31 +54,31 @@
                                             <h3>Feature / Amenities / Rules</h3>
                                     </div>
                                     <div>
-                                        <div class="col-sm-6 col-md-4">
+                                        <div class="col-xs-4 col-md-4">
                                             <div >
                                                 <span ><i class="zmdi zmdi-wifi-alt zmdi-hc-5x mdc-text-red-700"></i></span>
                                             </div><!-- end b-feature-block -->
                                        </div><!-- end columns -->
-                                       <div class="col-sm-6 col-md-4">
+                                       <div class="col-xs-4 col-md-4">
                                             <div >
                                                 <span><i class="zmdi zmdi-male-female zmdi-hc-5x mdc-text-red-700"></i></span>
                                             </div><!-- end b-feature-block -->
                                        </div><!-- end columns -->
-                                       <div class="col-sm-6 col-md-4">
+                                       <div class="col-xs-4 col-md-4">
                                             <div >
                                                 <span><i class="zmdi zmdi-camera zmdi-hc-5x mdc-text-red-700"></i></span>
                                             </div><!-- end b-feature-block -->
                                        </div><!-- end columns -->
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <iframe
-                                          width="440"
+                                          width="350"
                                           height="270"
-                                          frameborder="0" style="border:0; padding: 30px;"
+                                          frameborder="0" style="border:0; padding: 30px 20px 30px 20px;"
                                           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD49TWjk6gDOPVPYwecyyvXyB8Z_mohRpM
                                             &q=Space+Needle,Seattle+WA" allowfullscreen >
                                         </iframe>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -94,7 +93,10 @@
                                     <div class="owl-carousel">
                                       <div class="item">
                                         <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent">
-                                    <img src="https://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-4_tfmpvk.jpg"></a>
+                                          <img src="../dist/images/studio-foto.png">
+                                        </a>
+                                        <h4>HEADING</h4>
+                                        <h6>Sub heading</h6>
                                       </div>
                                       <div class="item">
                                         <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938017/pexels-photo-3_ppz2bb.jpg"></a>
