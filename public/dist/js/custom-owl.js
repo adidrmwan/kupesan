@@ -6,6 +6,9 @@
 	var	studioOffers			=$("#owl-studio-offers"),
 		fotograferOffers		=$("#owl-fotografer-offers"),
 		muaOffers				=$("#owl-mua-offers"),
+		thematicOffers			=$("#owl-thematic-offers"),
+		alacarteOffers			=$("#owl-alacarte-offers"),
+		specialOffers			=$("#owl-special-offers"),
 		kebayaOffers			=$("#owl-kebaya-offers"),
 		carOffers				=$("#owl-car-offers"),
 		holidayTours			=$(".owl-holidays"),
@@ -16,6 +19,99 @@
 	
 	// Owl Studio Offers
 	studioOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
+	// Owl thematic Offers
+	thematicOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
+	// Owl alacarte Offers
+	alacarteOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
+	// Owl special Offers
+	specialOffers.owlCarousel({
 		items : 3,
 		itemsCustom : false,
 		itemsDesktop : [1199,3],

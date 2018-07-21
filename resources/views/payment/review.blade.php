@@ -25,6 +25,12 @@
         
         <!-- Color Panel -->
         <link rel="stylesheet" href=" {{URL::asset('dist/css/jquery.colorpanel.css')}}">
+        <style type="text/css">
+            hr.style5 {
+                background-color: #fff;
+                border-top: 2px dashed #8c8b8b;
+            }
+        </style>
     </head>
     
     
@@ -92,177 +98,138 @@
                 <div class="container">
                     <div class="row">
 
-                    <div class="navbar-collapse" id="myNavbar2" >
-                        <ul class="nav navbar-nav navbar-search-link" style="display: inline-flex;">
-                            <li  style="cursor: default;"> 
-                                <a class="orange-payment">
-                                    <span><i class="fa fa-check" aria-hidden="true"></i> 
-                                    </span>
-                                    Pesan
-                                </a> 
-                            </li>
-                            <li class="active" style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 2 </strong>
-                                    </span>
-                                    Review
-                                </a> 
-                            </li>
-                            <li  style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 3 </strong>
-                                    </span>
-                                    Bayar
-                                </a> 
-                            </li>
-                            <li  style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 4 </strong>
-                                    </span>
-                                    Voucher
-                                </a> 
-                            </li>                        
-                            
-                            <li></li>
-                        </ul>
-                    </div><!-- end navbar collapse -->
-
-                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
-                        	<form class="lg-booking-form">
-                                <div class="lg-booking-form-heading">
-                                	
-                                	<h3>Your Information</h3>
-                                </div><!-- end lg-bform-heading -->
+                        <div class="navbar-collapse" id="myNavbar2" >
+                            <ul class="nav navbar-nav navbar-search-link" style="display: inline-flex;">
+                                <li  style="cursor: default;"> 
+                                    <a class="orange-payment">
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
+                                        </span>
+                                        Pesan
+                                    </a> 
+                                </li>
+                                <li class="active" style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span class="fa-stack"> 
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x"> 2 </strong>
+                                        </span>
+                                        Review
+                                    </a> 
+                                </li>
+                                <li  style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span class="fa-stack"> 
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x"> 3 </strong>
+                                        </span>
+                                        Bayar
+                                    </a> 
+                                </li>
+                                <li  style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span class="fa-stack"> 
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x"> 4 </strong>
+                                        </span>
+                                        Voucher
+                                    </a> 
+                                </li>                        
                                 
-                                <div class="personal-info">
-                                
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                        
-                                        <div class="col-xs-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div><!-- end row -->
-                                    
-                                    <div class="row">
-                                    	<div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Date of Birth</label>
-                                                <input type="text" class="form-control dpd3" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                        
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div><!-- end row -->
-                                    
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email Address</label>
-                                                <input type="email" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                        
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div><!-- end row -->
-                                    
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Permanent Address</label>
-                                                <textarea type="text" class="form-control" rows="2"/></textarea>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div>   
-                                </div><!-- end personal-info -->
-                                            
-                            </form>
-                            
-                        </div><!-- end columns -->
-						
-                        
-                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
-                        	<div class="row">
-                            
-                                <div class="col-xs-12 col-sm-6 col-md-12">
-                                    <div class="side-bar-block detail-block style2 text-center">
-                                        <div class="detail-img text-center">
-                                        	<img src="dist/images/mua.png" class="img-responsive" alt="detail-img"/>
-                                        </div><!-- end detail-img -->
-                                        
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Nama Studio</td>
-                                                        <td>Kupesan Studio</td>
-                                                    </tr>
-                                                	<tr>
-                                                    	<td>Tanggal</td>
-                                                        <td>20-05-2018</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jam Mulai</td>
-                                                        <td>17.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jam Selesai</td>
-                                                        <td>19.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Studio Type</td>
-                                                        <td>Deluxe</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Tamu</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Total Harga</td>
-                                                        <td>$360</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div><!-- end table-responsive -->
-                                    </div><!-- end side-bar-block -->
-                                </div><!-- end columns -->                                
-                            </div><!-- end row -->
-                        
-                        </div><!-- end columns -->
-                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
-                            <form class="lg-booking-form">
+                                <li></li>
+                            </ul>
+                        </div><!-- end navbar collapse -->
 
-                                <div class="checkbox">
-                                    <label><input type="checkbox"> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                                </div><!-- end checkbox -->
-                                  
-                                <button type="submit" class="btn btn-orange">Lanjutkan</button>
-                            </form>
-                        </div>
+                            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
+                            	<div class="dashboard-content user-profile">
+                                        <h2 class="dash-content-title">Please Review Your Booking</h2>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><h4>Profile Details</h4></div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-4 col-md-3 user-img">
+                                                        <img src="../dist/images/mua.png" class="img-responsive" alt="user-img" />
+                                                    </div><!-- end columns -->
+                                                    
+                                                    <div class="col-sm-8 col-md-9  user-detail">
+                                                        <h3><b>Kupesan Studio</b></h3>
+                                                        <hr class="style5">
+                                                        <ul class="list-unstyled" >
+                                                            <div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Tanggal</span> <br>23 Maret 2019</li></div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Mulai</span><br> 19.00</li></div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Selesai</span><br> 21.00</li></div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-sm-12 col-md-12" style="margin-bottom: 10px;"><li><span>Nama Pemesan</span> <br>Arsya Darmawan </li></div>
+                                                            </div>
+                                                        </ul>
+                                                        <br>
+                                                        <hr class="style5">
+                                                        <ul class="list-unstyled">                                                          
+                                                            <div>
+                                                                <div class="col-sm-12 col-md-12"><li><span>Studio Detail</span></li></div>
+                                                                <div class="col-sm-12 col-md-12"><li>Studio Tipe <p style="float: right;">Thematic</p></li>
+                                                                </div>
+                                                                    <div class="col-sm-12 col-md-12"><li>Orang <p style="float: right;">20 Orang</p></li>
+                                                                    </div>
+                                                            </div>
+                                                        </ul>
+                                                    </div><!-- end columns -->
+                                                    
+                                                </div><!-- end row -->
+                                                
+                                            </div><!-- end panel-body -->
+                                        </div><!-- end panel-detault -->
+
+                                        <div class="panel panel-default" style="margin-top: 35px;">
+                                            <div class="panel-heading"><h4>Detail Harga</h4></div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-sm-12 col-md-12  user-detail">
+                                                        <h3><b>Kupesan Studio</b></h3>
+                                                        <hr class="style5">
+                                                        <ul class="list-unstyled" >
+                                                            <li>
+                                                                <span>Studio Room Type Thematic</span>
+                                                                <span style="float: right; ">Rp. 300.000</span>
+                                                            </li>
+                                                            <li>
+                                                                <span>Kupesan Fee</span>
+                                                                <span style="float: right; ">FREE</span>
+                                                            </li>
+                                                        </ul>
+                                                        <hr class="style5">
+
+                                                        <ul class="list-unstyled" >
+                                                            <li>
+                                                                <span>TOTAL</span>
+                                                                <span style="float: right; ">Rp. 300.00</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div><!-- end columns -->
+                                                    
+                                                </div><!-- end row -->
+                                                
+                                            </div><!-- end panel-body -->
+                                        </div><!-- end panel-detault -->
+                                    </div><!-- end columns -->
+                            </div>						
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
+                            
+                            </div><!-- end columns -->
+                            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
+                                <form class="lg-booking-form">
+                                    <div class="checkbox col-xs-8 col-sm-8 col-md-8 col-lg-8"  >
+                                        <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
+                                    </div><!-- end checkbox -->
+                                    <div class="checkbox col-xs-4 col-sm-4 col-md-4 col-lg-4"  >
+                                        <button type="submit" class="btn btn-orange" style="float: right; margin-right: -15px;">Lanjutkan</button>
+                                    </div>
+                                </form>
+                            </div>
                                 
                     </div><!-- end row -->
                 </div><!-- end container -->         
