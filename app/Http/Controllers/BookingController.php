@@ -14,4 +14,12 @@ class BookingController extends Controller
     {
         return view('payment.review');
     }
+    public function bayar()
+    {
+        return view('payment.bayar');
+    }
+    public function proses()
+    {
+        return view('payment.proses');
+    }
 }

@@ -80,9 +80,18 @@
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 4 </strong>
                                     </span>
+                                    Proses
+                                </a> 
+                            </li>
+                            <li  style="cursor: default;"> 
+                                <a>
+                                    <span class="fa-stack"> 
+                                        <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x"> 5 </strong>
+                                    </span>
                                     Voucher
                                 </a> 
-                            </li>                        
+                            </li>                       
                             
                             <li></li>
                         </ul>
@@ -101,14 +110,14 @@
                         <div class="navbar-collapse" id="myNavbar2" >
                             <ul class="nav navbar-nav navbar-search-link" style="display: inline-flex;">
                                 <li  style="cursor: default;"> 
-                                    <a class="orange-payment">
+                                    <a class="black-payment">
                                         <span><i class="fa fa-check" aria-hidden="true"></i> 
                                         </span>
                                         Pesan
                                     </a> 
                                 </li>
                                 <li class="active" style="cursor: default;"> 
-                                    <a class="black-payment">
+                                    <a class="orange-payment">
                                         <span class="fa-stack"> 
                                             <span class="fa fa-circle-o fa-stack-2x"></span>
                                                 <strong class="fa-stack-1x"> 2 </strong>
@@ -131,9 +140,18 @@
                                             <span class="fa fa-circle-o fa-stack-2x"></span>
                                                 <strong class="fa-stack-1x"> 4 </strong>
                                         </span>
+                                        Proses
+                                    </a> 
+                                </li>
+                                <li  style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span class="fa-stack"> 
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x"> 5 </strong>
+                                        </span>
                                         Voucher
                                     </a> 
-                                </li>                        
+                                </li>                             
                                 
                                 <li></li>
                             </ul>

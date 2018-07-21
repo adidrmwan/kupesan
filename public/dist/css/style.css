@@ -3839,6 +3839,7 @@ padding-bottom: 30px;
 .lg-booking-form .btn-orange{
 	padding:10px 25px 11px;
 	margin-top:25px;
+	width: 100%;
 }
 
 /************ FULL PAGE FORMS ************/
@@ -4596,7 +4597,7 @@ padding-bottom: 30px;
 
 .dashboard-content .btn{
 	text-transform:none;
-	font-weight:900;
+	font-weight:400;
 }
 
 .dash-content-title{
@@ -4787,9 +4788,10 @@ padding-bottom: 30px;
 }
 
 .user-profile .panel-body .user-detail .btn{
-	margin-top:20px;
+	/*margin-top:20px;*/
 	font-size:16px;
 	padding:5px 20px;
+	width: 100%;
 }
 
 .user-profile .panel-body .user-desc{

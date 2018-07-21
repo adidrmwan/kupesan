@@ -71,15 +71,24 @@
                                     Bayar
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a>
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 4 </strong>
                                     </span>
+                                    Proses
+                                </a> 
+                            </li>
+                            <li  style="cursor: default;"> 
+                                <a>
+                                    <span class="fa-stack"> 
+                                        <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x"> 5 </strong>
+                                    </span>
                                     Voucher
                                 </a> 
-                            </li>                        
+                            </li>                      
                             
                             <li></li>
                         </ul>
@@ -124,15 +133,24 @@
                                     Bayar
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li  style="cursor: default;"> 
                                 <a class="black-payment">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 4 </strong>
                                     </span>
+                                    Proses
+                                </a> 
+                            </li>
+                            <li  style="cursor: default;"> 
+                                <a class="black-payment">
+                                    <span class="fa-stack"> 
+                                        <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x"> 5 </strong>
+                                    </span>
                                     Voucher
                                 </a> 
-                            </li>                        
+                            </li>                          
                             
                             <li></li>
                         </ul>
