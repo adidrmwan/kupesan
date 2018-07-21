@@ -2,7 +2,7 @@
 @section('title', 'Studio List')
 @section('content')
 
-<section class="page-cover" id="cover-hotel-grid-list">
+<section class="page-cover" id="cover-hotel-grid-list" style="margin-top: 4.5%;">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -96,13 +96,13 @@
                             </div>
                         </div><!-- end columns --> 
                         
-                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8 content-side">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
 							
                             <div class="list-block main-block h-list-block">
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-1.jpg" class="img-responsive" />
+                                            <img src="dist/images/mua.png" class="img-responsive" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
@@ -123,7 +123,7 @@
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-2.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="dist/images/mua.png" class="img-responsive" alt="hotel-img" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
@@ -145,7 +145,7 @@
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-3.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="dist/images/mua.png" class="img-responsive" alt="hotel-img" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
@@ -168,7 +168,7 @@
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-4.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="dist/images/mua.png" class="img-responsive" alt="hotel-img" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
@@ -191,7 +191,7 @@
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-5.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="dist/images/mua.png" class="img-responsive" alt="hotel-img" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
@@ -214,7 +214,7 @@
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-6.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="dist/images/mua.png" class="img-responsive" alt="hotel-img" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">

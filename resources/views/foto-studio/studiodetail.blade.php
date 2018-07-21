@@ -1,4 +1,4 @@
-@extends('layouts.master-studio')
+@extends('layouts.app')
 @section('title', 'Studio Foto')
 @section('content')
 
@@ -23,7 +23,7 @@
                                 <div class="col-sm-12 col-md-12">
                                     <div class=" luxury-img luxury-room-imgs">
                                         <div class="row">
-                                            <div class="col-xs-6 col-sm-6 luxury-room-block">
+                                            <div class="col-xs-6 col-sm-6 luxury-room-block ">
                                                 <a href="../dist/images/studio-foto.png" title="image-1" class="with-caption gallery image-link">
                                                 <img class="img-responsive" src="../dist/images/mua.png" alt="">
                                                 </a>
@@ -84,127 +84,452 @@
                         </div>
                         
                         <div class="col-sm-8 col-md-8">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 ">
-                                    <div class="page-heading white-heading">
-                                            <h2>Room (Ala Carte)</h2>
-                                    </div>
-                                    
-                                    <div class="owl-carousel">
-                                      <div class="item">
-                                        <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent">
-                                          <img src="../dist/images/studio-foto.png">
-                                        </a>
-                                        <h4>HEADING</h4>
-                                        <h6>Sub heading</h6>
-                                      </div>
-                                      <div class="item">
-                                        <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938017/pexels-photo-3_ppz2bb.jpg"></a>
-                                      </div>
-                                      <div class="item">
-                                        <a class="popup-text" href="#1">
-                                          <img src="https://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-2_hstxhf.jpg">
-                                        </a>
-                                        <div id="1" class="mfp-hide white-popup-block popup-text">
-                                          <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                          <span>- Opal Ingram</span>
-                                        </div>
-                                      </div>
-                                      <div class="item">
-                                        <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938123/pexels-photo-5_x69tiz.jpg">
-                                    </a>
-                                      </div>
-                                      <div class="item">
-                                        <a class="popup-text" href="#2">
-                                          <img src="https://res.cloudinary.com/milairagny/image/upload/v1487937862/pexels-photo-91227_lpsizl.jpg">
-                                        </a>
-                                        <div id="2" class="mfp-hide white-popup-block popup-text">
-                                          <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                          <span>- Rick Baleno</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 section-padding">
-                                        <div class="page-heading white-heading">
-                                                <h2>Special Package</h2>
-                                        </div>
-                                        
-                                        <div class="owl-carousel">
-                                          <div class="item">
-                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent">
-                                        <img src="https://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-4_tfmpvk.jpg"></a>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938017/pexels-photo-3_ppz2bb.jpg"></a>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-text" href="#1">
-                                              <img src="https://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-2_hstxhf.jpg">
-                                            </a>
-                                            <div id="1" class="mfp-hide white-popup-block popup-text">
-                                              <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                              <span>- Opal Ingram</span>
-                                            </div>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938123/pexels-photo-5_x69tiz.jpg">
-                                        </a>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-text" href="#2">
-                                              <img src="https://res.cloudinary.com/milairagny/image/upload/v1487937862/pexels-photo-91227_lpsizl.jpg">
-                                            </a>
-                                            <div id="2" class="mfp-hide white-popup-block popup-text">
-                                              <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                              <span>- Rick Baleno</span>
-                                            </div>
-                                          </div>
-                                        </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 section-padding" style="margin-top: -50px;">
-                                        <div class="page-heading white-heading">
-                                                <h2>Thematic Set</h2>
-                                        </div>
-                                        
-                                        <div class="owl-carousel">
-                                          <div class="item">
-                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent">
-                                        <img src="https://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-4_tfmpvk.jpg"></a>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938017/pexels-photo-3_ppz2bb.jpg"></a>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-text" href="#1">
-                                              <img src="https://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-2_hstxhf.jpg">
-                                            </a>
-                                            <div id="1" class="mfp-hide white-popup-block popup-text">
-                                              <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                              <span>- Opal Ingram</span>
-                                            </div>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="https://res.cloudinary.com/milairagny/image/upload/v1487938123/pexels-photo-5_x69tiz.jpg">
-                                        </a>
-                                          </div>
-                                          <div class="item">
-                                            <a class="popup-text" href="#2">
-                                              <img src="https://res.cloudinary.com/milairagny/image/upload/v1487937862/pexels-photo-91227_lpsizl.jpg">
-                                            </a>
-                                            <div id="2" class="mfp-hide white-popup-block popup-text">
-                                              <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                              <span>- Rick Baleno</span>
-                                            </div>
-                                          </div>
-                                        </div>
-                                </div>
-                            </div>
+                          <section id="thematic-offers" class="">
+                                      <div class="col-sm-12">
+                                          <div class="page-heading">
+                                              <h2>Thematic </h2>
+                                              <hr class="heading-line" />
+                                          </div><!-- end page-heading -->
+                                          
+                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-thematic-offers">
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block ">
+                                                      <div class="main-img img-hover">
+                                                          <a href="#">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" /> 
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                          <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
 
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                          </div><!-- end owl-hotel-offers -->
+                                      </div><!-- end columns -->
+                          </section><!-- end hotel-offers -->
+                          <section id="alacarte-offers" class="">
+                                      <div class="col-sm-12">
+                                          <div class="page-heading">
+                                              <h2>Ala Carte </h2>
+                                              <hr class="heading-line" />
+                                          </div><!-- end page-heading -->
+                                          
+                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-alacarte-offers">
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block ">
+                                                      <div class="main-img img-hover">
+                                                          <a href="#">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" /> 
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                          <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                          </div><!-- end owl-hotel-offers -->
+                                      </div><!-- end columns -->
+                          </section><!-- end hotel-offers -->
+                          <section id="special-offers" class="">
+                                      <div class="col-sm-12">
+                                          <div class="page-heading">
+                                              <h2>Special </h2>
+                                              <hr class="heading-line" />
+                                          </div><!-- end page-heading -->
+                                          
+                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-special-offers">
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block ">
+                                                      <div class="main-img img-hover">
+                                                          <a href="#">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" /> 
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                          <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              <div class="item">
+                                                  <div class="main-block hotel-block">
+                                                      <div class="main-img">
+                                                          <a href="">
+                                                              <img src="../dist/images/studio-foto.png" class="img-responsive" alt="hotel-img" />
+                                                          </a>
+                                                          <div class="main-mask">
+                                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                                <li class="price">$568.00</li>
+                                                              </ul>
+                                                          </div><!-- end main-mask -->
+                                                      </div><!-- end offer-img -->
+                                                      
+                                                      <div class="main-info hotel-info">
+                                                        <div class="arrow">
+                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
+                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
+                                                            </button>
+                                                          </div><!-- end arrow -->
+                                                          <div class="main-title hotel-title">
+                                                              <a href="">Studio Kupesan.id</a>
+                                                              <p>From: Surabaya</p>
+                                                          </div><!-- end hotel-title -->
+                                                      </div><!-- end hotel-info -->
+                                                  </div><!-- end hotel-block -->
+                                              </div><!-- end item -->
+                                              
+                                          </div><!-- end owl-hotel-offers -->
+                                      </div><!-- end columns -->
+                          </section><!-- end hotel-offers -->
                         </div>
-                </div><!-- end row -->
-            <!-- </div> -->
-        </section><!-- end luxury-rooms -->
+
+          </div><!-- end row -->
+      <!-- </div> -->
+  </section><!-- end luxury-rooms -->
 
 @include('layouts.footer')
 @endsection

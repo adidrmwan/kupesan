@@ -19,7 +19,6 @@
 
     <!-- Owl Carousel Stylesheet -->
     <link rel="stylesheet" href=" {{ URL::asset('dist/css/owl.carousel.css') }} ">
-    <link rel="stylesheet" href=" {{ URL::asset('dist/css/owl.carousel2.css') }} ">
     <link rel="stylesheet" href=" {{ URL::asset('dist/css/owl.theme.css') }} ">
     
     <!-- Bootstrap Stylesheet -->   
@@ -184,6 +183,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
+  text-align: center;
+  text-decoration: none;
 }
 .item a {
   display: block;
@@ -288,8 +289,9 @@
     <script src=" {{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
     <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
 
-    <script type="text/javascript">
-      $('.owl-carousel').owlCarousel({
+<script type="text/javascript">
+
+$('.owl-carousel').owlCarousel({
   autoplay: true,
   autoplayHoverPause: true,
   loop: true,
@@ -313,16 +315,6 @@
   }
 })
 $(document).ready(function() {
-  $('.popup-youtube, .popup-text').magnificPopup({
-    disableOn: 320,
-    type: 'iframe',
-    mainClass: 'mfp-fade',
-    removalDelay: 160,
-    preloader: false,
-    fixedContentPos: true
-  });
-});
-$(document).ready(function() {
   $('.popup-text').magnificPopup({
     type: 'inline',
     preloader: false,
@@ -338,7 +330,7 @@ $(document).ready(function() {
     }
   });
 });
-    </script>
+</script>
 
     @yield('script')
 </body>

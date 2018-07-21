@@ -56,6 +56,9 @@ Author:			Star Travel
 	.page-heading p{
 		width:75%;
 	}
+	.checkbox .radio {
+		margin-left: 20px;
+	}
 }
 
 @media(min-width:992px){
@@ -70,6 +73,10 @@ Author:			Star Travel
 	
 	.space-right{
 		padding-right:30px;
+	}
+	
+	.checkbox .radio {
+		margin-left: 20px;
 	}
 }
 
