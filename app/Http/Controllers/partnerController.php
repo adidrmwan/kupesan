@@ -162,10 +162,12 @@ class PartnerController extends Controller
         return view('partner.ps.edit-package', ['partner' => $partner]);
     }
 
-    public function schedulepartner()
+    public function showBookingSchedule()
     {
         return view('partner.schedule');
     }
+
+
     public function showJadiMitra()
     {
         return view('partner.jadi-mitra');

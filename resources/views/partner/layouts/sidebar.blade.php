@@ -23,6 +23,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="schedulepartner">
+                        <i class="pe-7s-note2"></i>
+                        <p>Jadwal Booking</p>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('partner.profile') }}">
                         <i class="pe-7s-user"></i>
                         <p>Mitra Profil</p>
@@ -42,7 +48,7 @@
                 </li>
                 <li>
                     <a>
-                        <i class="pe-7s-photo"> </i> <p> Paket &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
+                        <i class="pe-7s-photo"> </i> <p> Kelola Paket &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
                     </a>
                     <ul class="list-unstyled" id="pageSubmenu">
                         <li style="margin-left: 35px;">
@@ -59,12 +65,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="schedulepartner">
-                        <i class="pe-7s-note2"></i>
-                        <p>Schedule</p>
-                    </a>
-                </li>
+                
             </ul>
         </div>
     </div>
