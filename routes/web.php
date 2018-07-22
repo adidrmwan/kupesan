@@ -8,7 +8,6 @@ Route::get('/home', function(){
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-
 Route::get('/', function () {
     
     if(Auth::check()) {    
@@ -48,19 +47,41 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 
 // Role untuk user yang partner
 Route::group(['prefix' => 'mitra', 'middleware' => ['auth','role:partner']], function(){
-	Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
-    Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
-    Route::get('/profile/new', 'PartnerController@showProfileFormNew')->name('partner.profile.form');
-    Route::post('/profile/new', 'PartnerController@submitProfileFormNew')->name('partner.profile.form.submit');
-    Route::get('/package/add', 'PartnerController@addpackagepartner')->name('partner-addpackage');
-    Route::post('/package/add', 'PartnerController@submitaddpackagepartner')->name('partner-addpackage-submit');
-    Route::get('/package/list', 'PartnerController@listpackagepartner')->name('partner-editpackage');
 
+    Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
+    // Form Detail Mitra
+    Route::get('/detail-mitra', 'PartnerController@showDetailMitra')->name('partner.profile.form');
+    Route::post('/detail-mitra', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
+
+    Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
+    
+    // Album/Portofolio
+    Route::get('/portofolio', 'AlbumController@showAlbumPortofolio')->name('partner.portofolio');
+    Route::post('/portofolio/upload', 'AlbumController@uploadAlbum')->name('partner.upload.portofolio');
+
+
+    Route::post('/profile/edit', 'PartnerController@submitEditProfile')->name('partner.profile.form.edit');
+    // Update Fasilitas
+    Route::post('/profile/fasilitas', 'AlbumController@updateFasilitas')->name('update.fasilitas');
+
+    // upload logo
+    Route::post('/profile/upload/logo', 'PartnerController@uploadLogo')->name('partner.upload.logo');
+
+
+
+//----------------PackageController
+    // Tambah Paket
+    Route::get('/package/add', 'PackageController@ShowAddPackage')->name('partner-addpackage');
+    Route::post('/package/add', 'PackageController@AddPackage')->name('partner-addpackage-submit');
+    // Daftar Paket
+    Route::get('/package/list', 'PackageController@ListPackage')->name('partner-editpackage');
+    // Button Edit Paket
     Route::post('/package/edit', 'PackageController@ShowEditPackagePS')->name('partner.edit.pkg');
+    // Button Delete Paket
+    Route::post('/package/delete', 'PackageController@DeletePackagePS')->name('partner.delete.pkg');
 
     Route::post('/package/update', 'PackageController@EditPackagePS')->name('partner.edit.pkg.submit');
     
-    Route::post('/package/delete', 'PackageController@DeletePackagePS')->name('partner.delete.pkg');
     Route::get('/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
 });
 
@@ -89,4 +110,8 @@ Route::get('/booking', 'BookingController@booking')->name('booking');
 Route::get('/review', 'BookingController@review')->name('review');
 Route::get('/bayar', 'BookingController@bayar')->name('bayar');
 Route::get('/proses', 'BookingController@proses')->name('proses');
+
+//Route Search Fotostudio di Home
+Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
+
 

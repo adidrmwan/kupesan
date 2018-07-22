@@ -17,6 +17,7 @@
         
     <!-- Google Fonts -->   
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     
@@ -54,6 +55,7 @@
     <!-- Slick Stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/choosen.css') }}">
     <style type="text/css">
 
 .overlay {
@@ -159,6 +161,7 @@
     <script src="{{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
     <script src="{{ URL::asset('dist/js/slick.min.js') }} "></script>
+    <!-- <script src="{{ URL::asset('dist/js/multiselect.js') }} "></script> -->
     <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-navigation.js') }} "></script>
@@ -169,7 +172,6 @@
     <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
     <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
     <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
-
     <!-- Scripts -->
     <script src="{{ URL::asset('js/app.js') }}"></script>
     @yield('script')
