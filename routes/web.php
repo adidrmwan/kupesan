@@ -89,4 +89,7 @@ Route::get('/booking', 'BookingController@booking')->name('booking');
 Route::get('/review', 'BookingController@review')->name('review');
 Route::get('/bayar', 'BookingController@bayar')->name('bayar');
 Route::get('/proses', 'BookingController@proses')->name('proses');
+Route::get('/voucher', 'BookingController@voucher')->name('voucher');
+
+Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
 

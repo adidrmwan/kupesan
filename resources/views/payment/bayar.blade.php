@@ -33,6 +33,53 @@
             hr.style2 {
                 border-top: 1px double #8c8b8b;
             }
+            #js-clock {
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              margin-bottom: 100px;
+            }
+
+            .box {
+              margin: 0 5px;
+              text-align: center;
+              text-transform: uppercase;
+            }
+
+            .box span {
+              display: block;
+              background: rgba(255, 255, 255, 0.05);
+              font-family: 'Share Tech Mono', monospace;
+              margin-bottom: 10px;
+            }
+
+            @media (min-width: 768px) {
+              .box span {
+                width: 90px;
+                line-height: 100px;
+                font-size: 64px;
+              }
+            }
+
+            @media (min-width: 480px) and (max-width: 767px) {
+              .box span {
+                width: 80px;
+                line-height: 70px;
+                font-size: 48px;
+              }
+            }
+
+            @media (max-width: 479px) {
+              .box {
+                font-size: 10px;
+              }
+
+              .box span {
+                width: 80px;
+                line-height: 40px;
+                font-size: 36px;
+              }
+            }
         </style>
     </head>
     
@@ -255,17 +302,43 @@
                                         </div><!-- end panel-detault -->
                                     </div><!-- end columns -->
                             </div>						
+                            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
+                                <div class="row">
+                                
+                                    <div class="col-xs-12 col-sm-6 col-md-12">
+                                        <div class="panel panel-default" style="margin-top: 21%;">
+                                            <div class="panel-heading"><h4>Bayar Sebelum</h4></div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-sm-12 col-md-12  user-detail">
+                                                        <h3><b>Kupesan Studio</b></h3>
+                                                        <hr class="style5">
+                                                        <div id="js-clock">
+                                                          <div class="box"><span id="js-clock-hours">00</span>Hours</div>
+                                                          <div class="box"><span id="js-clock-minutes">00</span>Minutes</div>
+                                                          <div class="box"><span id="js-clock-seconds">00</span>Seconds</div>
+                                                        </div>
+                                                    </div><!-- end columns -->
+                                                    
+                                                </div><!-- end row -->
+                                                
+                                            </div><!-- end panel-body -->
+                                        </div><!-- end panel-detault -->
+                                    </div><!-- end columns -->                                
+                                </div><!-- end row -->
+                            </div>
                             
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
                             
                             </div><!-- end columns -->
                             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
                                 <form class="lg-booking-form">
-                                    <div class="checkbox col-xs-8 col-sm-8 col-md-8 col-lg-8"  >
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                         <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                                     </div><!-- end checkbox -->
-                                    <div class="checkbox col-xs-4 col-sm-4 col-md-4 col-lg-4"  >
-                                        <button type="submit" class="btn btn-orange" style="float: right; margin-right: -15px;">Bayar</button>
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                        <button type="submit" class="btn btn-orange" style="float: right;">Konfirmasi Pembayaran</button>
                                     </div>
                                 </form>
                             </div>
@@ -343,5 +416,53 @@
         <script src="{{URL::asset('dist/js/custom-navigation.js')}} "></script>
         <script src="{{URL::asset('dist/js/custom-date-picker.js')}} "></script>
         <!-- Page Scripts Ends -->
+        <script type="text/javascript">
+            (function() {
+  var deadline = '2018-07-27 16:10';
+
+  function pad(num, size) {
+      var s = "0" + num;
+      return s.substr(s.length-size);
+  }
+
+  function getTimeRemaining(endtime) {
+    var t = Date.parse(endtime) - Date.parse(new Date()),
+        seconds = Math.floor((t / 1000) % 60),
+        minutes = Math.floor((t / 1000 / 60) % 60),
+        hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+        days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+    return {
+      'total': t,
+      'days': days,
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds
+    };
+  }
+
+  function clock(id, endtime) {
+    var days = document.getElementById(id + '-days')
+        hours = document.getElementById(id + '-hours'),
+        minutes = document.getElementById(id + '-minutes'),
+        seconds = document.getElementById(id + '-seconds');
+
+    var timeinterval = setInterval(function() {
+      var t = getTimeRemaining(endtime);
+
+      if (t.total <= 0){
+        clearInterval(timeinterval);
+      } else {
+  days.innerHTML = pad(t.days, 2);
+  hours.innerHTML = pad(t.hours, 2);
+  minutes.innerHTML = pad(t.minutes, 2);
+  seconds.innerHTML = pad(t.seconds, 2);
+  }
+    }, 1000);
+  }
+
+  clock('js-clock', deadline);
+})();
+        </script>
     </body>
 </html>

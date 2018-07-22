@@ -240,11 +240,11 @@
                             </div><!-- end columns -->
                             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
                                 <form class="lg-booking-form">
-                                    <div class="checkbox col-xs-8 col-sm-8 col-md-8 col-lg-8"  >
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                         <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                                     </div><!-- end checkbox -->
-                                    <div class="checkbox col-xs-4 col-sm-4 col-md-4 col-lg-4"  >
-                                        <button type="submit" class="btn btn-orange" style="float: right; margin-right: -15px;">Lanjutkan</button>
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                        <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                                     </div>
                                 </form>
                             </div>

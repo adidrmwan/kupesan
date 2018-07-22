@@ -22,4 +22,8 @@ class BookingController extends Controller
     {
         return view('payment.proses');
     }
+    public function voucher()
+    {
+        return view('payment.voucher');
+    }
 }

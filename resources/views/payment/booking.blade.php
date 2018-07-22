@@ -44,8 +44,8 @@
                     
                     <div class="collapse navbar-collapse" id="myNavbar1">
                         <ul class="nav navbar-nav navbar-right navbar-search-link">
-                            <li class="active" style="cursor: default;"> 
-                                <a>
+                            <li  style="cursor: default;"> 
+                                <a style="color:#EA410C">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 1 </strong>
@@ -157,73 +157,90 @@
                     </div><!-- end navbar collapse -->
 
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
-                        	<form class="lg-booking-form">
-                                <div class="lg-booking-form-heading">
-                                	
-                                	<h3>Personal Information</h3>
+                            <div class="lg-booking-form-heading">
+                                    
+                                    <h3>Personal Information</h3>
                                 </div><!-- end lg-bform-heading -->
+                            <div class="panel panel-default" style="margin-top: 35px;">
+                                <div class="panel-heading"><h4>Informasi Kamu</h4></div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-12 col-md-12  user-detail">
+                                            <form class="lg-booking-form">
+                                
                                 
                                 <div class="personal-info">
                                 
                                     <div class="row">
-                                        <div class="col-xs-6 col-sm-6">
+                                        <div class="col-xs-12 col-sm-12">
                                             <div class="form-group">
-                                                <label>First Name</label>
+                                                <label>Nama</label>
                                                 <input type="text" class="form-control" required/>
                                             </div>
                                         </div><!-- end columns -->
                                         
-                                        <div class="col-xs-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div><!-- end row -->
-                                    
-                                    <div class="row">
-                                    	<div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Date of Birth</label>
-                                                <input type="text" class="form-control dpd3" required/>
-                                            </div>
-                                        </div><!-- end columns -->
                                         
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
                                     </div><!-- end row -->
                                     
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Email Address</label>
+                                                <label>Email</label>
                                                 <input type="email" class="form-control" required/>
                                             </div>
                                         </div><!-- end columns -->
                                         
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Phone Number</label>
+                                                <label>Nomor Handphone</label>
                                                 <input type="text" class="form-control" required/>
                                             </div>
                                         </div><!-- end columns -->
                                     </div><!-- end row -->
                                     
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Permanent Address</label>
-                                                <textarea type="text" class="form-control" rows="2"/></textarea>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div>   
                                 </div><!-- end personal-info -->
                                             
                             </form>
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->
+                                    
+                                </div><!-- end panel-body -->
+                            </div><!-- end panel-detault -->
+                        	
+                            <div class="panel panel-default" style="margin-top: 35px;">
+                                <div class="panel-heading"><h4>Detail Harga</h4></div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-12 col-md-12  user-detail">
+                                            <h3><b>Kupesan Studio</b></h3>
+                                            <hr class="style5">
+                                            <ul class="list-unstyled" >
+                                                <li>
+                                                    <span>Studio Room Type Thematic</span>
+                                                    <span style="float: right; ">Rp. 300.000</span>
+                                                </li>
+                                                <li>
+                                                    <span>Kupesan Fee</span>
+                                                    <span style="float: right; ">FREE</span>
+                                                </li>
+                                            </ul>
+                                            <hr class="style5">
+
+                                            <ul class="list-unstyled" >
+                                                <li>
+                                                    <span>TOTAL</span>
+                                                    <span style="float: right; ">Rp. 300.00</span>
+                                                </li>
+                                            </ul>
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->
+                                    
+                                </div><!-- end panel-body -->
+                            </div><!-- end panel-detault -->
                             
                         </div><!-- end columns -->
 						
@@ -240,6 +257,10 @@
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tbody>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
                                                     <tr>
                                                         <td>Nama Studio</td>
                                                         <td>Kupesan Studio</td>
@@ -265,8 +286,8 @@
                                                         <td>3</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Total Harga</td>
-                                                        <td>$360</td>
+                                                        <td></td>
+                                                        <td></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -276,14 +297,14 @@
                             </div><!-- end row -->
                         
                         </div><!-- end columns -->
-                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
+                        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
                             <form class="lg-booking-form">
-
-                                <div class="checkbox">
-                                    <label><input type="checkbox"> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
+                                <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
+                                    <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                                 </div><!-- end checkbox -->
-                                  
-                                <button type="submit" class="btn btn-orange">Lanjutkan</button>
+                                <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                    <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
+                                </div>
                             </form>
                         </div>
                                 

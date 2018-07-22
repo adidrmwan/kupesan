@@ -50,7 +50,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
                                             <select class="form-control">
-                                                <option selected># (Hastag)</option>
+                                                <option selected># (Hashtag)</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
