@@ -21,7 +21,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img style="border-style: groove; vertical-align: bottom;"  class="img-responsive" src="{{ asset('img_pkg/'.$data->id.'_'.$data->pkg_category_them.'_'.$data->pkg_name_them.'.jpg')  }}" alt= "Package Image" />
+                                        <img style="border-style: groove; vertical-align: bottom;"  class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">

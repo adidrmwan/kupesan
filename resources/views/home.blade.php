@@ -34,23 +34,29 @@
                     <div class="tab-content">
 
                         <div id="studio" class="tab-pane in active">
-                            <form>
+                            <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
                                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 
-                                        <div class="form-group left-icon">
-                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" >
+                                        <div class="form-group left-icon " id="datetimepicker">
+                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="tanggal_pesan">
                                             <i class="fa fa-calendar"></i>
                                         </div><!-- end row -->                              
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
+<<<<<<< HEAD
                                             <select class="form-control">
                                                 <option selected># (Hashtag)</option>
+=======
+                                            <select class="form-control" >
+                                                <option selected># (Hastag)</option>
+>>>>>>> 2641c399e07ae1d2c622d25b13371e1d8a0c90a5
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
@@ -60,7 +66,7 @@
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                        <button class="btn btn-orange">Search</button>
+                                        <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
                                     </div><!-- end columns -->
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
                                         

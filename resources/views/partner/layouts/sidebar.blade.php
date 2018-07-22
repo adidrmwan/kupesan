@@ -23,36 +23,49 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('partner.profile') }}">
-                        <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                    <a href="schedulepartner">
+                        <i class="pe-7s-note2"></i>
+                        <p>Jadwal Booking</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="pe-7s-photo"> </i> <p> Photo Package &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
+                    <a href="{{ route('partner.profile') }}">
+                        <i class="pe-7s-user"></i>
+                        <p>Mitra Profil</p>
                     </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                </li>
+                <li>
+                    <a href="{{ route('partner.portofolio') }}">
+                        <i class="pe-7s-user"></i>
+                        <p>Portofolio</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('partner.portofolio') }}">
+                        <i class="pe-7s-user"></i>
+                        <p>Syarat & Ketentuan</p>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <i class="pe-7s-photo"> </i> <p> Kelola Paket &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
+                    </a>
+                    <ul class="list-unstyled" id="pageSubmenu">
                         <li style="margin-left: 35px;">
                             <a href="{{ route('partner-addpackage') }}">
                                 <i class="pe-7s-plus"></i>
-                                <p> Add photo package </p>
+                                <p> Tambah Paket </p>
                             </a>
                         </li>
                         <li style="margin-left: 35px;">
                             <a href="{{ route('partner-editpackage') }}">
                                 <i class="pe-7s-note2"></i>
-                                <p> List photo package </p>
+                                <p> Daftar Paket </p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="schedulepartner">
-                        <i class="pe-7s-note2"></i>
-                        <p>Schedule</p>
-                    </a>
-                </li>
+                
             </ul>
         </div>
     </div>

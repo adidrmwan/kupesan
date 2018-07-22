@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\MitraAuth;
 
-use App\Mitra;
 use App\User;
 use App\UserRole;
 use App\Partner;
+use App\Album;
+use App\FasilitasPartner;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -42,12 +43,22 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
+        $user->save();
+
+        $partner = New Partner();
+        $partner->user_id = $user->id;
+        $partner->save();
+
+        $album = New Album();
+        $album->user_id = $user->id;
+        $album->save();
+
+        $fasilitas = New FasilitasPartner();
+        $fasilitas->user_id = $user->id;
+        $fasilitas->save();
+
         $userRole = UserRole::create([
             'role_id' => '3',
-            'user_id' => $user['id'],
-        ]);
-
-        $partner = Partner::create([
             'user_id' => $user['id'],
         ]);
 

@@ -33,12 +33,17 @@
     <link href=" {{ URL::asset('partners/css/demo.css" rel="stylesheet ') }}" />
 
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
-    
-     <link href=" {{ URL::asset('partners/css/main.css ') }}" rel="stylesheet" />
 
+  <!-- ... -->
+
+  <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" />
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">  
+  
 
 </head>
 <body>
@@ -47,7 +52,7 @@
 
     <div class="main-panel">
 
-        @include('partner.layouts.nav')
+        @include('partner.layouts.nav-form')
 
         @yield('content')
 
@@ -56,7 +61,7 @@
     <!--   Core JS Files   -->
     <script src=" {{ URL::asset('partners/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
     <script src=" {{ URL::asset('partners/js/bootstrap.min.js') }} " type="text/javascript"></script>
-    <script src=" {{ URL::asset('partners/js/main.js') }} " type="text/javascript"></script>
+
     <!--  Charts Plugin -->
     <script src=" {{ URL::asset('partners/js/chartist.min.js') }} "></script>
 
@@ -82,7 +87,63 @@
 
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
 
+            demo.initChartist();
+
+        });
+    </script>
+
+    <script>
+        $("#file-0a").fileinput({
+                theme: 'fa',
+                'allowedFileExtensions': ['jpg', 'png']
+        });
+    </script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+
+    </script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#example-getting-started').multiselect();
+        });
+    </script>
+    
+    <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
+    <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js.map"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+
+    <!-- Scripts -->
+    <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
     @yield('script')
 </body>
 </html>
