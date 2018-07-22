@@ -97,142 +97,28 @@
                         </div><!-- end columns --> 
                         
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8 content-side">
-							
+							@foreach($result as $list)
                             <div class="list-block main-block h-list-block">
                             	<div class="list-content">
                             		<div class="main-img list-img h-list-img">
                                         <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-1.jpg" class="img-responsive" />
+                                            <img class="img-responsive" src="{{ asset('logo/'.$list->pr_logo.'.png')  }}" alt= "Logo Mitra" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
+                                                <li class="price"><span class="divider">|</span><span class="pkg">Avg/Night</span></li>
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end h-list-img -->
                                     
                                     <div class="list-info h-list-info">
-                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
+                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{$list->pr_name}}</a></h3>
                                         <p class="block-minor">From: Scotland</p>
                                         <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
                                      </div><!-- end h-list-info -->
                             	</div><!-- end list-content -->
                             </div><!-- end h-list-block -->
-                            
-                            <div class="list-block main-block h-list-block">
-                            	<div class="list-content">
-                            		<div class="main-img list-img h-list-img">
-                                        <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-2.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end h-list-img -->
-                                    
-                                    <div class="list-info h-list-info">
-                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                        <p class="block-minor">From: Scotland</p>
-                                        
-                                        <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
-                                     </div><!-- end h-list-info -->
-                            	</div><!-- end list-content -->
-                            </div><!-- end h-list-block -->
-                            
-							<div class="list-block main-block h-list-block">
-                            	<div class="list-content">
-                            		<div class="main-img list-img h-list-img">
-                                        <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-3.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end h-list-img -->
-                                    
-                                    <div class="list-info h-list-info">
-                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                        <p class="block-minor">From: Scotland</p>
-                                        
-                                        <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
-                                     </div><!-- end h-list-info -->
-                            	</div><!-- end list-content -->
-                            </div><!-- end h-list-block -->
-                            
-                            <div class="list-block main-block h-list-block">
-                            	<div class="list-content">
-                            		<div class="main-img list-img h-list-img">
-                                        <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-4.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end h-list-img -->
-                                    
-                                    <div class="list-info h-list-info">
-                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                        <p class="block-minor">From: Scotland</p>
-                                        
-                                        <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
-                                     </div><!-- end h-list-info -->
-                            	</div><!-- end list-content -->
-                            </div><!-- end h-list-block -->
-                            
-                            <div class="list-block main-block h-list-block">
-                            	<div class="list-content">
-                            		<div class="main-img list-img h-list-img">
-                                        <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-5.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end h-list-img -->
-                                    
-                                    <div class="list-info h-list-info">
-                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                        <p class="block-minor">From: Scotland</p>
-                                        
-                                        <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
-                                     </div><!-- end h-list-info -->
-                            	</div><!-- end list-content -->
-                            </div><!-- end h-list-block -->
-                            
-                            <div class="list-block main-block h-list-block">
-                            	<div class="list-content">
-                            		<div class="main-img list-img h-list-img">
-                                        <a href="hotel-detail-left-sidebar.html">
-                                            <img src="dist/images/hotel-6.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end h-list-img -->
-                                    
-                                    <div class="list-info h-list-info">
-                                        <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                        <p class="block-minor">From: Scotland</p>
-                                        
-                                        <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
-                                     </div><!-- end h-list-info -->
-                            	</div><!-- end list-content -->
-                            </div><!-- end h-list-block -->
-                            
+                            @endforeach
                             <div class="pages">
                                 <ol class="pagination">
                                     <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>

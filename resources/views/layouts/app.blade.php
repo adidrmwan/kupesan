@@ -17,6 +17,7 @@
         
     <!-- Google Fonts -->   
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     
@@ -30,6 +31,7 @@
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/style.css') }} ">
     <link rel="stylesheet" id="cpswitch" href="{{ URL::asset ('dist/css/orange.css') }} ">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/responsive.css') }} ">
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/material-design-iconic-font.min.css') }} ">
 
     <!-- Owl Carousel Stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/owl.carousel.css') }} ">
@@ -53,6 +55,37 @@
     <!-- Slick Stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset ('dist/css/choosen.css') }}">
+    <style type="text/css">
+
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #008CBA;
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.img-hover:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+    </style>
 </head>
 <body id="main-homepage">
 
@@ -128,6 +161,7 @@
     <script src="{{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
     <script src="{{ URL::asset('dist/js/slick.min.js') }} "></script>
+    <!-- <script src="{{ URL::asset('dist/js/multiselect.js') }} "></script> -->
     <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-navigation.js') }} "></script>
@@ -137,7 +171,7 @@
     <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
     <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
-
+    <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
     <!-- Scripts -->
     <script src="{{ URL::asset('js/app.js') }}"></script>
     @yield('script')
