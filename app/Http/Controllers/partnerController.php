@@ -164,7 +164,7 @@ class PartnerController extends Controller
 
     public function showBookingSchedule()
     {
-        return view('partner.schedule');
+        return view('partner.ps.booking-schedule');
     }
 
 
