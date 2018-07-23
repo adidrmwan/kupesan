@@ -150,10 +150,14 @@
                             <div class="list-info h-list-info">
                                 <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{$list->pr_name}}</a></h3>
                                 <p class="block-minor">From: Scotland</p>
-                                <a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-lg">View More</a>
-                             </div><!-- end h-list-info -->
-                    	</div><!-- end list-content -->
-                    </div><!-- end h-list-block -->
+                                <form role="form" action="{{route('detail.fotostudio')}}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                    <input type="text" name="user_id" value="{{$list->user_id}}" hidden="">
+                                    <button type="submit" class="btn btn-orange btn-lg pull-right">View More</button>
+                                </form>
+                            </div>
+                    	</div>
+                    </div>
                     @endforeach
 
                     <div class="pages">
