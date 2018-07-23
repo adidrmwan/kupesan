@@ -47,36 +47,43 @@
                         <h4 class="title">Review Portofolio</h4>
                     </div>  
                     <div class="content">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label>Portofolio Terbaik 1</label>
-                                    @if(!empty($data->album_img_1))
-                                    <img style="text-align: center; align-content: center;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                    @else
-                                    @endif
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Portofolio Terbaik 2</label>
-                                    @if(!empty($data->album_img_2))
-                                    <img style="text-align: center; align-content: center;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                    @else
-                                    @endif
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Portofolio Terbaik 3</label>
-                                    @if(!empty($data->album_img_3))
-                                    <img style="text-align: center; align-content: center;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                    @else
-                                    @endif
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Portofolio Terbaik 4</label>
-                                    @if(!empty($data->album_img_4))
-                                    <img style="text-align: center; align-content: center;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                    @else
-                                    @endif
-                                </div>
-                            </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                            @if(!empty($data->album_img_1))
+                                            <img style="text-align: center; align-content: center; width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                            @else
+                                            @endif    
+                                            </td>
+                                            <td>
+                                            @if(!empty($data->album_img_2))
+                                            <img style="text-align: center; align-content: center; width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                            @else
+                                            @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            @if(!empty($data->album_img_3))
+                                            <img style="text-align: center; align-content: center; width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                            @else
+                                            @endif    
+                                            </td>
+                                            <td>
+                                            @if(!empty($data->album_img_4))
+                                            <img style="text-align: center; align-content: center; width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                            @else
+                                            @endif   
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </div>            
+                        </div>
                     </div>
                 </div>
             </div>

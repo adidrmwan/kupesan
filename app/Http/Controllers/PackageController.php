@@ -25,6 +25,7 @@ class PackageController extends Controller
         $package->pkg_name_them = $request->input('pkg_name_them');
         $package->pkg_desc_them = $request->input('pkg_desc_them');
         $package->pkg_price_them = $request->input('pkg_price_them');
+        $package->pkg_overtime_them = $request->input('pkg_overtime_them');
         $package->status = '1';
         
         $package->save();
@@ -47,7 +48,7 @@ class PackageController extends Controller
 
             $foto = $request->file('pkg_img_them');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
-            Image::make($foto)->resize(300, 300)->save( public_path('/img_pkg/' . $foto_name ) );
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
             $user = Auth::user();
             $package= PSPkg::where('user_id',$user->id)->first();
 
@@ -73,19 +74,20 @@ class PackageController extends Controller
     public function ShowEditPackagePS(Request $request)
     {
     	$id = $request->id;
-        $package = PSPkg::find($id);
+        $package = PSPkg::where('id', $id)->get();
         return view('partner.ps.edit-package', ['package' => $package]);
     }
 
     public function EditPackagePS(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->id;
 
         $package = PSPkg::find($id);
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');
         $package->pkg_desc_them = $request->input('pkg_desc_them');
         $package->pkg_price_them = $request->input('pkg_price_them');
+        $package->pkg_overtime_them = $request->input('pkg_overtime_them');
         
         $package->save();
 
@@ -107,7 +109,7 @@ class PackageController extends Controller
             }
             $foto = $request->file('pkg_img_them');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
-            Image::make($foto)->resize(300, 300)->save( public_path('/img_pkg/' . $foto_name ) );
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
             $user = Auth::user();
             $package= PSPkg::where('id',$id)->first();
             $package->save();
