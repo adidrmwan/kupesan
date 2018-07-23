@@ -53,6 +53,8 @@ Route::group(['prefix' => 'mitra', 'middleware' => ['auth','role:partner']], fun
     Route::get('/detail-mitra', 'PartnerController@showDetailMitra')->name('partner.profile.form');
     Route::post('/detail-mitra', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
 
+    Route::get('/booking-schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
+
     Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
     
     // Album/Portofolio

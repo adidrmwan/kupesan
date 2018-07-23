@@ -23,44 +23,44 @@
                     </a>
                 </li>
                 <li>
-                    <a href="schedulepartner">
+                    <a href="{{ route('booking.schedule') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>Jadwal Booking</p>
+                        <p>Booking Schedule</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('partner.profile') }}">
                         <i class="pe-7s-user"></i>
-                        <p>Mitra Profil</p>
+                        <p>Mitra Profile</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('partner.portofolio') }}">
                         <i class="pe-7s-user"></i>
-                        <p>Portofolio</p>
+                        <p>Upload Portofolio</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('partner.portofolio') }}">
                         <i class="pe-7s-user"></i>
-                        <p>Syarat & Ketentuan</p>
+                        <p>Terms & Condition</p>
                     </a>
                 </li>
                 <li>
                     <a>
-                        <i class="pe-7s-photo"> </i> <p> Kelola Paket &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
+                        <i class="pe-7s-photo"> </i> <p> Package &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
                     </a>
                     <ul class="list-unstyled" id="pageSubmenu">
                         <li style="margin-left: 35px;">
                             <a href="{{ route('partner-addpackage') }}">
                                 <i class="pe-7s-plus"></i>
-                                <p> Tambah Paket </p>
+                                <p> Add Package </p>
                             </a>
                         </li>
                         <li style="margin-left: 35px;">
                             <a href="{{ route('partner-editpackage') }}">
                                 <i class="pe-7s-note2"></i>
-                                <p> Daftar Paket </p>
+                                <p> List Package </p>
                             </a>
                         </li>
                     </ul>
