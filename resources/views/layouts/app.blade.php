@@ -55,7 +55,6 @@
     <!-- Slick Stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset ('dist/css/choosen.css') }}">
     <style type="text/css">
 
 .overlay {

@@ -103,7 +103,11 @@ Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegis
 Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
 
+//Route Search Fotostudio di Home
+Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
 
+
+//Route untuk testing saja
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
 
 Route::get('/booking', 'BookingController@booking')->name('booking');
@@ -113,8 +117,5 @@ Route::get('/proses', 'BookingController@proses')->name('proses');
 Route::get('/voucher', 'BookingController@voucher')->name('voucher');
 
 Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
-
-//Route Search Fotostudio di Home
-Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
-
+Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');
 

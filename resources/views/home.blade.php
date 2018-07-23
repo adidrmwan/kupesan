@@ -41,7 +41,6 @@
                                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-
                                         <div class="form-group left-icon " id="datetimepicker">
                                             <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="tanggal_pesan">
                                             <i class="fa fa-calendar"></i>
@@ -50,13 +49,8 @@
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
-<<<<<<< HEAD
-                                            <select class="form-control">
-                                                <option selected># (Hashtag)</option>
-=======
-                                            <select class="form-control" >
+                                           <select class="form-control" >
                                                 <option selected># (Hastag)</option>
->>>>>>> 2641c399e07ae1d2c622d25b13371e1d8a0c90a5
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>

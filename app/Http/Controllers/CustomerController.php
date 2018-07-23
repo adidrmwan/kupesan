@@ -10,4 +10,8 @@ class CustomerController extends Controller
     {
         return view('user.dashboard');
     }
+    public function studioresult()
+    {
+        return view('daftar.studioresult');
+    }
 }
