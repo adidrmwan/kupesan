@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Hotel Booking Right Sidebar</title>
+        <title>kupesan.id | proses</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="icon" href="images/favicon.png" type="image/x-icon">
+        <link rel="icon" href="dist/images/logo.png" type="image/x-icon">
         
         <!-- Google Fonts -->	
         <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -183,82 +183,40 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading"><h4>Upload Bukti</h4></div>
                                             <div class="panel-body">
-                                                <div class="row">                                                    
-                                                    <div class="col-sm-12 col-md-12  user-detail">
-                                                        <h4><b>Silahkan Mengupload Bukti Transfer</b></h4>
-                                                        <hr class="style5">
-                                                        <div class="form-group">
-                                                            <label>Upload Image</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-btn">
-                                                                    <span class="btn btn-default btn-file">
-                                                                        Browse... <input type="file" id="imgInp">
-                                                                    </span>
-                                                                </span>
-                                                                <input type="text" class="form-control" readonly>
-                                                            </div>
-                                                            <img id='img-upload'/>
-                                                        </div>
-                                                    </div><!-- end columns -->
-                                                    
-                                                </div><!-- end row -->
-                                                
-                                            </div><!-- end panel-body -->
-                                        </div><!-- end panel-detault -->
-
-                                        <div class="panel panel-default" style="margin-top: 35px;">
-                                            <div class="panel-heading"><h4>Masukkan Kupon</h4></div>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    
-                                                    <div class="col-sm-12 col-md-12  user-detail">
-                                                        <form class="form-horizontal">
-                                                          <div class="col-xs-12 col-sm-12 col-md-8">   
-                                                              <div class="form-group">
-                                                                <label class="sr-only" for="exampleInputAmount"></label>
+                                                <div class="row"> 
+                                                    <form>                                                   
+                                                        <div class="col-sm-12 col-md-12  user-detail">
+                                                            <h4><b>Silahkan Mengupload Bukti Transfer</b></h4>
+                                                            <hr class="style5">
+                                                            <div class="form-group">
+                                                                <label>Upload Image</label>
                                                                 <div class="input-group">
-                                                                  <div class="input-group-addon">%</div>
-                                                                  <input type="text" class="form-control" id="exampleInputAmount" placeholder="Masukkan Kupon">
+                                                                    <span class="input-group-btn">
+                                                                        <span class="btn btn-default btn-file" style="color: white;">
+                                                                            Browse... <input type="file" id="imgInp">
+                                                                        </span>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" readonly>
                                                                 </div>
-                                                              </div>
-                                                          </div>
-                                                          <div class="col-xs-12 col-sm-12 col-md-4">
-                                                            <button type="submit" class="btn btn-orange" style="color: white;">Tambah</button>
-                                                        </div>
-                                                        </form>
-                                                    </div><!-- end columns -->
-                                                    
+                                                                <img id='img-upload'/>
+                                                            </div>
+                                                            <div>
+                                                                <button type="submit" class="btn btn-orange" style="color: white; max-width: 40%; float: none;display: block;position: relative;margin: 0 auto;">Upload</button>
+                                                            </div>
+                                                        </div><!-- end columns -->
+                                                    </form>
                                                 </div><!-- end row -->
                                                 
                                             </div><!-- end panel-body -->
                                         </div><!-- end panel-detault -->
 
                                         <div class="panel panel-default" style="margin-top: 35px;">
-                                            <div class="panel-heading"><h4>Detail Harga</h4></div>
+                                            <div class="panel-heading"><h4>Informasi Voucher</h4></div>
                                             <div class="panel-body">
                                                 <div class="row">
                                                     
                                                     <div class="col-sm-12 col-md-12  user-detail">
-                                                        <h3><b>Kupesan Studio</b></h3>
-                                                        <hr class="style5">
-                                                        <ul class="list-unstyled" >
-                                                            <li>
-                                                                <span>Studio Room Type Thematic</span>
-                                                                <span style="float: right; ">Rp. 300.000</span>
-                                                            </li>
-                                                            <li>
-                                                                <span>Kupon Buy 1 Get 1</span>
-                                                                <span style="float: right; ">- Rp. 50.000</span>
-                                                            </li>
-                                                        </ul>
-                                                        <hr class="style5">
-
-                                                        <ul class="list-unstyled" >
-                                                            <li>
-                                                                <span>TOTAL</span>
-                                                                <span style="float: right; ">Rp. 250.000</span>
-                                                            </li>
-                                                        </ul>
+                                                        <p> Voucher akan muncul 15 - 30 menit setelah anda melakukan upload bukti transfer.</p>
                                                     </div><!-- end columns -->
                                                     
                                                 </div><!-- end row -->
@@ -270,17 +228,17 @@
                             
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
                             
-                            </div><!-- end columns -->
-                            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
+                            </div>
+                            <!-- <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
                                 <form class="lg-booking-form">
-                                    <div class="checkbox col-xs-8 col-sm-8 col-md-8 col-lg-8"  >
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                         <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                                    </div><!-- end checkbox -->
-                                    <div class="checkbox col-xs-4 col-sm-4 col-md-4 col-lg-4"  >
-                                        <button type="submit" class="btn btn-orange" style="float: right; margin-right: -15px;">Bayar</button>
+                                    </div>
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                        <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                                 
                     </div><!-- end row -->
                 </div><!-- end container -->         
