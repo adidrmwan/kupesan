@@ -118,4 +118,5 @@ Route::get('/voucher', 'BookingController@voucher')->name('voucher');
 
 Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
 Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');
+Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
 

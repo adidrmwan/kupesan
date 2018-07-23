@@ -14,4 +14,8 @@ class CustomerController extends Controller
     {
         return view('daftar.studioresult');
     }
+    public function pesan()
+    {
+        return view('pesan.pesan');
+    }
 }
