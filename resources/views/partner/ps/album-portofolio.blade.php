@@ -14,25 +14,25 @@
                          <form role="form" action="{{ route('partner.upload.portofolio') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                             <div class="row">
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-6 col-sm-6">
                                     <label>Upload Portofolio Terbaik 1</label>
                                     <div class="file-loading">
                                         <input id="file-0a" class="file" type="file" name="album_img_1">
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-6 col-sm-6">
                                     <label>Upload Portofolio Terbaik 2</label>
                                     <div class="file-loading">
                                         <input id="file-0a" class="file" type="file" name="album_img_2">
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-6 col-sm-6">
                                     <label>Upload Portofolio Terbaik 3</label>
                                     <div class="file-loading">
                                         <input id="file-0a" class="file" type="file" name="album_img_3">
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-6 col-sm-6">
                                     <label>Upload Portofolio Terbaik 4</label>
                                     <div class="file-loading">
                                         <input id="file-0a" class="file" type="file" name="album_img_4">

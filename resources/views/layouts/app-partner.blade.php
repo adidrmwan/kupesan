@@ -15,12 +15,12 @@
    <!-- Bootstrap core CSS     -->
     <link href=" {{ URL::asset('partners/css/bootstrap.min.css ') }}" rel="stylesheet" />
 
-     <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-
     <!-- File Input -->
     <link href=" {{ URL::asset('partners/css/fileinput.min.css ') }}" rel="stylesheet" />
     <link href=" {{ URL::asset('partners/css/fileinput-rtl.min.css ') }}" rel="stylesheet" />
 
+    <!-- DataTables -->
+  <link href="{ {URL::asset('partners/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" >
 
     <!-- Animation library for notifications   -->
     <link href=" {{ URL::asset('partners/css/animate.min.css ') }}" rel="stylesheet"/>
@@ -68,6 +68,10 @@
     <!--  Pagination -->
     <script src=" {{ URL::asset('partners/js/pagination.js') }} "></script>
 
+    <!-- DataTables -->
+    <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('partners/js/dataTables.bootstrap.min.js')}}"></script>
+
     <!--  File Input Plugin    -->
     <script src=" {{ URL::asset('partners/js/plugins/purify.min.js') }} "></script>
     <script src=" {{ URL::asset('partners/js/fileinput.min.js') }} "></script>
@@ -87,6 +91,25 @@
 
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
+    <script>
+      $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : false,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+      })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function(){
 

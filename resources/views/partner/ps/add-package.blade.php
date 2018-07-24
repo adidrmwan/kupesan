@@ -4,7 +4,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Add Package</h4>
@@ -13,12 +13,12 @@
                         <form role="form" action="{{route('partner-addpackage-submit')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {{ csrf_field() }}
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="file-loading">
                                         <input id="file-0a" class="file" type="file" name="pkg_img_them" required="">
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                   <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">

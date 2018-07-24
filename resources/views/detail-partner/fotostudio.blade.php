@@ -20,46 +20,68 @@
                 <div class="row">
                         <div class="col-sm-4 col-md-4">
                             <div class="row">
-                                <div class="col-sm-12 col-md-12">
-                                    <div class=" luxury-img luxury-room-imgs">
-                                        <div class="row">
-                                            @foreach($album as $listalbum)
-                                            @if(!empty($listalbum->album_img_1))
-                                            <div class="col-xs-6 col-sm-6 luxury-room-block ">
-                                                <a href="../dist/images/studio-foto.png" title="image-1" class="with-caption gallery image-link">
-                                                <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_1.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                                </a>
-                                            </div>
-                                            @else
-                                            @endif
-                                            @if(!empty($listalbum->album_img_2))
-                                            <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="../dist/images/studio-foto.png" title="image-2" class="with-caption gallery image-link">
-                                                <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_2.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                                </a>
-                                            </div>
-                                            @else
-                                            @endif
-                                            @if(!empty($listalbum->album_img_3))
-                                            <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="../dist/images/studio-foto.png" title="image-3" class="with-caption gallery image-link">
-                                                <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_3.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                                </a>
-                                            </div>
-                                            @else
-                                            @endif
-                                            @if(!empty($listalbum->album_img_4))
-                                            <div class="col-xs-6 col-sm-6 luxury-room-block">
-                                                <a href="../dist/images/studio-foto.png" title="image-4" class="with-caption gallery image-link">
-                                                <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_4.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
-                                                </a>
-                                            </div>
-                                            @else
-                                            @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
+                              
+                                <section id="thematic-offers" class="">
+                                        <div class="col-sm-12">
+                                            <div class="page-heading">
+                                                <h2>Portofolio</h2>
+                                                <hr class="heading-line" />
+                                            </div><!-- end page-heading -->
+                                            
+                                            <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-portofolio">
+                                                @foreach($album as $listalbum)
+                                                @if(!empty($listalbum->album_img_1))
+                                                <div class="item">
+                                                    <div class="main-block hotel-block ">
+                                                        <div class=" main-img img-hover ">
+                                                            <a href="{{ asset('album/'.$listalbum->album_img_1.'.jpg')  }}" title="image-1" class="with-caption gallery image-link">
+                                                            <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_1.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                                            </a>
+                                                        </div>
+                                                    </div><!-- end hotel-block -->
+                                                </div><!-- end item -->
+                                                @else
+                                                @endif
+                                                @if(!empty($listalbum->album_img_2))
+                                                <div class="item">
+                                                    <div class="main-block hotel-block ">
+                                                        <div class=" main-img img-hover">
+                                                            <a href="{{ asset('album/'.$listalbum->album_img_2.'.jpg')  }}" title="image-2" class="with-caption gallery image-link">
+                                                            <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_2.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                                            </a>
+                                                        </div>
+                                                    </div><!-- end hotel-block -->
+                                                </div><!-- end item -->
+                                                @else
+                                                @endif
+                                                @if(!empty($listalbum->album_img_3))
+                                                <div class="item">
+                                                    <div class="main-block hotel-block ">
+                                                        <div class=" main-img img-hover">
+                                                          <a href="{{ asset('album/'.$listalbum->album_img_3.'.jpg')  }}" title="image-3" class="with-caption gallery image-link">
+                                                          <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_3.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                                          </a>
+                                                      </div>
+                                                    </div><!-- end hotel-block -->
+                                                </div><!-- end item -->
+                                                @else
+                                                @endif
+                                                @if(!empty($listalbum->album_img_4))
+                                                <div class="item">
+                                                    <div class="main-block hotel-block ">
+                                                        <div class=" main-img img-hover">
+                                                            <a href="{{ asset('album/'.$listalbum->album_img_4.'.jpg')  }}" title="image-4" class="with-caption gallery image-link">
+                                                            <img style="width: 500px; height: auto;" class="img-responsive" src="{{ asset('album/'.$listalbum->album_img_4.'.jpg')  }}" alt= "Album / Portofolio Bisnis" />
+                                                            </a>
+                                                        </div>
+                                                    </div><!-- end hotel-block -->
+                                                </div><!-- end item -->
+                                                @else
+                                                @endif
+                                                @endforeach
+                                            </div><!-- end owl-hotel-offers -->
+                                        </div><!-- end columns -->
+                                </section><!-- end hotel-offers -->
                                 <div class="col-sm-12 col-md-12">
                                     <div class="page-heading white-heading">
                                             <h3>Feature / Amenities / Rules</h3>
@@ -108,7 +130,7 @@
                                       @endif
                                       @endforeach
                                     </div>
-                                </div>
+                                </div>                                
                             </div>
                         </div>
                         
@@ -147,7 +169,7 @@
                                                           </div><!-- end arrow -->
 
                                                           <div class="main-title hotel-title">
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam (Jam Pertama)</p>
+                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
                                                           </div><!-- end hotel-title -->
                                                       </div><!-- end hotel-info -->
@@ -186,7 +208,7 @@
                                                           </div><!-- end arrow -->
 
                                                           <div class="main-title hotel-title">
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam (Jam Pertama)</p>
+                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
                                                           </div><!-- end hotel-title -->
                                                       </div><!-- end hotel-info -->
@@ -227,7 +249,7 @@
                                                           </div><!-- end arrow -->
 
                                                           <div class="main-title hotel-title">
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam (Jam Pertama)</p>
+                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
                                                           </div><!-- end hotel-title -->
                                                       </div><!-- end hotel-info -->

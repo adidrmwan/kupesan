@@ -1,20 +1,9 @@
 @extends('layouts.master-studio')
 @section('title', 'Studio List')
 @section('content')
-
-<section class="page-cover" id="cover-hotel-grid-list" style="margin-top: 4.5%;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-            	<h1 class="page-title">Studio List</h1>
-                <h5> By kupesan.id</h5>
-            </div><!-- end columns -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end page-cover -->
         
 <section class="innerpage-wrapper">
-    <div id="search-result-page" class="innerpage-section-padding">
+    <div id="search-result-page" class="top-section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
@@ -50,7 +39,7 @@
 </section><!-- end innerpage-wrapper -->
        
 <section class="innerpage-wrapper">
-	<div id="hotel-listing" class="innerpage-section-padding">
+	<div id="hotel-listing" class="bottom-padding">
         <div class="container">
             <div class="row">        	
                 
@@ -58,8 +47,6 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
                             <h3>Sort Result</h3>
-                            <h5 style="color: white;">Sorting results by your options</h5>
-                            
                             <div class="panels-group padding-price">
                                 
                                 <div class="panel panel-default">
@@ -120,12 +107,20 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
                             <h3>Filter Result</h3>
-                            <h5 style="color: white;">Showing results based on categories</h5>
-                            
-                            <div class="price-slider padding-price">
-                                <p><input type="text" id="amount" readonly></p>
-                                <div id="slider-range"></div>
-                            </div><!-- end price-slider -->
+                            <form>
+                                <div class="padding-price">
+                                    <div class="padding-price filter-block">
+                                        <input type="text" class="form-control" placeholder="Harga Minimal" name="price1">
+                                    </div>
+                                    <div class="padding-price filter-block">
+                                        <input type="text" class="form-control" placeholder="Harga Maksimal" name="price2">
+                                    </div>
+                                    <div class="padding-price filter-block">
+                                        <button class="btn btn-default" style="width: 100%;">Submit</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
                         </div><!-- end side-bar-block -->
                     </div>
                 </div><!-- end columns --> 

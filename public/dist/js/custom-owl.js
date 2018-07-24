@@ -10,7 +10,7 @@
 		alacarteOffers			=$("#owl-alacarte-offers"),
 		specialOffers			=$("#owl-special-offers"),
 		kebayaOffers			=$("#owl-kebaya-offers"),
-		carOffers				=$("#owl-car-offers"),
+		portofolio				=$("#owl-portofolio"),
 		holidayTours			=$(".owl-holidays"),
 		testimonials			=$("#owl-testimonials"),
 		team					=$("#owl-team"),
@@ -239,8 +239,8 @@
 	
 	
 	// Owl Car Offers
-	carOffers.owlCarousel({
-		items : 3,
+	portofolio.owlCarousel({
+		items : 1,
 		itemsCustom : false,
 		itemsDesktop : [1199,2],
 		itemsDesktopSmall : [991,2],

@@ -134,6 +134,12 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 	font-weight:bold;
 }
 
+
+.bottom-padding{
+	/*padding-top:50px;*/
+	padding-bottom:50px;
+}
+
 .section-padding{
 	padding-top:50px;
 	padding-bottom:50px;
@@ -151,6 +157,10 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 .innerpage-section-padding{
 	padding-top:103px;
 	padding-bottom:147px;
+}
+
+.top-section-padding{
+	padding-top:103px;
 }
 
 .innerpage-section-padding-mitra{
@@ -1776,7 +1786,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 }
 
 .luxury-room-block:nth-child(odd){
-	padding-right:0px;
+	/*padding-right:0px;*/
 }
 
 .luxury-room-block:nth-child(even){

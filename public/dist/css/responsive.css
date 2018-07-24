@@ -347,7 +347,7 @@ Author:			Star Travel
 
 @media(max-width:1199px){
 	.main-navbar.navbar-custom .navbar-brand{
-		padding-top: 24px;
+		/*padding-top: 24px;*/
 	}
 
 	.main-navbar.navbar-custom .navbar-payment{

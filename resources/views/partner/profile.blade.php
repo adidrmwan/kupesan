@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                   <form role="form" action="{{ route('partner.profile.form.edit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   {{ csrf_field() }}

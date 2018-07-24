@@ -28,6 +28,9 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href=" {{ URL::asset('partners/css/light-bootstrap-dashboard.css?v=1.4.0 ') }}" rel="stylesheet"/>
 
+    <!-- DataTables -->
+  <link rel="stylesheet" href="{{URL::asset('partners/css/dataTables.bootstrap.min.css')}}">
+
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href=" {{ URL::asset('partners/css/demo.css" rel="stylesheet ') }}" />
@@ -65,8 +68,9 @@
     <!--  Charts Plugin -->
     <script src=" {{ URL::asset('partners/js/chartist.min.js') }} "></script>
 
-    <!--  Pagination -->
-    <script src=" {{ URL::asset('partners/js/pagination.js') }} "></script>
+    <!-- DataTables -->
+    <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('partners/js/dataTables.bootstrap.min.js')}}"></script>
 
     <!--  File Input Plugin    -->
     <script src=" {{ URL::asset('partners/js/plugins/purify.min.js') }} "></script>
@@ -76,9 +80,6 @@
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src=" {{ URL::asset('partners/js/light-bootstrap-dashboard.js?v=1.4.0') }} "></script>
 
@@ -87,6 +88,21 @@
 
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
+
+    <script>
+      $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : false,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+      })
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function(){
 

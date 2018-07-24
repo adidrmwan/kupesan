@@ -48,7 +48,7 @@
                 </li>
                 <li>
                     <a>
-                        <i class="pe-7s-photo"> </i> <p> Package &nbsp;&nbsp; <b> <span class="pe-7s-angle-down-circle"></span> </b>  </p> 
+                        <i class="pe-7s-photo"> </i> <p> Package</p> 
                     </a>
                     <ul class="list-unstyled" id="pageSubmenu">
                         <li style="margin-left: 35px;">

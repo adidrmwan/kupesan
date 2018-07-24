@@ -20,7 +20,7 @@ class CustomerController extends Controller
     }
     public function dashboardadmin()
     {
-        return view('admin.dashboard');
+        return view('superadmin.dashboard-admin');
     }
     public function forgotpassword()
     {

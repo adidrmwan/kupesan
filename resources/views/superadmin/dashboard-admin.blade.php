@@ -1,8 +1,8 @@
-@extends('admin.layouts.app')
+@extends('superadmin.layouts.master-admin')
 @section('title', 'Dashboard Admin')
 @section('content')
 
-<section class="content">
+  <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
