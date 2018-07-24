@@ -43,6 +43,11 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 	Route::get('/', function(){
 		return view('home');
 	})->name('user.dashboard');
+    Route::post('/booking/0', 'BookingController@checkAuth')->name('check.auth');
+    Route::post('/booking/1', 'BookingController@showBooking')->name('form.pesan');
+    Route::post('/booking/2', 'BookingController@showReview')->name('form.booking');
+    Route::post('/booking/3', 'BookingController@showBayar')->name('form.bayar');
+    Route::post('/booking/4', 'BookingController@showKonfirmasi')->name('form.konfirmasi');
 });
 
 // Role untuk user yang partner
@@ -110,7 +115,7 @@ Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('se
 Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 
 //Route Booking
-Route::post('/check-auth', 'BookingController@checkAuth')->name('check.auth');
+
 
 //Route untuk testing saja
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');

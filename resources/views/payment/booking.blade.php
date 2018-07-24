@@ -158,69 +158,63 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                             <div class="lg-booking-form-heading">
-                                    
-                                    <h3>Personal Information</h3>
-                                </div><!-- end lg-bform-heading -->
+                                <h3>Personal Information</h3>
+                            </div><!-- end lg-bform-heading -->
                             <div class="panel panel-default" style="margin-top: 35px;">
-                                <div class="panel-heading"><h4>Informasi Kamu</h4></div>
+                                <div class="panel-heading"><h4>Informasi Anda</h4></div>
+                    <form role="form" action="{{ route('form.booking') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                            {{ csrf_field() }}
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12  user-detail">
+                                            <div class="personal-info">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Nama Pemesan</label>
+                                                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="booking_user_name" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Email Pemesan</label>
+                                                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="booking_user_email" required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>No. Handphone</label>
+                                                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="booking_user_nohp" required="">
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" name="bid" value="{{$bid}}" hidden="">
+                                                </div>
+                                            </div>         
+                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach($review as $data)
+                            <div class="panel panel-default" style="margin-top: 35px;">
+                                <div class="panel-heading"><h4>Detail Pemesanan</h4></div>
                                 <div class="panel-body">
                                     <div class="row">
                                         
                                         <div class="col-sm-12 col-md-12  user-detail">
-                                            <form class="lg-booking-form">
-                                
-                                
-                                <div class="personal-info">
-                                
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label>Nama</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                        
-                                        
-                                    </div><!-- end row -->
-                                    
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="email" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                        
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Nomor Handphone</label>
-                                                <input type="text" class="form-control" required/>
-                                            </div>
-                                        </div><!-- end columns -->
-                                    </div><!-- end row -->
-                                    
-                                </div><!-- end personal-info -->
-                                            
-                            </form>
-                                        </div><!-- end columns -->
-                                        
-                                    </div><!-- end row -->
-                                    
-                                </div><!-- end panel-body -->
-                            </div><!-- end panel-detault -->
-                        	
-                            <div class="panel panel-default" style="margin-top: 35px;">
-                                <div class="panel-heading"><h4>Detail Harga</h4></div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        
-                                        <div class="col-sm-12 col-md-12  user-detail">
-                                            <h3><b>Kupesan Studio</b></h3>
+                                            <h3><b>{{$data->partner_name}}</b></h3>
                                             <hr class="style5">
                                             <ul class="list-unstyled" >
-                                                <li>
-                                                    <span>Studio Room Type Thematic</span>
-                                                    <span style="float: right; ">Rp. 300.000</span>
+                                                <li>@if($data->pkg_category_them = 'Thematic_Set')
+                                                    <span>{{$data->pkg_name_them}} - Thematic Set</span>
+                                                @elseif($data->pkg_category_them = 'Special_Studio')
+                                                    <span>{{$data->pkg_name_them}} - Special Studio</span>
+                                                @elseif($data->pkg_category_them = 'Ala_Carte')
+                                                    <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
+                                                @endif
+                                                    <span style="float: right; ">Rp. {{$data->booking_price}}</span>
                                                 </li>
                                                 <li>
                                                     <span>Kupesan Fee</span>
@@ -232,58 +226,51 @@
                                             <ul class="list-unstyled" >
                                                 <li>
                                                     <span>TOTAL</span>
-                                                    <span style="float: right; ">Rp. 300.00</span>
+                                                    <span style="float: right; ">Rp. {{$data->total}}</span>
                                                 </li>
                                             </ul>
                                         </div><!-- end columns -->
                                         
                                     </div><!-- end row -->
-                                    
+                                    <input type="text" name="xxx" value="{{$data->total}}" hidden="">
                                 </div><!-- end panel-body -->
-                            </div><!-- end panel-detault -->
-                            
-                        </div><!-- end columns -->
-						
+                            </div>
+                            @endforeach
+                        </div>
                         
                         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
                         	<div class="row">
                             
                                 <div class="col-xs-12 col-sm-6 col-md-12">
                                     <div class="side-bar-block detail-block style2 text-center">
+                                        @foreach($package as $data)
                                         <div class="detail-img text-center">
-                                        	<img src="dist/images/mua.png" class="img-responsive" alt="detail-img"/>
+                                            <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
                                         </div><!-- end detail-img -->
-                                        
+                                        @endforeach
+
+                                        @foreach($review as $data)
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Nama Studio</td>
-                                                        <td>Kupesan Studio</td>
+                                                        <td colspan="2">{{$data->partner_name}}</td>
                                                     </tr>
                                                 	<tr>
-                                                    	<td>Tanggal</td>
+                                                    	<td class="pull-left">Tanggal</td>
                                                         <td>20-05-2018</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Jam Mulai</td>
-                                                        <td>17.00</td>
+                                                        <td class="pull-left">Jam Mulai</td>
+                                                        <td>{{$data->booking_start_time}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Jam Selesai</td>
-                                                        <td>19.00</td>
+                                                        <td class="pull-left">Jam Selesai</td>
+                                                        <td>{{$data->booking_end_time}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Studio Type</td>
-                                                        <td>Deluxe</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Tamu</td>
-                                                        <td>3</td>
+                                                        <td class="pull-left">Tamu</td>
+                                                        <td>{{$data->booking_capacities}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
@@ -292,21 +279,23 @@
                                                 </tbody>
                                             </table>
                                         </div><!-- end table-responsive -->
+                                        @endforeach
                                     </div><!-- end side-bar-block -->
                                 </div><!-- end columns -->                                
                             </div><!-- end row -->
                         
                         </div><!-- end columns -->
+
                         <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
-                            <form class="lg-booking-form">
-                                <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
-                                    <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                                </div><!-- end checkbox -->
-                                <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
-                                    <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
-                                </div>
-                            </form>
+                            <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
+                                <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
+                            </div><!-- end checkbox -->
+                            <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
+                            </div>
                         </div>
+                        <
+                    </form>
                                 
                     </div><!-- end row -->
                 </div><!-- end container -->         

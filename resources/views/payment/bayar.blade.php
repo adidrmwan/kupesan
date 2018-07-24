@@ -267,39 +267,45 @@
                                                 
                                             </div><!-- end panel-body -->
                                         </div><!-- end panel-detault -->
+                            @foreach($review as $data)
+                            <div class="panel panel-default" style="margin-top: 35px;">
+                                <div class="panel-heading"><h4>Detail Pemesanan</h4></div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-12 col-md-12  user-detail">
+                                            <h3><b>{{$data->partner_name}}</b></h3>
+                                            <hr class="style5">
+                                            <ul class="list-unstyled" >
+                                                <li>@if($data->pkg_category_them = 'Thematic_Set')
+                                                    <span>{{$data->pkg_name_them}} - Thematic Set</span>
+                                                @elseif($data->pkg_category_them = 'Special_Studio')
+                                                    <span>{{$data->pkg_name_them}} - Special Studio</span>
+                                                @elseif($data->pkg_category_them = 'Ala_Carte')
+                                                    <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
+                                                @endif
+                                                    <span style="float: right; ">Rp. {{$data->booking_price}}</span>
+                                                </li>
+                                                <li>
+                                                    <span>Kupesan Fee</span>
+                                                    <span style="float: right; ">FREE</span>
+                                                </li>
+                                            </ul>
+                                            <hr class="style5">
 
-                                        <div class="panel panel-default" style="margin-top: 35px;">
-                                            <div class="panel-heading"><h4>Detail Harga</h4></div>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    
-                                                    <div class="col-sm-12 col-md-12  user-detail">
-                                                        <h3><b>Kupesan Studio</b></h3>
-                                                        <hr class="style5">
-                                                        <ul class="list-unstyled" >
-                                                            <li>
-                                                                <span>Studio Room Type Thematic</span>
-                                                                <span style="float: right; ">Rp. 300.000</span>
-                                                            </li>
-                                                            <li>
-                                                                <span>Kupon Buy 1 Get 1</span>
-                                                                <span style="float: right; ">- Rp. 50.000</span>
-                                                            </li>
-                                                        </ul>
-                                                        <hr class="style5">
-
-                                                        <ul class="list-unstyled" >
-                                                            <li>
-                                                                <span>TOTAL</span>
-                                                                <span style="float: right; ">Rp. 250.000</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- end columns -->
-                                                    
-                                                </div><!-- end row -->
-                                                
-                                            </div><!-- end panel-body -->
-                                        </div><!-- end panel-detault -->
+                                            <ul class="list-unstyled" >
+                                                <li>
+                                                    <span>TOTAL</span>
+                                                    <span style="float: right; ">Rp. {{$data->total}}</span>
+                                                </li>
+                                            </ul>
+                                        </div><!-- end columns -->
+                                        
+                                    </div><!-- end row -->
+                                    <input type="text" name="xxx" value="{{$data->total}}" hidden="">
+                                </div><!-- end panel-body -->
+                            </div>
+                            @endforeach
                                     </div><!-- end columns -->
                             </div>						
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
@@ -331,18 +337,20 @@
                             
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
                             
-                            </div><!-- end columns -->
+                            </div>
                             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
-                                <form class="lg-booking-form">
+                                <form role="form" action="{{ route('form.konfirmasi') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                            {{ csrf_field() }}
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                         <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                                     </div><!-- end checkbox -->
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                         <button type="submit" class="btn btn-orange" style="float: right;">Konfirmasi Pembayaran</button>
+                                        <input type="text" name="bid" value="{{$bid}}">
                                     </div>
                                 </form>
                             </div>
-                                
+                             
                     </div><!-- end row -->
                 </div><!-- end container -->         
             </div><!-- end flight-booking -->
