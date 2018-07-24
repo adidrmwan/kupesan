@@ -14,7 +14,6 @@ class StudioController extends Controller
     	$user_id = $request->user_id;
     	$detail = Partner::where('user_id', $user_id)->get();
     	$thematic = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Thematic_Set')->get();
-    	dd($thematic);
     	$special = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special_Studio')->get();
     	$alacarte = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Ala_Carte')->get();
     	$album = Album::where('user_id', $user_id)->get();
