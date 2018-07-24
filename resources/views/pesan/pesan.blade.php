@@ -92,39 +92,7 @@
                                     
                                 </div><!-- end panel-body -->
                             </div><!-- end panel-detault -->
-                        	
-                            <div class="panel panel-default" style="margin-top: 35px;">
-                                <div class="panel-heading"><h4>Detail Harga</h4></div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        
-                                        <div class="col-sm-12 col-md-12  user-detail">
-                                            <h3><b>Kupesan Studio</b></h3>
-                                            <hr class="style5">
-                                            <ul class="list-unstyled" >
-                                                <li>
-                                                    <span>Studio Room Type Thematic</span>
-                                                    <span style="float: right; ">Rp. 300.000</span>
-                                                </li>
-                                                <li>
-                                                    <span>Kupesan Fee</span>
-                                                    <span style="float: right; ">FREE</span>
-                                                </li>
-                                            </ul>
-                                            <hr class="style5">
-
-                                            <ul class="list-unstyled" >
-                                                <li>
-                                                    <span>TOTAL</span>
-                                                    <span style="float: right; ">Rp. 300.00</span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end columns -->
-                                        
-                                    </div><!-- end row -->
-                                    
-                                </div><!-- end panel-body -->
-                            </div><!-- end panel-detault -->
+        
                             <form class="lg-booking-form">
                                 <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                     <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>

@@ -167,11 +167,21 @@
     <script src="{{ URL::asset('dist/js/custom-flex.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-owl.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-slick.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
+    <!-- <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script> -->
     <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
     <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
     <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
     <!-- Scripts -->
+    <script type="text/javascript">
+        $(function(){
+            $('.datepicker').datepicker({
+                format: 'mm-dd-yyyy',
+                endDate: '+7d',
+                startDate: '0d',
+                autoclose: true
+            });
+        });
+    </script>
     <script src="{{ URL::asset('js/app.js') }}"></script>
     @yield('script')
 </body>

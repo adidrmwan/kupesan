@@ -18,4 +18,12 @@ class CustomerController extends Controller
     {
         return view('pesan.pesan');
     }
+    public function dashboardadmin()
+    {
+        return view('admin.dashboard');
+    }
+    public function forgotpassword()
+    {
+        return view('forgotpassword');
+    }
 }

@@ -121,4 +121,6 @@ Route::get('/voucher', 'BookingController@voucher')->name('voucher');
 Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
 Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');
 Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
+Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashboardadmin');
+Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 
