@@ -7,59 +7,93 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Add Photostudio Package</h4>
+                        <h4 class="title">Edit Package</h4>
                     </div>
                     <div class="content">
-                        @foreach($package as $data)
-                        <form role="form" action="{{route('partner.edit.pkg.submit')}}" method="post" enctype="multipart/form-data">
+                        
+                        <form role="form" action="{{route('partner.edit.pkg.submit')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {{ csrf_field() }}
+                            @foreach($package as $data)
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Gambar Paket</label>
+                                        <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Update Gambar Paket</label>
                                         <div class="file-loading">
                                             <input id="file-0a" class="file" type="file" name="pkg_img_them">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <img style="border-style: groove; vertical-align: bottom;"  class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Package Name</label>
-                                            <input type="text" class="form-control" placeholder="Nama Paket" required="" name="pkg_name_them" value="{{$data->pkg_name_them}}">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nama Paket</label>
+                                                <input type="text" class="form-control" placeholder="Nama Paket" required="" name="pkg_name_them" value="{{$data->pkg_name_them}}">
+                                                <div class="invalid-feedback">
+                                                      Silahkan isi nama paket.
+                                                  </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Category</label>
-                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
-                                                <option selected value="{{$data->pkg_category_them}}">{{$data->pkg_category_them}}</option>
-                                                <option value="Thematic Set">Thematic Set</option>
-                                                <option value="Room (Ala Carte)">Room (Ala Carte)</option>
-                                                <option value="Special">Special</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Price</label>
-                                            <div class="input-group"> 
-                                                <span class="input-group-addon">Rp</span>
-                                                <input type="number" value="{{$data->pkg_price_them}}" min="0" step="1000" class="form-control" placeholder="Price" data-number-stepfactor="100" name="pkg_price_them">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Kategori Paket</label>
+                                                <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                    <option selected value="{{$data->pkg_category_them}}">{{$data->pkg_category_them}}</option>
+                                                    <option value="Thematic_Set">Thematic Set</option>
+                                                    <option value="Ala_Carte">Room (Ala Carte)</option>
+                                                    <option value="Special_Studio">Special Studio</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                      Silahkan pilih kategori paket.
+                                                  </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Harga Paket Per Jam</label>
+                                                <div class="input-group mb-4">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                  </div>
+                                                  <input type="number" class="form-control" placeholder="Harga Paket" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="{{$data->pkg_price_them}}" required>
+                                                  <div class="invalid-feedback">
+                                                      Silahkan isi harga paket per jam.
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                                <label>Harga Paket Overtime</label>
+                                                <div class="input-group mb-4">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                                  </div>
+                                                  <input type="number" class="form-control" placeholder="Harga Paket" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_overtime_them" value="{{$data->pkg_overtime_them}}" required>
+                                                  <div class="invalid-feedback">
+                                                      Silahkan isi harga paket overtime.
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
                                             <textarea rows="5" class="form-control" placeholder="Tuliskan deskripsi detail paket anda" style="resize: none;" name="pkg_desc_them">{{$data->pkg_desc_them}}</textarea>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
-
+                            <input type="text" name="id" value="{{$data->id}}" hidden="">
                             <button type="submit" class="btn btn-info btn-fill pull-right">Edit Package</button>
                             <div class="clearfix"></div>
                         </form>

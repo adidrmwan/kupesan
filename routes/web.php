@@ -107,7 +107,10 @@ Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi
 
 //Route Search Fotostudio di Home
 Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
+Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 
+//Route Booking
+Route::post('/check-auth', 'BookingController@checkAuth')->name('check.auth');
 
 //Route untuk testing saja
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
