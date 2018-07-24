@@ -156,8 +156,9 @@
                                 <li></li>
                             </ul>
                         </div><!-- end navbar collapse -->
-
+                        @foreach($review as $data)
                             <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
+
                             	<div class="dashboard-content user-profile">
                                         <h2 class="dash-content-title">Please Review Your Booking</h2>
 
@@ -170,26 +171,38 @@
                                                     </div><!-- end columns -->
                                                     
                                                     <div class="col-sm-8 col-md-9  user-detail">
-                                                        <h3><b>Kupesan Studio</b></h3>
+                                                        <h3><b>{{$data->partner_name}}</b></h3>
                                                         <hr class="style5">
                                                         <ul class="list-unstyled" >
                                                             <div>
                                                                 <div class="col-sm-12 col-md-4"><li><span>Tanggal</span> <br>23 Maret 2019</li></div>
-                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Mulai</span><br> 19.00</li></div>
-                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Selesai</span><br> 21.00</li></div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Mulai</span><br> {{$data->booking_start_time}}:00</li></div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Selesai</span><br> {{$data->booking_end_time}}:00</li></div>
                                                             </div>
                                                             <div>
-                                                                <div class="col-sm-12 col-md-12" style="margin-bottom: 10px;"><li><span>Nama Pemesan</span> <br>Arsya Darmawan </li></div>
+                                                                <div class="col-sm-12 col-md-12" style="margin-bottom: 10px;"><li><span>Nama Pemesan</span> <br>{{$data->booking_user_name}}</li></div>
                                                             </div>
                                                         </ul>
                                                         <br>
                                                         <hr class="style5">
                                                         <ul class="list-unstyled">                                                          
                                                             <div>
-                                                                <div class="col-sm-12 col-md-12"><li><span>Studio Detail</span></li></div>
-                                                                <div class="col-sm-12 col-md-12"><li>Studio Tipe <p style="float: right;">Thematic</p></li>
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <li><span>Studio Detail</span></li></div>
+                                                                @if($data->pkg_category_them = 'Thematic_Set')
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <li>Tipe Paket <p style="float: right;">Thematic Set</p></li>
                                                                 </div>
-                                                                    <div class="col-sm-12 col-md-12"><li>Orang <p style="float: right;">20 Orang</p></li>
+                                                                @elseif($data->pkg_category_them = 'Special_Studio')
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <li>Tipe Paket <p style="float: right;">Special Studio</p></li>
+                                                                </div>
+                                                                @elseif($data->pkg_category_them = 'Ala_Carte')
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <li>Tipe Paket <p style="float: right;">Room (Ala Carte)</p></li>
+                                                                </div>
+                                                                @endif
+                                                                    <div class="col-sm-12 col-md-12"><li>Kapasitas <p style="float: right;">{{$data->booking_capacities}} Orang</p></li>
                                                                     </div>
                                                             </div>
                                                         </ul>
@@ -206,12 +219,17 @@
                                                 <div class="row">
                                                     
                                                     <div class="col-sm-12 col-md-12  user-detail">
-                                                        <h3><b>Kupesan Studio</b></h3>
+                                                        <h3><b>{{$data->partner_name}}</b></h3>
                                                         <hr class="style5">
                                                         <ul class="list-unstyled" >
-                                                            <li>
-                                                                <span>Studio Room Type Thematic</span>
-                                                                <span style="float: right; ">Rp. 300.000</span>
+                                                            <li>@if($data->pkg_category_them = 'Thematic_Set')
+                                                                <span>{{$data->pkg_name_them}} - Thematic Set</span>
+                                                            @elseif($data->pkg_category_them = 'Special_Studio')
+                                                                <span>{{$data->pkg_name_them}} - Special Studio</span>
+                                                            @elseif($data->pkg_category_them = 'Ala_Carte')
+                                                                <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
+                                                            @endif
+                                                                <span style="float: right; ">Rp. {{$data->booking_price}}</span>
                                                             </li>
                                                             <li>
                                                                 <span>Kupesan Fee</span>
@@ -223,7 +241,7 @@
                                                         <ul class="list-unstyled" >
                                                             <li>
                                                                 <span>TOTAL</span>
-                                                                <span style="float: right; ">Rp. 300.00</span>
+                                                                <span style="float: right; ">Rp. {{$data->total}}</span>
                                                             </li>
                                                         </ul>
                                                     </div><!-- end columns -->
@@ -232,23 +250,25 @@
                                                 
                                             </div><!-- end panel-body -->
                                         </div><!-- end panel-detault -->
-                                    </div><!-- end columns -->
+                                </div><!-- end columns -->
                             </div>						
                             
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
                             
                             </div><!-- end columns -->
                             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
-                                <form class="lg-booking-form">
+                                <form role="form" action="{{ route('form.bayar') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                                    {{ csrf_field() }}
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                         <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                                     </div><!-- end checkbox -->
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                         <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                                     </div>
+                                    <input type="text" name="bid" value="{{$bid}}" hidden="">
                                 </form>
                             </div>
-                                
+                        @endforeach        
                     </div><!-- end row -->
                 </div><!-- end container -->         
             </div><!-- end flight-booking -->

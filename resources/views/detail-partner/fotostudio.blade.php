@@ -159,7 +159,7 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <form role="form" action="{{route('partner.delete.pkg')}}" method="post" enctype="multipart/form-data">
+                                                            <form role="form" action="{{route('check.auth')}}" method="post" enctype="multipart/form-data">
                                                             {{ csrf_field() }}
                                                               <input type="text" name="id" value="{{$listthem->id}}" hidden="">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>

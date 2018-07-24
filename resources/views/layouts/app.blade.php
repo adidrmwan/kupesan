@@ -111,7 +111,6 @@
                             @guest
                                 <li><a href="{{ route('login') }}" >Log in</a></li>
                                 <li><a href="{{ route('register') }}" >Daftar</a></li>
-                                <!-- <li><a href="{{ route('register') }}" >Register</a></li> -->
                             @else
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -144,7 +143,7 @@
                                 
                             <!-- <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>                        -->
                         </ul>
-                    </div><!-- end navbar collapse -->
+                    </div>
                 </div><!-- end container -->
             </nav><!-- end navbar -->
         </div>   
