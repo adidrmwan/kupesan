@@ -117,7 +117,7 @@
                           <span class="icon-bar"></span>                        
                         </button>
 
-                        <a href="home" class="navbar-brand">
+                        <a href="{{route('index')}}" class="navbar-brand">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->

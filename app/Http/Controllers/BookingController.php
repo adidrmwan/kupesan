@@ -28,12 +28,16 @@ class BookingController extends Controller
 
         $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
                             ->where('num_hour', '<=', $partner->close_hour)->get();
+
         $bdte = $request->date; 
         $pid = $request->id;
         $prc = $name->pkg_price_them;
         $pname = $partner->pr_name;
 
-        return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte]);
+        $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $bdte)->first();
+        // dd($bookingcheck);
+        
+        return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte, 'bookingcheck' => $bookingcheck]);
     }
 
 
@@ -151,6 +155,7 @@ class BookingController extends Controller
         $bid = $request->bid;
         $booking = Booking::find($bid);
         $booking->bukti_transafer = $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
+        $booking->booking_status = 'paid';
         $booking->save();
 
         if ($request->hasFile('bukti_pembayaran')) {
@@ -173,12 +178,16 @@ class BookingController extends Controller
             $booking->save();
         }
         
-        return view('payment.voucher');
+        return redirect()->intended(route('voucher', ['bid' => $bid])); 
     }
 
 
-    public function voucher()
-    {
-        return view('payment.voucher');
+    public function voucher(Request $request)
+    { 
+        $review = Booking::where('booking_id', $request->bid)
+                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->get();
+        return view('payment.voucher', ['review' => $review]);
     }
 }
