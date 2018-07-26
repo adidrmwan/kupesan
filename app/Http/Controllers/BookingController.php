@@ -161,7 +161,7 @@ class BookingController extends Controller
     {   
         $bid = $request->bid;
         $booking = Booking::find($bid);
-        $booking->bukti_transafer = $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
+        $booking->bukti_transfer = $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
         $booking->booking_status = 'paid';
         $booking->save();
 
@@ -184,6 +184,7 @@ class BookingController extends Controller
             $booking = Booking::find($bid);
             $booking->save();
         }
+
         
         return redirect()->intended(route('voucher', ['bid' => $bid])); 
     }

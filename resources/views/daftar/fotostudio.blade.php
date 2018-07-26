@@ -109,24 +109,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-<<<<<<< HEAD
                                                 <label style="color: white;">Min Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="10000" required>
-=======
-                                                <label>Min Price</label>
                                                 <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="min_price" value="10000" required>
->>>>>>> 3ff81f6f90e449cca2fb550b8eeebf5ff96bc56c
                                             </div>        
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-<<<<<<< HEAD
                                                 <label style="color: white;">Max Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="10000" required>
-=======
-                                                <label>Max Price</label>
                                                 <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="10000" required>
->>>>>>> 3ff81f6f90e449cca2fb550b8eeebf5ff96bc56c
                                             </div> 
                                         </div>
                                     </div>

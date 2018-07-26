@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="full-page-title visible-xs visible-sm">
-                                    <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" />
+                                    <img src="{{ asset('/logo/logo-navbar.png') }}" class="img-responsive" />
                                 </div><!-- end full-page-title -->
                                         
                                 <div class="row">
@@ -49,7 +49,7 @@
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 error-page-2-text">
                                         <div class="full-page-title visible-md visible-lg">
-                                            <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" style="max-width: 376px;" />
+                                            <img src="{{ asset('/logo/logo-navbar.png') }}" class="img-responsive" alt="about-img" style="max-width: 376px;" />
                                         </div><!-- end full-page-title -->
                                         
                                         <h2>Something went wrong !</h2>

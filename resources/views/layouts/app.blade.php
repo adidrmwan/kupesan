@@ -136,7 +136,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="dashboard">Profil-KU</a>
+                                            <a href="{{route('dashboard')}}">Profil-KU</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}"

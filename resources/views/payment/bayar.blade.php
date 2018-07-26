@@ -212,9 +212,9 @@
                                             <div class="panel-body">
                                                 <div class="row">                                                    
                                                     <div class="col-sm-12 col-md-12  user-detail">
-                                                        <h4><b>Silahkan Membayar melalui Bank dibawah ini :</b></h4>
-                                                        <hr class="style5">
-                                                        <ul class="list-unstyled" >
+                                                        <!-- <h4><b>Silahkan Membayar melalui Bank dibawah ini :</b></h4>
+                                                        <hr class="style5"> -->
+                                                        <!-- <ul class="list-unstyled" >
                                                             <div>
                                                                 <li>
                                                                     <span>BCA</span> <p style="float: right;"> 0391012520 a.n Arsya Darmawan</p> 
@@ -233,7 +233,7 @@
                                                                 </li>
                                                                 <hr class="style2">
                                                             </div>
-                                                        </ul>
+                                                        </ul> -->
                                                     </div><!-- end columns -->
                                                     
                                                 </div><!-- end row -->

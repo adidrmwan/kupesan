@@ -47,24 +47,17 @@
                                         </div><!-- end row -->                              
                                     </div><!-- end columns -->
                                     
-                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                                    <!-- <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
-<<<<<<< HEAD
-
-                                           <select class="form-control" >
-                                                <option selected>#(Hashtag)</option>
-=======
                                            <select class="form-control" name="hastag">
                                                 <option selected># (Hastag)</option>
->>>>>>> 3ff81f6f90e449cca2fb550b8eeebf5ff96bc56c
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                             </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>
-                                    </div><!-- end columns -->
-                                    
+                                    </div> -->                                    
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
                                         <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
                                     </div><!-- end columns -->
