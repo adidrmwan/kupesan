@@ -2,6 +2,7 @@
 namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\Debug\Exception\FlattenException;
 use Request;
 use Response;
 use Illuminate\Auth\AuthenticationException;
@@ -62,5 +63,11 @@ class Handler extends ExceptionHandler
                 break;
         }
         return redirect()->guest(route($login));
+    }
+
+    protected function convertExceptionToResponse(Exception $e)
+    {
+        $e = FlattenException::create($e);
+        return response()->view('errors.500', ['exception' => $e], $e->getStatusCode(), $e->getHeaders());
     }
 }

@@ -3368,9 +3368,10 @@ padding-bottom: 30px;
 }
 
 .list-block .list-info .btn{
-	padding:6px 21px 7px;
+	padding:7px 21px 7px;
 	font-size:12px;
-	margin-top:15px;
+	/*margin-top:15px;*/
+	margin-right: -20px;
 }
 
 /*********** FLIGHT-LIST BLOCK **********/
