@@ -94,6 +94,7 @@
                                                         <input type="text" name="pid" value="{{$pid}}" hidden="">
                                                         <input type="text" name="prc" value="{{$prc}}" hidden="">
                                                         <input type="text" name="pname" value="{{$pname}}" hidden="">
+                                                        <input type="text" name="bdte" value="{{$bdte}}" hidden="">
                                                     </div><!-- end row -->                                                                                                 
                                                 </div><!-- end personal-info -->
                                                             

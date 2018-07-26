@@ -180,7 +180,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Email Pemesan</label>
-                                                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="booking_user_email" required="">
+                                                            <input type="email" class="form-control" placeholder="Nama Pemesan" name="booking_user_email" required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">

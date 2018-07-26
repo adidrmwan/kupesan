@@ -110,13 +110,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Min Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="10000" required>
+                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="min_price" value="10000" required>
                                             </div>        
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Min Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="10000" required>
+                                                <label>Max Price</label>
+                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="10000" required>
                                             </div> 
                                         </div>
                                     </div>
@@ -147,7 +147,8 @@
                                 <p class="block-minor">Price : <b>Rp {{$list->min_price}}</b></p>
                                 <form role="form" action="{{route('detail.fotostudio')}}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                    <input type="text" name="user_id" value="{{$list->user_id, $booking_date}}" hidden="">
+                                    <input type="text" name="user_id" value="{{$list->user_id}}" hidden="">
+                                    <input type="text" name="booking_date" value="{{$booking_date}}" hidden="">
                                     <button type="submit" class="btn btn-orange btn-lg pull-right">View More</button>
                                 </form>
                             </div>

@@ -194,7 +194,7 @@
                                                                 <div class="input-group">
                                                                     <span class="input-group-btn">
                                                                         <span class="btn btn-default btn-file" style="color: white;">
-                                                                            Browse... <input type="file" id="imgInp">
+                                                                        Browse... <input type="file" id="imgInp" name="bukti_pembayaran">
                                                                         </span>
                                                                     </span>
                                                                     <input type="text" class="form-control" name="bukti_pembayaran" readonly>
