@@ -19,7 +19,7 @@ class CustomerController extends Controller
         $pesanan = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
-                    ->where('booking.booking_status', '=', 'paid')
+                    ->where('booking.booking_status', '=', 'confirmed')
                     ->get();
 
         $riwayat = Booking::where('booking.user_id', $user_id)

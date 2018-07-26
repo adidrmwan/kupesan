@@ -41,6 +41,7 @@ Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('de
 // Route untuk user yang admin
 Route::group(['prefix' => '1', 'middleware' => ['auth','role:superadmin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/confirm/', 'AdminController@confirmBukti')->name('confirm.bukti');
 });
 
 // Route untuk user yang member

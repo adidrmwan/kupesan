@@ -94,7 +94,7 @@
                   <th>Total</th>
                   <th>Status Pemesanan</th>
                   <th>Bukti Pembayaran</th>
-                  <th>Aksi/th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -113,14 +113,32 @@
                   <td>{{$data->booking_total}}</td>
                   <td>{{$data->booking_status}}</td>
                   <td>
-                    <a href="{{route('show.bukti', ['id' => $listthem->id, 'date' => $booking_date])}}">
-                      <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+
+                      <button type="submit" class="btn btn-primary" style=" padding: 5px 15px; margin-top: 6px;" data-toggle="modal" data-target="#show-bukti"><span style="color: white; text-decoration: none;">Show</span>
                       </button>
-                    </a>
+
+                        <div class="modal fade" id="show-bukti" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Bukti Pembayaran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpg')  }}" alt= "Bukti Transfer" /> 
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                   </td>   
-                  <td>
-                    <a href="{{route('confirm.bukti', ['id' => $listthem->id, 'date' => $booking_date])}}">
-                      <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                  <td>  
+                    <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
+                      <button type="submit" class="btn btn-success" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Confirm</span>
                       </button>
                     </a>
                   </td>
