@@ -90,40 +90,45 @@
                                       @foreach($fasilitas as $listfasil)
                                       @if(!empty($listfasil->wifi))  
                                       <div class="col-xs-4 col-md-4">
-                                        <div >
-                                          <span ><i class="zmdi zmdi-wifi-alt zmdi-hc-5x mdc-text-red-700"></i></span>
+                                        <div style="text-align: center;" >
+                                          <span ><i class="zmdi zmdi-wifi-alt zmdi-hc-5x "></i></span>
+                                          <h5 style="text-align: center;">Wifi</h5>
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else
                                       @endif
                                       @if(!empty($listfasil->toilet))
                                       <div class="col-xs-4 col-md-4">
-                                        <div >
-                                          <span><i class="zmdi zmdi-male-female zmdi-hc-5x mdc-text-red-700"></i></span>
+                                        <div style="text-align: center;" >
+                                          <span><i class="zmdi zmdi-male-female zmdi-hc-5x "></i></span>
+                                          <h5 style="text-align: center;">Kamar Mandi</h5>
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else
                                       @endif
                                       @if(!empty($listfasil->parkir))
                                       <div class="col-xs-4 col-md-4">
-                                        <div >
-                                          <span><i class="zmdi zmdi-directions-car zmdi-hc-5x mdc-text-red-700"></i></span> 
+                                        <div style="text-align: center;">
+                                          <span><i class="zmdi zmdi-local-parking zmdi-hc-5x "></i></span> 
+                                          <h5 style="text-align: center;">Parkir</h5>
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else
                                       @endif
                                       @if(!empty($listfasil->rganti))
                                       <div class="col-xs-4 col-md-4">
-                                        <div >
-                                          <span><i class="zmdi zmdi-directions-car zmdi-hc-5x mdc-text-red-700"></i></span> 
+                                        <div style="text-align: center;">
+                                          <span ><i class="fa fa-exchange fa-5x fa-fw"></i>Ruang Ganti</span>
+                                          <!-- <h5 style="text-align: center;">R. Ganti</h5>  -->
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else
                                       @endif
                                       @if(!empty($listfasil->ac))
                                       <div class="col-xs-4 col-md-4">
-                                        <div >
-                                          <span><i class="zmdi zmdi-directions-car zmdi-hc-5x mdc-text-red-700"></i></span> 
+                                        <div style="text-align: center;">
+                                          <span><i class="fa fa-snowflake-o fa-5x fa-fw"></i>AC</span>
+                                           
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else

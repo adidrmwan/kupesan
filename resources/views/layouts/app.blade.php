@@ -84,6 +84,16 @@
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
+.center-fa { 
+    background-color:none;
+    text-align:center;
+    vertical-align:middle;
+    display:table-cell;
+}
+.fa-asterisk {
+    vertical-align:middle;
+}
+
     </style>
 </head>
 <body id="main-homepage">
@@ -136,7 +146,7 @@
                                 <li>
                                       
                                     <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi PARTNER-KU </a>
                                     </button>
                                 </li>
                                 <li></li>

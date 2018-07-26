@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="full-page-title visible-xs visible-sm">
-                                    <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                                    <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" alt="about-img" />
                                 </div><!-- end full-page-title -->
                                         
                                 <div class="row">

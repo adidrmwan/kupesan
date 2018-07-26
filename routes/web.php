@@ -131,4 +131,5 @@ Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresu
 Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
 Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashboardadmin');
 Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
+Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 

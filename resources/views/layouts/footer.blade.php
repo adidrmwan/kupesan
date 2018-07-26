@@ -42,13 +42,13 @@
         <div class="container" style="color: white;">
             <div class="row" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright" >
-                    <p>© 2018 <a href="#">Kupesan.id</a>. All rights reserved.</p>
+                    <p>© 2018 <a href="#">Kupesan.id</a> | All rights reserved.</p>
                 </div><!-- end columns -->
                 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="#">Terms & Condition</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="">Terms & Condition</a></li>
+                        <li><a href="privacy">Privacy Policy</a></li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Jadi Mitra')
+@section('title', 'Jadi PARTNER-KU')
 @section('content')
 
 <section class="innerpage-wrapper">
@@ -18,7 +18,7 @@
                         <h2>Jadilah Bagian dari kami</h2>
                         <p>Kami akan menghubungkan anda dengan customer sehingga anda dapat meningkatkan kinerja bisnis anda.</p>
                          <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">Daftar Mitra </a>
+                                <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">Daftar PARTNER-KU </a>
                         </button>
                         
                     </div><!-- end abt-cnt-2-text -->

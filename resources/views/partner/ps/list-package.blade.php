@@ -9,7 +9,7 @@
                       <h3 class="box-title">Daftar Paket</h3>
                     </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-striped" id="example">
+                            <table class="table table-bordered table-striped " id="list-package">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Paket</th>

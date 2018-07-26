@@ -29,6 +29,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('booking.schedule') }}">
+                        <i class="pe-7s-server"></i>
+                        <p>History Booking</p>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('partner.profile') }}">
                         <i class="pe-7s-user"></i>
                         <p>Mitra Profile</p>
@@ -36,7 +42,7 @@
                 </li>
                 <li>
                     <a href="{{ route('partner.portofolio') }}">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-photo-gallery"></i>
                         <p>Upload Portofolio</p>
                     </a>
                 </li>

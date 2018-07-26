@@ -26,4 +26,8 @@ class CustomerController extends Controller
     {
         return view('forgotpassword');
     }
+    public function privacy()
+    {
+        return view('privacy');
+    }
 }

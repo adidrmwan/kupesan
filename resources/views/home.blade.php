@@ -50,7 +50,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
                                            <select class="form-control" >
-                                                <option selected># (Hastag)</option>
+                                                <option selected>#(Hashtag)</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
@@ -120,7 +120,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>Foto Studio </h2>
+                    <h2>FOTO STUDIO </h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
@@ -190,7 +190,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>Fotografer</h2>
+                    <h2>FOTOGRAFER</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
@@ -263,7 +263,7 @@
             <div class="col-sm-12">
                 <div class="page-heading">
 
-                    <h2>MUA</h2>
+                    <h2>PENATA RIAS</h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
@@ -335,7 +335,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-heading">
-                            <h2>Kebaya</h2>
+                            <h2>KEBAYA</h2>
                             <hr class="heading-line" />
                         </div><!-- end page-heading -->
                         
@@ -463,7 +463,7 @@
                         <p>Kami akan menghubungkan anda dengan customer sehingga anda dapat meningkatkan kinerja bisnis anda.</p>
                         <div class="row">
                              <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                    <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                                    <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi PARTNER-KU </a>
                              </button>
                         </div><!-- end row -->
                     </div><!-- end abt-cnt-2-text -->

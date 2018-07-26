@@ -108,6 +108,10 @@ span.round-tab:hover {
     padding: 50px;
 }
 
+.left-side .label {
+    float: right;
+} 
+
 .wizard h3 {
     margin-top: 0;
 }

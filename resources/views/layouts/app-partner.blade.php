@@ -34,13 +34,12 @@
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
 
-  <!-- ... -->
-
-  <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" />
+  <!-- <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" /> -->
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">  
   
@@ -80,8 +79,7 @@
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src=" {{ URL::asset('partners/js/light-bootstrap-dashboard.js?v=1.4.0') }} "></script>
@@ -91,7 +89,7 @@
 
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
-    <script>
+<!--     <script>
       $(function () {
         $('#example1').DataTable()
         $('#example2').DataTable({
@@ -103,10 +101,16 @@
           'autoWidth'   : false
         })
       })
-    </script>
+    </script> -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#list-package').DataTable();
+        } );
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#booking-schedule').DataTable();
         } );
     </script>
 
@@ -125,13 +129,6 @@
         });
     </script>
 
-    <script type="text/javascript">
-        
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-
-    </script>
     <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {

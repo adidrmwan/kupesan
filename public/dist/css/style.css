@@ -1084,7 +1084,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 
 .search-tabs .tab-content .tab-pane input,
 .search-tabs .tab-content .tab-pane select{
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	font-size:13px;
 }
 
