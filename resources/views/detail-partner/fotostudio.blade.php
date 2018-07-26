@@ -20,7 +20,11 @@
                 <div class="row">
                         <div class="col-sm-4 col-md-4">
                             <div class="row">
-                              
+                              <div class="col-sm-12 col-md-12">
+                                    <div id="abt-cnt-2-img">
+                                        <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 50%; margin: 0 auto; float: none; display: block;position: relative;" />
+                                    </div>
+                              </div>
                                 <section id="thematic-offers" class="">
                                         <div class="col-sm-12">
                                             <div class="page-heading">
@@ -89,7 +93,7 @@
                                     <div class="row">
                                       @foreach($fasilitas as $listfasil)
                                       @if(!empty($listfasil->wifi))  
-                                      <div class="col-xs-4 col-md-4">
+                                      <div class="col-xs-6 col-md-4">
                                         <div style="text-align: center;" >
                                           <span ><i class="zmdi zmdi-wifi-alt zmdi-hc-5x "></i></span>
                                           <h5 style="text-align: center;">Wifi</h5>
@@ -98,7 +102,7 @@
                                       @else
                                       @endif
                                       @if(!empty($listfasil->toilet))
-                                      <div class="col-xs-4 col-md-4">
+                                      <div class="col-xs-6 col-md-4">
                                         <div style="text-align: center;" >
                                           <span><i class="zmdi zmdi-male-female zmdi-hc-5x "></i></span>
                                           <h5 style="text-align: center;">Kamar Mandi</h5>
@@ -107,7 +111,7 @@
                                       @else
                                       @endif
                                       @if(!empty($listfasil->parkir))
-                                      <div class="col-xs-4 col-md-4">
+                                      <div class="col-xs-6 col-md-4">
                                         <div style="text-align: center;">
                                           <span><i class="zmdi zmdi-local-parking zmdi-hc-5x "></i></span> 
                                           <h5 style="text-align: center;">Parkir</h5>
@@ -116,19 +120,19 @@
                                       @else
                                       @endif
                                       @if(!empty($listfasil->rganti))
-                                      <div class="col-xs-4 col-md-4">
+                                      <div class="col-xs-6 col-md-4">
                                         <div style="text-align: center;">
-                                          <span ><i class="fa fa-exchange fa-5x fa-fw"></i>Ruang Ganti</span>
-                                          <!-- <h5 style="text-align: center;">R. Ganti</h5>  -->
+                                          <span ><i class="fa fa-exchange fa-5x fa-fw"></i></span>
+                                          <h5 style="text-align: center;">Ruang Ganti</h5>
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else
                                       @endif
                                       @if(!empty($listfasil->ac))
-                                      <div class="col-xs-4 col-md-4">
+                                      <div class="col-xs-6 col-md-4">
                                         <div style="text-align: center;">
-                                          <span><i class="fa fa-snowflake-o fa-5x fa-fw"></i>AC</span>
-                                           
+                                          <span><i class="fa fa-snowflake-o fa-5x fa-fw"></i></span>
+                                           <h5 style="text-align: center;">AC</h5>
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else
@@ -152,8 +156,8 @@
                                               <div class="item">
                                                   <div class="main-block hotel-block ">
                                                       <div class="main-img img-hover">
-                                                          <a href="#">
-                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" alt= "Package Image" /> 
+                                                          <a target="_blank" rel="noopener noreferrer" href="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}">
+                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" alt= "Package Image" /> 
                                                           </a>
                                                           <div class="main-mask">
                                                             <ul class="list-unstyled list-inline offer-price-1">

@@ -49,13 +49,9 @@
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
-<<<<<<< HEAD
+
                                            <select class="form-control" >
                                                 <option selected>#(Hashtag)</option>
-=======
-                                           <select class="form-control" name="hastag">
-                                                <option selected># (Hastag)</option>
->>>>>>> c93a4762864db675c065ee43fc7dc7b8a3db31fe
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>
