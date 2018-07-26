@@ -8,7 +8,9 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 	<div class="dashboard-heading">
-                        <p>Hai Arsya, Selamat Datang di kupesan.id !</p>
+                        @foreach($user as $data)
+                        <p>Hai {{$data->name}}, Selamat Datang di kupesan.id !</p>
+                        @endforeach
                         <p>Semoga harimu indah</p>
                     </div><!-- end dashboard-heading -->
                 	
@@ -31,13 +33,14 @@
                                             <div class="row">                                                
                                                 <div class="col-sm-12 col-md-12  user-detail">
                                                     <ul class="list-unstyled">
-                                                        <li><span>Nama  :</span> <br>Arsya Darmawan</li>
-                                                        <li><span>Email :</span> <br> arsyadarmawan@gmail.com</li>
-                                                        <li><span>Phone :</span> <br> +6289 456 7890</li>
+                                                        @foreach($user as $data)
+                                                        <li><span>Nama  :</span> <br> {{$data->name}}</li>
+                                                        <li><span>Email :</span> <br> {{$data->email}}</li>
+                                                        @endforeach
                                                     </ul>
-                                                    <div class="col-sm-12 col-md-4" style="margin-top: 3%">
+                                                    <!-- <div class="col-sm-12 col-md-4" style="margin-top: 3%">
                                                         <button class="btn" data-toggle="modal" data-target="#edit-profile">Update Profile</button>    
-                                                    </div>
+                                                    </div> -->
                                                     
                                                 </div><!-- end columns -->                                        
                                             </div>                                            
@@ -53,74 +56,71 @@
                                         <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <tbody>
+                                                    @foreach($pesanan as $listpesanan)
                                                     <tr>
                                                         <td class="dash-list-icon booking-list-date">
-                                                            <div class="b-date"><p>18 October 2018</p></div>
+                                                            <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>Studio Kupesan</h3>
+                                                            <h3>{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li><span>Tanggal Pemesanan:</span> 26.12.2017 at 03:20 pm</li>
-                                                                <li><span>Detail Pesanan:</span> 3 to 6 People</li>
-                                                                <li><span>Nama Pemesan:</span> Arsya Darmawan</span></li>
+                                                                <li>Kode Booking :<span class="pull-right">XVSDGDS</span></li>
+                                                                <li>Nama Pemesan :<span class="pull-right">{{$listpesanan->booking_user_name}}</span></li>
+                                                                <li>Tanggal Pesan :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_date)) }}</span></li>
                                                             </ul>
-                                                        </td>
-                                                    </tr>
-                                                    
-                                                   <tr>
-                                                        <td class="dash-list-icon booking-list-date">
-                                                            <div class="b-date"><p>18 October 2018</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>Studio Kupesan</h3>
+                                                            <br>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li><span>Tanggal Pemesanan:</span> 26.12.2017 at 03:20 pm</li>
-                                                                <li><span>Detail Pesanan:</span> 3 to 6 People</li>
-                                                                <li><span>Nama Pemesan:</span> Arsya Darmawan</span></li>
+                                                                <li><span>Detail Pemesanan</span></li>
+                                                                <li>Jam Pesan :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time}}:00</span></li>
+                                                                <li>Tamu :<span class="pull-right">{{$listpesanan->booking_capacities}} Orang</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{$listpesanan->booking_total}}</span></li>
                                                             </ul>
                                                         </td>
+                                                        <td></td>
+                                                        <td></td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
-                                        </div><!-- end table-responsive -->
-                                    </div><!-- end booking-listings -->
+                                        </div>
+                                    </div>
                                 </div><!-- end dashboard-content -->
                             </div><!-- end dsh-booking -->
-                            
                             <div id="dsh-wishlist" class="tab-pane fade">
                             	<div class="dashboard-content wishlist">
                                     <h2 class="dash-content-title">Riwayat PesananKU</h2>
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
+                                                @foreach($riwayat as $data)
                                                 <tr class="list-content">
                                                     <td class="list-text wishlist-text">
-                                                        <h3>Studio Kupesan</h3>
+                                                        <h3>{{$data->partner_name}}</h3>
                                                         <p>
-                                                            <span>Nama Pemesan :</span> Arsya Darmawan <br>
-                                                            <span>Tanggal Pemesan :</span> 18 Oktober 2018
+                                                            <span>Nama Pemesan :</span> {{$data->booking_user_name}}<br>
+                                                            <span>Tanggal Pesan :</span> {{ date('d F Y', strtotime($data->booking_date)) }}
                                                         </p>
-                                                        <p class="order"><span>Total:</span> $548</p>
+                                                        <p class="order"><span>Total:</span> Rp {{$data->booking_total}}</p>
                                                     </td>
-                                                    
-                                                </tr>
-                                                
-                                                <tr class="list-content">
                                                     <td class="list-text wishlist-text">
-                                                        <h3>Studio Kupesan</h3>
-                                                        <p>
-                                                            <span>Nama Pemesan :</span> Arsya Darmawan <br>
-                                                            <span>Tanggal Pemesan :</span> 18 Oktober 2018
-                                                        </p>
-                                                        <p class="order"><span>Total:</span> $548</p>
+                                                        <br>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li><span>Detail Pemesanan</span></li>
+                                                                <li>Jam Pesan :<span class="pull-right">{{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00</span></li>
+                                                                <li>Tamu :<span class="pull-right">{{$data->booking_capacities}} Orang</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{$data->booking_total}}</span></li>
+                                                            </ul>
                                                     </td>
-                                                    
                                                 </tr>
+                                                @endforeach
                                              </tbody>
                                          </table>
                                     </div><!-- end table-responsive -->
                                 </div><!-- end dashboard-content -->
                             </div><!-- end dsh-wishlist -->
+                            </div>
                             
                             <div id="dsh-cards" class="tab-pane fade">
                             	<div class="dashboard-content my-cards">

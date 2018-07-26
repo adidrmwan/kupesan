@@ -3,26 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Booking;
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function dashboard()
     {
-        $this->middleware('auth:admin');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('admin');
+        $booking = Booking::all();
+        return view('superadmin.dashboard', ['booking' => $booking]);
     }
 }

@@ -9,7 +9,7 @@
             
             <div class="list-group panel">
             
-                <a href="home" class="list-group-item"> <span><i class="fa fa-home link-icon"></i></span>Home</a>
+                <a href="{{route('index')}}" class="list-group-item"> <span><i class="fa fa-home link-icon"></i></span>Home</a>
                  
                 @guest
                 

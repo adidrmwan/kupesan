@@ -155,11 +155,19 @@
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
                                                 <div class="space-right">
                                                     <div class="thank-you-note">
+                                                       @if($data->booking_status == 'paid')
                                                        <h3>Pemesananmu belum dikonfirmasi.</h3>
+                                                       @elseif($data->booking_status == 'confirmed')
+                                                       <h3>Pemesananmu sudah dikonfirmasi.</h3>
+                                                       @endif
                                                        <p>Terima kasih telah melakukan pemesanan melalui kupesan.id.<br>Mohon menunggu konfirmasi voucher pemesanan Anda selama kurang lebih 30 menit. Terimakasih :)</p>
-                                                    
+                                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                                        <a href="{{route('index')}}">
+                                                            <button type="submit" class="btn btn-orange pull-left" style="float: right;">Selesai</button>
+                                                        </a>
+                                                        </div> 
                                                    </div><!-- end thank-you-note -->
-                                                                               
+                                                                              
                                                    
                                                 </div><!-- end space-right -->
                                             </div><!-- end columns --> 
@@ -186,12 +194,16 @@
                                                                             <td></td>
                                                                         </tr> -->
                                                                         <tr>
+                                                                            <td>Nama Studio:</td>
+                                                                            <td>{{$data->pr_name}}</td>
+                                                                        </tr>
+                                                                        <tr>
                                                                             <td>Nama pemesan:</td>
                                                                             <td>{{$data->booking_user_name}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Tanggal pesan:</td>
-                                                                            <td>{{$data->booking_date}}</td>
+                                                                            <td>{{ date('d F Y', strtotime($data->booking_date)) }}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Jam Mulai:</td>
@@ -203,7 +215,14 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Tipe Paket</td>
-                                                                            <td>{{$data->pkg_category_them}} - {{$data->pkg_name_them}}</td>
+                                                                            @if($data->pkg_category_them = 'Thematic_Set')
+                                                                            <td>Thematic Set - {{$data->pkg_name_them}}</td>
+                                                                            @elseif($data->pkg_category_them = 'Special_Studio')
+                                                                            <td>Special Studio - {{$data->pkg_name_them}}</td>
+                                                                            @elseif($data->pkg_category_them = 'Ala_Carte')
+                                                                            <td>Room (Ala Carte) - {{$data->pkg_name_them}}</td>
+                                                                            @endif
+                                                                            
                                                                         </tr>
 
                                                                         <tr>
@@ -235,7 +254,7 @@
                         
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
                             <div id="abt-cnt-2-img">
-                                <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                                <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" alt="about-img" />
                             </div>
                         </div><!-- end columns -->
                         

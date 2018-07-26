@@ -46,8 +46,7 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
+          <!-- <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
@@ -55,7 +54,6 @@
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
                     <a href="#">
@@ -73,38 +71,47 @@
                       <i class="fa fa-users text-red"></i> 5 new members joined
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- User Account: style can be found in dropdown.less -->
+          @guest
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">Alexander Pierce</span>
-            </a>
             <ul class="dropdown-menu">
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <div class="pull-right" >
+                    <a href="#" class="btn btn-danger ">Sign out</a>
                   </div>
                 </div>
                 <!-- /.row -->
               </li>
             </ul>
           </li>
+          @else
+          <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                      {{ Auth::user()->name }} <span class="caret"></span>
+                  </a>
+
+                  <ul class="dropdown-menu">
+                      <li>
+                          <a href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                              Logout
+                          </a>
+
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                          </form>
+                      </li>
+                  </ul>
+              </li>
+
+          @endguest
         </ul>
       </div>
     </nav>

@@ -219,14 +219,14 @@
                           <span class="icon-bar"></span>                        
                         </button>
 
-                        <a href="home" class="navbar-brand">
+                        <a href="{{route('index')}}" class="navbar-brand">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->
                     
                     <div class="collapse navbar-collapse" id="myNavbar1">
                         <ul class="nav navbar-nav navbar-right navbar-search-link">
-                                <li><a href="home">Home</a></li>
+                                <li><a href="{{route('index')}}">Home</a></li>
                             @guest
                                 <li><a href="{{ route('login') }}" >Log in</a></li>
                                 <li><a href="{{ route('register') }}" >Daftar</a></li>

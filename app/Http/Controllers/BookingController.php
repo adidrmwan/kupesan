@@ -36,6 +36,12 @@ class BookingController extends Controller
 
         $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $bdte)->first();
         // dd($bookingcheck);
+        if(empty($bookingcheck)) {
+            $bookingcheck = new BookingCheck();
+            $bookingcheck->package_id = $package_id;
+            $bookingcheck->booking_date = $bdte;
+            $bookingcheck->save();
+        }
         
         return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte, 'bookingcheck' => $bookingcheck]);
     }
@@ -119,7 +125,7 @@ class BookingController extends Controller
         }
         $review = Booking::where('booking_id', $bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
                     ->get();
         return view('payment.review', ['bid' => $bid, 'review' => $review]);
     }
@@ -134,6 +140,7 @@ class BookingController extends Controller
         $booking->booking_status = 'on_pembayaran';
         $booking->save();
         $deadline = $booking->booking_at;
+
         $review = Booking::where('booking_id', $request->bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
@@ -186,7 +193,8 @@ class BookingController extends Controller
     { 
         $review = Booking::where('booking_id', $request->bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->join('partner', 'partner.user_id', '=', 'ps_package.user_id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, partner.pr_name, ((booking_end_time - booking_start_time) * booking_price) as total'))
                     ->get();
         return view('payment.voucher', ['review' => $review]);
     }

@@ -43,7 +43,7 @@
             <nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="home" class="navbar-brand navbar-payment">
+                        <a href="{{route('index')}}" class="navbar-brand navbar-payment">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->
@@ -167,7 +167,7 @@
                                             <div class="panel-body">
                                                 <div class="row">
                                                     <div class="col-sm-4 col-md-3 user-img">
-                                                        <img src="../dist/images/mua.png" class="img-responsive" alt="user-img" />
+                                                        <img src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" class="img-responsive" />
                                                     </div><!-- end columns -->
                                                     
                                                     <div class="col-sm-8 col-md-9  user-detail">
@@ -175,7 +175,7 @@
                                                         <hr class="style5">
                                                         <ul class="list-unstyled" >
                                                             <div>
-                                                                <div class="col-sm-12 col-md-4"><li><span>Tanggal</span> <br>23 Maret 2019</li></div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Tanggal</span> <br>{{ date('d F Y', strtotime($data->booking_date)) }}</li></div>
                                                                 <div class="col-sm-12 col-md-4"><li><span>Jam Mulai</span><br> {{$data->booking_start_time}}:00</li></div>
                                                                 <div class="col-sm-12 col-md-4"><li><span>Jam Selesai</span><br> {{$data->booking_end_time}}:00</li></div>
                                                             </div>
@@ -283,7 +283,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
                     <div id="abt-cnt-2-img">
-                        <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                        <img src="{{URL::asset('dist/images/logo-navbar.png')}}" class="img-responsive" alt="about-img" />
                     </div>
                 </div><!-- end columns -->
                 
