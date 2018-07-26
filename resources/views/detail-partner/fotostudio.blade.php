@@ -164,12 +164,10 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <form role="form" action="{{route('check.auth')}}" method="post" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                              <input type="text" name="id" value="{{$listthem->id}}" hidden="">
+                                                            <a href="{{route('check.auth', ['id' => $listthem->id])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
-                                                            </form>
+                                                            </a>
                                                             
                                                           </div><!-- end arrow -->
 
@@ -207,9 +205,13 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
-                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
-                                                            </button>
+                                                            <form role="form" action="{{route('check.auth')}}" method="post" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                              <input type="text" name="id" value="{{$listthem->id}}" hidden="">
+                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                                              </button>
+                                                            </form>
+                                                            
                                                           </div><!-- end arrow -->
 
                                                           <div class="main-title hotel-title">
@@ -248,9 +250,13 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <button class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;>
-                                                                <a href="#" style="color: white; text-decoration: none;">PESAN </a>
-                                                            </button>
+                                                            <form role="form" action="{{route('check.auth')}}" method="post" enctype="multipart/form-data">
+                                                            {{ csrf_field() }}
+                                                              <input type="text" name="id" value="{{$listthem->id}}" hidden="">
+                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                                              </button>
+                                                            </form>
+                                                            
                                                           </div><!-- end arrow -->
 
                                                           <div class="main-title hotel-title">

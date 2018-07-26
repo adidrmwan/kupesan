@@ -320,7 +320,9 @@
                                                     <div class="col-sm-12 col-md-12  user-detail">
                                                         <h3><b>Kupesan Studio</b></h3>
                                                         <hr class="style5">
+
                                                         <div id="js-clock">
+                                                          <div class="box" hidden=""><span id="js-clock-days">00</span>Hours</div>
                                                           <div class="box"><span id="js-clock-hours">00</span>Hours</div>
                                                           <div class="box"><span id="js-clock-minutes">00</span>Minutes</div>
                                                           <div class="box"><span id="js-clock-seconds">00</span>Seconds</div>
@@ -346,7 +348,7 @@
                                     </div><!-- end checkbox -->
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                         <button type="submit" class="btn btn-orange" style="float: right;">Konfirmasi Pembayaran</button>
-                                        <input type="text" name="bid" value="{{$bid}}">
+                                        <input type="text" name="bid" value="{{$bid}}" hidden="">
                                     </div>
                                 </form>
                             </div>
@@ -416,17 +418,17 @@
 </section><!-- end footer -->
 
         
-        <!-- Page Scripts Starts -->
-        <script src="{{URL::asset('dist/js/jquery.min.js')}} "></script>
-        <script src="{{URL::asset('dist/js/jquery.colorpanel.js')}} "></script>
-        <script src="{{URL::asset('dist/js/bootstrap.min.js')}} "></script>
-        <script src="{{URL::asset('dist/js/bootstrap-datepicker.js')}} "></script>
-        <script src="{{URL::asset('dist/js/custom-navigation.js')}} "></script>
-        <script src="{{URL::asset('dist/js/custom-date-picker.js')}} "></script>
-        <!-- Page Scripts Ends -->
-        <script type="text/javascript">
-            (function() {
-  var deadline = '2018-07-27 16:10';
+
+<script src="{{URL::asset('dist/js/jquery.min.js')}} "></script>
+<script src="{{URL::asset('dist/js/jquery.colorpanel.js')}} "></script>
+<script src="{{URL::asset('dist/js/bootstrap.min.js')}} "></script>
+<script src="{{URL::asset('dist/js/bootstrap-datepicker.js')}} "></script>
+<script src="{{URL::asset('dist/js/custom-navigation.js')}} "></script>
+<script src="{{URL::asset('dist/js/custom-date-picker.js')}} "></script>
+
+<script type="text/javascript">
+(function() {
+  var deadline = '2018-07-25 23:10';
 
   function pad(num, size) {
       var s = "0" + num;
@@ -466,11 +468,42 @@
   minutes.innerHTML = pad(t.minutes, 2);
   seconds.innerHTML = pad(t.seconds, 2);
   }
-    }, 1000);
+    }, 600);
   }
 
   clock('js-clock', deadline);
 })();
         </script>
+
+<script type="text/javascript">
+            function CountDown(duration, display) {
+            if (!isNaN(duration)) {
+                var timer = duration, minutes, seconds;
+                
+              var interVal=  setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    $(display).html("<b>" + minutes + "m : " + seconds + "s" + "</b>");
+                    if (--timer < 0) {
+                        timer = duration;
+                       SubmitFunction();
+                       $('#display').empty();
+                       clearInterval(interVal)
+                    }
+                    },600);
+            }
+        }
+        
+        function SubmitFunction(){
+       $('form').submit();
+        
+        }
+    
+         CountDown(300,$('#display'));
+</script>
     </body>
 </html>

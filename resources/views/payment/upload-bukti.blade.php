@@ -184,7 +184,8 @@
                                             <div class="panel-heading"><h4>Upload Bukti</h4></div>
                                             <div class="panel-body">
                                                 <div class="row"> 
-                                                    <form>                                                   
+                                                    <form role="form" action="{{ route('upload.bukti') }}" method="post" enctype="multipart/form-data">
+                                                    {{ csrf_field() }}                                                   
                                                         <div class="col-sm-12 col-md-12  user-detail">
                                                             <h4><b>Silahkan Mengupload Bukti Transfer</b></h4>
                                                             <hr class="style5">
@@ -196,13 +197,14 @@
                                                                             Browse... <input type="file" id="imgInp">
                                                                         </span>
                                                                     </span>
-                                                                    <input type="text" class="form-control" readonly>
+                                                                    <input type="text" class="form-control" name="bukti_pembayaran" readonly>
                                                                 </div>
                                                                 <img id='img-upload'/>
                                                             </div>
                                                             <div>
                                                                 <button type="submit" class="btn btn-orange" style="color: white; max-width: 40%; float: none;display: block;position: relative;margin: 0 auto;">Upload</button>
                                                             </div>
+                                                            <input type="text" name="bid" value="{{$bid}}" hidden="">
                                                         </div><!-- end columns -->
                                                     </form>
                                                 </div><!-- end row -->
