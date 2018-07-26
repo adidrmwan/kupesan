@@ -55,6 +55,13 @@
     <!-- Slick Stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick-theme.css') }}">
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#date").datepicker({
+               dateFormat: "dd.mm.yy"
+            });
+        });
+    </script>
     <style type="text/css">
 
 .overlay {
@@ -173,6 +180,10 @@
     <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
     <!-- Scripts -->
     <script src="{{ URL::asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+        var dateControl = document.querySelector('input[type="date"]');
+        dateControl.value = '2017-06-01';
+    </script>
     @yield('script')
 </body>
 </html>

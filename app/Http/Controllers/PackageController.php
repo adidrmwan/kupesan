@@ -19,8 +19,10 @@ class PackageController extends Controller
     public function AddPackage(Request $request)
     {
         $user = Auth::user();
+        $partner = Partner::where('user_id', $user->id)->first();
         $package = new PSPkg();
         $package->user_id = $user->id;
+        $package->partner_name = $partner->pr_name;
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');
         $package->pkg_desc_them = $request->input('pkg_desc_them');
@@ -36,15 +38,15 @@ class PackageController extends Controller
         if ($request->hasFile('pkg_img_them')) {
             //Found existing file then delete
             $foto_new = $package->pkg_img_them;
-            // if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
-            //     File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
-            // }
-            // if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
-            //     File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
-            // }
-            // if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
-            //     File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
-            // }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
 
             $foto = $request->file('pkg_img_them');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();

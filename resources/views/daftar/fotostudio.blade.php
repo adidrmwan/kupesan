@@ -5,11 +5,10 @@
 <section class="innerpage-wrapper">
     <div id="search-result-page" class="top-section-padding">
         <div class="container">
-            <div class="row">
+<!--             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
                     <div class="page-search-form">
                         <h2>Studio <span>Foto <i class="fa fa-building"></i></span></h2>
-                        
                         <form class="pg-search-form">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -17,23 +16,21 @@
                                         <label><span><i class="fa fa-calendar"></i></span>Tanggal Foto</label>
                                          <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="tanggal_pesan">
                                     </div>
-                                </div><!-- end columns -->
+                                </div>
                                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label><span><i class="fa fa-hashtag"></i></span>Hashtag</label>
                                         <input type="text" class="form-control" placeholder="hashtag"/> 
                                     </div>
-                                </div><!-- end columns -->
+                                </div>
                                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="margin-top: 1%;">
                                     <button class="btn btn-orange">Ganti Pencarian</button>
                                 </div>
-                            </div><!-- end row -->
-
+                            </div>
                         </form>
-                         
-                    </div><!-- end page-search-form -->
+                    </div>
                 </div>                    
-            </div><!-- end row -->
+            </div> -->
         </div><!-- end container -->
     </div><!-- end search-result-page -->
 </section><!-- end innerpage-wrapper -->
@@ -44,7 +41,7 @@
             <div class="row">        	
                 
                 <div class="col-xs-12 col-sm-12 col-md-4 side-bar left-side-bar" >
-                    <div class="col-xs-12 col-sm-12 col-md-12">            
+                    <!-- <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
                             <h3>Sort Result</h3>
                             <div class="panels-group padding-price">
@@ -74,7 +71,7 @@
 										      <span>Lowest Price</span>
 										    </label>
 									    </div>
-                                    </div><!-- end panel-collapse -->
+                                    </div>
                                     <div class="panel-body text-left">
                                         <div class="col-md-6">
                                            <label for="rdo-3" class="btn-radio">
@@ -98,25 +95,33 @@
                                               <span>Z - A</span>
                                             </label>
                                         </div>
-                                    </div><!-- end panel-collapse -->
-                                </div><!-- end panel-default -->    
-                                
-                            </div><!-- end panel-group -->
-                        </div><!-- end side-bar-block -->
-                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
-                            <h3>Filter Result</h3>
+                            <h3>Filter Price Range</h3>
+                            <br>
                             <form>
                                 <div class="padding-price">
-                                    <div class="padding-price filter-block">
-                                        <input type="text" class="form-control" placeholder="Harga Minimal" name="price1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Min Price</label>
+                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="10000" required>
+                                            </div>        
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Min Price</label>
+                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="pkg_price_them" value="10000" required>
+                                            </div> 
+                                        </div>
                                     </div>
                                     <div class="padding-price filter-block">
-                                        <input type="text" class="form-control" placeholder="Harga Maksimal" name="price2">
-                                    </div>
-                                    <div class="padding-price filter-block">
-                                        <button class="btn btn-default" style="width: 100%;">Submit</button>
+                                        <button class="btn btn-default" style="width: 100%;">Filter</button>
                                     </div>
                                 </div>
                                 
@@ -135,19 +140,14 @@
                                 <a href="hotel-detail-left-sidebar.html">
                                     <img class="img-responsive" src="{{ asset('logo/'.$list->pr_logo.'.png')  }}" alt= "Logo Mitra" />
                                 </a>
-                                <div class="main-mask">
-                                    <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price"><span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                    </ul>
-                                </div><!-- end main-mask -->
                             </div><!-- end h-list-img -->
                             
                             <div class="list-info h-list-info">
                                 <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{$list->pr_name}}</a></h3>
-                                <p class="block-minor">From: Scotland</p>
+                                <p class="block-minor">Price : <b>Rp {{$list->min_price}}</b></p>
                                 <form role="form" action="{{route('detail.fotostudio')}}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                    <input type="text" name="user_id" value="{{$list->user_id}}" hidden="">
+                                    <input type="text" name="user_id" value="{{$list->user_id, $booking_date}}" hidden="">
                                     <button type="submit" class="btn btn-orange btn-lg pull-right">View More</button>
                                 </form>
                             </div>
@@ -155,7 +155,7 @@
                     </div>
                     @endforeach
 
-                    <div class="pages">
+<!--                     <div class="pages">
                         <ol class="pagination">
                             <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
                             <li class="active"><a href="#">1</a></li>
@@ -164,7 +164,7 @@
                             <li><a href="#">4</a></li>
                             <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
                         </ol>
-                    </div><!-- end pages -->
+                    </div><!-- end pages --> -->
                 </div><!-- end columns -->
 
             </div><!-- end row -->

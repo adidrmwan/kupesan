@@ -42,14 +42,14 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group left-icon " id="datetimepicker">
-                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="tanggal_pesan">
+                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="booking_date" data-date-format="yyyy-mm-dd">
                                             <i class="fa fa-calendar"></i>
                                         </div><!-- end row -->                              
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon">
-                                           <select class="form-control" >
+                                           <select class="form-control" name="hastag">
                                                 <option selected># (Hastag)</option>
                                                 <option>Kupesan</option>
                                                 <option>Kupesan</option>

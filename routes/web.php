@@ -33,6 +33,11 @@ Route::get('/', function () {
 
 })->name('index');
 
+//Route Search Fotostudio di Home
+Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
+Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+
+
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
@@ -43,11 +48,12 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 	Route::get('/', function(){
 		return view('home');
 	})->name('user.dashboard');
-    Route::post('/booking/0', 'BookingController@checkAuth')->name('check.auth');
+    Route::get('/booking/0', 'BookingController@checkAuth')->name('check.auth');
     Route::post('/booking/1', 'BookingController@showBooking')->name('form.pesan');
     Route::post('/booking/2', 'BookingController@showReview')->name('form.booking');
     Route::post('/booking/3', 'BookingController@showBayar')->name('form.bayar');
-    Route::post('/booking/4', 'BookingController@showKonfirmasi')->name('form.konfirmasi');
+    Route::post('/booking/4', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
+    Route::post('/booking/5', 'BookingController@uploadBukti')->name('upload.bukti');
 });
 
 // Role untuk user yang partner
@@ -110,9 +116,6 @@ Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegis
 Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
 
-//Route Search Fotostudio di Home
-Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
-Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 
 //Route Booking
 
