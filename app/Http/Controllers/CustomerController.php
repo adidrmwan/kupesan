@@ -2,13 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Auth;
+use App\User;
+use App\Booking;
 class CustomerController extends Controller
 {
     public function dashboard()
     {
-        return view('user.dashboard');
+        $user_id = Auth::user()->id;
+        $user = User::where('id', $user_id)->select('name', 'email')->get();
+        // dd($user);
+
+        $pesanan = Booking::where('booking.user_id', $user_id)
+                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->where('booking.booking_status', '=', 'paid')
+                    ->get();
+
+        $riwayat = Booking::where('booking.user_id', $user_id)
+                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->where('booking.booking_status', '=', 'done')
+                    ->get();
+        // dd($pesanan);
+        return view('user.dashboard', ['user' => $user, 'pesanan' => $pesanan, 'riwayat' => $riwayat]);
     }
     public function studioresult()
     {

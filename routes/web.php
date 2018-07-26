@@ -39,7 +39,7 @@ Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('de
 
 
 // Route untuk user yang admin
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
+Route::group(['prefix' => '1', 'middleware' => ['auth','role:superadmin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
 });
 
@@ -54,6 +54,8 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     Route::post('/booking/3', 'BookingController@showBayar')->name('form.bayar');
     Route::post('/booking/4', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
     Route::post('/booking/5', 'BookingController@uploadBukti')->name('upload.bukti');
+    Route::get('/voucher', 'BookingController@voucher')->name('voucher');
+    Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
 });
 
 // Role untuk user yang partner
@@ -127,7 +129,7 @@ Route::get('/booking', 'BookingController@booking')->name('booking');
 Route::get('/review', 'BookingController@review')->name('review');
 Route::get('/bayar', 'BookingController@bayar')->name('bayar');
 Route::get('/proses', 'BookingController@proses')->name('proses');
-Route::get('/voucher', 'BookingController@voucher')->name('voucher');
+
 
 Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
 Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');

@@ -47,7 +47,7 @@
             <nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="home" class="navbar-brand navbar-payment">
+                        <a href="{{route('index')}}" class="navbar-brand navbar-payment">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->
@@ -95,7 +95,7 @@
             </nav><!-- end navbar -->
         </div>
                
-        
+@foreach($review as $data)
         <!--===== INNERPAGE-WRAPPER ====-->
         <section class="innerpage-wrapper">
         	<div id="booking" class="innerpage-section-padding">
@@ -155,11 +155,19 @@
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
                                                 <div class="space-right">
                                                     <div class="thank-you-note">
-                                                       <h3>Pemesananmu telah dikonfirmasi.</h3>
-                                                       <p>Terima kasih telah melakukan pemesanan melalui kupesan.id :)<br>Selamat menikmati</p>
-                                                    
+                                                       @if($data->booking_status == 'paid')
+                                                       <h3>Pemesananmu belum dikonfirmasi.</h3>
+                                                       @elseif($data->booking_status == 'confirmed')
+                                                       <h3>Pemesananmu sudah dikonfirmasi.</h3>
+                                                       @endif
+                                                       <p>Terima kasih telah melakukan pemesanan melalui kupesan.id.<br>Mohon menunggu konfirmasi voucher pemesanan Anda selama kurang lebih 30 menit. Terimakasih :)</p>
+                                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                                        <a href="{{route('index')}}">
+                                                            <button type="submit" class="btn btn-orange pull-left" style="float: right;">Selesai</button>
+                                                        </a>
+                                                        </div> 
                                                    </div><!-- end thank-you-note -->
-                                                                               
+                                                                              
                                                    
                                                 </div><!-- end space-right -->
                                             </div><!-- end columns --> 
@@ -181,29 +189,45 @@
                                                             <div class="table-responsive">
                                                                 <table class="table">
                                                                     <tbody>
-                                                                        <tr>
+                                                                        <!-- <tr>
                                                                             <td>Kode pesanan:</td>
-                                                                            <td>000-111-222</td>
+                                                                            <td></td>
+                                                                        </tr> -->
+                                                                        <tr>
+                                                                            <td>Nama Studio:</td>
+                                                                            <td>{{$data->pr_name}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Nama pemesan:</td>
-                                                                            <td>James</td>
+                                                                            <td>{{$data->booking_user_name}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Tanggal pesan:</td>
-                                                                            <td>17 November 2018</td>
+                                                                            <td>{{ date('d F Y', strtotime($data->booking_date)) }}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Jam Mulai:</td>
-                                                                            <td>19.00</td>
+                                                                            <td>{{$data->booking_start_time}}:00</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Jam Selesai:</td>
-                                                                            <td>21.00</td>
+                                                                            <td>{{$data->booking_end_time}}:00</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Studio tipe</td>
-                                                                            <td>Thematic</td>
+                                                                            <td>Tipe Paket</td>
+                                                                            @if($data->pkg_category_them = 'Thematic_Set')
+                                                                            <td>Thematic Set - {{$data->pkg_name_them}}</td>
+                                                                            @elseif($data->pkg_category_them = 'Special_Studio')
+                                                                            <td>Special Studio - {{$data->pkg_name_them}}</td>
+                                                                            @elseif($data->pkg_category_them = 'Ala_Carte')
+                                                                            <td>Room (Ala Carte) - {{$data->pkg_name_them}}</td>
+                                                                            @endif
+                                                                            
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>Kapasitas</td>
+                                                                            <td>{{$data->booking_capacities}}</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -221,7 +245,7 @@
             </div><!-- end flight-booking -->
         </section><!-- end innerpage-wrapper -->
         
-        
+@endforeach
         <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
         
             <div id="footer-top" class="banner-padding ftr-top-grey ftr-text-white">
@@ -230,7 +254,7 @@
                         
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
                             <div id="abt-cnt-2-img">
-                                <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                                <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" alt="about-img" />
                             </div>
                         </div><!-- end columns -->
                         

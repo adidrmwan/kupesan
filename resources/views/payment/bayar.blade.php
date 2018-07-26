@@ -93,7 +93,7 @@
             <nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="home" class="navbar-brand navbar-payment">
+                        <a href="{{route('index')}}" class="navbar-brand navbar-payment">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->
@@ -367,7 +367,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
                     <div id="abt-cnt-2-img">
-                        <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                        <img src="{{URL::asset('dist/images/logo-navbar.png')}}" class="img-responsive" alt="about-img" />
                     </div>
                 </div><!-- end columns -->
                 
@@ -428,7 +428,7 @@
 
 <script type="text/javascript">
 (function() {
-  var deadline = '2018-07-25 23:10';
+  var deadline = {!! json_encode($deadline) !!};
 
   function pad(num, size) {
       var s = "0" + num;

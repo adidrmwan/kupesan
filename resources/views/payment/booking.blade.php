@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -37,7 +38,7 @@
             <nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="home" class="navbar-brand navbar-payment">
+                        <a href="{{route('index')}}" class="navbar-brand navbar-payment">
                             <img src=" {{ URL::asset('dist/images/logo-navbar.png') }} " >
                         </a>
                     </div><!-- end navbar-header -->
@@ -180,7 +181,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label>Email Pemesan</label>
-                                                            <input type="text" class="form-control" placeholder="Nama Pemesan" name="booking_user_email" required="">
+                                                            <input type="email" class="form-control" placeholder="Nama Pemesan" name="booking_user_email" required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
@@ -311,7 +312,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
                     <div id="abt-cnt-2-img">
-                        <img src="dist/images/logo-navbar.png" class="img-responsive" alt="about-img" />
+                        <img src="{{URL::asset('dist/images/logo-navbar.png')}}" class="img-responsive" alt="about-img" />
                     </div>
                 </div><!-- end columns -->
                 

@@ -168,7 +168,7 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <a href="{{route('check.auth', ['id' => $listthem->id])}}">
+                                                            <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
                                                             </a>
@@ -209,12 +209,10 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <form role="form" action="{{route('check.auth')}}" method="post" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                              <input type="text" name="id" value="{{$listthem->id}}" hidden="">
+                                                            <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
-                                                            </form>
+                                                            </a>
                                                             
                                                           </div><!-- end arrow -->
 
@@ -254,12 +252,10 @@
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <form role="form" action="{{route('check.auth')}}" method="post" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                              <input type="text" name="id" value="{{$listthem->id}}" hidden="">
+                                                            <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
-                                                            </form>
+                                                            </a>
                                                             
                                                           </div><!-- end arrow -->
 

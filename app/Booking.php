@@ -23,6 +23,7 @@ class Booking extends Model
         'booking_price',
         'booking_total',
         'booking_status',
+        'kode_booking',
     ];
 
     public function users()
