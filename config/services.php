@@ -46,4 +46,8 @@ return [
         'client_secret' => env('FACEBOOK_SECRET'),
         'redirect' => env('FACEBOOK_URL'),
     ],
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+    ],
 ];
