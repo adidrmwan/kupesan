@@ -9,6 +9,7 @@ use App\PSPkg;
 use File;
 use Image;
 use Auth;
+use App\Partner;
 class PackageController extends Controller
 {
     public function ShowAddPackage()

@@ -55,7 +55,7 @@
 
     <div class="main-panel">
 
-        @include('partner.layouts.nav-form')
+        @include('partner.layouts.nav')
 
         @yield('content')
 

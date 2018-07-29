@@ -35,12 +35,13 @@ class PartnerController extends Controller
     {
         $user = Auth::user();
         $email = $user->email;
+        $phone_number = $user->phone_number;
         $type = DB::table('partner_type')->select('*')->get();
         $partner = DB::table('partner')
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
-        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type]);        
+        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type, 'phone_number' => $phone_number]);        
         
     }
 
@@ -64,6 +65,29 @@ class PartnerController extends Controller
         $partner->status = '0';
         $partner->save();
 
+        $logo = Partner::where('user_id', $user->id)->first();
+        $logo->pr_logo = $logo->id . '_' . $logo->pr_type . '_' . $logo->pr_name;
+        $logo->save();
+
+        if ($request->hasFile('pr_logo')) {
+            //Found existing file then delete
+            $foto_new = $logo->pr_logo;
+            if( File::exists(public_path('/logo/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/logo/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/logo/' . $foto_new .'.png' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.png' ));
+            }
+            $foto = $request->file('pr_logo');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/logo/' . $foto_name ) );
+            $user = Auth::user();
+            $logo = Partner::where('user_id', $user->id)->first();
+            $logo->save();
+        }
         return redirect()->intended(route('partner.dashboard')); 
     }
 

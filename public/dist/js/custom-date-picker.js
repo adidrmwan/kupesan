@@ -43,7 +43,7 @@
 	}).data('datepicker');
 	
 	date3.datepicker({
-		format: 'dd-mm-yyyy'
+		format: 'yyyy-mm-dd'
 	});
 			
 })(jQuery);

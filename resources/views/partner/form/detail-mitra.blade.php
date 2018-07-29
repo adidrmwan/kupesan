@@ -9,7 +9,7 @@
                   <form role="form" action="{{ route('partner.profile.form.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   {{ csrf_field() }}
                   <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-7">
                         <div class="header">
                             <h4 class="title">Informasi Utama</h4>
                         </div>
@@ -116,54 +116,7 @@
                                         </div>
                                     </div>
                                 </div>    
-                        </div>      
-                      </div>
-                      <div class="col-md-4">
-                        <div class="header">
-                            <h4 class="title">Kontak</h4>
                         </div>
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="text" class="form-control" placeholder="Tuliskan alamat usaha"
-                                              disabled="" value="{{$email}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Telepon/HP (1)<small><b style="color: red;"> *</b></small></label>
-                                        <div class="input-group mb-3">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                          </div>
-                                          <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" aria-describedby="basic-addon1" name="pr_phone" required>
-                                          <div class="invalid-feedback">
-                                              Silahkan isi no. telepon aktif.
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Telepon/HP (2)</label>
-                                        <div class="input-group mb-3">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                          </div>
-                                          <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" name="pr_phone2" aria-describedby="basic-addon1">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>      
-                      </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-8">
                         <div class="header">
                             <h4 class="title">Alamat</h4>
                         </div>
@@ -224,8 +177,60 @@
                                         </div>
                                     </div>
                                 </div> 
-                                <button type="submit" class="btn btn-block btn-info pull-right">Update</button>
-                            <div class="clearfix"></div>  
+                                 
+                        </div>       
+                      </div>
+                      <div class="col-md-5">
+                        <div class="header">
+                            <h4 class="title">Kontak</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="text" class="form-control" placeholder="Tuliskan alamat usaha"
+                                              disabled="" value="{{$email}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Telepon/HP (1)<small><b style="color: red;"> *</b></small></label>
+                                          <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" aria-describedby="basic-addon1" name="pr_phone" value="{{$phone_number}}" required>
+                                          <div class="invalid-feedback">
+                                              Silahkan isi no. telepon aktif.
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Telepon/HP (2)</label>
+                                          <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" name="pr_phone2" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header">
+                            <h4 class="title">Kontak</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="file-loading">
+                                        <input id="file-0a" class="file" type="file" name="pr_logo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>      
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="content">
+                            <button type="submit" class="btn btn-block btn-info pull-right">Submit</button>
+                            <div class="clearfix"></div> 
                         </div>  
                     </div>
                   </div>
