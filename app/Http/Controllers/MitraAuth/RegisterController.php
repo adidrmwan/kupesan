@@ -20,9 +20,14 @@ class RegisterController extends Controller
 
     protected $redirectPath = '/';
 
+    public function showLoginForm()
+    {
+        return view('auth.login-partner');
+    }
+
 	public function showRegistrationForm()
     {
-        return view('auth.register-mitra');
+        return view('auth.register-partner');
     }
 
 

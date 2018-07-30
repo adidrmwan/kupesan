@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-sm-12">                            
                             <div class="custom-form custom-form-fields">
-                                <h3>Register Partner</h3>
+                                <h3>Register Partner-Ku</h3>
                                 <form class="form-horizontal" method="POST" action="{{route('mitra.daftar.submit')}}">
                                 {{ csrf_field() }}
                                     <div class="row">
@@ -120,7 +120,7 @@
                                 </form>
                                 
                                 <div class="other-links">
-                                    <p class="link-line">Already Have An Account ? <a href="{{route('login')}}">LOGIN HERE</a></p>
+                                    <p class="link-line">Already Have An Account ? <a href="{{route('mitra.login')}}">Login Here</a></p>
                                     <p>By registering, I agree with Terms & Conditions and Privacy Policy of Kupesan.</p>
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->

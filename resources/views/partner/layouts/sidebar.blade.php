@@ -22,6 +22,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @if(!empty($partner->pr_name))
                 <li>
                     <a href="{{ route('booking.schedule') }}">
                         <i class="pe-7s-note2"></i>
@@ -71,6 +72,8 @@
                         </li>
                     </ul>
                 </li>
+                @else
+                @endif
                 
             </ul>
         </div>

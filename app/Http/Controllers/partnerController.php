@@ -8,6 +8,7 @@ use Auth;
 use App\Partner;
 use App\Fasilitas;
 use App\PSPkg;
+use App\Provinces;
 use File;
 use Image;
 
@@ -33,16 +34,41 @@ class PartnerController extends Controller
 
     public function showDetailMitra()
     {
+
         $user = Auth::user();
         $email = $user->email;
+        $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
         $phone_number = $user->phone_number;
         $type = DB::table('partner_type')->select('*')->get();
         $partner = DB::table('partner')
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
-        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type, 'phone_number' => $phone_number]);        
+        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type, 'phone_number' => $phone_number],compact('provinces') );        
         
+    }
+
+    public function provinces(){
+      $provinces = Provinces::all();
+      return view('indonesia', compact('provinces'));
+    }
+
+    public function regencies(){
+      $provinces_id = Input::get('province_id');
+      $regencies = Regencies::where('province_id', '=', $provinces_id)->where('name', 'KOTA SURABAYA')->get();
+      return response()->json($regencies);
+    }
+
+    public function districts(){
+      $regencies_id = Input::get('regencies_id');
+      $districts = Districts::where('regency_id', '=', $regencies_id)->get();
+      return response()->json($districts);
+    }
+
+    public function villages(){
+      $districts_id = Input::get('districts_id');
+      $villages = Villages::where('district_id', '=', $districts_id)->get();
+      return response()->json($villages);
     }
 
     public function submitDetailMitra(Request $request)
