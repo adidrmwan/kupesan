@@ -22,9 +22,9 @@
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
                     <h3 class="footer-heading">Resources</h3>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('login') }}">Log-In</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
-                        <li><a href="{{route('jadi.mitra')}}">Daftar Mitra</a></li>
+                        <li><a href="{{route('jadi.mitra')}}">Daftar PARTNER-KU</a></li>
                     </ul>
                 </div><!-- end columns -->
 

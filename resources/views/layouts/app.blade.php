@@ -126,8 +126,8 @@
                         <ul class="nav navbar-nav navbar-right navbar-search-link">
                                 <li><a href="{{route('index')}}">Home</a></li>
                             @guest
-                                <li><a href="{{ route('login') }}" >Log in</a></li>
-                                <li><a href="{{ route('register') }}" >Daftar</a></li>
+                                <li><a href="{{ route('login') }}" >Log-In</a></li>
+                                <li><a href="{{ route('register') }}" >Register</a></li>
                             @else
 <!--                                 <li> <a href="{{ route('register') }}" >Pesanan-KU</a></li> -->
                                 <li class="dropdown">
@@ -157,7 +157,7 @@
                                 <li>
                                       
                                     <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi PARTNER-KU </a>
+                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">PARTNER-KU </a>
                                     </button>
                                 </li>
                                 <li></li>

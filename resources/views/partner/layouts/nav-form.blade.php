@@ -6,19 +6,10 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="nav justify-content-center">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Detail Profil Mitra</a>
+              <a class="nav-link" href="#">Detail Profil Mitra</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Disabled</a>
-            </li>
-            <li class="nav-item">
-                  <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                       <p>Log out</p>
                   </a>
 
