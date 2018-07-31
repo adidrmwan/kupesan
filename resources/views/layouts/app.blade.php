@@ -105,8 +105,13 @@
        <div class="loader"></div>
        <!--======== SEARCH-OVERLAY =========-->       
         <div class="header-absolute">
+<<<<<<< HEAD
             @include('layouts.nav')
 
+=======
+            
+            @include('layouts.nav')
+>>>>>>> fab599cc4f1863ee34e5897f33f3c811097390c0
         </div>   
 
         @include('layouts.sidebar')

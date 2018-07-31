@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group left-icon ">
-                                            <select  class="form-control" name="theme" required>
+                                            <select  class="form-control" name="theme" >
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="1">1:00</option><option value="2">2:00</option>
                                                 <option value="3">3:00</option><option value="4">4:00</option>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group left-icon ">
-                                            <select  class="form-control" name="theme" required>
+                                            <select  class="form-control" name="theme" >
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="0">SURABAYA</option>
                                             </select>
