@@ -26,11 +26,6 @@
                 
                     <ul class="nav nav-tabs center-tabs">
                         <li class="active"><a href="#studio" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Foto Studio</span></a></li>
-<<<<<<< HEAD
-                        <li><a href="#fotografer" data-toggle="tab"><span><i class="fa fa-camera"></i></span><span class="st-text">Fotografer</span></a></li>
-                        <li><a href="#mua" data-toggle="tab"><span><i class="fa fa-certificate"></i></span><span class="st-text">PENATA RIAS</span></a></li>
-=======
->>>>>>> 7f40de91e09bdc622802eb89b1e8e588ef6adb9f
                         <li><a href="#kebaya" data-toggle="tab"><span><i class="fa fa-female"></i></span><span class="st-text">Kebaya</span></a></li>
                         <li><a href="#fotografer" data-toggle="tab"><span><i class="fa fa-camera"></i></span><span class="st-text">Fotografer</span></a></li>
                         <li><a href="#mua" data-toggle="tab"><span><i class="fa fa-certificate"></i></span><span class="st-text">Penata Rias</span></a></li>
@@ -47,7 +42,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group left-icon ">
-                                            <select  class="form-control" name="theme" required>
+                                            <select  class="form-control" name="theme" >
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="1">1:00</option><option value="2">2:00</option>
                                                 <option value="3">3:00</option><option value="4">4:00</option>
@@ -59,7 +54,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group left-icon ">
-                                            <select  class="form-control" name="theme" required>
+                                            <select  class="form-control" name="theme" >
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="0">SURABAYA</option>
                                             </select>
