@@ -26,9 +26,14 @@
                 
                     <ul class="nav nav-tabs center-tabs">
                         <li class="active"><a href="#studio" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Foto Studio</span></a></li>
+<<<<<<< HEAD
                         <li><a href="#fotografer" data-toggle="tab"><span><i class="fa fa-camera"></i></span><span class="st-text">Fotografer</span></a></li>
                         <li><a href="#mua" data-toggle="tab"><span><i class="fa fa-certificate"></i></span><span class="st-text">PENATA RIAS</span></a></li>
+=======
+>>>>>>> 7f40de91e09bdc622802eb89b1e8e588ef6adb9f
                         <li><a href="#kebaya" data-toggle="tab"><span><i class="fa fa-female"></i></span><span class="st-text">Kebaya</span></a></li>
+                        <li><a href="#fotografer" data-toggle="tab"><span><i class="fa fa-camera"></i></span><span class="st-text">Fotografer</span></a></li>
+                        <li><a href="#mua" data-toggle="tab"><span><i class="fa fa-certificate"></i></span><span class="st-text">Penata Rias</span></a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -41,31 +46,35 @@
                                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="form-group left-icon " id="datetimepicker">
-                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="booking_date" data-date-format="yyyy-mm-dd" required="">
-                                            <i class="fa fa-calendar"></i>
-                                        </div><!-- end row -->                              
-                                    </div><!-- end columns -->
-                                    
-                                    <!-- <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="form-group right-icon">
-                                           <select class="form-control" name="hastag">
-                                                <option selected># (Hastag)</option>
-                                                <option>Kupesan</option>
-                                                <option>Kupesan</option>
-                                                <option>Kupesan</option>
+                                        <div class="form-group left-icon ">
+                                            <select  class="form-control" name="theme" required>
+                                                <option selected value="">Pilih Tema</option>
+                                                <option value="1">1:00</option><option value="2">2:00</option>
+                                                <option value="3">3:00</option><option value="4">4:00</option>
+                                                <option value="5">5:00</option><option value="6">6:00</option>
+                                                <option value="7">7:00</option><option value="8">8:00</option>
                                             </select>
-                                            <i class="fa fa-angle-down"></i>
-                                        </div>
-                                    </div> -->                                    
+                                            <i class="fa fa-bars"></i>
+                                        </div>                         
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                                        <div class="form-group left-icon ">
+                                            <select  class="form-control" name="theme" required>
+                                                <option selected value="">Pilih Tema</option>
+                                                <option value="0">SURABAYA</option>
+                                            </select>
+                                            <i class="fa fa-map-marker "></i>
+                                        </div>                         
+                                    </div>
+                                                                       
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
                                         <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
-                                    </div><!-- end columns -->
+                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
                                         
                                     </div>
                                     
-                                </div><!-- end row -->
+                                </div>
                             </form>
                         </div>
                         

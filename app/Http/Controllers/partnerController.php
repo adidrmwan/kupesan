@@ -8,6 +8,7 @@ use Auth;
 use App\Partner;
 use App\Fasilitas;
 use App\PSPkg;
+use App\Provinces;
 use File;
 use Image;
 
@@ -33,15 +34,41 @@ class PartnerController extends Controller
 
     public function showDetailMitra()
     {
+
         $user = Auth::user();
         $email = $user->email;
+        $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
+        $phone_number = $user->phone_number;
         $type = DB::table('partner_type')->select('*')->get();
         $partner = DB::table('partner')
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
-        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type]);        
+        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type, 'phone_number' => $phone_number],compact('provinces') );        
         
+    }
+
+    public function provinces(){
+      $provinces = Provinces::all();
+      return view('indonesia', compact('provinces'));
+    }
+
+    public function regencies(){
+      $provinces_id = Input::get('province_id');
+      $regencies = Regencies::where('province_id', '=', $provinces_id)->where('name', 'KOTA SURABAYA')->get();
+      return response()->json($regencies);
+    }
+
+    public function districts(){
+      $regencies_id = Input::get('regencies_id');
+      $districts = Districts::where('regency_id', '=', $regencies_id)->get();
+      return response()->json($districts);
+    }
+
+    public function villages(){
+      $districts_id = Input::get('districts_id');
+      $villages = Villages::where('district_id', '=', $districts_id)->get();
+      return response()->json($villages);
     }
 
     public function submitDetailMitra(Request $request)
@@ -52,6 +79,8 @@ class PartnerController extends Controller
         $partner->pr_owner_name = $request->input('pr_owner_name');
         $partner->pr_type = $request->input('pr_type');
         $partner->pr_addr = $request->input('pr_addr');
+        $partner->pr_prov = $request->input('pr_prov');
+        $partner->pr_kota = $request->input('pr_kota');
         $partner->pr_kel = $request->input('pr_kel');
         $partner->pr_kec = $request->input('pr_kec');
         $partner->pr_area = $request->input('pr_area');
@@ -64,6 +93,29 @@ class PartnerController extends Controller
         $partner->status = '0';
         $partner->save();
 
+        $logo = Partner::where('user_id', $user->id)->first();
+        $logo->pr_logo = $logo->id . '_' . $logo->pr_type . '_' . $logo->pr_name;
+        $logo->save();
+
+        if ($request->hasFile('pr_logo')) {
+            //Found existing file then delete
+            $foto_new = $logo->pr_logo;
+            if( File::exists(public_path('/logo/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/logo/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/logo/' . $foto_new .'.png' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.png' ));
+            }
+            $foto = $request->file('pr_logo');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/logo/' . $foto_name ) );
+            $user = Auth::user();
+            $logo = Partner::where('user_id', $user->id)->first();
+            $logo->save();
+        }
         return redirect()->intended(route('partner.dashboard')); 
     }
 

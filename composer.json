@@ -12,7 +12,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "nesbot/carbon": "^1.32",
-        "realrashid/sweet-alert": "^1.1"
+        "realrashid/sweet-alert": "^1.1",
+        "laravelcollective/html": "~5.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -58,5 +59,6 @@
         "sort-packages": true,
         "optimize-autoloader": true
     }
+
 
 }

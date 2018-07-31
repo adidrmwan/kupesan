@@ -60,12 +60,12 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 });
 
 // Role untuk user yang partner
-Route::group(['prefix' => 'mitra', 'middleware' => ['auth','role:partner']], function(){
+Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
 
     Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
     // Form Detail Mitra
-    Route::get('/detail-mitra', 'PartnerController@showDetailMitra')->name('partner.profile.form');
-    Route::post('/detail-mitra', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
+    Route::get('/form/new', 'PartnerController@showDetailMitra')->name('partner.profile.form');
+    Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
 
     Route::get('/booking-schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
 
@@ -115,9 +115,10 @@ Route::get('/schedulepartner', 'PartnerController@schedulepartner')->name('partn
 Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
 
 // Route Jadi Mitra
-Route::get('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
-Route::post('/jadi-mitra-kupesan/daftar', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
-Route::get('/jadi-mitra-kupesan', 'PartnerController@showJadiMitra')->name('jadi.mitra');
+Route::get('/partner-ku/login', 'MitraAuth\RegisterController@showLoginForm')->name('mitra.login');
+Route::get('/partner-ku/register', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
+Route::post('/partner-ku/register', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
+Route::get('/partner-ku', 'PartnerController@showJadiMitra')->name('jadi.mitra');
 
 
 //Route Booking
@@ -139,3 +140,7 @@ Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashbo
 Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 
+Route::get('/indonesia','CountryController@provinces');
+Route::get('/json-regencies','CountryController@regencies');
+Route::get('/json-districts', 'CountryController@districts');
+Route::get('/json-village', 'CountryController@villages');

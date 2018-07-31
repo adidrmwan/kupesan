@@ -78,15 +78,16 @@
                             <div class="header">
                                 <h4 class="title">Upload Logo</h4>
                             </div>
+                            
+                            
+                            <div class="content">
+                                <div class="row">
                             @foreach($partner as $data)
                             @if(!empty($data->pr_logo))
-                            
+                                    <img style="text-align: center; align-content: center; max-height: 160px; margin: 0 auto; float: none; position: relative;display: block;" class="img-responsive" src="{{ asset('logo/'.$data->pr_logo.'.jpg')  }}" alt= "Package Image" />
                             @else
                             @endif
                             @endforeach
-                            <div class="content">
-                                <div class="row">
-                                    <img style="text-align: center; align-content: center; max-height: 160px; margin: 0 auto; float: none; position: relative;display: block;" class="img-responsive" src="{{ asset('logo/'.$data->id.'_'.$data->pr_type.'_'.$data->pr_name.'.png')  }}" alt= "Package Image" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -95,6 +96,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-info btn-block pull-right">Update</button>
+                                <div class="clearfix"></div>
                             </div>
                             </form>
                         </div>

@@ -17,6 +17,8 @@ class Partner extends Model
         'pr_name',
         'pr_owner_name',
         'pr_addr',
+        'pr_prov',
+        'pr_kota',
         'pr_kel',
         'pr_kec',
         'pr_area',

@@ -108,6 +108,7 @@
        <div class="loader"></div>
        <!--======== SEARCH-OVERLAY =========-->       
         <div class="header-absolute">
+<<<<<<< HEAD
             <nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
                 <div class="container">
                     <div class="navbar-header">
@@ -167,6 +168,9 @@
                     </div>
                 </div><!-- end container -->
             </nav><!-- end navbar -->
+=======
+            @include('layouts.nav')
+>>>>>>> 7f40de91e09bdc622802eb89b1e8e588ef6adb9f
         </div>   
 
         @include('layouts.sidebar')
