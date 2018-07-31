@@ -17,11 +17,10 @@
                                 <div class="row">
                                 <!-- pr_name -->
                                     <div class="col-md-6">
-                                        <div class="form-group" id="datetimepicker" style="display: inline !important;">
-                                            <label>Tanggal Pesan<small><b style="color: red;"> *</b></small></label>
-                                            <input type="date" class="form-control dpd1" placeholder="Tanggal Foto" name="booking_date" data-date-format="yyyy-mm-dd" required="" data-date-inline-picker="true" style="display: inline; ">
-                                            <div class="invalid-feedback">Wajib diisi.</div>
-                                        </div>
+                                        <div class="form-group left-icon " id="datetimepicker">
+                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="booking_date" data-date-format="yyyy-mm-dd" required="">
+                                            <i class="fa fa-calendar"></i>
+                                        </div><!-- end row -->
                                     </div>
                                 <!-- ./pr_name -->
                                 

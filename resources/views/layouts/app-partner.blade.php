@@ -20,7 +20,7 @@
     <link href=" {{ URL::asset('partners/css/fileinput-rtl.min.css ') }}" rel="stylesheet" />
 
     <!-- DataTables -->
-  <link href="{ {URL::asset('partners/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" >
+  <link href="{{ URL::asset('partners/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" >
 
     <!-- Animation library for notifications   -->
     <link href=" {{ URL::asset('partners/css/animate.min.css ') }}" rel="stylesheet"/>
@@ -35,13 +35,20 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{ URL::asset('/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
+
+    <!-- Font Awesome & Icon -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ URL::asset('/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
-    <!--Date-Picker Stylesheet-->
-    <link href="{{ URL::asset('superadmin/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
+    <!-- Full Calendar -->
+    <link href=" {{ URL::asset('superadmin/bower_components/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet" />
+    <script src="{{ URL::asset('superadmin/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+    <script src="{{ URL::asset('superadmin/bower_components/moment/moment.js')}}"></script>
+    
+    
 </head>
 <body>
 
@@ -57,13 +64,10 @@
     <!-- Scripts -->
 
     <!--   Core JS Files   -->
-    <script src=" {{ URL::asset('partners/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
-
-    <!--  Charts Plugin -->
-    <script src=" {{ URL::asset('partners/js/chartist.min.js') }} "></script>
+    <script src="{{ URL::asset('partners/js/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
 
     <!--  Pagination -->
-    <script src=" {{ URL::asset('partners/js/pagination.js') }} "></script>
+    <script src="{{ URL::asset('partners/js/pagination.js') }}"></script>
 
     <!-- DataTables -->
     <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
@@ -77,16 +81,21 @@
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
 
-
-
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src=" {{ URL::asset('partners/js/light-bootstrap-dashboard.js?v=1.4.0') }} "></script>
 
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src=" {{ URL::asset('partners/js/demo.js') }} "></script>
-
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
+    
+    <!-- Date Time Picker -->
+    <script src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+    
+    <!-- Full Calendar -->
+    
+    <script src="{{ URL::asset('partners/js/bootstrap.min.js')}}"></script>
+
+
+
 <!--     <script>
       $(function () {
         $('#example1').DataTable()
@@ -112,13 +121,6 @@
         } );
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-
-            demo.initChartist();
-
-        });
-    </script>
 
     <script>
         $("#file-0a").fileinput({
@@ -147,27 +149,8 @@
       }, false);
     })();
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#example-getting-started').multiselect();
-        });
-    </script>
     
-    <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
-    <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
-    <script src="{{ URL::asset('superadmin/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
-    <script src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
-
-    <script type="text/javascript">
-
-        $('.date').datepicker({  
-
-           format: 'mm-dd-yyyy'
-
-         });  
-
-    </script>
 <!-- Page specific script -->
 
     <!-- Scripts -->

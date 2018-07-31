@@ -254,7 +254,7 @@ class PartnerController extends Controller
                             // Add color and link on event
                          [
                              'color' => '#ff0000',
-                             'url' => 'pass here url and any route',
+                             'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
                          ]
                         );
                     }
@@ -264,6 +264,20 @@ class PartnerController extends Controller
         return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar'));
     }
 
+    public function showDetailBooking(Request $request)
+    {   
+        $booking_id = $request->booking_id;
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        $package_id = Booking::where('booking_id', $booking_id)->select('package_id')->first();
+        $package = PSPkg::where('id', $package_id->package_id)->get();
+        $booking = Booking::where('booking_id', $booking_id)->get();
+
+        return view('partner.ps.detail-booking', ['partner' => $partner, 'booking' => $booking, 'package' => $package]);
+    }
 
     public function showJadiMitra()
     {

@@ -53,10 +53,10 @@
 
 <div class="container-fluid">
  <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-10">
    <div class="card">
      <div class="header">
-      <h3>Booking Schedule</h3>
+      <h3 class="title">Booking Schedule</h3>
      </div>
      <div class="content">
       <div class="row">
@@ -79,20 +79,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 {!! $calendar->script() !!}
 
-<script src="{{ URL::asset('superadmin/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-<script type="text/javascript">
-$(function () {
-    $('input[name="time"]').daterangepicker({
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "timePickerIncrement": 15,
-        "autoApply": true,
-        "locale": {
-            "format": "DD/MM/YYYY HH:mm:ss",
-            "separator": " - ",
-        }
-    });
-});
-</script>
 @endsection
 

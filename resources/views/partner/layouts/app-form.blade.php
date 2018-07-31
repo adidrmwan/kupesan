@@ -45,7 +45,14 @@
 
   <link rel="stylesheet" href="{{ URL::asset('node_modules/croppie/croppie.css')}}" />
 <!-- date time picker -->  
-  <link rel="stylesheet" href="{{ URL::asset('/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
+  <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
+  <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#date").datepicker({
+               dateFormat: "dd.mm.yy"
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -153,7 +160,8 @@
     
     <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
     <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
+    <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js.map"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>

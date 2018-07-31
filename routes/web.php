@@ -67,13 +67,14 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/form/new', 'PartnerController@showDetailMitra')->name('partner.profile.form');
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
 
-    Route::get('/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
+    Route::get('/booking/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
 
     Route::get('/booking/offline', 'PartnerController@showFormOffline')->name('form.offline');
     Route::post('/booking/offline', 'PartnerController@submitFormOffline')->name('form.offline.submit');
 
     Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
     
+    Route::get('/booking/detail', 'PartnerController@showDetailBooking')->name('detail.booking');
 
     Route::get('/portofolio', 'AlbumController@showAlbumPortofolio')->name('partner.portofolio');
     Route::post('/portofolio/upload', 'AlbumController@uploadAlbum')->name('partner.upload.portofolio');
