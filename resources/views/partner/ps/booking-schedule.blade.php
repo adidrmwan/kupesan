@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="content">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12">
                     <div class="box">
                         <div class="box-header">
@@ -47,7 +47,52 @@
                             </div>
                         </div>
                 </div>
-            </div>
-</section>
-        
+        </div> -->
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-8">
+   <div class="card">
+     <div class="header">
+      <h3>Booking Schedule</h3>
+     </div>
+     <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          {!! $calendar->calendar() !!}  
+        </div>  
+      </div>
+       
+     </div>
+   </div>
+  </div>
+ </div>   
+</div>
+
+</section>     
 @endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+{!! $calendar->script() !!}
+
+<script src="{{ URL::asset('superadmin/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<script type="text/javascript">
+$(function () {
+    $('input[name="time"]').daterangepicker({
+        "timePicker": true,
+        "timePicker24Hour": true,
+        "timePickerIncrement": 15,
+        "autoApply": true,
+        "locale": {
+            "format": "DD/MM/YYYY HH:mm:ss",
+            "separator": " - ",
+        }
+    });
+});
+</script>
+@endsection
+

@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="alert alert-info alert-dismissible">
                     <h4>Selamat Datang, Partner-Ku!</h4>
-                    Silahkan mengisi form detail bisnis dibawah ini dengan lengkap untuk melanjutkan ke tahap selanjutnya.
+                    Silahkan mengisi form detail bisnis dibawah ini dengan lengkap untuk melanjutkan ke<b> tahap selanjutnya.</b>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                                         <div class="form-group">
                                             <label>Nama Usaha<small><b style="color: red;"> *</b></small></label>
                                               <input type="text" class="form-control" placeholder="Nama Usaha"
-                                              name="pr_name" required="">
+                                              name="pr_name" value="" required="">
                                               <div class="invalid-feedback">Silahkan isi nama usaha Anda.</div>
                                         </div>
                                     </div>
@@ -237,8 +237,17 @@
                         </div>
                         <div class="header">
                             <h4 class="title">Logo</h4>
+
                         </div>
                         <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning" style="text-align: center;">
+                                        Upload logo usaha Anda di sini<br>dalam format file: JPG, JPEG, atau PNG. <br>
+                                        Maximum size: 512 KB
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="file-loading">

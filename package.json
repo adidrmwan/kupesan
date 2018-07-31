@@ -21,5 +21,8 @@
         "vue-loader": "^15.2.4",
         "vue-router": "^3.0.1",
         "vue-template-compiler": "^2.5.16"
+    },
+    "dependencies": {
+        "croppie": "^2.6.2"
     }
 }

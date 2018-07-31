@@ -38,11 +38,9 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
-
-  <!-- <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" /> -->
-
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css">  
-  
+    <link rel="stylesheet" href="{{ URL::asset('/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
+    <!--Date-Picker Stylesheet-->
+    <link href="{{ URL::asset('superadmin/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -57,9 +55,9 @@
 
     </div>
     <!-- Scripts -->
+
     <!--   Core JS Files   -->
     <script src=" {{ URL::asset('partners/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
-    <script src=" {{ URL::asset('partners/js/bootstrap.min.js') }} " type="text/javascript"></script>
 
     <!--  Charts Plugin -->
     <script src=" {{ URL::asset('partners/js/chartist.min.js') }} "></script>
@@ -157,10 +155,20 @@
     
     <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
     <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js.map"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+
+    <script src="{{ URL::asset('superadmin/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+    <script src="{{ URL::asset('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+
+    <script type="text/javascript">
+
+        $('.date').datepicker({  
+
+           format: 'mm-dd-yyyy'
+
+         });  
+
+    </script>
+<!-- Page specific script -->
 
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->

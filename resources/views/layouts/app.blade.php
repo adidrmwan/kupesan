@@ -45,9 +45,6 @@
     
     <!-- Magnific Gallery -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/magnific-popup.css') }} ">
-
-    <!--Date-Picker Stylesheet-->
-    <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }}">
     
     <!-- Color Panel -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/jquery.colorpanel.css') }} ">

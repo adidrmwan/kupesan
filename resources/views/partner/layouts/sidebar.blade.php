@@ -26,7 +26,13 @@
                 <li>
                     <a href="{{ route('booking.schedule') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>Booking Schedule</p>
+                        <p>Schedule</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('form.offline') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>Offline Booking</p>
                     </a>
                 </li>
                 <li>
