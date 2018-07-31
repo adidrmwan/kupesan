@@ -63,24 +63,25 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
 
     Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
-    // Form Detail Mitra
+
     Route::get('/form/new', 'PartnerController@showDetailMitra')->name('partner.profile.form');
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
 
-    Route::get('/booking-schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
+    Route::get('/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
+
+    Route::get('/booking/offline', 'PartnerController@showFormOffline')->name('form.offline');
+    Route::post('/booking/offline', 'PartnerController@submitFormOffline')->name('form.offline.submit');
 
     Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
     
-    // Album/Portofolio
+
     Route::get('/portofolio', 'AlbumController@showAlbumPortofolio')->name('partner.portofolio');
     Route::post('/portofolio/upload', 'AlbumController@uploadAlbum')->name('partner.upload.portofolio');
 
 
     Route::post('/profile/edit', 'PartnerController@submitEditProfile')->name('partner.profile.form.edit');
-    // Update Fasilitas
     Route::post('/profile/fasilitas', 'AlbumController@updateFasilitas')->name('update.fasilitas');
 
-    // upload logo
     Route::post('/profile/upload/logo', 'PartnerController@uploadLogo')->name('partner.upload.logo');
 
 

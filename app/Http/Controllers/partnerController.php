@@ -9,8 +9,10 @@ use App\Partner;
 use App\Fasilitas;
 use App\PSPkg;
 use App\Provinces;
+use App\Booking;
 use File;
 use Image;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class PartnerController extends Controller
 {
@@ -119,6 +121,24 @@ class PartnerController extends Controller
         return redirect()->intended(route('partner.dashboard')); 
     }
 
+    public function showFormOffline()
+    {
+
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        return view('partner.form.offline-booking', ['partner' => $partner]);        
+        
+    }
+
+    public function submitFormOffline(Request $request)
+    {
+        dd($request);
+        return redirect()->intended(route('partner.dashboard')); 
+    }
+
     public function profile()
     {
         $user = Auth::user();
@@ -215,8 +235,33 @@ class PartnerController extends Controller
     }
 
     public function showBookingSchedule()
-    {
-        return view('partner.ps.booking-schedule');
+    {   
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        $events = [];
+                $data = Booking::where('booking_status', 'paid')->get();
+                if($data->count()) {
+                    foreach ($data as $key => $value) {
+                        $events[] = Calendar::event(
+                            $value->partner_name,
+                            false,
+                            $value->booking_start_date,
+                            $value->booking_end_date,
+                            null,
+                            // Add color and link on event
+                         [
+                             'color' => '#ff0000',
+                             'url' => 'pass here url and any route',
+                         ]
+                        );
+                    }
+                }
+        $calendar = Calendar::addEvents($events);
+        // dd($calendar);
+        return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar'));
     }
 
 
