@@ -135,7 +135,7 @@ class PartnerController extends Controller
 
     public function submitFormOffline(Request $request)
     {
-
+        dd($request);
         return redirect()->intended(route('partner.dashboard')); 
     }
 
