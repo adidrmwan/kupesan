@@ -79,6 +79,8 @@ class PartnerController extends Controller
         $partner->pr_owner_name = $request->input('pr_owner_name');
         $partner->pr_type = $request->input('pr_type');
         $partner->pr_addr = $request->input('pr_addr');
+        $partner->pr_prov = $request->input('pr_prov');
+        $partner->pr_kota = $request->input('pr_kota');
         $partner->pr_kel = $request->input('pr_kel');
         $partner->pr_kec = $request->input('pr_kec');
         $partner->pr_area = $request->input('pr_area');
