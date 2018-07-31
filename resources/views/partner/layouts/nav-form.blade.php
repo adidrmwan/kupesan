@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed ">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="#">Kupesan</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Detail Profil Mitra</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                      <p>Log out</p>
+                  </a>
+=======
+>>>>>>> 7f40de91e09bdc622802eb89b1e8e588ef6adb9f
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed ">
             <div class="container-fluid">
