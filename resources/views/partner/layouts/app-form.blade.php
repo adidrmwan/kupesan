@@ -33,6 +33,8 @@
     <!-- DataTables -->
   <link rel="stylesheet" href="{{URL::asset('partners/css/dataTables.bootstrap.min.css')}}">
 
+  <link rel="stylesheet" href="{{URL::asset('partners/css/select2.css')}}">
+
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href=" {{ URL::asset('partners/css/demo.css" rel="stylesheet ') }}" />
@@ -199,6 +201,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <!-- <script src="{{ URL::asset('partners/js/select2.full.js') }} "></script> -->
+    <script src="{{ URL::asset('partners/js/select2.js') }} "></script>
+
+
     <script type="text/javascript">
       $('#provinces').on('change', function(e){
         console.log(e);
@@ -250,6 +256,24 @@
 
 
     </script>
+
+
+    <script type="text/javascript">
+          var tags = $('#tags');
+            $(tags).select2({
+                data:[
+                    {id:0,text:"enhancement"},
+                    {id:1,text:"bug"},
+                    {id:2,text:"duplicate"},
+                    {id:3,text:"invalid"},
+                    {id:4,text:"wontfix"}
+                ],
+                multiple: true,
+                placeholder: "Select a Tags",
+                width: "100%"
+            });
+    </script>
+    
     <script src="{{ URL::asset('node_modules/croppie/croppie.js')}}"></script>
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->

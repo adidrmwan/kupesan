@@ -14,17 +14,77 @@
                             <h4 class="title">Offline Booking Form</h4>
                         </div>
                         <div class="content">
+
                                 <div class="row">
                                 <!-- pr_name -->
-                                    <div class="col-md-6">
-                                        <!-- <div class="form-group left-icon " id="datetimepicker">
-                                            <input type="text" class="form-control dpd1" placeholder="Tanggal Foto" name="booking_date" data-date-format="yyyy-mm-dd" required="">
-                                            <i class="fa fa-calendar"></i>
-                                        </div> --><!-- end row -->
-                                
-                                      <h2 class="demoHeaders">Datepicker</h2>
+                                    <div class="col-md-4">                                
+                                      <h2 class="demoHeaders">Tanggal</h2>
                                         <div id="datepicker"></div>
                                         <p>Date: <input type="text" id="datepicker2" disabled></p>
+                                    </div>
+                                    
+                                      <div class="col-md-8">
+                                          <div class="col-md-6">
+                                            <label>Durasi</label>
+                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                <option selected value="">Pilih Durasi Waktu</option>
+                                                <option value="1">1 Jam</option>
+                                                <option value="2">2 Jam</option>
+                                                <option value="3">3 Jam</option>
+                                                <option value="4">4 Jam</option>
+                                                <option value="5">5 Jam</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Silahkan isi Durasi Waktu.
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <label>Jam Mulai</label>
+                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                <option selected value="">Pilih Jam Mulai</option>
+                                                <option value="1">1 Jam</option>
+                                                <option value="2">2 Jam</option>
+                                                <option value="3">3 Jam</option>
+                                                <option value="4">4 Jam</option>
+                                                <option value="5">5 Jam</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Silahkan isi Jam Mulai.
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-4">
+                                            <label>Jam Selesai</label>
+                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                <option selected value="">Pilih Jam Selesai</option>
+                                                <option value="1">1 Jam</option>
+                                                <option value="2">2 Jam</option>
+                                                <option value="3">3 Jam</option>
+                                                <option value="4">4 Jam</option>
+                                                <option value="5">5 Jam</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Silahkan isi Jam Selesai.
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <label>Jam Tambahan</label>
+                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                <option selected value="">Pilih Jam Tambahan</option>
+                                                <option value="1">1 Jam</option>
+                                                <option value="2">2 Jam</option>
+                                                <option value="3">3 Jam</option>
+                                                <option value="4">4 Jam</option>
+                                                <option value="5">5 Jam</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Silahkan isi Jam Tambahan.
+                                            </div>
+                                          </div>
+                                          
+
+                                        </div>
+
                                     </div>
                                 <!-- ./pr_name -->
                                 

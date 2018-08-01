@@ -1,4 +1,4 @@
-@extends('layouts.app-partner')
+@extends('partner.layouts.app-form')
 
 @section('content')
 <div class="content">
@@ -39,8 +39,8 @@
                                                 <option value="Special_Studio">Special Studio</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                                  Silahkan isi kategori paket.
-                                              </div>
+                                                Silahkan isi kategori paket.
+                                            </div>
                                         </div>
                                     </div>
                                   </div>
@@ -74,14 +74,15 @@
                                         </div>
                                     </div>
                                   </div>
-                                  <!-- <div class="row">
+                                  <div class="row">
                                     <div class="col-md-12">
                                       <div class="form-group">
-                                        <label>Deskripsi Paket</label>
-                                        <textarea rows="5" class="form-control" placeholder="Tuliskan deskripsi detail paket anda" style="resize: none; height: 124px;" name="pkg_desc_them"></textarea>
+                                        <label>Tags</label>
+                                        <select id="tags" class="form-control" >
+                                        </select>
                                       </div>
                                     </div>
-                                  </div> -->
+                                  </div>
                                 </div>
                                 
                             </div>
