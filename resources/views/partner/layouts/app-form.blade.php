@@ -24,7 +24,9 @@
 
     <!-- Animation library for notifications   -->
     <link href=" {{ URL::asset('partners/css/animate.min.css ') }}" rel="stylesheet"/>
-
+    <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>
+    <link href=" {{ URL::asset('partners/css/jquery-ui.structure.css ') }}" rel="stylesheet"/>
+    <link href=" {{ URL::asset('partners/css/jquery-ui.theme.css ') }}" rel="stylesheet"/>
     <!--  Light Bootstrap Table core CSS    -->
     <link href=" {{ URL::asset('partners/css/light-bootstrap-dashboard.css?v=1.4.0 ') }}" rel="stylesheet"/>
 
@@ -34,14 +36,13 @@
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href=" {{ URL::asset('partners/css/demo.css" rel="stylesheet ') }}" />
-
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
 
-  <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" />
+  <!-- <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" /> -->
 
   <link rel="stylesheet" href="{{ URL::asset('node_modules/croppie/croppie.css')}}" />
 <!-- date time picker -->  
@@ -52,7 +53,7 @@
                dateFormat: "dd.mm.yy"
             });
         });
-    </script>
+  </script>
 </head>
 <body>
 
@@ -68,6 +69,9 @@
     <!-- Scripts -->
     <!--   Core JS Files   -->
     <script src=" {{ URL::asset('partners/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
+
+    <script src=" {{ URL::asset('partners/js/jquery-ui.js') }} " type="text/javascript"></script>
+    
     <script src=" {{ URL::asset('partners/js/bootstrap.min.js') }} " type="text/javascript"></script>
 
     <!--  Charts Plugin -->
@@ -93,6 +97,32 @@
 
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
+
+    <script type="text/javascript">
+      $( "#datepicker" ).datepicker({
+      inline: true,
+      altField: '#datepicker2',
+      altFormat: "dd.mm.yy",
+      minDate: 0,
+      maxDate: "+3M"
+    });
+    </script>
+    
+    <script type="text/javascript">
+      $('#datepicker2').change(function(){
+          $('#datepicker').datepicker('setDate', $(this).val());
+      });
+    </script>
+
+    <script type="text/javascript">
+    
+        $( document ).ready(function() {
+            $("#datepicker").datepicker({
+               dateFormat: "dd.mm.yy"
+            });
+
+        });
+    </script>
 
     <script>
       $(function () {
@@ -159,13 +189,13 @@
     </script>
     
     <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
-    <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> -->
     <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js.map"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
