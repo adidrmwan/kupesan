@@ -199,4 +199,13 @@ class BookingController extends Controller
                     ->get();
         return view('payment.voucher', ['review' => $review]);
     }
+
+    public function orderCompleted(Request $request)
+    { 
+        $booking = Booking::where('booking_id', $request->booking_id)->first();
+        $booking->booking_status = 'completed';
+        $booking->save();
+        return redirect()->intended(route('booking.schedule')); 
+    }
+
 }

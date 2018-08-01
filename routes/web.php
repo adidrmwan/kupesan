@@ -79,6 +79,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/portofolio', 'AlbumController@showAlbumPortofolio')->name('partner.portofolio');
     Route::post('/portofolio/upload', 'AlbumController@uploadAlbum')->name('partner.upload.portofolio');
 
+    Route::post('/booking/completed', 'BookingController@orderCompleted')->name('order.completed');
 
     Route::post('/profile/edit', 'PartnerController@submitEditProfile')->name('partner.profile.form.edit');
     Route::post('/profile/fasilitas', 'AlbumController@updateFasilitas')->name('update.fasilitas');

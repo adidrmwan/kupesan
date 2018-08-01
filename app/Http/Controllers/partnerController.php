@@ -12,6 +12,7 @@ use App\Provinces;
 use App\Booking;
 use File;
 use Image;
+use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class PartnerController extends Controller
@@ -273,8 +274,10 @@ class PartnerController extends Controller
                     ->select('*')
                     ->first();
         $package_id = Booking::where('booking_id', $booking_id)->select('package_id')->first();
-        $package = PSPkg::where('id', $package_id->package_id)->get();
+        $package = PSPkg::where('id', $package_id->package_id)->first();
+
         $booking = Booking::where('booking_id', $booking_id)->get();
+        $package_id->booking_start_date = Carbon::now();
 
         return view('partner.ps.detail-booking', ['partner' => $partner, 'booking' => $booking, 'package' => $package]);
     }
