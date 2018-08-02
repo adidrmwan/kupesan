@@ -1238,8 +1238,9 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 }
 
 .offer-price-1 li.price{
-	font-size:22px;
+	font-size:18px;
 	font-weight:bold;
+	text-align: center;
 }
 
 .offer-price-1 li.price .pkg{
@@ -1440,8 +1441,17 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 	max-height:90px;
 }
 
+.flight-info {
+	border-left: 3px solid #EA410C;
+	border-right: 2px solid #EA410C;
+	border-bottom: 2px solid #EA410C;
+}
+
 .flight-title{
-	padding:20px 20px 12px;
+	padding:10px 10px;
+}
+.flight-title h3 {
+	color: white;
 }
 
 .flight-info h3{
@@ -1486,6 +1496,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 
 .flight-info .offer-price-1{
 	padding:14px 15px 11px;
+	text-align: center;
 }
 
 .flight-info .offer-price-1 li.price .pkg{

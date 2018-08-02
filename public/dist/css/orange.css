@@ -1019,7 +1019,7 @@ p{
 /************** OFFER-PRICE-1 *************/
 
 .offer-price-1 li.price{
-	color:white;
+	color:black;
 }
 
 .offer-price-1 li.price .divider,
@@ -1174,11 +1174,11 @@ p{
 }
 
 .flight-info .offer-price-1{
-	background:#1e1e1e;
+	background:white;
 }
 
 .flight-info .offer-price-1 li.price .pkg{
-	color:white;
+	color:black;
 }
 
 @media(min-width:992px) and (max-width:1199px){

@@ -41,7 +41,7 @@
                                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="form-group left-icon ">
+                                        <div class="form-group right-icon ">
                                             <select  class="form-control" name="theme" >
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="1">1:00</option><option value="2">2:00</option>
@@ -49,16 +49,16 @@
                                                 <option value="5">5:00</option><option value="6">6:00</option>
                                                 <option value="7">7:00</option><option value="8">8:00</option>
                                             </select>
-                                            <i class="fa fa-bars"></i>
+                                            <i class="fa fa-angle-down"></i>
                                         </div>                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="form-group left-icon ">
+                                        <div class="form-group right-icon ">
                                             <select  class="form-control" name="theme" >
-                                                <option selected value="">Pilih Tema</option>
+                                                <option selected value="">Pilih Lokasi</option>
                                                 <option value="0">SURABAYA</option>
                                             </select>
-                                            <i class="fa fa-map-marker "></i>
+                                            <i class="fa fa-angle-down"></i>
                                         </div>                         
                                     </div>
                                                                        
