@@ -20,9 +20,9 @@
                                     <th>Delete</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($partner as $data)
+                                    @foreach($partner as $key => $data)
                                     <tr>
-                                        <td>{{$data->id}}</td>
+                                        <td>{{$key + 1}}</td>
                                         <td>{{$data->pkg_name_them}}</td>
                                         <td>{{$data->pkg_price_them}}</td>
                                         <td>{{$data->pkg_overtime_them}}</td>

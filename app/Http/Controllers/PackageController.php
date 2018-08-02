@@ -10,11 +10,14 @@ use File;
 use Image;
 use Auth;
 use App\Partner;
+use App\PartnerTag;
 class PackageController extends Controller
 {
     public function ShowAddPackage()
     {
-        return view('partner.ps.add-package');
+        $listTag = DB::table('ps_tag')->get();
+
+        return view('partner.ps.add-package', compact('listTag'));
     }
 
     public function AddPackage(Request $request)
@@ -32,11 +35,23 @@ class PackageController extends Controller
         $package->status = '1';
         
         $package->save();
-
         $package = PSPkg::find($package->id);
+
+        $dataSet = [];
+        if ($package->save()) {
+            for ($i = 0; $i < count($request->tag); $i++) {
+                $dataSet[] = [
+                    'package_id' => $package->id,
+                    'tag_id' => $request->tag[$i],
+                ];
+            }
+        }
+        PartnerTag::insert($dataSet);
+
         $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them;
         $package->save();
         if ($request->hasFile('pkg_img_them')) {
+
             //Found existing file then delete
             $foto_new = $package->pkg_img_them;
             if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
@@ -58,7 +73,13 @@ class PackageController extends Controller
             $package->save();
         }
 
-        return redirect()->intended(route('partner-editpackage'));
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        
+        return redirect()->intended(route('partner-editpackage', ['partner' => $partner]));
         
     }
 
@@ -78,7 +99,17 @@ class PackageController extends Controller
     {
     	$id = $request->id;
         $package = PSPkg::where('id', $id)->get();
-        return view('partner.ps.edit-package', ['package' => $package]);
+        $package_id = PSPkg::where('id', $id)->first();
+        $partnerTag = PartnerTag::join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('package_id', $package_id->id)->get();
+
+        $user = Auth::user();
+        $partner = DB::table('ps_package')
+                    ->where('user_id',$user->id)
+                    ->where('status', '1')
+                    ->select('*')
+                    ->get();
+        
+        return view('partner.ps.edit-package', ['package' => $package, 'partnerTag' => $partnerTag, 'partner' => $partner]);
     }
 
     public function EditPackagePS(Request $request)
@@ -95,6 +126,18 @@ class PackageController extends Controller
         $package->save();
 
         $package = PSPkg::find($package->id);
+
+        $dataSet = [];
+        if ($package->save()) {
+            for ($i = 0; $i < count($request->tag); $i++) {
+                $dataSet[] = [
+                    'package_id' => $package->id,
+                    'tag_id' => $request->tag[$i],
+                ];
+            }
+        }
+        PartnerTag::insert($dataSet);
+
         $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them;
         $package->save();
 
@@ -117,6 +160,7 @@ class PackageController extends Controller
             $package= PSPkg::where('id',$id)->first();
             $package->save();
         }
+
         
         return redirect()->intended(route('partner-editpackage'));
     }    

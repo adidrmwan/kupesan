@@ -1,4 +1,4 @@
-@extends('layouts.app-partner')
+@extends('partner.layouts.app-form')
 
 @section('content')
 <div class="content">
@@ -12,13 +12,19 @@
                     <div class="content">
                         
                         <form role="form" action="{{route('partner.edit.pkg.submit')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                {{ csrf_field() }}
+                            {{ csrf_field() }}
                             @foreach($package as $data)
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Gambar Paket</label>
+                                        @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
                                         <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
+                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                                        <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
+                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                                        <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -85,6 +91,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                          <div class="form-group">
+                                            <label>Tags</label>
+                                            <select id="tags" class="form-control" name="tag[]"></select>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @foreach($partnerTag as $tag)
+                                                <span class="badge badge-info">{{$tag->tag_title}}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                     <!-- <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
@@ -106,3 +127,4 @@
 </div>
         
 @endsection
+

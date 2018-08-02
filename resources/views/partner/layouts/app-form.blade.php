@@ -52,7 +52,7 @@
   <script type="text/javascript">
         $( document ).ready(function() {
             $("#date").datepicker({
-               dateFormat: "dd.mm.yy"
+               dateFormat: "yyyy-mm-dd"
             });
         });
   </script>
@@ -104,7 +104,7 @@
       $( "#datepicker" ).datepicker({
       inline: true,
       altField: '#datepicker2',
-      altFormat: "dd.mm.yy",
+      altFormat: "yy-mm-dd",
       minDate: 0,
       maxDate: "+3M"
     });
@@ -120,7 +120,7 @@
     
         $( document ).ready(function() {
             $("#datepicker").datepicker({
-               dateFormat: "dd.mm.yy"
+               dateFormat: "yyyy-mm-dd"
             });
 
         });
@@ -151,7 +151,7 @@
     <script>
         $("#file-0a").fileinput({
                 theme: 'fa',
-                'allowedFileExtensions': ['jpg', 'png'],
+                'allowedFileExtensions': ['jpg', 'png', 'jpeg'],
                 'maxFileSize': 512,
 
         });
@@ -253,27 +253,43 @@
           })
         });
       });
-
-
     </script>
-
-
     <script type="text/javascript">
-          var tags = $('#tags');
-            $(tags).select2({
-                data:[
-                    {id:0,text:"enhancement"},
-                    {id:1,text:"bug"},
-                    {id:2,text:"duplicate"},
-                    {id:3,text:"invalid"},
-                    {id:4,text:"wontfix"}
-                ],
-                multiple: true,
-                placeholder: "Select a Tags",
-                width: "100%"
-            });
+      var tags = $('#tags');
+        $(tags).select2({
+          data:[
+            {id:1,text:"House Studio"},
+            {id:2,text:"Studio Komersil"},
+            {id:3,text:"Thematic Studio"},
+            {id:4,text:"Semi Outdoor"},
+            {id:5,text:"Vintage"},
+            {id:6,text:"Rustic"},
+            {id:7,text:"Cafe"},
+            {id:8,text:"Restaurant"},
+            {id:9,text:"Etnic"},
+            {id:10,text:"Garden"},
+            {id:11,text:"Colorful"},
+            {id:12,text:"Monochrome"},
+            {id:13,text:"Modern"},
+            {id:14,text:"Classic"},
+            {id:15,text:"Cosplay"},
+            {id:16,text:"Tradisional"},
+            {id:17,text:"Horor"},
+            {id:18,text:"Pantai"},
+            {id:19,text:"Hutan"},
+            {id:20,text:"Minimalis"},
+            {id:21,text:"Shabby Chic"},
+            {id:22,text:"Mediteranian"},
+            {id:23,text:"Bohemian"},
+            {id:24,text:"Caribbean"},
+            {id:25,text:"Nature"},
+            {id:26,text:"Outdoor"},
+          ],
+          multiple: true,
+          placeholder: "Pilih Paket Tag",
+          width: "100%"
+        });
     </script>
-    
     <script src="{{ URL::asset('node_modules/croppie/croppie.js')}}"></script>
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->

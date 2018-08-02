@@ -78,8 +78,7 @@
                                     <div class="col-md-12">
                                       <div class="form-group">
                                         <label>Tags</label>
-                                        <select id="tags" class="form-control" >
-                                        </select>
+                                        <select id="tags" class="form-control" name="tag[]"></select>
                                       </div>
                                     </div>
                                   </div>
@@ -99,3 +98,4 @@
 </div>
         
 @endsection
+

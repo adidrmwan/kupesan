@@ -46,7 +46,7 @@
                                         <table class="table table-sm table-hover">
                                             <thead class="thead-dark">
                                                 <tr>
-                                                    <th colspan="2" style="text-align: center;">Customer's Contact</th>
+                                                    <th colspan="2" style="text-align: center;">Customer Details</th>
                                                 </tr>
                                             </thead>
                                             <tr>

@@ -261,8 +261,10 @@ class PartnerController extends Controller
                     }
                 }
         $calendar = Calendar::addEvents($events);
+
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'paid')->select('booking.*', 'ps_package.pkg_name_them')->orderBy('booking.booking_start_date', 'asc')->get();
         // dd($calendar);
-        return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar'));
+        return view('partner.ps.booking-schedule', ['partner' => $partner, 'booking' => $booking], compact('calendar'));
     }
 
     public function showDetailBooking(Request $request)

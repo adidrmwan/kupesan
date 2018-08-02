@@ -9,7 +9,7 @@ class Partner extends Model
     protected $primaryKey = 'id';
     protected $table = 'partner';
     public $timestamps = true;
-    protected $dates = ['booking_start_date', 'booking_end_date']
+    protected $dates = ['booking_start_date', 'booking_end_date'];
     protected $fillable = [
         'user_id',
         'pr_logo',
