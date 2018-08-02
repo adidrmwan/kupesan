@@ -102,7 +102,7 @@
                     </div> -->
                     <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
-                            <h3>Filter Price Range</h3>
+                            <h3>Filter Harga</h3>
                             <br>
                             <form>
                                 <div class="padding-price">
@@ -132,7 +132,7 @@
                 
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
 	
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8 content-side">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8 content-side">
 					@foreach($result as $list)
                     <div class="list-block main-block h-list-block">
                     	<div class="list-content">
@@ -140,7 +140,7 @@
                                 <a href="hotel-detail-left-sidebar.html">
                                     <img class="img-responsive" src="{{ asset('logo/'.$list->pr_logo.'.png')  }}" alt= "Logo Mitra" />
                                 </a>
-                            </div><!-- end h-list-img -->
+                            </div>
                             
                             <div class="list-info h-list-info">
                                 <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{$list->pr_name}}</a></h3>
@@ -155,18 +155,32 @@
                     	</div>
                     </div>
                     @endforeach
+                </div> -->
 
-<!--                      <div class="pages">
-                        <ol class="pagination">
-                            <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
-                        </ol>
-                    </div> -->
+                <div class="col-sm-6 col-md-4">
+                    <div class="main-block flight-block">
+                        <a href="#">
+                            <div class="main-img">
+                                <img src=" {{ URL::asset('dist/images/mua.png')}}" class="img-responsive" />
+                            </div><!-- end flight-img -->
+                            
+                            <div class="flight-info">
+                                <div class="flight-title" style="text-align: center;">
+                                    <h3>Tema 1 </h3>
+                                </div><!-- end flight-title -->
+                                
+                                <ul class="list-unstyled list-inline offer-price-1">
+                                    <li class="price">Rp 568.000 / Jam</li>
+                                    <li style="margin-top: 10px;"><button class="btn btn-orange" style="margin: 0 auto; float: none; position: relative; display: block; padding: 10px 30px; " >
+                                    <a href="" style="color: white; text-decoration: none;">Pesan </a>
+                                </button></li>
+                                </ul>
+                                
+                            </div><!-- end flight-info -->
+                        </a>
+                    </div><!-- end flight-block -->
                 </div><!-- end columns -->
+
 
             </div><!-- end row -->
     	</div><!-- end container -->

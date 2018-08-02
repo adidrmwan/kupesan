@@ -225,11 +225,25 @@
                     </div><!-- end navbar-header -->
                     
                     <div class="collapse navbar-collapse" id="myNavbar1">
+                      <ul class="nav navbar-nav navbar-left navbar-search-link">
+                          <li>
+                              <form action="#" method="get" class="searchform navbar-form" role="search">
+          <!--                         <input type="hidden" value="search" name="view"> -->
+                                      <div class="input-group">
+                                          <input type="text"  name="searchword" required class="form-control" placeholder="Search" name="q">
+                                          <div class="input-group-btn">
+                                              <button class="btn" type="submit" style="background-color: #EA410C"><i class="glyphicon glyphicon-search" style="padding: 4px 0; color: white "></i></button>
+                                          </div>
+                                  </div>
+                              </form>
+                          </li>
+                          <li></li>
+                      </ul>
                         <ul class="nav navbar-nav navbar-right navbar-search-link">
                                 <li><a href="{{route('index')}}">Home</a></li>
                             @guest
-                                <li><a href="{{ route('login') }}" >Log in</a></li>
-                                <li><a href="{{ route('register') }}" >Daftar</a></li>
+                               <li><a href="{{ route('login') }}" >Log-in</a></li>
+                              <li><a href="{{ route('register') }}" >Register</a></li>
                                 <!-- <li><a href="{{ route('register') }}" >Register</a></li> -->
                             @else
                                 <li class="dropdown">
@@ -255,8 +269,8 @@
                             @endguest
                                 <li>
                                       
-                                    <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                                     <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
+                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">PARTNER-KU </a>
                                     </button>
                                 </li>
                                 <li></li>
