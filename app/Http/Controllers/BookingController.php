@@ -16,6 +16,22 @@ use Image;
 class BookingController extends Controller
 {
     public function checkAuth(Request $request) {
+        // dd($request);
+        $package_id = $request->package_id;
+        $package = PSPkg::where('id', $package_id)->get();
+        $id = PSPkg::where('id', $package_id)->first();
+        $partner = Partner::where('user_id', $id->user_id)
+                            ->select('pr_name', 'open_hour', 'close_hour')->first();
+
+        $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
+                            ->where('num_hour', '<', $partner->close_hour)->get();
+
+        $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
+                            ->where('num_hour', '<=', $partner->close_hour)->get();
+
+        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai]);
+    }
+    public function checkAuth2(Request $request) {
         $package_id = $request->id;
         $package = PSPkg::where('id', $package_id)->get();
         $name = PSPkg::where('id', $package_id)->first();
@@ -29,7 +45,6 @@ class BookingController extends Controller
         $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
                             ->where('num_hour', '<=', $partner->close_hour)->get();
 
-        $bdte = $request->date; 
         $pid = $request->id;
         $prc = $name->pkg_price_them;
         $pname = $partner->pr_name;

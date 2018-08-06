@@ -24,9 +24,11 @@
 
     <!-- Animation library for notifications   -->
     <link href=" {{ URL::asset('partners/css/animate.min.css ') }}" rel="stylesheet"/>
+
     <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>
     <link href=" {{ URL::asset('partners/css/jquery-ui.structure.css ') }}" rel="stylesheet"/>
     <link href=" {{ URL::asset('partners/css/jquery-ui.theme.css ') }}" rel="stylesheet"/>
+    
     <!--  Light Bootstrap Table core CSS    -->
     <link href=" {{ URL::asset('partners/css/light-bootstrap-dashboard.css?v=1.4.0 ') }}" rel="stylesheet"/>
 
@@ -49,6 +51,7 @@
   <link rel="stylesheet" href="{{ URL::asset('node_modules/croppie/croppie.css')}}" />
 <!-- date time picker -->  
   <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
+
   <script type="text/javascript">
         $( document ).ready(function() {
             $("#date").datepicker({
@@ -102,6 +105,8 @@
 
     <script type="text/javascript">
       $( "#datepicker" ).datepicker({
+      prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+      nextText: '<i class="fa fa-fw fa-angle-right"></i>',
       inline: true,
       altField: '#datepicker2',
       altFormat: "yy-mm-dd",

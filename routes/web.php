@@ -1,9 +1,7 @@
 <?php
 Auth::routes();
 
-Route::get('/home', function(){
-        return view('home');
-    })->name('');
+Route::get('/home', 'SearchController@home')->name('home');
 
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
@@ -29,7 +27,7 @@ Route::get('/', function () {
         }  
     }
 
-    return view('home');       
+    return redirect()->intended(route('home'));      
 
 })->name('index');
 
@@ -47,7 +45,7 @@ Route::group(['prefix' => '1', 'middleware' => ['auth','role:superadmin']], func
 // Route untuk user yang member
 Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function(){
 	Route::get('/', function(){
-		return view('home');
+		return redirect()->intended(route('home'));
 	})->name('user.dashboard');
     Route::get('/booking/0', 'BookingController@checkAuth')->name('check.auth');
     Route::post('/booking/1', 'BookingController@showBooking')->name('form.pesan');

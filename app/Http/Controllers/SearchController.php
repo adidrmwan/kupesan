@@ -8,15 +8,18 @@ use Illuminate\Support\Facades\Input;
 use App\Partner;
 use App\Booking;
 use App\PSPkg;
+use App\PartnerTag;
+
 class SearchController extends Controller
 {
     public function searchFotostudio(Request $request)
     {
-    	$booking_date = $request->booking_date;
-    	if(!empty($request->booking_date)) {
-    		// dd($booking_date);
-    		$cek_tgl = Booking::where('booking_date', $booking_date)->select('package_id', 'booking_date', 'booking_start_time', 'booking_end_time')->get();
-
+    	$tema_id = $request->tema;
+        
+    	if(!empty($tema_id)) {
+    		// $cek_tgl = Booking::where('booking_date', $booking_date)->select('package_id', 'booking_date', 'booking_start_time', 'booking_end_time')->get();
+            $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tema_id)->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->get();
+            // dd($cek_tema);
     	}
 
     	$result = DB::table('partner')
@@ -25,6 +28,14 @@ class SearchController extends Controller
          ->groupBy('ps_package.user_id', 'partner.pr_name', 'partner.pr_logo')
          ->get();
 
-        return view('daftar.fotostudio', ['result' => $result, 'booking_date' => $booking_date]);
+        return view('daftar.fotostudio', ['result' => $result, 'allThemes' => $allThemes]);
+    }
+
+    public function home()
+    {
+        $tag = PartnerTag::join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')
+                ->distinct()->orderBy('tag_title', 'asc')->get(['ps_tag.tag_id', 'ps_tag.tag_title']);
+
+        return view('home', ['tag' => $tag]);
     }
 }

@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="col-md-6">
                                   <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nama Paket</label>
                                             <input type="text" class="form-control" placeholder="Nama Paket" required="" name="pkg_name_them">
@@ -29,6 +29,8 @@
                                               </div>
                                         </div>
                                     </div> 
+                                  </div>
+                                  <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Kategori Paket</label>
@@ -40,6 +42,22 @@
                                             </select>
                                             <div class="invalid-feedback">
                                                 Silahkan isi kategori paket.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Durasi Paket</label>
+                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_duration_them" required>
+                                                <option selected value="">Pilih Durasi Paket</option>
+                                                <option value="1">1 Jam</option>
+                                                <option value="2">2 Jam</option>
+                                                <option value="3">3 Jam</option>
+                                                <option value="4">4 Jam</option>
+                                                <option value="5">5 Jam</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Silahkan isi durasi paket.
                                             </div>
                                         </div>
                                     </div>

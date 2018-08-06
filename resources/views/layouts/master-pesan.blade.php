@@ -8,12 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>kupesan.id | @yield('title')</title>
+    <title>kupesan.id - @yield('title')</title>
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <!-- RS5.0 Main Stylesheet -->
-    <link rel="icon" href="{{ URL::asset('dist/images/logo.png') }}" type="image/x-icon">
+
+   <!-- Bootstrap core CSS     -->
+   <link rel="icon" href="{{ URL::asset('dist/images/logo.png') }}" type="image/x-icon">
         
     <!-- Google Fonts -->   
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -55,14 +55,10 @@
     <!-- Slick Stylesheet -->
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick.css') }}">
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/slick-theme.css') }}">
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            $("#date").datepicker({
-               dateFormat: "dd.mm.yy"
-            });
-        });
-    </script>
-    <style type="text/css">
+
+<!-- date time picker -->  
+  <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
+      <style type="text/css">
 
 .overlay {
   position: absolute;
@@ -115,30 +111,22 @@
         @include('layouts.sidebar')
 
         @yield('content')
+    <!-- Scripts -->
+    <!--   Core JS Files   -->
 
-    <!-- Scripts -->
-    <!-- Scripts -->
-    <script type="text/javascript" src="{{ URL::asset('dist/js/jquery.min.js') }}"></script>
+    <script src=" {{ URL::asset('partners/js/jquery.3.2.1.min.js') }} " type="text/javascript"></script>
     <script src="{{ URL::asset('dist/js/jquery.colorpanel.js') }} "></script>
     <script src="{{ URL::asset('dist/js/jquery.magnific-popup.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
     <script src="{{ URL::asset('dist/js/slick.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
-    <!-- <script src="{{ URL::asset('dist/js/multiselect.js') }} "></script> -->
     <script src="{{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-navigation.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-flex.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-owl.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-slick.js') }} "></script>
-    <!-- <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script> -->
-    <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
     <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
-    <!-- Scripts -->
-    <script src="{{ URL::asset('js/app.js') }}"></script>
-
-    <!-- pesan (jangan diubah) -->
     <!-- Scripts -->
     <script src="{{ URL::asset('js/app.js') }}"></script>
 
@@ -152,6 +140,11 @@
     <!-- DataTables -->
     <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{URL::asset('partners/js/dataTables.bootstrap.min.js')}}"></script>
+
+    <!--  File Input Plugin    -->
+    <script src=" {{ URL::asset('partners/js/plugins/purify.min.js') }} "></script>
+    <script src=" {{ URL::asset('partners/js/fileinput.min.js') }} "></script>
+    <script src=" {{ URL::asset('partners/js/theme.min.js') }} "></script>
 
     <script type="text/javascript">
       $( "#datepicker" ).datepicker({
@@ -195,7 +188,13 @@
       })
     </script>
 
+    
+    
+    <script src="{{ URL::asset('bower_components/moment/min/moment.min.js')}}"></script>
     <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js.map"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -203,18 +202,6 @@
     <script src="{{ URL::asset('partners/js/select2.js') }} "></script>
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
-    @yield('script')
-
-<!--     <script type="text/javascript">
-        var dateControl = document.querySelector('input[type="date"]');
-        dateControl.value = '2017-06-01';
-    </script> -->
-
-    <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
     @yield('script')
 </body>
 </html>

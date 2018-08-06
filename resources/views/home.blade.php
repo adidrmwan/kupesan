@@ -41,22 +41,21 @@
                                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                                        <div class="form-group right-icon ">
-                                            <select  class="form-control" name="theme" >
+                                        <div class="form-group right-icon" >
+                                            <select  class="form-control" name="tema" required>
                                                 <option selected value="">Pilih Tema</option>
-                                                <option value="1">1:00</option><option value="2">2:00</option>
-                                                <option value="3">3:00</option><option value="4">4:00</option>
-                                                <option value="5">5:00</option><option value="6">6:00</option>
-                                                <option value="7">7:00</option><option value="8">8:00</option>
+                                                @foreach($tag as $list)
+                                                <option value="{{$list->tag_id}}">{{$list->tag_title}}</option>
+                                                @endforeach
                                             </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon ">
-                                            <select  class="form-control" name="theme" >
-                                                <option selected value="">Pilih Lokasi</option>
-                                                <option value="0">SURABAYA</option>
+                                            <select  class="form-control" name="kota" required>
+                                                <option selected value="">Pilih Kota</option>
+                                                <option value="0">Kota Surabaya</option>
                                             </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>                         

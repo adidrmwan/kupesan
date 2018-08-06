@@ -23,7 +23,7 @@
                                 <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">Daftar PARTNER-KU </a>
                         </button>
                         <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">Log-In PARTNER-KU </a>
+                                <a href="{{route('mitra.login')}}" style="color: white; text-decoration: none;">Log-In PARTNER-KU </a>
                         </button>
 
                         

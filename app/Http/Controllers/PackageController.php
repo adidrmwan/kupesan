@@ -16,8 +16,13 @@ class PackageController extends Controller
     public function ShowAddPackage()
     {
         $listTag = DB::table('ps_tag')->get();
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
 
-        return view('partner.ps.add-package', compact('listTag'));
+        return view('partner.ps.add-package', compact('listTag', 'partner'));
     }
 
     public function AddPackage(Request $request)
