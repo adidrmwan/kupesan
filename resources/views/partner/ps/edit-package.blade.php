@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nama Paket</label>
                                                 <input type="text" class="form-control" placeholder="Nama Paket" required="" name="pkg_name_them" value="{{$data->pkg_name_them}}">
@@ -46,11 +46,19 @@
                                                   </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Kategori Paket</label>
                                                 <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
-                                                    <option selected value="{{$data->pkg_category_them}}">{{$data->pkg_category_them}}</option>
+                                                    @if($data->pkg_category_them == 'Ala_Carte')
+                                                    <option selected value="{{$data->pkg_category_them}}">Room (A la carte)</option>
+                                                    @elseif($data->pkg_category_them == 'Thematic_Set')
+                                                    <option selected value="{{$data->pkg_category_them}}">Thematic Set</option>
+                                                    @elseif($data->pkg_category_them == 'Special_Studio')
+                                                    <option selected value="{{$data->pkg_category_them}}">Special Studio</option>
+                                                    @endif
                                                     <option value="Thematic_Set">Thematic Set</option>
                                                     <option value="Ala_Carte">Room (Ala Carte)</option>
                                                     <option value="Special_Studio">Special Studio</option>
@@ -58,6 +66,22 @@
                                                 <div class="invalid-feedback">
                                                       Silahkan pilih kategori paket.
                                                   </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Durasi Paket</label>
+                                                <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_duration_them" required>
+                                                    <option selected value="{{$data->pkg_duration_them}}">{{$data->pkg_duration_them}} Jam</option>
+                                                    <option value="1">1 Jam</option>
+                                                    <option value="2">2 Jam</option>
+                                                    <option value="3">3 Jam</option>
+                                                    <option value="4">4 Jam</option>
+                                                    <option value="5">5 Jam</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Silahkan isi durasi paket.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

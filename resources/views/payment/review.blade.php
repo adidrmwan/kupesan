@@ -157,7 +157,7 @@
                             </ul>
                         </div><!-- end navbar collapse -->
                         @foreach($review as $data)
-                            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
+                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 content-side">
 
                             	<div class="dashboard-content user-profile">
                                         <h2 class="dash-content-title">Please Review Your Booking</h2>
@@ -166,21 +166,23 @@
                                             <div class="panel-heading"><h4>Profile Details</h4></div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <div class="col-sm-4 col-md-3 user-img">
-                                                        <img src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" class="img-responsive" />
+                                                    <div class="col-sm-5 col-md-4 user-img">
+                                                        @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                                                        <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
+                                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                                                        <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
+                                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                                                        <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
+                                                        @endif
                                                     </div><!-- end columns -->
                                                     
-                                                    <div class="col-sm-8 col-md-9  user-detail">
+                                                    <div class="col-sm-7 col-md-8  user-detail">
                                                         <h3><b>{{$data->partner_name}}</b></h3>
                                                         <hr class="style5">
                                                         <ul class="list-unstyled" >
                                                             <div>
-                                                                <div class="col-sm-12 col-md-4"><li><span>Tanggal</span> <br>{{ date('d F Y', strtotime($data->booking_date)) }}</li></div>
-                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Mulai</span><br> {{$data->booking_start_time}}:00</li></div>
-                                                                <div class="col-sm-12 col-md-4"><li><span>Jam Selesai</span><br> {{$data->booking_end_time}}:00</li></div>
-                                                            </div>
-                                                            <div>
-                                                                <div class="col-sm-12 col-md-12" style="margin-bottom: 10px;"><li><span>Nama Pemesan</span> <br>{{$data->booking_user_name}}</li></div>
+                                                                <div class="col-sm-12 col-md-4"><li><span>Tanggal</span> <br>{{ date('d F Y', strtotime($data->booking_start_date)) }}</li></div>
+                                                                <div class="col-sm-12 col-md-8"><li><span>Waktu</span><br> {{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</li></div>
                                                             </div>
                                                         </ul>
                                                         <br>
@@ -188,7 +190,11 @@
                                                         <ul class="list-unstyled">                                                          
                                                             <div>
                                                                 <div class="col-sm-12 col-md-12">
-                                                                    <li><span>Studio Detail</span></li></div>
+                                                                    <li><span>Studio Detail</span></li>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <li>Nama Paket <p style="float: right;">{{$data->pkg_name_them}}</p></li>
+                                                                </div>
                                                                 @if($data->pkg_category_them = 'Thematic_Set')
                                                                 <div class="col-sm-12 col-md-12">
                                                                     <li>Tipe Paket <p style="float: right;">Thematic Set</p></li>
@@ -202,8 +208,8 @@
                                                                     <li>Tipe Paket <p style="float: right;">Room (Ala Carte)</p></li>
                                                                 </div>
                                                                 @endif
-                                                                    <div class="col-sm-12 col-md-12"><li>Kapasitas <p style="float: right;">{{$data->booking_capacities}} Orang</p></li>
-                                                                    </div>
+                                                                <div class="col-sm-12 col-md-12"><li>Kapasitas <p style="float: right;">{{$data->booking_capacities}} Orang</p></li>
+                                                                </div>
                                                             </div>
                                                         </ul>
                                                     </div><!-- end columns -->
@@ -229,11 +235,14 @@
                                                             @elseif($data->pkg_category_them = 'Ala_Carte')
                                                                 <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
                                                             @endif
-                                                                <span style="float: right; ">Rp. {{$data->booking_price}}</span>
                                                             </li>
                                                             <li>
-                                                                <span>Kupesan Fee</span>
-                                                                <span style="float: right; ">FREE</span>
+                                                                <span>- Package Price :</span>
+                                                                <span style="float: right; ">Rp. {{$data->total_normal}}</span>
+                                                            </li>
+                                                            <li>
+                                                                <span>- Overtime Price :</span>
+                                                                <span style="float: right; ">Rp. {{$data->total_overtime}}</span>
                                                             </li>
                                                         </ul>
                                                         <hr class="style5">
@@ -241,7 +250,7 @@
                                                         <ul class="list-unstyled" >
                                                             <li>
                                                                 <span>TOTAL</span>
-                                                                <span style="float: right; ">Rp. {{$data->total}}</span>
+                                                                <span style="float: right; ">Rp. {{$data->booking_total}}</span>
                                                             </li>
                                                         </ul>
                                                     </div><!-- end columns -->

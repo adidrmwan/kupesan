@@ -18,7 +18,7 @@ class SearchController extends Controller
         
     	if(!empty($tema_id)) {
     		// $cek_tgl = Booking::where('booking_date', $booking_date)->select('package_id', 'booking_date', 'booking_start_time', 'booking_end_time')->get();
-            $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tema_id)->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->get();
+            $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tema_id)->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->where('ps_package.status', '1')->get();
             // dd($cek_tema);
     	}
 

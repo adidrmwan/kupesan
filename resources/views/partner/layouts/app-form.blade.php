@@ -46,9 +46,6 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
 
-  <!-- <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}" /> -->
-
-  <link rel="stylesheet" href="{{ URL::asset('node_modules/croppie/croppie.css')}}" />
 <!-- date time picker -->  
   <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
 
@@ -295,9 +292,6 @@
           width: "100%"
         });
     </script>
-    <script src="{{ URL::asset('node_modules/croppie/croppie.js')}}"></script>
-    <!-- Scripts -->
-    <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
     @yield('script')
 </body>
 </html>
