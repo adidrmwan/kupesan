@@ -487,13 +487,13 @@ input:focus {
 }
 
 .sidebar[data-color="red"]:after {
-    background: #FB404B;
-    background: -moz-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FB404B), color-stop(100%, #bb0502));
-    background: -webkit-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: -o-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: -ms-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: linear-gradient(to bottom, #FB404B 0%, #bb0502 100%);
+    background: #EA410C;
+    background: -moz-linear-gradient(top, #EA410C 0%, #EA410C 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EA410C), color-stop(100%, #EA410Cbg-));
+    background: -webkit-linear-gradient(top,#EA410C 0%, #EA410C 100%);
+    background: -o-linear-gradient(top, #EA410C 0%, #EA410C 100%);
+    background: -ms-linear-gradient(top, #EA410C 0%, #EA410C 100%);
+    background: linear-gradient(to bottom, #EA410C 0%, #EA410C 100%);
     background-size: 150% 150%;
 }
 
@@ -1950,7 +1950,7 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .navbar-ct-red {
-    background-color: #fc727a;
+    background-color: #EA410C;
 }
 
 .navbar-transparent {

@@ -51,43 +51,42 @@
                     </div><!-- end navbar-header -->
                     
                     <div class="collapse navbar-collapse" id="myNavbar1">
-                        <ul class="nav navbar-nav navbar-right navbar-search-link">
-                                <li><a href="home">Home</a></li>
-                            @guest
-                                <li><a href="{{ route('login') }}" >Log in</a></li>
-                                <li><a href="{{ route('register') }}" >Daftar</a></li>
-                            @else
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
+                       <ul class="nav navbar-nav navbar-right navbar-search-link">
+                    <li><a href="{{route('index')}}">Home</a></li>
+                @if(Auth::guest())
+                    <li><a href="{{ route('login') }}" >Log-in</a></li>
+                    <li><a href="{{ route('register') }}" >Register</a></li>
+                    <li>                                      
+                        <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
+                            <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">PARTNER-KU </a>
+                        </button>
+                    </li>
+                @elseif(Auth::user())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{route('dashboard')}}">Profil-KU</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
 
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                            @endguest
-                                <li>
-                                      
-                                    <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
-                                    </button>
-                                </li>
-                                <li></li>
-                                
-                            <!-- <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>                        -->
                         </ul>
+                    </li>
+                @endif
+                    
+                    <li></li>
+            </ul>
                     </div>
                 </div><!-- end container -->
             </nav><!-- end navbar -->
@@ -102,20 +101,33 @@
                 <button class="btn btn-default" id="closebtn">&times;</button>
             </div><!-- end close-btn -->
             
-            <div class="list-group panel">
-            
-                <a href="home" class="list-group-item"> <span><i class="fa fa-home link-icon"></i></span>Home</a>
+                       <div class="list-group panel">
+
+                        <form action="#" method="get" class="searchform navbar-form" role="search">
+        <!--                         <input type="hidden" value="search" name="view"> -->
+                                <div class="input-group">
+                                    <input type="text"  name="searchword" required class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-btn">
+                                        <button class="btn" type="submit" style="background-color: #EA410C"><i class="glyphicon glyphicon-search" style="padding: 4px 0; color: white "></i></button>
+                                    </div>
+                            </div>
+                        </form>
+                <a href="{{route('index')}}" class="list-group-item"> <span><i class="fa fa-home link-icon"></i></span>Home</a>
                  
-                @guest
+                @if(Auth::guest())
                 
-                    <a href="{{ route('login') }}" class="list-group-item" ><span><i class="fa fa-sign-in link-icon"></i></span>Log In</a>
+                    <a href="{{ route('login') }}" class="list-group-item" ><span><i class="fa fa-sign-in link-icon"></i></span>Log-In</a>
                     
-                    <a href="{{ route('register') }}" class="list-group-item" ><span><i class="fa fa-user link-icon"></i></span>Daftar</a>
-                @else
+                    <a href="{{ route('register') }}" class="list-group-item" ><span><i class="fa fa-user link-icon"></i></span>Register</a>
+
+                    <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; width: 100%;" >
+                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                    </button>
+                 @elseif(Auth::user())
 
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -133,12 +145,7 @@
                         </ul>
                     </li>
 
-                @endguest
-                
-                <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; width: 100%;" >
-                    <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
-                </button>
-                
+                @endguest                
                 
             </div><!-- end list-group -->
         </div><!-- end main-menu -->
@@ -278,7 +285,7 @@
         </section><!-- end innerpage-wrapper -->
 
         <!--======================= FOOTER =======================-->
-        <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
+<section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
         
     <div id="footer-top" class="banner-padding ftr-top-grey ftr-text-white">
         <div class="container">
@@ -302,9 +309,9 @@
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
                     <h3 class="footer-heading">Resources</h3>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('login') }}">Log-In</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
-                        <li><a href="{{route('jadi.mitra')}}">Daftar Mitra</a></li>
+                        <li><a href="{{route('jadi.mitra')}}">Daftar PARTNER-KU</a></li>
                     </ul>
                 </div><!-- end columns -->
 
@@ -322,12 +329,12 @@
         <div class="container" style="color: white;">
             <div class="row" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright" >
-                    <p>© 2018 <a href="#">Kupesan.id</a> | All rights reserved.</p>
+                    <p>© 2018 <a href="home">Kupesan.id</a> | All rights reserved.</p>
                 </div><!-- end columns -->
                 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="">Terms & Condition</a></li>
+                        <li><a href="termsandcondition">Terms & Condition</a></li>
                         <li><a href="privacy">Privacy Policy</a></li>
                     </ul>
                 </div><!-- end columns -->

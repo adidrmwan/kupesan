@@ -16,6 +16,9 @@
                         <li><a href="#"><span><i class="fa fa-facebook"></i></span> &nbsp;&nbsp;&nbsp;&nbsp; Kupesan </a></li>
                         <li><a href="#"><span><i class="fa fa-twitter"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
                         <li><a href="#"><span><i class="fa fa-instagram"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-pinterest"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-whatsapp"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; +6282 233-610-702</a></li>
+
                     </ul>
                 </div><!-- end columns -->
                 
@@ -42,12 +45,12 @@
         <div class="container" style="color: white;">
             <div class="row" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright" >
-                    <p>© 2018 <a href="#">Kupesan.id</a> | All rights reserved.</p>
+                    <p>© 2018 <a href="home">Kupesan.id</a> | All rights reserved.</p>
                 </div><!-- end columns -->
                 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="">Terms & Condition</a></li>
+                        <li><a href="termsandcondition">Terms & Condition</a></li>
                         <li><a href="privacy">Privacy Policy</a></li>
                     </ul>
                 </div><!-- end columns -->

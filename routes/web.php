@@ -140,6 +140,7 @@ Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
 Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashboardadmin');
 Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
+Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
 Route::get('/indonesia','CountryController@provinces');
 Route::get('/json-regencies','CountryController@regencies');

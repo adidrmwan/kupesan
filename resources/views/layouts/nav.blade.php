@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav navbar-right navbar-search-link">
                     <li><a href="{{route('index')}}">Home</a></li>
                 @if(Auth::guest())
-                    <li><a href="{{ route('login') }}" >Log-in</a></li>
+                    <li><a href="{{ route('login') }}" >Log-In</a></li>
                     <li><a href="{{ route('register') }}" >Register</a></li>
                     <li>                                      
                         <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >

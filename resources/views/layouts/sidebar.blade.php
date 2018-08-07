@@ -8,19 +8,32 @@
             </div><!-- end close-btn -->
             
             <div class="list-group panel">
-            
+
+                        <form action="#" method="get" class="searchform navbar-form" role="search">
+        <!--                         <input type="hidden" value="search" name="view"> -->
+                                <div class="input-group">
+                                    <input type="text"  name="searchword" required class="form-control" placeholder="Search" name="q">
+                                    <div class="input-group-btn">
+                                        <button class="btn" type="submit" style="background-color: #EA410C"><i class="glyphicon glyphicon-search" style="padding: 4px 0; color: white "></i></button>
+                                    </div>
+                            </div>
+                        </form>
                 <a href="{{route('index')}}" class="list-group-item"> <span><i class="fa fa-home link-icon"></i></span>Home</a>
                  
-                @guest
+                @if(Auth::guest())
                 
-                    <a href="{{ route('login') }}" class="list-group-item" ><span><i class="fa fa-sign-in link-icon"></i></span>Log In</a>
+                    <a href="{{ route('login') }}" class="list-group-item" ><span><i class="fa fa-sign-in link-icon"></i></span>Log-In</a>
                     
-                    <a href="{{ route('register') }}" class="list-group-item" ><span><i class="fa fa-user link-icon"></i></span>Daftar</a>
-                @else
+                    <a href="{{ route('register') }}" class="list-group-item" ><span><i class="fa fa-user link-icon"></i></span>Register</a>
+
+                    <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; width: 100%;" >
+                        <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
+                    </button>
+                 @elseif(Auth::user())
 
                 <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -38,12 +51,7 @@
                         </ul>
                     </li>
 
-                @endguest
-                
-                <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; width: 100%;" >
-                    <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">Jadi Mitra </a>
-                </button>
-                
+                @endguest                
                 
             </div><!-- end list-group -->
         </div><!-- end main-menu -->

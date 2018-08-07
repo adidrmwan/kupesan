@@ -1,5 +1,5 @@
 @extends('partner.layouts.app-form')
-
+@section('title', 'Offline Booking')
 @section('content')
 <div class="content">
     <div class="container-fluid">   

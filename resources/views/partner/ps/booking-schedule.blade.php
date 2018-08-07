@@ -1,5 +1,5 @@
 @extends('layouts.app-partner')
-
+@section('title', 'Schedule')
 @section('content')
 <section class="content">
   <div class="bd-example bd-example-tabs">

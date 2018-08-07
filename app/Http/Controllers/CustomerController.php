@@ -50,4 +50,8 @@ class CustomerController extends Controller
     {
         return view('privacy');
     }
+    public function tnc()
+    {
+        return view('tnc');
+    }
 }

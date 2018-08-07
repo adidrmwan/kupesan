@@ -1,5 +1,5 @@
 @extends('partner.layouts.app-form')
-
+@section('title', 'Add Package')
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -7,13 +7,16 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Add Package</h4>
+                        <h4 class="title"><b>Add Package</b></h4>
+                        
                     </div>
+
                     <div class="content">
                         <form role="form" action="{{route('partner-addpackage-submit')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
+                                  <p>*Ukuran Gambar Maksimal 512 KB dan berformat .PNG atau .JPG </p>
                                     <div class="file-loading">
                                         <input id="file-0a" class="file" type="file" name="pkg_img_them" required="">
                                     </div>
