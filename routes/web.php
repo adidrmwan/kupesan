@@ -146,3 +146,7 @@ Route::get('/indonesia','CountryController@provinces');
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');
 Route::get('/json-village', 'CountryController@villages');
+
+Route::get('/json-regencies1','BookingController@regencies');
+Route::get('/json-districts1', 'BookingController@districts');
+Route::get('/json-village1', 'BookingController@villages');

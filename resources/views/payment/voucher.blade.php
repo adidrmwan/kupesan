@@ -195,7 +195,7 @@
                                                                         </tr> -->
                                                                         <tr>
                                                                             <td>Nama Studio:</td>
-                                                                            <td>{{$data->pr_name}}</td>
+                                                                            <td>{{$data->partner_name}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Nama pemesan:</td>
@@ -206,28 +206,22 @@
                                                                             <td>{{ date('d F Y', strtotime($data->booking_date)) }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Jam Mulai:</td>
-                                                                            <td>{{$data->booking_start_time}}:00</td>
+                                                                            <td>Waktu:</td>
+                                                                            <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Jam Selesai:</td>
-                                                                            <td>{{$data->booking_end_time}}:00</td>
+                                                                            <td>Nama Paket:</td>
+                                                                            <td>{{$data->pkg_name_them}}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Tipe Paket</td>
                                                                             @if($data->pkg_category_them = 'Thematic_Set')
-                                                                            <td>Thematic Set - {{$data->pkg_name_them}}</td>
+                                                                            <td>Thematic Set</td>
                                                                             @elseif($data->pkg_category_them = 'Special_Studio')
-                                                                            <td>Special Studio - {{$data->pkg_name_them}}</td>
+                                                                            <td>Special Studio</td>
                                                                             @elseif($data->pkg_category_them = 'Ala_Carte')
-                                                                            <td>Room (Ala Carte) - {{$data->pkg_name_them}}</td>
+                                                                            <td>Room (Ala Carte)</td>
                                                                             @endif
-                                                                            
-                                                                        </tr>
-
-                                                                        <tr>
-                                                                            <td>Kapasitas</td>
-                                                                            <td>{{$data->booking_capacities}}</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>

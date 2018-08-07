@@ -38,12 +38,12 @@
                                                                 <td class="pull-right">{{$data->pkg_name_them}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="pull-left">Harga Paket</td>
-                                                                <td class="pull-right">Rp {{$data->pkg_price_them}} / Jam</td>
+                                                                <td class="pull-left">Harga Paket (Per Jam)</td>
+                                                                <td class="pull-right">Rp {{$data->pkg_price_them}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="pull-left">Harga Waktu Tambahan</td>
-                                                                <td class="pull-right">Rp {{$data->pkg_overtime_them}} / Jam</td>
+                                                                <td class="pull-left">Harga Overtime (Per Jam)</td>
+                                                                <td class="pull-right">Rp {{$data->pkg_overtime_them}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2"></td>
@@ -59,27 +59,29 @@
                             </div><!-- end row -->
                         
                         </div><!-- end columns -->
-
+                        <form role="form" action="{{ route('form.pesan') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                                            {{ csrf_field() }}
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
-                            <div class="lg-booking-form-heading">
-                                    
-                                    <h3>Pesan</h3>
-                                </div><!-- end lg-bform-heading -->
-                            <div class="panel panel-default" style="margin-top: 35px;">
+                            <div class="panel panel-default">
                                 <div class="panel-heading"><h4>Informasi Pesanan-KU</h4></div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        
                                         <div class="col-sm-12 col-md-12  user-detail">
-                                            <form role="form" action="{{ route('form.pesan') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
-                                            {{ csrf_field() }}
                                                 <div class="row">
                                                   <div class="col-md-5">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Pilih Tanggal Pesan</label>
-                                                                <div id="datepicker"></div>            
+                                                                <div id="datepicker"name="booking_date"></div>            
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Tanggal Terpilih</label>
+                                                                <input type="text" class="form-control" id="datepicker2" name="booking_date">   
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,30 +90,56 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Tanggal Terpilih</label>
-                                                                <input type="text" class="form-control" id="datepicker2" disabled>   
+                                                                <label>Durasi Paket</label>
+                                                                <select class="form-control" name="durasi_paket" id="provinces" required>
+                                                                  <option value="" disable="true" selected="true">Pilih Durasi Paket</option>
+                                                                    @foreach ($package as $key => $value)
+                                                                      <option value="{{$value->pkg_duration_them}},{{$value->id}}">{{ $value->pkg_duration_them }} Jam</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Jam Mulai</label>
+                                                                <select class="form-control" name="jam_mulai" id="regencies" required>
+                                                                  <option value="" disable="true" selected="true">Pilih Jam Mulai</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Jam Selesai</label>
+                                                                <select class="form-control" name="jam_selesai" id="districts" required>
+                                                                  <option value="" disable="true" selected="true">Pilih Jam Selesai</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Durasi Paket</label>
-                                                                <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
-                                                                    <option selected value="">Pilih Durasi Waktu</option>
-                                                                    <option value="1">1 Jam</option>
-                                                                    <option value="2">2 Jam</option>
-                                                                    <option value="3">3 Jam</option>
-                                                                    <option value="4">4 Jam</option>
-                                                                    <option value="5">5 Jam</option>
+                                                                <label>Jam Tambahan<small> (di luar durasi paket)</small></label>
+                                                                <select class="form-control" name="jam_tambahan" id="villages">
+                                                                  <option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Jumlah Tamu<small> (per orang)</small></label>
+                                                                <input type="number" class="form-control" name="booking_capacities" placeholder="Jumlah Tamu" required="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                   </div>
                                                 </div>
                                                 
-                                            </form>              
+                                                         
                                         </div><!-- end columns -->
                                         
                                     </div><!-- end row -->
@@ -126,9 +154,9 @@
                                 <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                     <button type="submit" class="btn btn-orange" style="float: right;">Pesan</button>
                                 </div>
-                            </div>
-                        </form> 
+                            </div> 
                         </div><!-- end columns -->
+                        </form> 
                 </div><!-- end container -->         
             </div><!-- end flight-booking -->
         </section><!-- end innerpage-wrapper -->
@@ -136,4 +164,6 @@
 
 @include('layouts.footer')
 @endsection
+
+
 

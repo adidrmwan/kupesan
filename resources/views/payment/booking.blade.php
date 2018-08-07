@@ -205,29 +205,36 @@
                                     <div class="row">
                                         
                                         <div class="col-sm-12 col-md-12  user-detail">
-                                            <h3><b>{{$data->partner_name}}</b></h3>
+                                            <h3><b>{{$data->partner_name}} - {{$data->pkg_name_them}}</b></h3>
                                             <hr class="style5">
                                             <ul class="list-unstyled" >
                                                 <li>@if($data->pkg_category_them = 'Thematic_Set')
-                                                    <span>{{$data->pkg_name_them}} - Thematic Set</span>
+                                                    <span>Thematic Set</span>
                                                 @elseif($data->pkg_category_them = 'Special_Studio')
-                                                    <span>{{$data->pkg_name_them}} - Special Studio</span>
+                                                    <span>Special Studio</span>
                                                 @elseif($data->pkg_category_them = 'Ala_Carte')
-                                                    <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
+                                                    <span>Room (Ala Carte)</span>
                                                 @endif
-                                                    <span style="float: right; ">Rp. {{$data->booking_price}}</span>
+                                                    
                                                 </li>
                                                 <li>
-                                                    <span>Kupesan Fee</span>
-                                                    <span style="float: right; ">FREE</span>
+                                                    <span>- Package Price&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp; Rp.&nbsp; {{$data->booking_normal_price}}&nbsp;&nbsp;&nbsp;<b>x</b>&nbsp;&nbsp;&nbsp; {{$data->booking_end_time - $data->booking_start_time}} Hours</span>
+                                                    <span style="float: right; ">Rp.&nbsp;&nbsp; {{$data->total_normal}}</span>
                                                 </li>
+                                                @if(!empty($data->booking_overtime))
+                                                <li>
+                                                    <span>- Overtime Price&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp; Rp.&nbsp; {{$data->booking_overtime_price}}&nbsp;&nbsp;&nbsp;<b>x</b>&nbsp;&nbsp;&nbsp; {{$data->booking_overtime}} Hours</span>
+                                                    <span style="float: right; ">Rp.&nbsp;&nbsp; {{$data->total_overtime}}</span>
+                                                </li>
+                                                @else
+                                                @endif
                                             </ul>
                                             <hr class="style5">
 
                                             <ul class="list-unstyled" >
                                                 <li>
                                                     <span>TOTAL</span>
-                                                    <span style="float: right; ">Rp. {{$data->total}}</span>
+                                                    <span style="float: right; ">Rp.&nbsp;&nbsp; {{$data->total}}</span>
                                                 </li>
                                             </ul>
                                         </div><!-- end columns -->
@@ -236,7 +243,7 @@
                                     <input type="text" name="xxx" value="{{$data->total}}" hidden="">
                                 </div><!-- end panel-body -->
                             </div>
-                            @endforeach
+                           
                         </div>
                         
                         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
@@ -244,38 +251,37 @@
                             
                                 <div class="col-xs-12 col-sm-6 col-md-12">
                                     <div class="side-bar-block detail-block style2 text-center">
-                                        @foreach($package as $data)
+                                       
                                         <div class="detail-img text-center">
+                                            @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
                                             <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
-                                        </div><!-- end detail-img -->
-                                        @endforeach
-
-                                        @foreach($review as $data)
+                                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                                            <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
+                                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                                            <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
+                                            @endif
+                                        </div>
+                                        
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <td colspan="2">{{$data->partner_name}}</td>
+                                                        <td colspan="2">{{$data->pkg_name_them}}</td>
                                                     </tr>
                                                 	<tr>
                                                     	<td class="pull-left">Tanggal</td>
-                                                        <td>20-05-2018</td>
+                                                        <td>{{ date('d F Y', strtotime($date)) }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pull-left">Jam Mulai</td>
-                                                        <td>{{$data->booking_start_time}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pull-left">Jam Selesai</td>
-                                                        <td>{{$data->booking_end_time}}</td>
+                                                        <td class="pull-left">Waktu</td>
+                                                        <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="pull-left">Tamu</td>
                                                         <td>{{$data->booking_capacities}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td colspan="2">{{$data->partner_name}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

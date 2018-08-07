@@ -34,7 +34,7 @@ class PackageController extends Controller
         $package->partner_name = $partner->pr_name;
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');
-        $package->pkg_desc_them = $request->input('pkg_desc_them');
+        $package->pkg_duration_them = $request->input('pkg_duration_them');
         $package->pkg_price_them = $request->input('pkg_price_them');
         $package->pkg_overtime_them = $request->input('pkg_overtime_them');
         $package->status = '1';
@@ -77,27 +77,26 @@ class PackageController extends Controller
 
             $package->save();
         }
-
-        $user = Auth::user();
-        $partner = DB::table('partner')
-                    ->where('user_id',$user->id)
-                    ->select('*')
-                    ->first();
         
-        return redirect()->intended(route('partner-editpackage', ['partner' => $partner]));
+        return redirect()->intended(route('partner-editpackage'));
         
     }
 
     public function ListPackage()
     {
         $user = Auth::user();
-        $partner = DB::table('ps_package')
+        $package = DB::table('ps_package')
                     ->where('user_id',$user->id)
                     ->where('status', '1')
                     ->select('*')
                     ->get();
-                    // dd($partner);
-        return view('partner.ps.list-package', ['partner' => $partner]);
+
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+
+        return view('partner.ps.list-package',['partner' => $partner, 'package' => $package]);
     }
 
     public function ShowEditPackagePS(Request $request)
@@ -108,11 +107,10 @@ class PackageController extends Controller
         $partnerTag = PartnerTag::join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('package_id', $package_id->id)->get();
 
         $user = Auth::user();
-        $partner = DB::table('ps_package')
+        $partner = DB::table('partner')
                     ->where('user_id',$user->id)
-                    ->where('status', '1')
                     ->select('*')
-                    ->get();
+                    ->first();
         
         return view('partner.ps.edit-package', ['package' => $package, 'partnerTag' => $partnerTag, 'partner' => $partner]);
     }
@@ -124,7 +122,7 @@ class PackageController extends Controller
         $package = PSPkg::find($id);
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');
-        $package->pkg_desc_them = $request->input('pkg_desc_them');
+        $package->pkg_duration_them = $request->input('pkg_duration_them');
         $package->pkg_price_them = $request->input('pkg_price_them');
         $package->pkg_overtime_them = $request->input('pkg_overtime_them');
         

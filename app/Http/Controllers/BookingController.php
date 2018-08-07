@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\PSPkg;
+use Illuminate\Support\Facades\Input;
+use App\Jam;
 use App\Partner;
 use App\Booking;
 use Carbon\Carbon;
@@ -29,7 +31,7 @@ class BookingController extends Controller
         $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
                             ->where('num_hour', '<=', $partner->close_hour)->get();
 
-        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai]);
+        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai], compact('provinces'));
     }
     public function checkAuth2(Request $request) {
         $package_id = $request->id;
@@ -63,15 +65,45 @@ class BookingController extends Controller
 
 
     public function showBooking(Request $request)
-    {
+    {   
+        $paket = explode(',', $request->durasi_paket, 2);
+        $durasi = $paket[0];
+        $package_id = $paket[1];
+        $date = $request->booking_date;
+        $jam_tambahan = $request->jam_tambahan;
+
+        $mulai = explode(',', $request->jam_mulai, 3);
+        if ($mulai < 10) {
+            $jam_mulai = '0'.$mulai[0].':00:00';
+        } elseif ($mulai >= 10) {
+            $jam_mulai = $mulai[0].':00:00';
+        }
+        $booking_start_time = $mulai[0];
+        $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
+        
+        $selesai = explode(',', $request->jam_selesai, 3);
+        if ($selesai < 10) {
+            $jam_selesai = '0'.$selesai[0].':00:00';
+        } elseif ($mulai >= 10) {
+            $jam_selesai = $selesai[0].':00:00';
+        }
+        $booking_end_time = $selesai[0];
+        $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
+        
+        $package = PSPkg::where('id', $package_id)->first();
+
         $booking = new Booking();
         $booking->user_id = Auth::user()->id;
-        $booking->package_id = $request->input('pid');
-        $booking->partner_name = $request->input('pname');
-        $booking->booking_price = $request->input('prc');
-        $booking->booking_date = $request->input('bdte');
-        $booking->booking_start_time = $request->input('booking_start_time');
-        $booking->booking_end_time = $request->input('booking_end_time');
+        $booking->package_id = $package_id;
+        $booking->partner_name = $package->partner_name;
+        // $booking->booking_price = $request->input('prc');
+        $booking->booking_start_date = $booking_start_date;
+        $booking->booking_end_date = $booking_end_date;
+        $booking->booking_start_time = $booking_start_time;
+        $booking->booking_end_time = $booking_end_time;
+        $booking->booking_overtime = $jam_tambahan;
+        $booking->booking_normal_price = $package->pkg_price_them;
+        $booking->booking_overtime_price = $package->pkg_overtime_them;
         $booking->booking_capacities = $request->input('booking_capacities');
         $booking->booking_status = 'on_booking';
         $booking->save();
@@ -79,17 +111,15 @@ class BookingController extends Controller
 
         $review = Booking::where('booking_id', $bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_img_them, ps_package.pkg_category_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime, (((booking_end_time - booking_start_time) * booking_normal_price) + (booking_overtime * booking_overtime_price)) as total'))
                     ->get();
-
-        $package = PSPkg::where('id', $booking->package_id)->select('pkg_img_them')->get();
-
-        return view('payment.booking', ['bid' => $bid, 'review' => $review, 'package' => $package]);
+        return view('payment.booking', ['bid' => $bid, 'review' => $review, 'date' => $date]);
     }
 
     public function showReview(Request $request)
     {
         $booking = Booking::find($request->bid);
+
         $booking->booking_user_name = $request->input('booking_user_name');
         $booking->booking_user_nohp = $request->input('booking_user_nohp');
         $booking->booking_user_email = $request->input('booking_user_email');
@@ -98,12 +128,12 @@ class BookingController extends Controller
         $booking->save();
         $bid = $booking->booking_id;
 
-        // $cekjam = DB::SELECT('SELECT j.num_hour FROM jam j ,(SELECT booking_id AS id, booking_start_time AS mulai ,booking_end_time AS selesai FROM booking WHERE package_id = $booking->package_id) b WHERE j.num_hour BETWEEN b.mulai AND b.selesai');
-
-        $range_jam = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_date as b_date,  booking_start_time as mulai, booking_end_time as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
+        $range_jam = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
 
         foreach ($range_jam as $value) {
-            $bookingcheck = BookingCheck::where('package_id', $value->p_id)->where('booking_date', $value->b_date)->first();
+            $b_date = $value->b_date;
+            $booking_start_date = date('Y-m-d', strtotime("$b_date"));
+            $bookingcheck = BookingCheck::where('package_id', $value->p_id)->where('booking_date', $booking_start_date)->first();
             if (empty($bookingcheck)){
                 $bookingcheck = new BookingCheck();
                 $bookingcheck->package_id = $value->p_id;
@@ -140,7 +170,7 @@ class BookingController extends Controller
         }
         $review = Booking::where('booking_id', $bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
                     ->get();
         return view('payment.review', ['bid' => $bid, 'review' => $review]);
     }
@@ -158,7 +188,7 @@ class BookingController extends Controller
 
         $review = Booking::where('booking_id', $request->bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them'))
                     ->get();
         $bid = $request->bid;
 
@@ -210,7 +240,7 @@ class BookingController extends Controller
         $review = Booking::where('booking_id', $request->bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->join('partner', 'partner.user_id', '=', 'ps_package.user_id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, partner.pr_name, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, partner.pr_name'))
                     ->get();
         return view('payment.voucher', ['review' => $review]);
     }
@@ -221,6 +251,53 @@ class BookingController extends Controller
         $booking->booking_status = 'completed';
         $booking->save();
         return redirect()->intended(route('booking.schedule')); 
+    }
+
+    public function regencies(){
+      $package_id = Input::get('pack_id');
+      $id = PSPkg::where('id', $package_id)->first();
+      $partner = Partner::where('user_id', $id->user_id)
+                 ->select('pr_name', 'open_hour', 'close_hour')->first();
+      $durasi = Input::get('durasi');
+      $regencies = Jam::where('num_hour', '>=', $partner->open_hour)
+                   ->where('num_hour', '<=', $partner->close_hour - $durasi)->get();
+      return response()->json($regencies);
+    }
+
+    public function districts(){
+      $jam_mulai = Input::get('jam_mulai');
+      $durasi = Input::get('durasi2');
+      $districts = Jam::where('num_hour', '=' , $jam_mulai + $durasi)->get();
+      return response()->json($districts);
+    }
+
+    public function villages(){
+      $jam_selesai = Input::get('jam_selesai');
+      $durasi = Input::get('durasi2');
+      $package_id = Input::get('pack_id');
+      $package = PSPkg::where('id', $package_id)->first();
+      $partner = Partner::where('user_id', $package->user_id)->first();
+      $close_hour = $partner->close_hour;
+      if($close_hour == $jam_selesai) {
+          $villages = "Tidak bisa tambah";
+      }
+      elseif ($jam_selesai == ($close_hour - 1)) {
+          $villages = Jam::where('num_hour', '=' , '1')->get();
+      }
+      elseif ($jam_selesai == ($close_hour - 2)) {
+          $villages = Jam::where('num_hour', '<=' , '2')->get();
+      }
+      elseif ($jam_selesai == ($close_hour - 3)) {
+          $villages = Jam::where('num_hour', '<=' , '3')->get();
+      }
+      elseif ($jam_selesai == ($close_hour - 4)) {
+          $villages = Jam::where('num_hour', '<=' , '4')->get();
+      }
+      elseif ($jam_selesai <= ($close_hour - 5)) {
+          $villages = Jam::where('num_hour', '<=' , '5')->get();
+      }
+      
+      return response()->json($villages);
     }
 
 }

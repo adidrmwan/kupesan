@@ -16,6 +16,7 @@ class PSPkg extends Model
         'pkg_desc_them',
         'pkg_price_them',
         'pkg_overtime_them',
+        'pkg_duration_them',
         'pkg_img_them',
     ];
 
