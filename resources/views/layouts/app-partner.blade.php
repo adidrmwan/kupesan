@@ -150,11 +150,52 @@
     })();
     </script>
     
+    <!-- <script type="text/javascript">
+        $(".btn[data-target='#myModal']").click(function() {
+               var columnHeadings = $("thead th").map(function() {
+                         return $(this).text();
+                      }).get();
+               columnHeadings.pop();
+               var columnValues = $(this).parent().siblings().map(function() {
+                         return $(this).text();
+               }).get();
+          var modalBody = $('<div id="modalContent"></div>');
+          var modalForm = $('<form role="form" name="modalForm" action="putYourPHPActionHere.php" method="post"></form>');
+          $.each(columnHeadings, function(i, columnHeader) {
+               var formGroup = $('<div class="form-group"></div>');
+               formGroup.append('<label for="'+columnHeader+'">'+columnHeader+'</label>');
+               formGroup.append('<input class="form-control" name="'+columnHeader+i+'" id="'+columnHeader+i+'" value="'+columnValues[i]+'" />'); 
+               modalForm.append(formGroup);
+          });
+          modalBody.append(modalForm);
+          $('.modal-body').html(modalBody);
+        });
+        $('.modal-footer .btn-primary').click(function() {
+           $('form[name="modalForm"]').submit();
+        });
+    </script> -->
 
 <!-- Page specific script -->
 
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
     @yield('script')
+
+    <div class="modal fade" id="ModalCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Customer Detail</h4>
+
+                    <button type="button" class="close" data-dismiss="modal"> <span aria-hidden="true" class="">×   </span><span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <h4> untuk modalnya ada di layouts->app-partner.blade.php </h4>  
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

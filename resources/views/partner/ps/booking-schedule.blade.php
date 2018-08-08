@@ -77,43 +77,36 @@
                                         <td>{{\Carbon\Carbon::parse($data->booking_start_date)->format('d M Y')}}</td>
                                         <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                                         <td>
-                                          
+                                          <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#ModalCustomer" contenteditable="false">Show All Details</button>
+                                            </td>
                                         </td>
                                         <td>
                                             <form role="form" action="" method="post" enctype="multipart/form-data">
                                               <input type="text" name="id" value="" hidden="">
                                               <button type="submit" class="btn btn-primary pull-right">Edit</button>
                                             </form>
-                                        </td>   
+                                        </td>
                                         <!-- <td>
                                             <form role="form" action="" method="post" enctype="multipart/form-data">
                                             
                                               <input type="text" name="id" value="" hidden="">
                                               <button type="submit" class="btn btn-danger pull-right">Cancel</button>
                                             </form>
-                                        </td> -->
+                                        </td> -->   
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                <!-- <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Paket</th>
-                                        <th>Harga Paket<small> per jam</small></th>
-                                        <th>Harga Paket<small> overtime</small></th>
-                                        <th>Kategori Paket</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </tfoot> -->
                             </table>
+
                         </div>
                     </div>
 
                 </div>
             </div>
-    </div>
+
+      </div>
   </div>
+
 
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
 
