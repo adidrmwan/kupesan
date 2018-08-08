@@ -243,7 +243,7 @@ class PartnerController extends Controller
                     ->select('*')
                     ->first();
         $events = [];
-                $data = Booking::where('booking_status', 'paid')->get();
+                $data = Booking::where('booking_status', 'confirmed')->get();
                 if($data->count()) {
                     foreach ($data as $key => $value) {
                         $events[] = Calendar::event(
@@ -262,7 +262,7 @@ class PartnerController extends Controller
                 }
         $calendar = Calendar::addEvents($events);
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'paid')->select('booking.*', 'ps_package.pkg_name_them')->orderBy('booking.booking_start_date', 'asc')->get();
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
         // dd($calendar);
         return view('partner.ps.booking-schedule', ['partner' => $partner, 'booking' => $booking], compact('calendar'));
     }

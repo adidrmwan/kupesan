@@ -93,7 +93,7 @@
           @else
           <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                      {{ Auth::user()->name }} <span class="caret"></span>
+                      {{ Auth::user()->first_name }} <span class="caret"></span>
                   </a>
 
                   <ul class="dropdown-menu">
@@ -126,7 +126,7 @@
           <img src="dist/images/logo.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{Auth::user()->email}}</p>
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -172,6 +172,19 @@
   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script>
+  $(function () {
+    $('#example3').DataTable()
+    $('#example4').DataTable({
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,

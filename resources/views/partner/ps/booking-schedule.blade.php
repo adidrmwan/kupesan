@@ -53,25 +53,29 @@
                                 <thead>
                                     <th>No</th>
                                     <th>Kode Booking</th>
-                                    <th>Nama Studio</th>
+                                    <th>Tipe Paket</th>
                                     <th>Nama Paket</th>
                                     <th>Tanggal Pesan</th>
                                     <th>Waktu Pesan</th>
-                                    <th>Jam Tambahan</th>
                                     <th>Customer Details</th>
                                     <th>Edit</th>
-                                    <th>Cancel</th>
+                                    <!-- <th>Cancel</th> -->
                                 </thead>
                                 <tbody>
                                     @foreach($booking as $key => $data)
                                     <tr>
                                         <td>{{$key + 1}}</td>
                                         <td>{{$data->kode_booking}}</td>
-                                        <td>{{$data->partner_name}}</td>
+                                        @if($data->pkg_category_them = 'Thematic_Set')
+                                        <td>Thematic Set</td>
+                                        @elseif($data->pkg_category_them = 'Special_Studio')
+                                        <td>Special Studio</td>
+                                        @elseif($data->pkg_category_them = 'Ala_Carte')
+                                        <td>>Room (Ala Carte)</td>
+                                        @endif
                                         <td>{{$data->pkg_name_them}}</td>
                                         <td>{{\Carbon\Carbon::parse($data->booking_start_date)->format('d M Y')}}</td>
-                                        <td>{{\Carbon\Carbon::parse($data->booking_start_date)->format('H:i')}} - {{\Carbon\Carbon::parse($data->booking_end_date)->format('H:i')}}</td>
-                                        <td>5</td>
+                                        <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                                         <td>
                                           
                                         </td>
@@ -81,17 +85,17 @@
                                               <button type="submit" class="btn btn-primary pull-right">Edit</button>
                                             </form>
                                         </td>   
-                                        <td>
+                                        <!-- <td>
                                             <form role="form" action="" method="post" enctype="multipart/form-data">
                                             
                                               <input type="text" name="id" value="" hidden="">
                                               <button type="submit" class="btn btn-danger pull-right">Cancel</button>
                                             </form>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
+                                <!-- <tfoot>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Paket</th>
@@ -101,7 +105,7 @@
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
-                                </tfoot>
+                                </tfoot> -->
                             </table>
                         </div>
                     </div>

@@ -212,7 +212,7 @@ class BookingController extends Controller
 
         if ($request->hasFile('bukti_pembayaran')) {
             //Found existing file then delete
-            $foto_new = $booking->bukti_transafer;
+            $foto_new = $booking->bukti_transfer;
             if( File::exists(public_path('/bukti_pembayaran/' . $foto_new .'.jpeg' ))){
                 File::delete(public_path('/bukti_pembayaran/' . $foto_new .'.jpeg' ));
             }
