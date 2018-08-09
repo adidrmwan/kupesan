@@ -212,9 +212,9 @@
                                             <div class="panel-body">
                                                 <div class="row">                                                    
                                                     <div class="col-sm-12 col-md-12  user-detail">
-                                                        <!-- <h4><b>Silahkan Membayar melalui Bank dibawah ini :</b></h4>
-                                                        <hr class="style5"> -->
-                                                        <!-- <ul class="list-unstyled" >
+                                                        <h4><b>Pembayaran dapat dilakukan melalui Bank dibawah ini :</b></h4>
+                                                        <hr class="style5">
+                                                        <ul class="list-unstyled" >
                                                             <div>
                                                                 <li>
                                                                     <span>BCA</span> <p style="float: right;"> 0391012520 a.n Arsya Darmawan</p> 
@@ -233,13 +233,11 @@
                                                                 </li>
                                                                 <hr class="style2">
                                                             </div>
-                                                        </ul> -->
-                                                    </div><!-- end columns -->
-                                                    
-                                                </div><!-- end row -->
-                                                
-                                            </div><!-- end panel-body -->
-                                        </div><!-- end panel-detault -->
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="panel panel-default" style="margin-top: 35px;">
                                             <div class="panel-heading"><h4>Masukkan Kupon</h4></div>
@@ -284,19 +282,24 @@
                                                 @elseif($data->pkg_category_them = 'Ala_Carte')
                                                     <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
                                                 @endif
-                                                    <span style="float: right; ">Rp. {{$data->booking_price}}</span>
                                                 </li>
                                                 <li>
-                                                    <span>Kupesan Fee</span>
-                                                    <span style="float: right; ">FREE</span>
+                                                    <span>- Package Price :</span>
+                                                    <span style="float: right; ">Rp. {{$data->total_normal}}</span>
                                                 </li>
+                                                @if(!empty($data->booking_overtime))
+                                                <li>
+                                                    <span>- Overtime Price :</span>
+                                                    <span style="float: right; ">Rp. {{$data->total_overtime}}</span>
+                                                </li>
+                                                @endif
                                             </ul>
                                             <hr class="style5">
 
                                             <ul class="list-unstyled" >
                                                 <li>
                                                     <span>TOTAL</span>
-                                                    <span style="float: right; ">Rp. {{$data->total}}</span>
+                                                    <span style="float: right; ">Rp. {{$data->booking_total}}</span>
                                                 </li>
                                             </ul>
                                         </div><!-- end columns -->
@@ -305,7 +308,7 @@
                                     <input type="text" name="xxx" value="{{$data->total}}" hidden="">
                                 </div><!-- end panel-body -->
                             </div>
-                            @endforeach
+                            
                                     </div><!-- end columns -->
                             </div>						
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
@@ -313,12 +316,17 @@
                                 
                                     <div class="col-xs-12 col-sm-6 col-md-12">
                                         <div class="panel panel-default" style="margin-top: 21%;">
-                                            <div class="panel-heading"><h4>Bayar Sebelum</h4></div>
+                                            <div class="panel-heading"><h4>Batas Pembayaran</h4></div>
                                             <div class="panel-body">
                                                 <div class="row">
                                                     
                                                     <div class="col-sm-12 col-md-12  user-detail">
-                                                        <h3><b>Kupesan Studio</b></h3>
+
+                                                        <span style="text-align: center;">
+                                                            <h5>Transfer dapat dilakukan sebelum</h5>
+                                                            <h4><b>{{ date('d F Y', strtotime($data->booking_at)) }}, {{ date('H:i:s', strtotime($data->booking_at)) }} WIB</b></h4>
+                                                            <h5>atau pembayaran Anda otomatis dibatalkan oleh sistem.</h5>
+                                                        </span>
                                                         <hr class="style5">
 
                                                         <div id="js-clock">
@@ -336,7 +344,7 @@
                                     </div><!-- end columns -->                                
                                 </div><!-- end row -->
                             </div>
-                            
+                            @endforeach
                             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
                             
                             </div>

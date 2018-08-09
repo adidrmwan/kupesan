@@ -156,15 +156,15 @@
                             <li></li>
                         </ul>
                     </div><!-- end navbar collapse -->
-
+                    <form role="form" action="{{ route('form.booking') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                            {{ csrf_field() }}
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                             <div class="lg-booking-form-heading">
                                 <h3>Personal Information</h3>
-                            </div><!-- end lg-bform-heading -->
+                            </div>
                             <div class="panel panel-default" style="margin-top: 35px;">
                                 <div class="panel-heading"><h4>Informasi Anda</h4></div>
-                    <form role="form" action="{{ route('form.booking') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
-                            {{ csrf_field() }}
+                    
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12  user-detail">
@@ -277,8 +277,8 @@
                                                         <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pull-left">Tamu</td>
-                                                        <td>{{$data->booking_capacities}}</td>
+                                                        <td class="pull-left">Jumlah Tamu</td>
+                                                        <td>{{$data->booking_capacities}} orang</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">{{$data->partner_name}}</td>
@@ -301,7 +301,7 @@
                                 <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                             </div>
                         </div>
-                        <
+                        
                     </form>
                                 
                     </div><!-- end row -->

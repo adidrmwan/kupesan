@@ -31,7 +31,8 @@ class CountryController extends Controller
 
     public function villages(){
       $districts_id = Input::get('districts_id');
-      $villages = Villages::where('district_id', '=', $districts_id)->get();
+      $villages = Villages::where('district_id', $districts_id)->get();
+      alert($villages);
       return response()->json($villages);
     }
 }

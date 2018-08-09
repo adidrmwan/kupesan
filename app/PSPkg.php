@@ -11,6 +11,7 @@ class PSPkg extends Model
     public $timestamps = true;
     
     protected $fillable = [
+        'user_id',
         'pkg_name_them',
         'pkg_category_them',
         'pkg_desc_them',

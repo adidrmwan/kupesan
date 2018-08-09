@@ -176,6 +176,7 @@ class BookingController extends Controller
     }
     public function showBayar(Request $request)
     {   
+        $bid = $request->bid;
         $booking = Booking::find($request->bid);
         if(empty($booking->booking_at)) {
             $booking_at = date("Y-m-d H:i:s", strtotime("+1 hours"));
@@ -186,11 +187,10 @@ class BookingController extends Controller
         $booking->save();
         $deadline = $booking->booking_at;
 
-        $review = Booking::where('booking_id', $request->bid)
+        $review = Booking::where('booking_id', $bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
                     ->get();
-        $bid = $request->bid;
 
 
         return view('payment.bayar', compact('review', 'bid', 'deadline'));

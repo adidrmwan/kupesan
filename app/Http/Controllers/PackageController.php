@@ -30,7 +30,7 @@ class PackageController extends Controller
         $user = Auth::user();
         $partner = Partner::where('user_id', $user->id)->first();
         $package = new PSPkg();
-        $package->user_id = $user->id;
+        $package->user_id = $partner->user_id;
         $package->partner_name = $partner->pr_name;
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');

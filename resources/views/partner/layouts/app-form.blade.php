@@ -251,10 +251,11 @@
           $('#villages').append('<option value="0" disable="true" selected="true">Pilih Kelurahan</option>');
 
           $.each(data, function(index, villagesObj){
-            $('#villages').append('<option value="'+ villagesObj.id +'">'+ villagesObj.name +'</option>');
+            $('#villages').append('<option value="'+ villagesObj.name +'">'+ villagesObj.name +'</option>');
           })
         });
       });
+
     </script>
     <script type="text/javascript">
       var tags = $('#tags');

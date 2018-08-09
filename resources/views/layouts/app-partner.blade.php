@@ -179,23 +179,7 @@
 
     <!-- Scripts -->
     <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
-    @yield('script')
-
-    <div class="modal fade" id="ModalCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Customer Detail</h4>
-
-                    <button type="button" class="close" data-dismiss="modal"> <span aria-hidden="true" class="">×   </span><span class="sr-only">Close</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                  <h4> untuk modalnya ada di layouts->app-partner.blade.php </h4>  
-                </div>
-            </div>
-        </div>
-    </div>
+    @yield('script') 
 
 </body>
 </html>

@@ -10,7 +10,7 @@
                     </div>
                         <div class="content">
                             <table class="table table-bordered table-striped table-condensed" id="list-package">
-                                <thead class="thead-dark">
+                                <thead>
                                     <th>No</th>
                                     <th>Nama Paket</th>
                                     <th>Kategori Paket</th>

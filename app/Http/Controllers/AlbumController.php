@@ -21,7 +21,11 @@ class AlbumController extends Controller
         		->where('user_id', $user->id)
         		->select('*')
         		->first();
-        return view('partner.ps.album-portofolio', ['data' => $data]);
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        return view('partner.ps.album-portofolio', ['data' => $data, 'partner' => $partner]);
     }
 
     public function uploadAlbum(Request $request)
@@ -30,7 +34,7 @@ class AlbumController extends Controller
         // $album = New Album();
         // $album->user_id = $user->id;
         // $album->save();
-
+        // dd($request);
         $album = Album::where('user_id', $user->id)->first();
 	    if ($request->hasFile('album_img_1')) {
     	    $album->album_img_1 = $album->id . '_' . $album->user_id . '_album1';

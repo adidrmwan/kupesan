@@ -158,10 +158,8 @@
                         </div><!-- end navbar collapse -->
                         @foreach($review as $data)
                             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 content-side">
-
                             	<div class="dashboard-content user-profile">
                                         <h2 class="dash-content-title">Please Review Your Booking</h2>
-
                                         <div class="panel panel-default">
                                             <div class="panel-heading"><h4>Profile Details</h4></div>
                                             <div class="panel-body">
@@ -240,10 +238,12 @@
                                                                 <span>- Package Price :</span>
                                                                 <span style="float: right; ">Rp. {{$data->total_normal}}</span>
                                                             </li>
+                                                            @if(!empty($data->booking_overtime))
                                                             <li>
                                                                 <span>- Overtime Price :</span>
                                                                 <span style="float: right; ">Rp. {{$data->total_overtime}}</span>
                                                             </li>
+                                                            @endif
                                                         </ul>
                                                         <hr class="style5">
 
@@ -262,10 +262,7 @@
                                 </div><!-- end columns -->
                             </div>						
                             
-                            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
-                            
-                            </div><!-- end columns -->
-                            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
+                            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9 content-side">
                                 <form role="form" action="{{ route('form.bayar') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                                     {{ csrf_field() }}
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >

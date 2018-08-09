@@ -64,8 +64,11 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 
     Route::get('/form/new', 'PartnerController@showDetailMitra')->name('partner.profile.form');
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
+    Route::get('/form/facilities', 'PartnerController@showFormFacilities')->name('partner.facilities.form');
+    Route::post('/form/facilities', 'PartnerController@submitFormFacilities')->name('partner.facilities.form.submit');
 
     Route::get('/booking/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
+    Route::get('/booking/history', 'PartnerController@showBookingHistory')->name('booking.history');
 
     Route::get('/booking/offline', 'PartnerController@showFormOffline')->name('form.offline');
     Route::post('/booking/offline', 'PartnerController@submitFormOffline')->name('form.offline.submit');
@@ -83,6 +86,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/profile/fasilitas', 'AlbumController@updateFasilitas')->name('update.fasilitas');
 
     Route::post('/profile/upload/logo', 'PartnerController@uploadLogo')->name('partner.upload.logo');
+    Route::get('/finished', 'PartnerController@bookingFinished')->name('booking.finished');
 
 
 
@@ -142,7 +146,6 @@ Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgot
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
-Route::get('/indonesia','CountryController@provinces');
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');
 Route::get('/json-village', 'CountryController@villages');

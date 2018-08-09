@@ -9,7 +9,12 @@ use App\Partner;
 use App\Fasilitas;
 use App\PSPkg;
 use App\Provinces;
+use App\Regencies;
+use App\Districts;
+use App\Villages;
 use App\Booking;
+use App\Jam;
+use App\FasilitasPartner;
 use File;
 use Image;
 use Carbon\Carbon;
@@ -24,11 +29,15 @@ class PartnerController extends Controller
     				->where('user_id',$user->id)
     				->select('*')
     				->first();
+        $fasilitas = FasilitasPartner::where('user_id',$user->id)->first();
 
         if (empty($partner->pr_name)) {
             return redirect()->intended(route('partner.profile.form'));
         }
-        elseif (!empty($partner->pr_name)) {
+        if (empty($fasilitas->facilities_id)) {
+            return redirect()->intended(route('partner.facilities.form'));
+        }
+        elseif (!empty($fasilitas->facilities_id)) {
            return view('partner.home', ['partner' => $partner]);
         }
 
@@ -43,35 +52,13 @@ class PartnerController extends Controller
         $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
         $phone_number = $user->phone_number;
         $type = DB::table('partner_type')->select('*')->get();
+        $jam = Jam::all();
         $partner = DB::table('partner')
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
-        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type, 'phone_number' => $phone_number],compact('provinces') );        
+        return view('partner.form.detail-mitra', ['partner' => $partner, 'email' => $email, 'type' => $type, 'phone_number' => $phone_number],compact('provinces', 'jam') );        
         
-    }
-
-    public function provinces(){
-      $provinces = Provinces::all();
-      return view('indonesia', compact('provinces'));
-    }
-
-    public function regencies(){
-      $provinces_id = Input::get('province_id');
-      $regencies = Regencies::where('province_id', '=', $provinces_id)->where('name', 'KOTA SURABAYA')->get();
-      return response()->json($regencies);
-    }
-
-    public function districts(){
-      $regencies_id = Input::get('regencies_id');
-      $districts = Districts::where('regency_id', '=', $regencies_id)->get();
-      return response()->json($districts);
-    }
-
-    public function villages(){
-      $districts_id = Input::get('districts_id');
-      $villages = Villages::where('district_id', '=', $districts_id)->get();
-      return response()->json($villages);
     }
 
     public function submitDetailMitra(Request $request)
@@ -81,18 +68,17 @@ class PartnerController extends Controller
         $partner->pr_name = $request->input('pr_name');
         $partner->pr_owner_name = $request->input('pr_owner_name');
         $partner->pr_type = $request->input('pr_type');
-        $partner->pr_addr = $request->input('pr_addr');
-        $partner->pr_prov = $request->input('pr_prov');
-        $partner->pr_kota = $request->input('pr_kota');
-        $partner->pr_kel = $request->input('pr_kel');
-        $partner->pr_kec = $request->input('pr_kec');
-        $partner->pr_area = $request->input('pr_area');
-        $partner->pr_postal_code = $request->input('pr_postal_code');
-        $partner->pr_desc = $request->input('pr_desc');
-        $partner->pr_phone = $request->input('pr_phone');
-        $partner->pr_phone2 = $request->input('pr_phone2');
         $partner->open_hour = $request->input('open_hour');
         $partner->close_hour = $request->input('close_hour');
+        $partner->pr_desc = $request->input('pr_desc');
+        $partner->pr_prov = $request->input('pr_prov');
+        $partner->pr_kota = $request->input('pr_kota');
+        $partner->pr_kec = $request->input('pr_kec');
+        $partner->pr_kel = $request->input('pr_kel');
+        $partner->pr_postal_code = $request->input('pr_postal_code');
+        $partner->pr_addr = $request->input('pr_addr');
+        $user->phone_number = $request->input('pr_phone');
+        $partner->pr_phone2 = $request->input('pr_phone2');
         $partner->status = '0';
         $partner->save();
 
@@ -122,6 +108,28 @@ class PartnerController extends Controller
         return redirect()->intended(route('partner.dashboard')); 
     }
 
+    public function showFormFacilities()
+    {
+
+        $user = Auth::user();
+        return view('partner.form.fasilitas');        
+        
+    }
+
+    public function submitFormFacilities(Request $request)
+    {
+        $user = Auth::user();
+        $fasilitas = FasilitasPartner::where('user_id', $user->id)->first();
+        $fasilitas->toilet = $request->input('toilet');
+        $fasilitas->wifi = $request->input('wifi');
+        $fasilitas->rganti = $request->input('rganti');
+        $fasilitas->ac = $request->input('ac');
+        $fasilitas->parkir = $request->input('parkir');
+        $fasilitas->facilities_id = '1';
+        $fasilitas->save();
+        return redirect()->intended(route('partner.dashboard')); 
+    }
+
     public function showFormOffline()
     {
 
@@ -143,13 +151,24 @@ class PartnerController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        $partner = DB::table('partner')->where('user_id',$user->id)->select('*')->get();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
         $tipe = DB::table('partner_type')
-                ->select('*')
-                ->get();
-        $email = DB::table('users')->where('id', $user->id)->select('email')->get();
+                ->where('partner_type.id', '=', $partner->pr_type)
+                ->first();
+        $phone_number = $user->phone_number;
+        $jam = Jam::all();
+        $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
+        $partner_prov = Provinces::where('id', $partner->pr_prov)->first();
+        $partner_kota = Regencies::where('id', $partner->pr_kota)->first();
+        $partner_kel = Villages::where('id', $partner->pr_kel)->first();
+        $partner_kec = Districts::where('id', $partner->pr_kec)->first();
+        $email = $user->email;
+        // dd($partner->pr_kel);
         $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
-        return view('partner.profile', ['partner' => $partner, 'tipe' => $tipe, 'email' => $email, 'fasilitas' => $fasilitas]);
+        return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec'));
     }
 
     public function edit(Request $Request)
@@ -263,8 +282,19 @@ class PartnerController extends Controller
         $calendar = Calendar::addEvents($events);
 
         $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
-        // dd($calendar);
         return view('partner.ps.booking-schedule', ['partner' => $partner, 'booking' => $booking], compact('calendar'));
+    }
+
+    public function showBookingHistory()
+    {   
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
+        return view('partner.ps.booking-history', ['partner' => $partner, 'booking' => $booking]);
     }
 
     public function showDetailBooking(Request $request)
@@ -287,5 +317,16 @@ class PartnerController extends Controller
     public function showJadiMitra()
     {
         return view('partner.jadi-mitra');
+    }
+
+    public function bookingFinished(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->first();
+        $booking->booking_status = 'finished';
+        $booking->save();
+
+        return redirect()->back();
     }
 }
