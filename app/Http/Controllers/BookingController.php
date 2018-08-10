@@ -18,7 +18,6 @@ use Image;
 class BookingController extends Controller
 {
     public function checkAuth(Request $request) {
-
         $package_id = $request->package_id;
         $package = PSPkg::where('id', $package_id)->get();
         $id = PSPkg::where('id', $package_id)->first();

@@ -35,7 +35,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="pull-left">Nama Paket</td>
-                                                                <td class="pull-right">{{$data->pkg_name_them}}</td>
+                                                                <td class="pull-right"><b>{{$data->pkg_name_them}}</b></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="pull-left">Harga Paket (Per Jam)</td>
