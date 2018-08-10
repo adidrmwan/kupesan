@@ -59,4 +59,8 @@ class CustomerController extends Controller
     {
         return view('resultstudio');
     }
+    public function notfound()
+    {
+        return view('notfound');
+    }
 }
