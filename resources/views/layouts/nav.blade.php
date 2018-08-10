@@ -15,10 +15,11 @@
         <div class="collapse navbar-collapse" id="myNavbar1">
             <ul class="nav navbar-nav navbar-left navbar-search-link">
                 <li>
-                    <form action="#" method="get" class="searchform navbar-form" role="search">
+                    <form role="search" action="{{ route('search.data') }}" method="post" enctype="multipart/form-data" class="searchform navbar-form">
+                    {{ csrf_field() }}
 <!--                         <input type="hidden" value="search" name="view"> -->
                             <div class="input-group">
-                                <input type="text"  name="searchword" required class="form-control" placeholder="Search" name="q">
+                                <input type="text"  name="word" required class="form-control" placeholder="Search by tag, name..">
                                 <div class="input-group-btn">
                                     <button class="btn" type="submit" style="background-color: #EA410C"><i class="glyphicon glyphicon-search" style="padding: 4px 0; color: white "></i></button>
                                 </div>

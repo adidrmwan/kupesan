@@ -21,6 +21,17 @@ class CustomerController extends Controller
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
                     ->where('booking.booking_status', '=', 'on_pembayaran')
                     ->get();
+        $pesanan_paid = Booking::where('booking.user_id', $user_id)
+                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
+                    ->where('booking.booking_status', '=', 'paid')
+                    ->get();
+
+        $pesanan_confirmed = Booking::where('booking.user_id', $user_id)
+                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
+                    ->where('booking.booking_status', '=', 'confirmed')
+                    ->get();
 
         $riwayat = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
@@ -28,7 +39,7 @@ class CustomerController extends Controller
                     ->where('booking.booking_status', '=', 'done')
                     ->get();
         // dd($pesanan);
-        return view('user.dashboard', ['user' => $user, 'pesanan' => $pesanan, 'riwayat' => $riwayat]);
+        return view('user.dashboard', ['user' => $user, 'pesanan' => $pesanan, 'pesanan_paid' => $pesanan_paid, 'pesanan_confirmed' => $pesanan_confirmed, 'riwayat' => $riwayat]);
     }
     public function studioresult()
     {
@@ -55,6 +66,9 @@ class CustomerController extends Controller
         return view('tnc');
     }
     
+<<<<<<< HEAD
+    
+=======
     public function resultstudio()
     {
         return view('resultstudio');
@@ -63,4 +77,5 @@ class CustomerController extends Controller
     {
         return view('notfound');
     }
+>>>>>>> 0a1b373f2ccff741f43d732edafb3dd921950e10
 }
