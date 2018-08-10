@@ -113,6 +113,20 @@
 .close-hour {
   background-color: #e6e6e6;
 }
+/* padding-bottom and top for image */
+.mfp-no-margins img.mfp-img {
+  padding: 0;
+}
+/* position of shadow behind the image */
+.mfp-no-margins .mfp-figure:after {
+  top: 0;
+  bottom: 0;
+}
+/* padding for main container */
+.mfp-no-margins .mfp-container {
+  padding: 0;
+}
+</
     </style>
 </head>
 <body id="main-homepage">
@@ -144,7 +158,7 @@
     <script src="{{ URL::asset('dist/js/custom-owl.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-slick.js') }} "></script>
     <!-- <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script> -->
-    <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script>
+    <!-- <script src="{{ URL::asset('dist/js/custom-video.js') }} "></script> -->
     <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
     <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
     <!-- Scripts -->
@@ -162,7 +176,7 @@
     <!-- DataTables -->
     <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{URL::asset('partners/js/dataTables.bootstrap.min.js')}}"></script>
-
+    
     <script type="text/javascript">
       $( "#datepicker" ).datepicker({
       prevText: '<i class="fa fa-fw fa-angle-left"></i>',
