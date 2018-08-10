@@ -133,45 +133,47 @@
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
 	
 
-                @foreach($allThemes as $data)
-                <div class="col-sm-6 col-md-4">
-                    <div class="main-block flight-block">
-                        <a >
-                            <div class="main-img">
-                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                                        <img class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
-                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                                        <img class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
-                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                                        <img class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
-                                        @endif
-                            </div><!-- end flight-img -->
+                    @foreach($allThemes as $data)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="main-block flight-block">
                             
-                            <div class="flight-info">
-                                <div class="flight-title" style="text-align: center;">
-                                    <h3>{{$data->partner_name}}</h3>
-                                </div><!-- end flight-title -->
+                                <div class="main-img">
+                                    @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                                            <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                                            <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+                                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                                            <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                            @endif
+                                </div><!-- end flight-img -->
                                 
-                                <ul class="list-unstyled list-inline offer-price-1">
-                                    <li class="price">{{$data->pkg_name_them}}</li>
-                                    <li class="price">Rp {{$data->pkg_price_them}} / Jam</li>
-                                    <li class="price">Rp {{$data->pkg_overtime_them}} / Overtime</li>
-                                    <li style="margin-top: 10px;">
-                                        <a href="{{route('check.auth', ['package_id' => $data->id])}}">
-                                            <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span></button>
-                                        </a>
-                                </button></li>
-                                </ul>
-                                
-                            </div><!-- end flight-info -->
-                        </a>
-                    </div><!-- end flight-block -->
-                </div><!-- end columns -->
-                @endforeach
+                                <div class="flight-info">
+                                    <div class="flight-title" style="text-align: center;">
+                                        <h3>{{$data->partner_name}}</h3>
+                                    </div><!-- end flight-title -->
+                                    
+                                    <ul class="list-unstyled list-inline offer-price-1">
+                                        <li class="price">{{$data->pkg_name_them}}</li>
+                                        <li class="price">Rp {{$data->pkg_price_them}} / Jam</li>
+                                        <li class="price">Rp {{$data->pkg_overtime_them}} / Overtime</li>
+                                        <li style="margin-top: 10px;">
+                                            <a href="{{route('check.auth', ['package_id' => $data->id])}}">
+                                                <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                                </button>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div><!-- end flight-info -->
+                            
+                        </div><!-- end flight-block -->
+                    </div><!-- end columns -->
+                    @endforeach
 
             </div><!-- end row -->
     	</div><!-- end container -->
-    </div><!-- end hotel-listing -->
-</section><!-- end innerpage-wrapper -->
+    </div>
+</div>
+</section>
 @include('layouts.footer')
 @endsection
