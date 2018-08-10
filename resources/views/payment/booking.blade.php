@@ -26,6 +26,9 @@
         
         <!-- Color Panel -->
         <link rel="stylesheet" href=" {{URL::asset('dist/css/jquery.colorpanel.css')}}">
+        <!-- Sweet Alert -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     </head>
     
     
@@ -98,7 +101,6 @@
             </nav><!-- end navbar -->
         </div>
                
-        
         <!--===== INNERPAGE-WRAPPER ====-->
         <section class="innerpage-wrapper">
         	<div id="booking" class="innerpage-section-padding">

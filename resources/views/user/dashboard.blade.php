@@ -9,7 +9,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 	<div class="dashboard-heading">
                         @foreach($user as $data)
-                        <p>Hai {{$data->name}}, Selamat Datang di kupesan.id !</p>
+                        <p>Hai {{$data->first_name}} {{$data->last_name}}, Selamat Datang di kupesan.id !</p>
                         @endforeach
                         <p>Semoga harimu indah</p>
                     </div><!-- end dashboard-heading -->
@@ -34,8 +34,9 @@
                                                 <div class="col-sm-12 col-md-12  user-detail">
                                                     <ul class="list-unstyled">
                                                         @foreach($user as $data)
-                                                        <li><span>Nama  :</span> <br> {{$data->name}}</li>
+                                                        <li><span>Nama  :</span> <br> {{$data->first_name}} {{$data->last_name}}</li>
                                                         <li><span>Email :</span> <br> {{$data->email}}</li>
+                                                        <li><span>No Hp :</span> <br> {{$data->phone_number}}</li>
                                                         @endforeach
                                                     </ul>
                                                     <!-- <div class="col-sm-12 col-md-4" style="margin-top: 3%">

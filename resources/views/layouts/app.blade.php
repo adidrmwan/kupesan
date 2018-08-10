@@ -62,6 +62,9 @@
             });
         });
     </script>
+    <!-- sweet alert -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style type="text/css">
 
 .overlay {
@@ -101,6 +104,15 @@
     vertical-align:middle;
 }
 
+.not-available {
+  background-color: #ea410c;
+}
+.available {
+  background-color: #acff7a;
+}
+.close-hour {
+  background-color: #e6e6e6;
+}
     </style>
 </head>
 <body id="main-homepage">
@@ -213,6 +225,7 @@
         var spl = text.split(',');
         var durasi = spl[0];
         var pack_id = spl[1];
+        var date = spl[2];
         $.get('/json-regencies1?pack_id=' + pack_id + '&durasi=' + durasi + '&callback=?',function(data) {
           console.log(data);
           $('#regencies').empty();
@@ -225,7 +238,7 @@
           $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>');
 
           $.each(data, function(index, regenciesObj){
-            $('#regencies').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +'">'+ regenciesObj.num_hour +':00</option>');
+            $('#regencies').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +','+ date +'">'+ regenciesObj.num_hour +':00</option>');
           })
         });
       });
@@ -237,6 +250,7 @@
         var jam_mulai = spl[0];
         var durasi2 = spl[1];
         var pack_id = spl[2];
+        var date = spl[3];
 
         $.get('/json-districts1?jam_mulai=' + jam_mulai + '&durasi2=' + durasi2 + '&callback=?',function(data) {
           console.log(data);
@@ -247,7 +261,7 @@
           $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>');
 
           $.each(data, function(index, districtsObj){
-            $('#districts').append('<option value="'+ districtsObj.num_hour +','+ durasi2 +','+ pack_id +'">'+ districtsObj.num_hour +':00</option>');
+            $('#districts').append('<option value="'+ districtsObj.num_hour +','+ durasi2 +','+ pack_id +','+ date +','+ jam_mulai +'">'+ districtsObj.num_hour +':00</option>');
           })
         });
       });
@@ -259,8 +273,9 @@
         var jam_selesai = spl[0];
         var durasi2 = spl[1];
         var pack_id = spl[2];
-
-        $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&callback=?',function(data) {
+        var date = spl[3];
+        var jam_mulai = spl[4];
+        $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
           console.log(data);
           $('#villages').empty();
           $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>');

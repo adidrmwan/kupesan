@@ -48,13 +48,14 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 		return redirect()->intended(route('home'));
 	})->name('user.dashboard');
     Route::get('/booking/0', 'BookingController@checkAuth')->name('check.auth');
-    Route::post('/booking/1', 'BookingController@showBooking')->name('form.pesan');
-    Route::post('/booking/2', 'BookingController@showReview')->name('form.booking');
-    Route::post('/booking/3', 'BookingController@showBayar')->name('form.bayar');
-    Route::post('/booking/4', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
-    Route::post('/booking/5', 'BookingController@uploadBukti')->name('upload.bukti');
+    Route::post('/booking/1', 'BookingController@showBooking2')->name('form.pesan2');
+    Route::post('/booking/2', 'BookingController@showBooking')->name('form.pesan');
+    Route::post('/booking/3', 'BookingController@showReview')->name('form.booking');
+    Route::post('/booking/4', 'BookingController@showBayar')->name('form.bayar');
+    Route::post('/booking/5', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
+    Route::post('/booking/6', 'BookingController@uploadBukti')->name('upload.bukti');
     Route::get('/voucher', 'BookingController@voucher')->name('voucher');
-    Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
+    Route::get('/profil-Ku', 'CustomerController@dashboard')->name('dashboard');
 });
 
 // Role untuk user yang partner

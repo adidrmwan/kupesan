@@ -27,7 +27,7 @@
                                                 </div>
                                                         
                                                 <div class="table-responsive">
-                                                    <table class="table">
+                                                    <table class="table ">
                                                         <tbody>
                                                             <tr>
                                                                 <td class="pull-left">Nama Studio</td>
@@ -63,30 +63,221 @@
                                             {{ csrf_field() }}
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                             <div class="panel panel-default">
-                                <div class="panel-heading"><h4>Informasi Pesanan-KU</h4></div>
+                                <div class="panel-heading"><h4>Pesanan-Ku</h4></div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12  user-detail">
                                                 <div class="row">
-                                                  <div class="col-md-5">
+                                                  <div class="col-md-6">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <label>Pilih Tanggal Pesan</label>
-                                                                <div id="datepicker"name="booking_date"></div>            
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Tanggal Terpilih</label>
-                                                                <input type="text" class="form-control" id="datepicker2" name="booking_date">   
+                                                                <label>Waktu yang tersedia pada <b>{{ date('d F Y', strtotime($booking_date)) }}</label>
+                                                                <table class="table table-responsive" style="text-align: center;">
+                                                                    <tr>
+                                                                        @if('1' >= $open && '1' < $close && empty($bookingcheck->num_hour_1))
+                                                                        <td class="available">01:00</td>
+                                                                        @elseif($bookingcheck->num_hour_1 == '1')
+                                                                        <td class="not-available">01:00</td>
+                                                                        @else
+                                                                        <td>01:00</td>
+                                                                        @endif
+                                                                        @if('9' >= $open && '9' < $close && empty($bookingcheck->num_hour_9))
+                                                                        <td class="available">09:00</td>
+                                                                        @elseif($bookingcheck->num_hour_9 == '1')
+                                                                        <td class="not-available">09:00</td>
+                                                                        @else
+                                                                        <td>09:00</td>
+                                                                        @endif
+                                                                        @if('17' >= $open && '17' < $close && empty($bookingcheck->num_hour_17))
+                                                                        <td class="available">17:00</td>
+                                                                        @elseif($bookingcheck->num_hour_17 == '1')
+                                                                        <td class="not-available">17:00</td>
+                                                                        @else
+                                                                        <td>17:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('2' >= $open && '2' < $close && empty($bookingcheck->num_hour_2))
+                                                                        <td class="available">02:00</td>
+                                                                        @elseif($bookingcheck->num_hour_2 == '1')
+                                                                        <td class="not-available">02:00</td>
+                                                                        @else
+                                                                        <td>02:00</td>
+                                                                        @endif
+                                                                        @if('10' >= $open && '10' < $close && empty($bookingcheck->num_hour_10))
+                                                                        <td class="available">10:00</td>
+                                                                        @elseif($bookingcheck->num_hour_10 == '1')
+                                                                        <td class="not-available">10:00</td>
+                                                                        @else
+                                                                        <td>10:00</td>
+                                                                        @endif
+                                                                        @if('18' >= $open && '18' < $close && empty($bookingcheck->num_hour_18))
+                                                                        <td class="available">18:00</td>
+                                                                        @elseif($bookingcheck->num_hour_18 == '1')
+                                                                        <td class="not-available">18:00</td>
+                                                                        @else
+                                                                        <td>18:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('3' >= $open && '3' < $close && empty($bookingcheck->num_hour_3))
+                                                                        <td class="available">03:00</td>
+                                                                        @elseif($bookingcheck->num_hour_3 == '1')
+                                                                        <td class="not-available">03:00</td>
+                                                                        @else
+                                                                        <td>03:00</td>
+                                                                        @endif
+                                                                        @if('11' >= $open && '11' < $close && empty($bookingcheck->num_hour_11))
+                                                                        <td class="available">11:00</td>
+                                                                        @elseif($bookingcheck->num_hour_11 == '1')
+                                                                        <td class="not-available">11:00</td>
+                                                                        @else
+                                                                        <td>11:00</td>
+                                                                        @endif
+                                                                        @if('19' >= $open && '19' < $close && empty($bookingcheck->num_hour_19))
+                                                                        <td class="available">19:00</td>
+                                                                        @elseif($bookingcheck->num_hour_19 == '1')
+                                                                        <td class="not-available">19:00</td>
+                                                                        @else
+                                                                        <td>19:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('4' >= $open && '4' < $close && empty($bookingcheck->num_hour_4))
+                                                                        <td class="available">04:00</td>
+                                                                        @elseif($bookingcheck->num_hour_4 == '1')
+                                                                        <td class="not-available">04:00</td>
+                                                                        @else
+                                                                        <td>04:00</td>
+                                                                        @endif
+                                                                        @if('12' >= $open && '12' < $close && empty($bookingcheck->num_hour_12))
+                                                                        <td class="available">12:00</td>
+                                                                        @elseif($bookingcheck->num_hour_12 == '1')
+                                                                        <td class="not-available">12:00</td>
+                                                                        @else
+                                                                        <td>12:00</td>
+                                                                        @endif
+                                                                        @if('20' >= $open && '20' < $close && empty($bookingcheck->num_hour_20))
+                                                                        <td class="available">20:00</td>
+                                                                        @elseif($bookingcheck->num_hour_20 == '1')
+                                                                        <td class="not-available">20:00</td>
+                                                                        @else
+                                                                        <td>20:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('5' >= $open && '5' < $close && empty($bookingcheck->num_hour_5))
+                                                                        <td class="available">05:00</td>
+                                                                        @elseif($bookingcheck->num_hour_5 == '1')
+                                                                        <td class="not-available">05:00</td>
+                                                                        @else
+                                                                        <td>05:00</td>
+                                                                        @endif
+                                                                        @if('13' >= $open && '13' < $close && empty($bookingcheck->num_hour_13))
+                                                                        <td class="available">13:00</td>
+                                                                        @elseif($bookingcheck->num_hour_13 == '1')
+                                                                        <td class="not-available">13:00</td>
+                                                                        @else
+                                                                        <td>13:00</td>
+                                                                        @endif
+                                                                        @if('21' >= $open && '21' < $close && empty($bookingcheck->num_hour_21))
+                                                                        <td class="available">21:00</td>
+                                                                        @elseif($bookingcheck->num_hour_21 == '1')
+                                                                        <td class="not-available">21:00</td>
+                                                                        @else
+                                                                        <td>21:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('6' >= $open && '6' < $close && empty($bookingcheck->num_hour_6))
+                                                                        <td class="available">06:00</td>
+                                                                        @elseif($bookingcheck->num_hour_6 == '1')
+                                                                        <td class="not-available">06:00</td>
+                                                                        @else
+                                                                        <td>06:00</td>
+                                                                        @endif
+                                                                        @if('14' >= $open && '14' < $close && empty($bookingcheck->num_hour_14))
+                                                                        <td class="available">14:00</td>
+                                                                        @elseif($bookingcheck->num_hour_14 == '1')
+                                                                        <td class="not-available">14:00</td>
+                                                                        @else
+                                                                        <td>14:00</td>
+                                                                        @endif
+                                                                        @if('22' >= $open && '22' < $close && empty($bookingcheck->num_hour_22))
+                                                                        <td class="available">22:00</td>
+                                                                        @elseif($bookingcheck->num_hour_22== '1')
+                                                                        <td class="not-available">22:00</td>
+                                                                        @else
+                                                                        <td>22:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('7' >= $open && '7' < $close && empty($bookingcheck->num_hour_7))
+                                                                        <td class="available">07:00</td>
+                                                                        @elseif($bookingcheck->num_hour_7== '1')
+                                                                        <td class="not-available">07:00</td>
+                                                                        @else
+                                                                        <td>07:00</td>
+                                                                        @endif                                                                        @if('15' >= $open && '15' < $close && empty($bookingcheck->num_hour_15))
+                                                                        <td class="available">15:00</td>
+                                                                        @elseif($bookingcheck->num_hour_15== '1')
+                                                                        <td class="not-available">15:00</td>
+                                                                        @else
+                                                                        <td>15:00</td>
+                                                                        @endif
+                                                                        @if('23' >= $open && '23' < $close && empty($bookingcheck->num_hour_23))
+                                                                        <td class="available">23:00</td>
+                                                                        @elseif($bookingcheck->num_hour_23== '1')
+                                                                        <td class="not-available">23:00</td>
+                                                                        @else
+                                                                        <td>23:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        @if('8' >= $open && '8' < $close && empty($bookingcheck->num_hour_8))
+                                                                        <td class="available">08:00</td>
+                                                                        @elseif($bookingcheck->num_hour_8== '1')
+                                                                        <td class="not-available">08:00</td>
+                                                                        @else
+                                                                        <td>08:00</td>
+                                                                        @endif
+                                                                        @if('16' >= $open && '16' < $close && empty($bookingcheck->num_hour_16))
+                                                                        <td class="available">16:00</td>
+                                                                        @elseif($bookingcheck->num_hour_16== '1')
+                                                                        <td class="not-available">16:00</td>
+                                                                        @else
+                                                                        <td>16:00</td>
+                                                                        @endif
+                                                                        @if('24' >= $open && '24' < $close && empty($bookingcheck->num_hour_24))
+                                                                        <td class="available">24:00</td>
+                                                                        @elseif($bookingcheck->num_hour_24== '1')
+                                                                        <td class="not-available">24:00</td>
+                                                                        @else
+                                                                        <td>24:00</td>
+                                                                        @endif
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="3" style="text-align: left;">
+                                                                            <span class="available" style="color: #acff7a;">---</span>&nbsp;Available&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <span class="not-available" style="color: #ea410c;">---</span>&nbsp;Not available&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <span style="color: #e6e6e6; background-color: #e6e6e6;">---</span>&nbsp;Close
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
                                                   </div>
-                                                  <div class="col-md-7">
+                                                  <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Tanggal Terpilih</label>
+                                                                <input type="text" class="form-control" id="datepicker2" value="{{ date('d F Y', strtotime($booking_date)) }}" disabled="" name="booking_date">
+                                                            </div>
+                                                        </div>
+                                                    </div> 
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
@@ -94,7 +285,7 @@
                                                                 <select class="form-control" name="durasi_paket" id="provinces" required>
                                                                   <option value="" disable="true" selected="true">Pilih Durasi Paket</option>
                                                                     @foreach ($package as $key => $value)
-                                                                      <option value="{{$value->pkg_duration_them}},{{$value->id}}">{{ $value->pkg_duration_them }} Jam</option>
+                                                                      <option value="{{$value->pkg_duration_them}},{{$value->id}},{{$booking_date}}">{{ $value->pkg_duration_them }} Jam</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -150,7 +341,10 @@
                             <div class="lg-booking-form">
                                 <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
                                     <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                                </div><!-- end checkbox -->
+                                </div>
+                                <input type="text" name="partner_id" value="{{$partner_id}}" hidden="">
+                                <input type="text" name="pid" value="{{$pid}}" hidden="">
+                                <input type="text" name="booking_date" value="{{$booking_date}}" hidden="">
                                 <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                     <button type="submit" class="btn btn-orange" style="float: right;">Pesan</button>
                                 </div>

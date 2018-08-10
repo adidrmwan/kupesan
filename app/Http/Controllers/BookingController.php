@@ -18,29 +18,23 @@ use Image;
 class BookingController extends Controller
 {
     public function checkAuth(Request $request) {
-        // dd($request);
+
         $package_id = $request->package_id;
         $package = PSPkg::where('id', $package_id)->get();
         $id = PSPkg::where('id', $package_id)->first();
         $partner = Partner::where('user_id', $id->user_id)
-                            ->select('pr_name', 'open_hour', 'close_hour')->first();
-
-        $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
-                            ->where('num_hour', '<', $partner->close_hour)->get();
-
-        $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
-                            ->where('num_hour', '<=', $partner->close_hour)->get();
-
-        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai], compact('provinces'));
+                            ->select('user_id', 'pr_name', 'open_hour', 'close_hour')->first();
+        if(empty($request->booking_date)) {
+            return view('pesan.pilih-tanggal', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id]);
+        }
+ 
     }
     public function checkAuth2(Request $request) {
         $package_id = $request->id;
         $package = PSPkg::where('id', $package_id)->get();
         $name = PSPkg::where('id', $package_id)->first();
-
         $partner = Partner::where('user_id', $name->user_id)
                             ->select('pr_name', 'open_hour', 'close_hour')->first();
-
         $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
                             ->where('num_hour', '<', $partner->close_hour)->get();
 
@@ -63,16 +57,46 @@ class BookingController extends Controller
         return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte, 'bookingcheck' => $bookingcheck]);
     }
 
+    public function showBooking2(Request $request)
+    {   
+        $partner_id = $request->partner_id;
+        $package_id = $request->pid;
+        $package = PSPkg::where('id', $package_id)->get();
+        $partner = Partner::where('user_id', $partner_id)
+                            ->select('user_id', 'pr_name', 'open_hour', 'close_hour')->first();
 
+        $booking_date = $request->booking_date;
+
+        $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
+        if(empty($bookingcheck)) {
+
+            $bookingcheck = new BookingCheck();
+            $bookingcheck->package_id = $package_id;
+            $bookingcheck->booking_date = $booking_date;
+            $bookingcheck->save();
+        }
+        $open = $partner->open_hour;
+        $close = $partner->close_hour;
+
+        $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
+                        ->where('num_hour', '<', $partner->close_hour)->get();
+
+        $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
+                        ->where('num_hour', '<=', $partner->close_hour)->get();
+                        
+        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'bookingcheck' => $bookingcheck,'pid' => $package_id], compact('provinces', 'booking_date', 'open', 'close', 'partner_id'));
+
+    }
     public function showBooking(Request $request)
     {   
-        $paket = explode(',', $request->durasi_paket, 2);
+        $paket = explode(',', $request->durasi_paket, 3);
         $durasi = $paket[0];
         $package_id = $paket[1];
         $date = $request->booking_date;
         $jam_tambahan = $request->jam_tambahan;
-
-        $mulai = explode(',', $request->jam_mulai, 3);
+        $package = PSPkg::where('id', $package_id)->first();
+        $package_list = PSPkg::where('id', $package_id)->get();
+        $mulai = explode(',', $request->jam_mulai, 4);
         if ($mulai < 10) {
             $jam_mulai = '0'.$mulai[0].':00:00';
         } elseif ($mulai >= 10) {
@@ -81,7 +105,7 @@ class BookingController extends Controller
         $booking_start_time = $mulai[0];
         $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
         
-        $selesai = explode(',', $request->jam_selesai, 3);
+        $selesai = explode(',', $request->jam_selesai, 5);
         if ($selesai < 10) {
             $jam_selesai = '0'.$selesai[0].':00:00';
         } elseif ($mulai >= 10) {
@@ -89,14 +113,53 @@ class BookingController extends Controller
         }
         $booking_end_time = $selesai[0];
         $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
-        
-        $package = PSPkg::where('id', $package_id)->first();
+        $booking_selesai_jam = $booking_end_time + $jam_tambahan - 1;
+        $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $date)->first();
+        $range_jam = DB::select('select num_hour from jam where num_hour BETWEEN :booking_start_time and :booking_selesai_jam', ['booking_start_time' => $booking_start_time, 'booking_selesai_jam' => $booking_selesai_jam]);
+        $notavailable = '0';
+        if(empty($bookingcheck)) {
+            $bookingcheck = new BookingCheck();
+            $bookingcheck->package_id = $package_id;
+            $bookingcheck->booking_date = $date;
+            $bookingcheck->save();
+        }
+        elseif (!empty($bookingcheck)) {
+            foreach ($range_jam as $key => $value) {
+                if ($value->num_hour == '1' && $bookingcheck->num_hour_1 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '2' && $bookingcheck->num_hour_2 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '3' && $bookingcheck->num_hour_3 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '4' && $bookingcheck->num_hour_4 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '5' && $bookingcheck->num_hour_5 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '6' && $bookingcheck->num_hour_6 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '7' && $bookingcheck->num_hour_7 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '8' && $bookingcheck->num_hour_8 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '9' && $bookingcheck->num_hour_9 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '10' && $bookingcheck->num_hour_10 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '11' && $bookingcheck->num_hour_11 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '12' && $bookingcheck->num_hour_12 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '13' && $bookingcheck->num_hour_13 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '14' && $bookingcheck->num_hour_14 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '15' && $bookingcheck->num_hour_15 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '16' && $bookingcheck->num_hour_16 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '17' && $bookingcheck->num_hour_17 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '18' && $bookingcheck->num_hour_18 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '19' && $bookingcheck->num_hour_19 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '20' && $bookingcheck->num_hour_20 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '21' && $bookingcheck->num_hour_21 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '22' && $bookingcheck->num_hour_22 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '23' && $bookingcheck->num_hour_23 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '24' && $bookingcheck->num_hour_24 == '1') { $notavailable = '1';}
+            }
+            if($notavailable == '1'){
+                return view('pesan.pilih-tanggal', ['package' => $package_list, 'pid' => $package_id, 'partner_id' => $package->user_id]);
+            }
+        }
+
 
         $booking = new Booking();
         $booking->user_id = Auth::user()->id;
         $booking->package_id = $package_id;
         $booking->partner_name = $package->partner_name;
-        // $booking->booking_price = $request->input('prc');
         $booking->booking_start_date = $booking_start_date;
         $booking->booking_end_date = $booking_end_date;
         $booking->booking_start_time = $booking_start_time;
@@ -273,28 +336,230 @@ class BookingController extends Controller
 
     public function villages(){
       $jam_selesai = Input::get('jam_selesai');
-      $durasi = Input::get('durasi2');
+      $jam_mulai = Input::get('jam_mulai');
       $package_id = Input::get('pack_id');
+      $durasi = Input::get('durasi2');
+      $date = Input::get('date');
+      $mulai = $jam_mulai;
+      $selesai = $jam_selesai;
       $package = PSPkg::where('id', $package_id)->first();
       $partner = Partner::where('user_id', $package->user_id)->first();
       $close_hour = $partner->close_hour;
-      if($close_hour == $jam_selesai) {
+      $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $date)->first();
+      
+      if ($jam_mulai == '1' && empty($bookingcheck->num_hour_1)){ $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '1' && $bookingcheck->num_hour_1 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '2' && empty($bookingcheck->num_hour_2)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '2' && $bookingcheck->num_hour_2 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '3' && empty($bookingcheck->num_hour_3)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '3' && $bookingcheck->num_hour_3 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '4' && empty($bookingcheck->num_hour_4)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '4' && $bookingcheck->num_hour_4 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '5' && empty($bookingcheck->num_hour_5)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '5' && $bookingcheck->num_hour_5 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '6' && empty($bookingcheck->num_hour_6)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '6' && $bookingcheck->num_hour_6 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '7' && empty($bookingcheck->num_hour_7)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '7' && $bookingcheck->num_hour_7 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '8' && empty($bookingcheck->num_hour_8)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '8' && $bookingcheck->num_hour_8 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '9' && empty($bookingcheck->num_hour_9)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '9' && $bookingcheck->num_hour_9 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '10' && empty($bookingcheck->num_hour_10)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '10' && $bookingcheck->num_hour_10 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '11' && empty($bookingcheck->num_hour_11)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '11' && $bookingcheck->num_hour_11 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '12' && empty($bookingcheck->num_hour_12)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '12' && $bookingcheck->num_hour_12 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '13' && empty($bookingcheck->num_hour_13)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '13' && $bookingcheck->num_hour_13 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '14' && empty($bookingcheck->num_hour_14)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '14' && $bookingcheck->num_hour_14 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '15' && empty($bookingcheck->num_hour_15)) { $jam_mulai = 'available'; }
+      elseif ($jam_mulai == '15' && $bookingcheck->num_hour_15 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '16' && empty($bookingcheck->num_hour_16)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '16' && $bookingcheck->num_hour_16 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '17' && empty($bookingcheck->num_hour_17)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '17' && $bookingcheck->num_hour_17 == '1') { $jam_mulai = 'not'; }
+      if ($jam_mulai == '18' && empty($bookingcheck->num_hour_18)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '18' && $bookingcheck->num_hour_18 == '1') { $jam_mulai = 'not';}
+      if ($jam_mulai == '19' && empty($bookingcheck->num_hour_19)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '19' && $bookingcheck->num_hour_19 == '1') { $jam_mulai = 'not';}
+      if ($jam_mulai == '20' && empty($bookingcheck->num_hour_20)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '20' && $bookingcheck->num_hour_20 == '1') { $jam_mulai = 'not';}
+      if ($jam_mulai == '21' && empty($bookingcheck->num_hour_21)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '21' && $bookingcheck->num_hour_21 == '1') { $jam_mulai = 'not';}
+      if ($jam_mulai == '22' && empty($bookingcheck->num_hour_22)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '22' && $bookingcheck->num_hour_22 == '1') { $jam_mulai = 'not';}
+      if ($jam_mulai == '23' && empty($bookingcheck->num_hour_23)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '23' && $bookingcheck->num_hour_23 == '1') { $jam_mulai = 'not';}
+      if ($jam_mulai == '24' && empty($bookingcheck->num_hour_24)) { $jam_mulai = 'available';}
+      elseif ($jam_mulai == '24' && $bookingcheck->num_hour_24 == '1') { $jam_mulai = 'not';}
+
+      if ($jam_selesai == '1' && empty($bookingcheck->num_hour_1)){ $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '1' && $bookingcheck->num_hour_1 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '2' && empty($bookingcheck->num_hour_2)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '2' && $bookingcheck->num_hour_2 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '3' && empty($bookingcheck->num_hour_3)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '3' && $bookingcheck->num_hour_3 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '4' && empty($bookingcheck->num_hour_4)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '4' && $bookingcheck->num_hour_4 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '5' && empty($bookingcheck->num_hour_5)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '5' && $bookingcheck->num_hour_5 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '6' && empty($bookingcheck->num_hour_6)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '6' && $bookingcheck->num_hour_6 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '7' && empty($bookingcheck->num_hour_7)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '7' && $bookingcheck->num_hour_7 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '8' && empty($bookingcheck->num_hour_8)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '8' && $bookingcheck->num_hour_8 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '9' && empty($bookingcheck->num_hour_9)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '9' && $bookingcheck->num_hour_9 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '10' && empty($bookingcheck->num_hour_10)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '10' && $bookingcheck->num_hour_10 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '11' && empty($bookingcheck->num_hour_11)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '11' && $bookingcheck->num_hour_11 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '12' && empty($bookingcheck->num_hour_12)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '12' && $bookingcheck->num_hour_12 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '13' && empty($bookingcheck->num_hour_13)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '13' && $bookingcheck->num_hour_13 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '14' && empty($bookingcheck->num_hour_14)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '14' && $bookingcheck->num_hour_14 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '15' && empty($bookingcheck->num_hour_15)) { $jam_selesai = 'available'; }
+      elseif ($jam_selesai == '15' && $bookingcheck->num_hour_15 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '16' && empty($bookingcheck->num_hour_16)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '16' && $bookingcheck->num_hour_16 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '17' && empty($bookingcheck->num_hour_17)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '17' && $bookingcheck->num_hour_17 == '1') { $jam_selesai = 'not'; }
+      if ($jam_selesai == '18' && empty($bookingcheck->num_hour_18)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '18' && $bookingcheck->num_hour_18 == '1') { $jam_selesai = 'not';}
+      if ($jam_selesai == '19' && empty($bookingcheck->num_hour_19)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '19' && $bookingcheck->num_hour_19 == '1') { $jam_selesai = 'not';}
+      if ($jam_selesai == '20' && empty($bookingcheck->num_hour_20)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '20' && $bookingcheck->num_hour_20 == '1') { $jam_selesai = 'not';}
+      if ($jam_selesai == '21' && empty($bookingcheck->num_hour_21)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '21' && $bookingcheck->num_hour_21 == '1') { $jam_selesai = 'not';}
+      if ($jam_selesai == '22' && empty($bookingcheck->num_hour_22)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '22' && $bookingcheck->num_hour_22 == '1') { $jam_selesai = 'not';}
+      if ($jam_selesai == '23' && empty($bookingcheck->num_hour_23)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '23' && $bookingcheck->num_hour_23 == '1') { $jam_selesai = 'not';}
+      if ($jam_selesai == '24' && empty($bookingcheck->num_hour_24)) { $jam_selesai = 'available';}
+      elseif ($jam_selesai == '24' && $bookingcheck->num_hour_24 == '1') { $jam_selesai = 'not';}
+
+      $selesai_1 = ($selesai + 1);
+
+      if ($selesai_1 == '1' && empty($bookingcheck->num_hour_1)){ $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '1' && $bookingcheck->num_hour_1 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '2' && empty($bookingcheck->num_hour_2)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '2' && $bookingcheck->num_hour_2 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '3' && empty($bookingcheck->num_hour_3)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '3' && $bookingcheck->num_hour_3 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '4' && empty($bookingcheck->num_hour_4)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '4' && $bookingcheck->num_hour_4 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '5' && empty($bookingcheck->num_hour_5)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '5' && $bookingcheck->num_hour_5 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '6' && empty($bookingcheck->num_hour_6)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '6' && $bookingcheck->num_hour_6 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '7' && empty($bookingcheck->num_hour_7)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '7' && $bookingcheck->num_hour_7 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '8' && empty($bookingcheck->num_hour_8)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '8' && $bookingcheck->num_hour_8 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '9' && empty($bookingcheck->num_hour_9)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '9' && $bookingcheck->num_hour_9 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '10' && empty($bookingcheck->num_hour_10)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '10' && $bookingcheck->num_hour_10 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '11' && empty($bookingcheck->num_hour_11)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '11' && $bookingcheck->num_hour_11 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '12' && empty($bookingcheck->num_hour_12)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '12' && $bookingcheck->num_hour_12 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '13' && empty($bookingcheck->num_hour_13)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '13' && $bookingcheck->num_hour_13 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '14' && empty($bookingcheck->num_hour_14)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '14' && $bookingcheck->num_hour_14 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '15' && empty($bookingcheck->num_hour_15)) { $jam_selesai_1 = 'available'; }
+      elseif ($selesai_1 == '15' && $bookingcheck->num_hour_15 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '16' && empty($bookingcheck->num_hour_16)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '16' && $bookingcheck->num_hour_16 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '17' && empty($bookingcheck->num_hour_17)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '17' && $bookingcheck->num_hour_17 == '1') { $jam_selesai_1 = 'not'; }
+      if ($selesai_1 == '18' && empty($bookingcheck->num_hour_18)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '18' && $bookingcheck->num_hour_18 == '1') { $jam_selesai_1 = 'not';}
+      if ($selesai_1 == '19' && empty($bookingcheck->num_hour_19)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '19' && $bookingcheck->num_hour_19 == '1') { $jam_selesai_1 = 'not';}
+      if ($selesai_1 == '20' && empty($bookingcheck->num_hour_20)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '20' && $bookingcheck->num_hour_20 == '1') { $jam_selesai_1 = 'not';}
+      if ($selesai_1 == '21' && empty($bookingcheck->num_hour_21)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '21' && $bookingcheck->num_hour_21 == '1') { $jam_selesai_1 = 'not';}
+      if ($selesai_1 == '22' && empty($bookingcheck->num_hour_22)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '22' && $bookingcheck->num_hour_22 == '1') { $jam_selesai_1 = 'not';}
+      if ($selesai_1 == '23' && empty($bookingcheck->num_hour_23)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '23' && $bookingcheck->num_hour_23 == '1') { $jam_selesai_1 = 'not';}
+      if ($selesai_1 == '24' && empty($bookingcheck->num_hour_24)) { $jam_selesai_1 = 'available';}
+      elseif ($selesai_1 == '24' && $bookingcheck->num_hour_24 == '1') { $jam_selesai_1 = 'not';}
+
+      $selesai_2 = ($selesai + 2);
+      if ($selesai_2 == '1' && empty($bookingcheck->num_hour_1)){ $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '1' && $bookingcheck->num_hour_1 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '2' && empty($bookingcheck->num_hour_2)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '2' && $bookingcheck->num_hour_2 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '3' && empty($bookingcheck->num_hour_3)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '3' && $bookingcheck->num_hour_3 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '4' && empty($bookingcheck->num_hour_4)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '4' && $bookingcheck->num_hour_4 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '5' && empty($bookingcheck->num_hour_5)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '5' && $bookingcheck->num_hour_5 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '6' && empty($bookingcheck->num_hour_6)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '6' && $bookingcheck->num_hour_6 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '7' && empty($bookingcheck->num_hour_7)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '7' && $bookingcheck->num_hour_7 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '8' && empty($bookingcheck->num_hour_8)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '8' && $bookingcheck->num_hour_8 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '9' && empty($bookingcheck->num_hour_9)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '9' && $bookingcheck->num_hour_9 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '10' && empty($bookingcheck->num_hour_10)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '10' && $bookingcheck->num_hour_10 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '11' && empty($bookingcheck->num_hour_11)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '11' && $bookingcheck->num_hour_11 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '12' && empty($bookingcheck->num_hour_12)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '12' && $bookingcheck->num_hour_12 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '13' && empty($bookingcheck->num_hour_13)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '13' && $bookingcheck->num_hour_13 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '14' && empty($bookingcheck->num_hour_14)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '14' && $bookingcheck->num_hour_14 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '15' && empty($bookingcheck->num_hour_15)) { $jam_selesai_2 = 'available'; }
+      elseif ($selesai_2 == '15' && $bookingcheck->num_hour_15 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '16' && empty($bookingcheck->num_hour_16)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '16' && $bookingcheck->num_hour_16 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '17' && empty($bookingcheck->num_hour_17)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '17' && $bookingcheck->num_hour_17 == '1') { $jam_selesai_2 = 'not'; }
+      if ($selesai_2 == '18' && empty($bookingcheck->num_hour_18)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '18' && $bookingcheck->num_hour_18 == '1') { $jam_selesai_2 = 'not';}
+      if ($selesai_2 == '19' && empty($bookingcheck->num_hour_19)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '19' && $bookingcheck->num_hour_19 == '1') { $jam_selesai_2 = 'not';}
+      if ($selesai_2 == '20' && empty($bookingcheck->num_hour_20)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '20' && $bookingcheck->num_hour_20 == '1') { $jam_selesai_2 = 'not';}
+      if ($selesai_2 == '21' && empty($bookingcheck->num_hour_21)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '21' && $bookingcheck->num_hour_21 == '1') { $jam_selesai_2 = 'not';}
+      if ($selesai_2 == '22' && empty($bookingcheck->num_hour_22)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '22' && $bookingcheck->num_hour_22 == '1') { $jam_selesai_2 = 'not';}
+      if ($selesai_2 == '23' && empty($bookingcheck->num_hour_23)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '23' && $bookingcheck->num_hour_23 == '1') { $jam_selesai_2 = 'not';}
+      if ($selesai_2 == '24' && empty($bookingcheck->num_hour_24)) { $jam_selesai_2 = 'available';}
+      elseif ($selesai_2 == '24' && $bookingcheck->num_hour_24 == '1') { $jam_selesai_2 = 'not';}
+
+      if($close_hour == $selesai || ($jam_mulai == 'available' && $jam_selesai == 'not') || $jam_mulai == 'not' && $jam_selesai == 'not') {
           $villages = "Tidak bisa tambah";
       }
-      elseif ($jam_selesai == ($close_hour - 1)) {
-          $villages = Jam::where('num_hour', '=' , '1')->get();
-      }
-      elseif ($jam_selesai == ($close_hour - 2)) {
-          $villages = Jam::where('num_hour', '<=' , '2')->get();
-      }
-      elseif ($jam_selesai == ($close_hour - 3)) {
-          $villages = Jam::where('num_hour', '<=' , '3')->get();
-      }
-      elseif ($jam_selesai == ($close_hour - 4)) {
+      elseif ($selesai == ($close_hour - 4) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'available' && $jam_selesai_2 == 'available')) {
           $villages = Jam::where('num_hour', '<=' , '4')->get();
       }
-      elseif ($jam_selesai <= ($close_hour - 5)) {
-          $villages = Jam::where('num_hour', '<=' , '5')->get();
+      elseif ($selesai == ($close_hour - 3) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'available' && $jam_selesai_2 == 'not')) {
+          $villages = Jam::where('num_hour', '<=' , '3')->get();
+      }
+      elseif ($selesai == ($close_hour - 2) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'available')) {
+          $villages = Jam::where('num_hour', '<=' , '2')->get();
+      }
+      elseif ($selesai == ($close_hour - 1) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'not')) {
+          $villages = Jam::where('num_hour', '=' , '1')->get();
       }
       
       return response()->json($villages);

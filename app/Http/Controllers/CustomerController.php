@@ -13,18 +13,18 @@ class CustomerController extends Controller
     public function dashboard()
     {
         $user_id = Auth::user()->id;
-        $user = User::where('id', $user_id)->select('name', 'email')->get();
+        $user = User::where('id', $user_id)->select('first_name', 'last_name', 'email', 'phone_number')->get();
         // dd($user);
 
         $pesanan = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
                     ->where('booking.booking_status', '=', 'confirmed')
                     ->get();
 
         $riwayat = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ((booking_end_time - booking_start_time) * booking_price) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them,  booking_total as total'))
                     ->where('booking.booking_status', '=', 'done')
                     ->get();
         // dd($pesanan);
