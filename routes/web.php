@@ -152,15 +152,15 @@ Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgot
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
 
-Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
-Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
-=======
-Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+// Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
+// Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+// =======
+// Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
 
->>>>>>> 6d797e1858b0f3fdf636b968d52e83ae26fbbd6f
+// >>>>>>> 6d797e1858b0f3fdf636b968d52e83ae26fbbd6f
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');
