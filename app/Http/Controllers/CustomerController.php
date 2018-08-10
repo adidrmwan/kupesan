@@ -19,7 +19,7 @@ class CustomerController extends Controller
         $pesanan = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
-                    ->where('booking.booking_status', '=', 'confirmed')
+                    ->where('booking.booking_status', '=', 'on_pembayaran')
                     ->get();
 
         $riwayat = Booking::where('booking.user_id', $user_id)
@@ -54,10 +54,7 @@ class CustomerController extends Controller
     {
         return view('tnc');
     }
-    public function daftarpartner()
-    {
-        return view('superadmin.daftarpartner');
-    }
+    
     public function resultstudio()
     {
         return view('resultstudio');

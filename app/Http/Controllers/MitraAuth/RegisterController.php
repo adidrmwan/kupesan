@@ -89,7 +89,7 @@ class RegisterController extends Controller
               $message->to($user['email']);
               $message->subject('Kupesan - Activation Code');
             });
-            return redirect()->to('login')->with('success',"We sent an activation code. Please check your mail to Login.");
+            return redirect()->to('login')->with('success',"We sent activation code. Please check your mail to Login.");
         }
         return back()->with('errors',$validator->errors());
     }

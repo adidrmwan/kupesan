@@ -37,9 +37,13 @@ Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('de
 
 
 // Route untuk user yang admin
-Route::group(['prefix' => '1', 'middleware' => ['auth','role:superadmin']], function(){
+Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superadmin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
-    Route::get('/confirm/', 'AdminController@confirmBukti')->name('confirm.bukti');
+    Route::get('/kupesan', 'SearchController@home')->name('admin.kupesan');
+    Route::get('/confirm/bukti', 'AdminController@confirmBukti')->name('confirm.bukti');
+    Route::get('/partner-list', 'AdminController@partnerList')->name('daftar.partner');
+    Route::get('/confirm/partner', 'AdminController@confirmPartner')->name('confirm.partner');
+    Route::get('/cancel/partner', 'AdminController@cancelPartner')->name('cancel.partner');
 });
 
 // Route untuk user yang member
@@ -146,7 +150,7 @@ Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashbo
 Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
-Route::get('/daftarpartner', 'CustomerController@daftarpartner')->name('daftarpartner');
+
 Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
 
 Route::get('/json-regencies','CountryController@regencies');

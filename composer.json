@@ -14,7 +14,8 @@
         "laravelcollective/html": "~5.0",
         "maddhatter/laravel-fullcalendar": "^1.3",
         "nesbot/carbon": "^1.32",
-        "realrashid/sweet-alert": "^1.1"
+        "realrashid/sweet-alert": "^1.1",
+        "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

@@ -351,9 +351,13 @@
                             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
                                 <form role="form" action="{{ route('form.konfirmasi') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                             {{ csrf_field() }}
-                                    <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-6 col-lg-6"  >
                                         <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                                     </div><!-- end checkbox -->
+                                    <div class="checkbox col-xs-12 col-sm-12 col-md-2 col-lg-2"  >
+                                        <button type="submit" class="btn btn-orange" style="float: right;">Bayar Nanti</button>
+                                        <input type="text" name="bid" value="{{$bid}}" hidden="">
+                                    </div>
                                     <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                         <button type="submit" class="btn btn-orange" style="float: right;">Konfirmasi Pembayaran</button>
                                         <input type="text" name="bid" value="{{$bid}}" hidden="">

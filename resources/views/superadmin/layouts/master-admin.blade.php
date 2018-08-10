@@ -131,13 +131,13 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview">
-          <a href="dashboard">
+        <li class="">
+          <a href="{{route('index')}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="daftarpartner">
+        <li class="">
+          <a href="{{route('daftar.partner')}}">
             <i class="fa fa-list"></i> <span>Daftar Partner</span>
           </a>
         </li>
@@ -190,6 +190,32 @@
   $(function () {
     $('#example3').DataTable()
     $('#example4').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script>
+  $(function () {
+    $('#example5').DataTable()
+    $('#example6').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script>
+  $(function () {
+    $('#example7').DataTable()
+    $('#example8').DataTable({
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,

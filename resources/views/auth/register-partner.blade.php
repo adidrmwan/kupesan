@@ -37,20 +37,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                   <!--  <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group {{ $errors->has('birth_date') ? ' has-error' : '' }} " id="datetimepicker" >
-                                                  <input id="birth_date" type="text" class="form-control dpd3" name="birth_date" placeholder="Birth Date" value="{{ old('birth_date') }}" data-date-format="yyyy-mm-dd" required >
-
-                                                    @if ($errors->has('birth_date'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('birth_date') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                 <span><i class="fa fa-birthday-cake"></i></span>
-                                            </div>        
-                                        </div>
-                                    </div> -->
 
                                     <div class="row">
                                         <div class="col-sm-12">

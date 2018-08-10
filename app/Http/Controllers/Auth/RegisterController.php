@@ -52,9 +52,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:13',
+            'birth_date' => 'required|date',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
     }
 
@@ -67,10 +70,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
+            'birth_date' => $data['birth_date'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user->save();
 
         $userRole = UserRole::create([
             'role_id' => '2',
@@ -94,7 +102,7 @@ class RegisterController extends Controller
           $message->to($user['email']);
           $message->subject('Kupesan - Activation Code');
         });
-        return redirect()->to('login')->with('success',"We sent activation code. Please check your mail.");
+        return redirect()->to('login')->with('success',"We sent activation code. Please check your mail to Login.");
       }
       return back()->with('errors',$validator->errors());
     }
@@ -104,13 +112,13 @@ class RegisterController extends Controller
       if(!is_null($check)){
         $user = User::find($check->id_user);
         if ($user->is_activated ==1){
-          return redirect()->to('login')->with('success',"user are already actived.");
+          return redirect()->to('login')->with('success',"Your account is already actived.");
 
         }
         $user->update(['is_activated' => 1]);
         DB::table('user_activations')->where('token',$token)->delete();
-        return redirect()->to('login')->with('success',"user active successfully.");
+        return redirect()->to('login')->with('success',"Account active successfully.");
       }
-      return redirect()->to('login')->with('Warning',"your token is invalid");
+      return redirect()->to('login')->with('Warning',"Your token is invalid");
     }
 }

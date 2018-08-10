@@ -9,9 +9,9 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
           <div class="inner">
-            <h3>150 /</h3>
+            <h3>{{$total_booking_paid}} / {{$total_booking}}</h3>
 
-            <p>Total Booking</p>
+            <p>Total Booking (Sudah Bayar)</p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
@@ -24,9 +24,9 @@
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
-            <h3>53 /</h3>
+            <h3>{{$total_booking_confirmed}} / {{$total_booking}}</h3>
 
-            <p>Booking / Day </p>
+            <p>Total Booking (Sudah dikonfirmasi)</p>
           </div>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
@@ -39,7 +39,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
           <div class="inner">
-            <h3>44 /</h3>
+            <h3>{{$total_user}}</h3>
 
             <p>Total User</p>
           </div>
@@ -54,7 +54,7 @@
         <!-- small box -->
         <div class="small-box bg-red">
           <div class="inner">
-            <h3>65 /</h3>
+            <h3>{{$total_partner}}</h3>
 
             <p>Total Partner</p>
           </div>
