@@ -34,8 +34,8 @@ Route::get('/', function () {
 //Route Search Fotostudio di Home
 Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
 Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
-
-
+Route::post('/search/data', 'SearchController@searchData')->name('search.data');
+Route::get('/search/result/#1', 'SearchController@resultstudio')->name('resultstudio');
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superadmin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
@@ -151,7 +151,7 @@ Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgot
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
-Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
+
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');
