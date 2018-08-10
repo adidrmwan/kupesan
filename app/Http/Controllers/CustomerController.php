@@ -66,5 +66,16 @@ class CustomerController extends Controller
         return view('tnc');
     }
     
+<<<<<<< HEAD
     
+=======
+    public function resultstudio()
+    {
+        return view('resultstudio');
+    }
+    public function notfound()
+    {
+        return view('notfound');
+    }
+>>>>>>> 0a1b373f2ccff741f43d732edafb3dd921950e10
 }

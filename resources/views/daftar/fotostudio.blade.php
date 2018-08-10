@@ -116,7 +116,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label style="color: white;">Max Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="10000" required>
+                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="100000" required>
                                             </div> 
                                         </div>
                                     </div>
@@ -137,14 +137,25 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="main-block flight-block">
                             
-                                <div class="main-img">
-                                    @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                                <div class="main-img img-hover">
+                                    <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+
+                                            @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
                                             <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                    </a>
+                                </div>
+                                <div class="main-img img-hover">
+                                    <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
                                             @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
                                             <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+                                    </a>
+                                </div>
+                                <div class="main-img img-hover">
+                                    <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
                                             @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
                                             <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
                                             @endif
+                                    </a>
                                 </div><!-- end flight-img -->
                                 
                                 <div class="flight-info">

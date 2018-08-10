@@ -151,7 +151,12 @@ Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgot
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
+<<<<<<< HEAD
 
+=======
+Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
+Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+>>>>>>> 0a1b373f2ccff741f43d732edafb3dd921950e10
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');
