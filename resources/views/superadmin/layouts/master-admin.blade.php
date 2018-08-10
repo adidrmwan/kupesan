@@ -131,9 +131,14 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="active treeview">
-          <a href="#">
+        <li class="treeview">
+          <a href="dashboard">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="daftarpartner">
+            <i class="fa fa-list"></i> <span>Daftar Partner</span>
           </a>
         </li>
       </ul>

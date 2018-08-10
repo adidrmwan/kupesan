@@ -54,4 +54,12 @@ class CustomerController extends Controller
     {
         return view('tnc');
     }
+    public function daftarpartner()
+    {
+        return view('superadmin.daftarpartner');
+    }
+    public function resultstudio()
+    {
+        return view('resultstudio');
+    }
 }
