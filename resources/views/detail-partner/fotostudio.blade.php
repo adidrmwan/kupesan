@@ -163,29 +163,29 @@
                                                             <ul class="list-unstyled list-inline offer-price-1">
                                                                 <li class="price" style="color: white;">{{$listthem->pkg_name_them}}</li>
                                                               </ul>
-                                                          </div><!-- end main-mask -->
-                                                      </div><!-- end offer-img -->
+                                                          </div>
+                                                      </div>
                                                       
                                                       <div class="main-info hotel-info">
                                                           <div class="arrow">
-                                                            <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
+                                                            <a href="{{route('check.auth', ['package_id' => $listthem->id])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
                                                             </a>
                                                             
-                                                          </div><!-- end arrow -->
+                                                          </div>
 
                                                           <div class="main-title hotel-title">
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                          </div><!-- end hotel-title -->
-                                                      </div><!-- end hotel-info -->
-                                                  </div><!-- end hotel-block -->
-                                              </div><!-- end item -->
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
                                               @endforeach
-                                          </div><!-- end owl-hotel-offers -->
-                                      </div><!-- end columns -->
-                          </section><!-- end hotel-offers -->
+                                          </div>
+                                      </div>
+                          </section>
                           <section id="alacarte-offers" class="">
                                       <div class="col-sm-12">
                                           <div class="page-heading">

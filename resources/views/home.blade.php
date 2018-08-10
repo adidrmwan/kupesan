@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >
-                                            <select  class="form-control" name="tema" required>
+                                            <select  class="form-control" name="tag_id" required>
                                                 <option selected value="">Pilih Tema</option>
                                                 @foreach($tag as $list)
                                                 <option value="{{$list->tag_id}}">{{$list->tag_title}}</option>

@@ -31,9 +31,9 @@
                     </div>
                 </div>                    
             </div> -->
-        </div><!-- end container -->
-    </div><!-- end search-result-page -->
-</section><!-- end innerpage-wrapper -->
+        </div>
+    </div>
+</section>
        
 <section class="innerpage-wrapper">
 	<div id="hotel-listing" class="bottom-padding">
@@ -104,7 +104,8 @@
                         <div class="side-bar-block filter-block ">
                             <h3>Filter Harga</h3>
                             <br>
-                            <form>
+                            <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="padding-price">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -116,12 +117,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label style="color: white;">Max Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="100000" required>
+                                                <input type="number" class="form-control" placeholder="Max Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="100000" required>
                                             </div> 
                                         </div>
                                     </div>
                                     <div class="padding-price filter-block">
-                                        <button class="btn btn-default" style="width: 100%;">Filter</button>
+                                        <input type="text" name="tag_id" value="{{$tag_id}}" hidden="">
+                                        <button type="submit" class="btn btn-default" style="width: 100%;">Filter</button>
                                     </div>
                                 </div>
                                 

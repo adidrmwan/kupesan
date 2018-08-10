@@ -71,7 +71,8 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
     Route::get('/form/facilities', 'PartnerController@showFormFacilities')->name('partner.facilities.form');
     Route::post('/form/facilities', 'PartnerController@submitFormFacilities')->name('partner.facilities.form.submit');
-
+    Route::get('/form/dayoff', 'PartnerController@showFormDayOff')->name('form.dayoff');
+    Route::post('/form/dayoff', 'PartnerController@submitFormDayOff')->name('form.dayoff.submit');
     Route::get('/booking/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
     Route::get('/booking/history', 'PartnerController@showBookingHistory')->name('booking.history');
 
@@ -151,10 +152,15 @@ Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgot
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
+<<<<<<< HEAD
 
 
 Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
 Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+=======
+Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+
+>>>>>>> 6d797e1858b0f3fdf636b968d52e83ae26fbbd6f
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');

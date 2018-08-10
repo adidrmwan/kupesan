@@ -25,10 +25,18 @@
                         <div class="tab-content">                            
                             <div id="dsh-profile" class="tab-pane fade in active">
                             	<div class="dashboard-content user-profile">
-                                    <h2 class="dash-content-title">Profil Ku</h2>
+                                    <h2 class="dash-content-title">Profil-Ku</h2>
                                     <div class="panel panel-default ">
-
-                                        <div class="panel-heading"><h4>Detail Profil</h4></div>
+                                        <div class="panel-heading">
+                                            <h4>Detail Profil
+                                            <!-- <span class="pull-right">
+                                                <a href="">
+                                                  <button type="submit" class="btn btn-orange" style="color: white;"><b>Edit</b></button>
+                                                </a>
+                                            </span> -->
+                                        </h4>
+                                            
+                                        </div>
                                         <div class="panel-body">
                                             <div class="row">                                                
                                                 <div class="col-sm-12 col-md-12  user-detail">
@@ -39,11 +47,7 @@
                                                         <li><span>No Hp :</span> <br> {{$data->phone_number}}</li>
                                                         @endforeach
                                                     </ul>
-                                                    <!-- <div class="col-sm-12 col-md-4" style="margin-top: 3%">
-                                                        <button class="btn" data-toggle="modal" data-target="#edit-profile">Update Profile</button>    
-                                                    </div> -->
-                                                    
-                                                </div><!-- end columns -->                                        
+                                                </div>                                      
                                             </div>                                            
                                         </div>
                                     </div>
@@ -80,11 +84,9 @@
                                                                 <li>Total Harga :<span class="pull-right"> Rp {{$listpesanan->booking_total}}</span></li>
                                                             </ul>
                                                         </td>
-                                                        <td></td>
-                                                        <td></td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
-                                                                <form role="form" action="{{ route('form.konfirmasi') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                                                                <form role="form" action="{{ route('form.konfirmasi') }}" method="post" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
                                                                     <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Konfirmasi Pembayaran</b></button>
                                                                     <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
@@ -99,7 +101,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <br>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -129,9 +130,11 @@
                                                         <td></td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
-                                                                <a><button class="btn btn-warning" style="float: right; color: white;"><b>Tunggu Konfirmasi</b></button>
-                                                                </a>
-                                                                    
+                                                                <form role="form" action="{{ route('upload.bukti') }}" method="post" enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                    <button type="submit" class="btn btn-warning" style="float: right; color: white;"><b>Tunggu Konfirmasi</b></button>
+                                                                    <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
+                                                                </form>
                                                             </div>
                                                         </td>
                                                         <td></td>
@@ -142,7 +145,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <br>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">

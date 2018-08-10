@@ -22,21 +22,21 @@ class SearchController extends Controller
 
     public function searchFotostudio(Request $request)
     {
-        $tema_id = $request->tema;
-        
-        if(!empty($tema_id)) {
-            // $cek_tgl = Booking::where('booking_date', $booking_date)->select('package_id', 'booking_date', 'booking_start_time', 'booking_end_time')->get();
-            $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tema_id)->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->where('ps_package.status', '1')->get();
-            // dd($cek_tema);
+        $tag_id = $request->tag_id;
+
+        if($request->has('tag_id')) {
+
+            if($request->has('min_price') && $request->has('max_price')){
+                $min_price = $request->min_price;
+                $max_price = $request->max_price;
+                $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->where('ps_package.status', '1')->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                return view('daftar.fotostudio', ['allThemes' => $allThemes], compact('tag_id'));
+            }
+
+            $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->where('ps_package.status', '1')->orderBy('ps_package.pkg_price_them', 'asc')->get();
         }
 
-        $result = DB::table('partner')
-         ->join('ps_package', 'ps_package.user_id', '=', 'partner.user_id')
-         ->select('ps_package.user_id', 'partner.pr_name', 'partner.pr_logo', DB::raw('MIN(ps_package.pkg_price_them) as min_price'))
-         ->groupBy('ps_package.user_id', 'partner.pr_name', 'partner.pr_logo')
-         ->get();
-
-        return view('daftar.fotostudio', ['result' => $result, 'allThemes' => $allThemes]);
+        return view('daftar.fotostudio', ['allThemes' => $allThemes], compact('tag_id'));
     }
 
     public function searchData(Request $request)
@@ -44,9 +44,17 @@ class SearchController extends Controller
         // dd($request);
         if ($request->has('word')) {
             $word = $request->word;
-            $allThemes = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->get();
+            $allThemes = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->orderBy('ps_package.pkg_price_them', 'asc')->get();
+            $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
             $studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->get();
-            if(!empty($studio_data) || $allThemes) {
+            $cek_studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->first();
+
+            if (empty($cek_studio_data) && empty($cek_tag)) {
+                return view('notfound');
+            }elseif(!empty($cek_studio_data)) {
+                return view('result-studio', compact('studio_data', 'allThemes', 'word'));
+            }
+            elseif(!empty($cek_tag)) {
                 return view('result-studio', compact('studio_data', 'allThemes', 'word'));
             }
         }
