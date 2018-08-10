@@ -146,6 +146,7 @@ Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgot
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 Route::get('/daftarpartner', 'CustomerController@daftarpartner')->name('daftarpartner');
+Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');

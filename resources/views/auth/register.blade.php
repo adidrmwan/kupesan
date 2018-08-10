@@ -52,15 +52,15 @@
                                     
                                     <button class="btn btn-orange btn-block" type="submit">Register</button>
 
-                                    <h5 style="padding-top: 3%; text-align: center;">Or Register With</h5>
-                                    <!-- <div class="col-sm-12" style="padding-bottom: 5%;"> -->
-                                        <!-- <div class="col-md-6">
+                                    <!-- <h5 style="padding-top: 3%; text-align: center;">Or Register With</h5>
+                                    <div class="col-sm-12" style="padding-bottom: 5%;">
+                                        <div class="col-md-6">
                                             <a href="#" class="btn btn-primary btn-icon btn-block btn-picton btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
-                                         </div> -->
+                                         </div>
                                          <div >
                                             <a href="{{ url('auth/google') }}" class="btn btn-danger btn-icon btn-block btn-picton btn-lg"><i class="fa fa-google" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; Google</a>
                                          </div>
-                                    <!-- </div> -->
+                                    </div> -->
                                 </form>
                                 
                                 <div class="other-links">

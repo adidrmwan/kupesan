@@ -58,4 +58,8 @@ class CustomerController extends Controller
     {
         return view('superadmin.daftarpartner');
     }
+    public function resultstudio()
+    {
+        return view('resultstudio');
+    }
 }

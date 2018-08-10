@@ -3,13 +3,6 @@
 @section('content')
 <section class="content">
   <div class="bd-example bd-example-tabs">
-    <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#daftarBooking" role="tab" aria-controls="pills-home" aria-expanded="true">Home</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#jadwalBooking" role="tab" aria-controls="pills-profile" aria-expanded="true">Profile</a>
-    </li>
 
     </ul> -->
       <nav class="nav nav-tabs" id="nav-tab" role="tablist">
