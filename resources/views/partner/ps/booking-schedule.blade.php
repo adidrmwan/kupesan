@@ -4,7 +4,7 @@
 <section class="content">
   <div class="bd-example bd-example-tabs">
 
-    </ul> -->
+    </ul>
       <nav class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#daftarBooking" role="tab" aria-controls="home" aria-expanded="true">Booking Schedule</a>
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#jadwalBooking" role="tab" aria-controls="profile" aria-expanded="false">Booking List</a>

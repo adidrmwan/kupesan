@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                  <form role="form" action="{{ route('form.offline.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                  <form role="form" action="{{ route('form.dayoff.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="header">
-                                <h4 class="title">Offline Booking</h4>
+                                <h4 class="title">Form Day Off (Hari Libur)</h4>
                             </div>
                             <div class="content">
                                 <div class="row">
@@ -19,7 +19,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pilih Tanggal Pesan</label>
+                                                    <label>Pilih Tanggal Libur</label>
                                                     <div id="datepicker"></div>            
                                                 </div>
                                             </div>
@@ -30,7 +30,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Tanggal Terpilih</label>
-                                                    <input type="text" class="form-control" id="datepicker2" disabled>   
+                                                    <input type="text" class="form-control" id="datepicker2" name="Tanggal_libur">   
                                                 </div>
                                             </div>
                                         </div>
@@ -38,13 +38,10 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Durasi Waktu</label>
-                                                    <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                    <select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_libur" required>
                                                         <option selected value="">Pilih Durasi Waktu</option>
-                                                        <option value="1">1 Jam</option>
-                                                        <option value="2">2 Jam</option>
-                                                        <option value="3">3 Jam</option>
-                                                        <option value="4">4 Jam</option>
-                                                        <option value="5">5 Jam</option>
+                                                        <option value="full_day">Full Day (24 Jam)</option>
+                                                        <option value="half_day">Half Day (Isi jam mulai & jam selesai)</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Silahkan isi Durasi Waktu.
@@ -56,13 +53,15 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jam Mulai</label>
-                                                    <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                    <select  class="form-control" id="inlineFormCustomSelectPref" name="jam_mulai_libur" >
                                                         <option selected value="">Pilih Jam Mulai</option>
-                                                        <option value="1">1 Jam</option>
-                                                        <option value="2">2 Jam</option>
-                                                        <option value="3">3 Jam</option>
-                                                        <option value="4">4 Jam</option>
-                                                        <option value="5">5 Jam</option>
+                                                        @foreach($jam as $key => $value)
+                                                        @if($value->num_hour < 10)
+                                                        <option value="{{$value->num_hour}}">0{{$value->num_hour}}:00</option>
+                                                        @elseif($value->num_hour >= 10)
+                                                        <option value="{{$value->num_hour}}">{{$value->num_hour}}:00</option>
+                                                        @endif
+                                                        @endforeach
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Silahkan isi Jam Mulai.
@@ -72,13 +71,15 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jam Selesai</label>
-                                                    <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
+                                                    <select  class="form-control" id="inlineFormCustomSelectPref" name="jam_selesai_libur" >
                                                         <option selected value="">Pilih Jam Selesai</option>
-                                                        <option value="1">1 Jam</option>
-                                                        <option value="2">2 Jam</option>
-                                                        <option value="3">3 Jam</option>
-                                                        <option value="4">4 Jam</option>
-                                                        <option value="5">5 Jam</option>
+                                                        @foreach($jam as $key => $value)
+                                                        @if($value->num_hour < 10)
+                                                        <option value="{{$value->num_hour}}">0{{$value->num_hour}}:00</option>
+                                                        @elseif($value->num_hour >= 10)
+                                                        <option value="{{$value->num_hour}}">{{$value->num_hour}}:00</option>
+                                                        @endif
+                                                        @endforeach
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Silahkan isi Jam Selesai.

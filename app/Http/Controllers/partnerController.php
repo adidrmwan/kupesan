@@ -14,6 +14,7 @@ use App\Districts;
 use App\Villages;
 use App\Booking;
 use App\Jam;
+use App\BookingCheck;
 use App\FasilitasPartner;
 use File;
 use Image;
@@ -144,7 +145,102 @@ class PartnerController extends Controller
 
     public function submitFormOffline(Request $request)
     {
-        dd($request);
+        return redirect()->intended(route('partner.dashboard')); 
+    }
+
+    public function showFormDayOff()
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        $jam = Jam::all();
+        return view('partner.form.offline-booking', ['partner' => $partner], compact('jam'));        
+        
+    }
+
+    public function submitFormDayOff(Request $request)
+    {
+        $user = Auth::user();
+        $date = $request->Tanggal_libur;
+        $durasi = $request->durasi_libur;
+
+        if($durasi == 'full_day') {
+
+            $package = PSPkg::where('user_id', $user->id)->get();
+            foreach ($package as $key => $value) {
+
+                $bookingcheck = BookingCheck::where('package_id', $package[$key]->id)->where('booking_date', $date)->first();
+                if(empty($bookingcheck)) {
+
+                    $bookingcheck = new BookingCheck();
+                    $bookingcheck->package_id = $package[$key]->id;
+                    $bookingcheck->booking_date = $date;
+                    $bookingcheck->save();
+
+                }
+
+                $bookingcheck->num_hour_1 = '1';
+                $bookingcheck->num_hour_2 = '1';
+                $bookingcheck->num_hour_3 = '1';
+                $bookingcheck->num_hour_4 = '1';
+                $bookingcheck->num_hour_5 = '1';
+                $bookingcheck->num_hour_6 = '1';
+                $bookingcheck->num_hour_7 = '1';
+                $bookingcheck->num_hour_8 = '1';
+                $bookingcheck->num_hour_9 = '1';
+                $bookingcheck->num_hour_10 = '1';
+                $bookingcheck->num_hour_11 = '1';
+                $bookingcheck->num_hour_12 = '1';
+                $bookingcheck->num_hour_13 = '1';
+                $bookingcheck->num_hour_14 = '1';
+                $bookingcheck->num_hour_15 = '1';
+                $bookingcheck->num_hour_16 = '1';
+                $bookingcheck->num_hour_17 = '1';
+                $bookingcheck->num_hour_18 = '1';
+                $bookingcheck->num_hour_19 = '1';
+                $bookingcheck->num_hour_20 = '1';
+                $bookingcheck->num_hour_21 = '1';
+                $bookingcheck->num_hour_22 = '1';
+                $bookingcheck->num_hour_23 = '1';
+                $bookingcheck->num_hour_24 = '1';
+                $bookingcheck->save(); 
+            } 
+
+            $jam_mulai = '00:00:00';
+            $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
+            $jam_selesai = '23:59:59';
+            $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
+            $booking = new Booking();
+            $booking->user_id = $user->id;
+            $booking->booking_start_date = $booking_start_date;
+            $booking->booking_end_date = $booking_end_date;
+            $booking->booking_status = 'libur';
+            $booking->partner_name = 'Libur';
+            $booking->package_id = '100';
+            $booking->save();
+            return redirect()->back();
+        }
+        elseif ($durasi == 'half_day') {
+            $mulai = $request->jam_mulai_libur;
+            if ($mulai < 10) {
+                $jam_mulai = '0'.$mulai.':00:00';
+            } elseif ($mulai >= 10) {
+                $jam_mulai = $mulai.':00:00';
+            }
+            $booking_start_time = $mulai;
+            $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
+            $selesai = $request->jam_selesai_libur;
+            if ($selesai < 10) {
+                $jam_selesai = '0'.$selesai.':00:00';
+            } elseif ($mulai >= 10) {
+                $jam_selesai = $selesai.':00:00';
+            }
+            $booking_end_time = $selesai;
+            $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
+            dd($selesai);
+        }
         return redirect()->intended(route('partner.dashboard')); 
     }
 
@@ -166,7 +262,6 @@ class PartnerController extends Controller
         $partner_kel = Villages::where('id', $partner->pr_kel)->first();
         $partner_kec = Districts::where('id', $partner->pr_kec)->first();
         $email = $user->email;
-        // dd($partner->pr_kel);
         $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
         return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec'));
     }
@@ -175,7 +270,6 @@ class PartnerController extends Controller
     {
         $user = Auth::user();
         $partner = Partner::find($user->id);
-        // dd($partner);
         $partner = DB::table('partner')
                     ->where('user_id',$user->id)
                     ->select('*')
@@ -239,7 +333,6 @@ class PartnerController extends Controller
     public function EditPackagePartner($id)
     {
         $partner = PSPkg::find($id);
-                    dd($partner);
         return view('partner.ps.edit-package', ['partner' => $partner]);
     }
 
@@ -250,7 +343,6 @@ class PartnerController extends Controller
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->get();
-                    // dd($partner);
         return view('partner.ps.edit-package', ['partner' => $partner]);
     }
 
@@ -261,22 +353,39 @@ class PartnerController extends Controller
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
+        $title = 'Libur';
         $events = [];
-                $data = Booking::where('booking_status', 'confirmed')->get();
+                $data = Booking::all();
                 if($data->count()) {
                     foreach ($data as $key => $value) {
-                        $events[] = Calendar::event(
+                        if($value->booking_status == 'confirmed') {
+                            $events[] = Calendar::event(
                             $value->partner_name,
                             false,
                             $value->booking_start_date,
                             $value->booking_end_date,
                             null,
                             // Add color and link on event
-                         [
-                             'color' => '#ff0000',
-                             'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
-                         ]
-                        );
+                             [
+                                 'color' => '#ff0000',
+                                 'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
+                             ]
+                            );
+                        }
+                        elseif($value->booking_status == 'libur') {
+                            $events[] = Calendar::event(
+                            $value->partner_name,
+                            false,
+                            $value->booking_start_date,
+                            $value->booking_end_date,
+                            null,
+                            // Add color and link on event
+                             [
+                                 'color' => '#009885',
+                                 'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
+                             ]
+                            );
+                        }
                     }
                 }
         $calendar = Calendar::addEvents($events);
@@ -293,7 +402,7 @@ class PartnerController extends Controller
                     ->select('*')
                     ->first();
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'done')->orderBy('booking.booking_start_date', 'asc')->get();
         return view('partner.ps.booking-history', ['partner' => $partner, 'booking' => $booking]);
     }
 
@@ -324,7 +433,7 @@ class PartnerController extends Controller
         // dd($request);
         $booking_id = $request->id;
         $booking = Booking::where('booking_id', $booking_id)->first();
-        $booking->booking_status = 'finished';
+        $booking->booking_status = 'done';
         $booking->save();
 
         return redirect()->back();

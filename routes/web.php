@@ -34,7 +34,6 @@ Route::get('/', function () {
 //Route Search Fotostudio di Home
 Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
 Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
-Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('filter.price');
 Route::post('/search/data', 'SearchController@searchData')->name('search.data');
 Route::get('/search/result/#1', 'SearchController@resultstudio')->name('resultstudio');
 // Route untuk user yang admin
@@ -72,7 +71,8 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
     Route::get('/form/facilities', 'PartnerController@showFormFacilities')->name('partner.facilities.form');
     Route::post('/form/facilities', 'PartnerController@submitFormFacilities')->name('partner.facilities.form.submit');
-
+    Route::get('/form/dayoff', 'PartnerController@showFormDayOff')->name('form.dayoff');
+    Route::post('/form/dayoff', 'PartnerController@submitFormDayOff')->name('form.dayoff.submit');
     Route::get('/booking/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
     Route::get('/booking/history', 'PartnerController@showBookingHistory')->name('booking.history');
 
