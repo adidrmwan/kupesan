@@ -259,9 +259,15 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="3" style="text-align: left;">
-                                                                            <span class="available" style="color: #acff7a;">---</span>&nbsp;Available&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                            <span class="not-available" style="color: #ea410c;">---</span>&nbsp;Not available&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                            <span style="color: #e6e6e6; background-color: #e6e6e6;">---</span>&nbsp;Close
+                                                                            <div class="col-md-6 col-sm-12" style="padding: 10px;">
+                                                                                <span class="available" style="color: #acff7a;">---</span>&nbsp;Available
+                                                                            </div>
+                                                                            <div class="col-md-6 col-sm-12" style="padding: 10px;">
+                                                                                <span class="not-available" style="color: #ea410c;">---</span>&nbsp;Not available
+                                                                            </div>
+                                                                            <div class="col-md-6 col-sm-12" style="padding: 10px 10px 0;">
+                                                                                <span style="color: #e6e6e6; background-color: #e6e6e6;">---</span>&nbsp;Close
+                                                                            </div>
                                                                         </td>
                                                                     </tr>
                                                                 </table>

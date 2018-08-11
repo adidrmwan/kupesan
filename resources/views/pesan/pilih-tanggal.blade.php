@@ -68,22 +68,22 @@
                                         <div class="row">
                                             <div class="col-sm-12 col-md-12  user-detail">
                                                 <div class="row">
-                                                      <div class="col-md-12">
+                                                      <!-- <div class="col-md-12"> -->
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <div class="form-group">
                                                                     <label>Pilih Tanggal Pesan</label>
                                                                     <div id="datepicker"name="booking_date"></div>            
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <div class="form-group">
                                                                     <label>Tanggal Terpilih</label>
                                                                     <input type="text" class="form-control" id="datepicker2" name="booking_date">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                      </div>
+                                                      <!-- </div> -->
                                                 </div>          
                                             </div>
                                         </div>

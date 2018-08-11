@@ -28,7 +28,7 @@
                                     <h2 class="dash-content-title">Profil-Ku</h2>
                                     <div class="panel panel-default ">
                                         <div class="panel-heading">
-                                            <h4>Detail Profil
+                                            <h4 style="text-align: center;">Detail Profil
                                             <!-- <span class="pull-right">
                                                 <a href="">
                                                   <button type="submit" class="btn btn-orange" style="color: white;"><b>Edit</b></button>
