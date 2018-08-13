@@ -100,32 +100,11 @@
     <!--  Notifications Plugin    -->
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
 
-    <script type="text/javascript">
-      $( "#datepicker" ).datepicker({
-      prevText: '<i class="fa fa-fw fa-angle-left"></i>',
-      nextText: '<i class="fa fa-fw fa-angle-right"></i>',
-      inline: true,
-      altField: '#datepicker2',
-      altFormat: "yy-mm-dd",
-      minDate: 0,
-      maxDate: "+3M"
+    <script>
+    $(function() {
+       $("#datepicker").datepicker({dateFormat: 'dd-mm-yy'});
+       $("#datepicker").datepicker({maxDate: 0});
     });
-    </script>
-    
-    <script type="text/javascript">
-      $('#datepicker2').change(function(){
-          $('#datepicker').datepicker('setDate', $(this).val());
-      });
-    </script>
-
-    <script type="text/javascript">
-    
-        $( document ).ready(function() {
-            $("#datepicker").datepicker({
-               dateFormat: "yyyy-mm-dd"
-            });
-
-        });
     </script>
 
     <script>
@@ -140,6 +119,12 @@
           'autoWidth'   : false
         })
       })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list-kebaya-product1').DataTable();
+        } );
     </script>
 
     <script type="text/javascript">

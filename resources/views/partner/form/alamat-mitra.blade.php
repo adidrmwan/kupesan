@@ -7,7 +7,7 @@
                 <div class="form-group">
                     <label>Provinsi<small><b style="color: red;"> *</b></small></label>
                     <select class="form-control" name="pr_prov" id="provinces" required>
-                        <option value="" disable="true" selected="true">Pilih Provinsi</option>
+                        <option value="{{$partner->pr_prov}}" disable="true" selected="true">Pilih Provinsi</option>
                         @foreach ($provinces as $key => $value)
                         <option value="{{$value->id}}">{{ $value->name }}</option>
                         @endforeach
@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <label>Kota/Kabupaten<small><b style="color: red;"> *</b></small></label>
                     <select class="form-control" name="pr_kota" id="regencies" required>
-                      <option value="" disable="true" selected="true">Pilih Kota/Kabupaten</option>
+                      <option value="{{$partner->pr_kota}}" disable="true" selected="true">Pilih Kota/Kabupaten</option>
                     </select>
                     <div class="invalid-feedback">
                       Wajib diisi. 
@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label>Kecamatan<small><b style="color: red;"> *</b></small></label>
                     <select class="form-control" name="pr_kec" id="districts" required>
-                      <option value="" disable="true" selected="true">Pilih Kecamatan</option>
+                      <option value="{{$partner->pr_kec}}" disable="true" selected="true">Pilih Kecamatan</option>
                     </select>
                     <div class="invalid-feedback">
                       Wajib diisi.
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label>Kelurahan<small><b style="color: red;"> *</b></small></label>
                     <select class="form-control" name="pr_kel" id="villages">
-                      <option value="0" disable="true" selected="true">Pilih Kelurahan</option>
+                      <option value="{{$partner->pr_kel}}" disable="true" selected="true">Pilih Kelurahan</option>
                     </select>
                     <div class="invalid-feedback">
                       Wajib diisi.

@@ -47,7 +47,9 @@
     <link href=" {{ URL::asset('superadmin/bower_components/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet" />
     <script src="{{ URL::asset('superadmin/bower_components/fullcalendar/dist/fullcalendar.min.js')}}"></script>
     <script src="{{ URL::asset('superadmin/bower_components/moment/moment.js')}}"></script>
-    
+    <!-- modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="{{ URL::asset('partners/js/bootstrap.min.js')}}"></script>
     
 </head>
 <body>
@@ -56,9 +58,9 @@
 
     <div class="main-panel">
 
-        @include('partner.layouts.nav')
+    @include('partner.layouts.nav')
 
-        @yield('content')
+    @yield('content')
 
     </div>
     <!-- Scripts -->
@@ -94,26 +96,12 @@
     
     <script src="{{ URL::asset('partners/js/bootstrap.min.js')}}"></script>
 
-
-
-<!--     <script>
-      $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-          'paging'      : true,
-          'lengthChange': false,
-          'searching'   : false,
-          'ordering'    : true,
-          'info'        : true,
-          'autoWidth'   : false
-        })
-      })
-    </script> -->
     <script type="text/javascript">
         $(document).ready(function() {
             $('#list-package').DataTable();
         } );
     </script>
+
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -149,36 +137,6 @@
       }, false);
     })();
     </script>
-    
-    <!-- <script type="text/javascript">
-        $(".btn[data-target='#myModal']").click(function() {
-               var columnHeadings = $("thead th").map(function() {
-                         return $(this).text();
-                      }).get();
-               columnHeadings.pop();
-               var columnValues = $(this).parent().siblings().map(function() {
-                         return $(this).text();
-               }).get();
-          var modalBody = $('<div id="modalContent"></div>');
-          var modalForm = $('<form role="form" name="modalForm" action="putYourPHPActionHere.php" method="post"></form>');
-          $.each(columnHeadings, function(i, columnHeader) {
-               var formGroup = $('<div class="form-group"></div>');
-               formGroup.append('<label for="'+columnHeader+'">'+columnHeader+'</label>');
-               formGroup.append('<input class="form-control" name="'+columnHeader+i+'" id="'+columnHeader+i+'" value="'+columnValues[i]+'" />'); 
-               modalForm.append(formGroup);
-          });
-          modalBody.append(modalForm);
-          $('.modal-body').html(modalBody);
-        });
-        $('.modal-footer .btn-primary').click(function() {
-           $('form[name="modalForm"]').submit();
-        });
-    </script> -->
-
-<!-- Page specific script -->
-
-    <!-- Scripts -->
-    <!-- <script src="{{ URL::asset('js/app.js') }}"></script> -->
     @yield('script') 
 
 </body>

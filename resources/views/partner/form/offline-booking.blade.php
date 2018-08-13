@@ -37,11 +37,19 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
+                                                    <label>Judul</label>
+                                                    <input type="text" class="form-control" placeholder="Judul" name="durasi"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
                                                     <label>Durasi Waktu</label>
                                                     <select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_libur" required>
                                                         <option selected value="">Pilih Durasi Waktu</option>
                                                         <option value="full_day">Full Day (24 Jam)</option>
-                                                        <option value="half_day">Half Day (Isi jam mulai & jam selesai)</option>
+                                                        <!-- <option value="half_day">Half Day (Isi jam mulai & jam selesai)</option> -->
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Silahkan isi Durasi Waktu.
@@ -49,7 +57,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Jam Mulai</label>
@@ -86,7 +94,7 @@
                                                     </div>   
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row"></div>
                                     </div>
                                 </div> 

@@ -35,12 +35,21 @@ class PartnerController extends Controller
         if (empty($partner->pr_name)) {
             return redirect()->intended(route('partner.profile.form'));
         }
-        if (empty($fasilitas->facilities_id)) {
-            return redirect()->intended(route('partner.facilities.form'));
+        // fotostudio
+        if ($partner->pr_type == '1') {
+            
+            if (empty($fasilitas->facilities_id)) {
+                return redirect()->intended(route('partner.facilities.form'));
+            }
+            elseif (!empty($fasilitas->facilities_id)) {
+               return view('partner.home', ['partner' => $partner]);
+            }
         }
-        elseif (!empty($fasilitas->facilities_id)) {
-           return view('partner.home', ['partner' => $partner]);
+        // kebaya
+        if ($partner->pr_type == '4') {
+            return view('partner.home', ['partner' => $partner]);
         }
+
 
         return view('partner.home', ['partner' => $partner]);
     }
@@ -165,7 +174,7 @@ class PartnerController extends Controller
         $user = Auth::user();
         $date = $request->Tanggal_libur;
         $durasi = $request->durasi_libur;
-
+        $judul = $request->judul;
         if($durasi == 'full_day') {
 
             $package = PSPkg::where('user_id', $user->id)->get();
@@ -217,30 +226,37 @@ class PartnerController extends Controller
             $booking->booking_start_date = $booking_start_date;
             $booking->booking_end_date = $booking_end_date;
             $booking->booking_status = 'libur';
-            $booking->partner_name = 'Libur';
+            $booking->partner_name = $judul;
             $booking->package_id = '100';
             $booking->save();
             return redirect()->back();
         }
-        elseif ($durasi == 'half_day') {
-            $mulai = $request->jam_mulai_libur;
-            if ($mulai < 10) {
-                $jam_mulai = '0'.$mulai.':00:00';
-            } elseif ($mulai >= 10) {
-                $jam_mulai = $mulai.':00:00';
-            }
-            $booking_start_time = $mulai;
-            $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
-            $selesai = $request->jam_selesai_libur;
-            if ($selesai < 10) {
-                $jam_selesai = '0'.$selesai.':00:00';
-            } elseif ($mulai >= 10) {
-                $jam_selesai = $selesai.':00:00';
-            }
-            $booking_end_time = $selesai;
-            $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
-            dd($selesai);
-        }
+        // elseif ($durasi == 'half_day') {
+        //     $mulai = $request->jam_mulai_libur;
+        //     if ($mulai < 10) {
+        //         $jam_mulai = '0'.$mulai.':00:00';
+        //     } elseif ($mulai >= 10) {
+        //         $jam_mulai = $mulai.':00:00';
+        //     }
+        //     $booking_start_time = $mulai;
+        //     $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
+        //     $selesai = $request->jam_selesai_libur;
+        //     if ($selesai < 10) {
+        //         $jam_selesai = '0'.$selesai.':00:00';
+        //     } elseif ($mulai >= 10) {
+        //         $jam_selesai = $selesai.':00:00';
+        //     }
+        //     $booking_end_time = $selesai;
+        //     $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
+        //     $booking = new Booking();
+        //     $booking->user_id = $user->id;
+        //     $booking->booking_start_date = $booking_start_date;
+        //     $booking->booking_end_date = $booking_end_date;
+        //     $booking->booking_status = 'libur';
+        //     $booking->partner_name = 'Libur';
+        //     $booking->package_id = '100';
+        //     $booking->save();
+        // }
         return redirect()->intended(route('partner.dashboard')); 
     }
 
@@ -346,7 +362,7 @@ class PartnerController extends Controller
         return view('partner.ps.edit-package', ['partner' => $partner]);
     }
 
-    public function showBookingSchedule()
+    public function showBookingSchedule(Request $request)
     {   
         $user = Auth::user();
         $partner = DB::table('partner')
@@ -355,7 +371,7 @@ class PartnerController extends Controller
                     ->first();
         $title = 'Libur';
         $events = [];
-                $data = Booking::all();
+                $data = Booking::where('user_id', $partner->user_id);
                 if($data->count()) {
                     foreach ($data as $key => $value) {
                         if($value->booking_status == 'confirmed') {
@@ -382,7 +398,7 @@ class PartnerController extends Controller
                             // Add color and link on event
                              [
                                  'color' => '#009885',
-                                 'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
+                                 'url' => '#',
                              ]
                             );
                         }
@@ -390,8 +406,12 @@ class PartnerController extends Controller
                 }
         $calendar = Calendar::addEvents($events);
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
-        return view('partner.ps.booking-schedule', ['partner' => $partner, 'booking' => $booking], compact('calendar'));
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
+        if ($request->has('show_id')) {
+            $booking_show = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_id', $request->show_id)->get();
+            return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar', 'booking', 'booking_show'));
+        }
+        return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar', 'booking'));
     }
 
     public function showBookingHistory()

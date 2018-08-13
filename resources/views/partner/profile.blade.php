@@ -7,7 +7,12 @@
                 <div class="bd-example bd-example-tabs">
                     <nav class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#daftarBooking" role="tab" aria-controls="home" aria-expanded="true">Detail Bisnis</a>
+                        <!-- fotostudio -->
+                        @if($partner->pr_type == '1')
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#jadwalBooking" role="tab" aria-controls="profile" aria-expanded="false">Fasilitas</a>
+                        <!-- kebaya -->
+                        @elseif($partner->pr_type == '4')
+                        @endif
                     </nav>
                 </div>
                 <div class="tab-content" id="nav-tabContent">

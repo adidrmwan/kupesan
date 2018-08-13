@@ -25,7 +25,7 @@ class AlbumController extends Controller
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
-        return view('partner.ps.album-portofolio', ['data' => $data, 'partner' => $partner]);
+        return view('partner.portofolio.album-portofolio', ['data' => $data, 'partner' => $partner]);
     }
 
     public function uploadAlbum(Request $request)
