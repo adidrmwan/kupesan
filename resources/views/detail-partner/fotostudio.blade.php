@@ -157,7 +157,7 @@
                                                   <div class="main-block hotel-block ">
                                                       <div class="main-img img-hover">
                                                           <a class="image-popup-fit-width" href="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" >
-                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" alt= "Package Image" /> 
+                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" id="myImg" alt= "Package Image" /> 
                                                           </a>
                                                           <div class="main-mask">
                                                             <ul class="list-unstyled list-inline offer-price-1">
@@ -167,17 +167,15 @@
                                                       </div>
                                                       
                                                       <div class="main-info hotel-info">
-                                                          <div class="arrow">
-                                                            <a href="{{route('check.auth', ['package_id' => $listthem->id])}}">
+                                                          <div class="main-title hotel-title">
+                                                              
+                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
+                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
+                                                              <a href="{{route('check.auth', ['package_id' => $listthem->id])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
                                                             </a>
                                                             
-                                                          </div>
-
-                                                          <div class="main-title hotel-title">
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
                                                           </div>
                                                       </div>
                                                   </div>
@@ -191,7 +189,7 @@
                                           <div class="page-heading">
                                               <h2>Ala Carte </h2>
                                               <hr class="heading-line" />
-                                          </div><!-- end page-heading -->
+                                          </div>
                                           
                                           <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-alacarte-offers">    @foreach($alacarte as $listthem)
                                               <div class="item" style="padding: 10px;">
@@ -208,26 +206,23 @@
                                                       </div><!-- end offer-img -->
                                                       
                                                       <div class="main-info hotel-info">
-                                                          <div class="arrow">
-                                                            <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
-                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                                              </button>
-                                                            </a>
-                                                            
-                                                          </div><!-- end arrow -->
-
                                                           <div class="main-title hotel-title">
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                          </div><!-- end hotel-title -->
-                                                      </div><!-- end hotel-info -->
-                                                  </div><!-- end hotel-block -->
-                                              </div><!-- end item -->
+                                                              <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
+                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                                              </button>
+                                                            </a>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
                                               @endforeach
-                                          </div><!-- end owl-hotel-offers -->
-                                      </div><!-- end columns -->
+                                          </div>
+                                      </div>
 
-                          </section><!-- end hotel-offers -->
+                          </section>
+
                           <section id="special-offers" class="">
                                       <div class="col-sm-12">
                                           <div class="page-heading">
@@ -251,21 +246,19 @@
                                                       </div><!-- end offer-img -->
                                                       
                                                       <div class="main-info hotel-info">
-                                                          <div class="arrow">
-                                                            <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
-                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                                              </button>
-                                                            </a>
-                                                            
-                                                          </div><!-- end arrow -->
 
                                                           <div class="main-title hotel-title">
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                          </div><!-- end hotel-title -->
-                                                      </div><!-- end hotel-info -->
-                                                  </div><!-- end hotel-block -->
-                                              </div><!-- end item -->
+                                                              <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
+                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                                              </button>
+                                                            </a>
+                                                          </div>
+
+                                                      </div>
+                                                  </div>
+                                              </div>
                                               @endforeach
                                               
                                           </div><!-- end owl-hotel-offers -->
@@ -276,6 +269,8 @@
           </div><!-- end row -->
       <!-- </div> -->
   </section><!-- end luxury-rooms -->
+
+
 @endforeach
 @include('layouts.footer')
 @endsection

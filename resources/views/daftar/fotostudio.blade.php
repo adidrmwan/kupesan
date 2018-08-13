@@ -166,9 +166,9 @@
                                     </div><!-- end flight-title -->
                                     
                                     <ul class="list-unstyled list-inline offer-price-1">
-                                        <li class="price">{{$data->pkg_name_them}}</li>
-                                        <li >Rp {{$data->pkg_price_them}} / Jam</li>
-                                        <li >Rp {{$data->pkg_overtime_them}} / Overtime</li>
+                                        <li class="price">{{$data->pkg_name_them}}</li><br>
+                                        <li >Rp {{$data->pkg_price_them}} / Jam</li><br>
+                                        <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br>
                                         <li style="margin-top: 10px;">
                                             <a href="{{route('check.auth', ['package_id' => $data->id])}}">
                                                 <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>

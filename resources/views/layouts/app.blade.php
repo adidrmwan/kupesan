@@ -67,66 +67,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style type="text/css">
 
-.overlay {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  right: 0;
-  background-color: #008CBA;
-  overflow: hidden;
-  width: 100%;
-  height:0;
-  transition: .5s ease;
-}
+      .overlay {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        background-color: #008CBA;
+        overflow: hidden;
+        width: 100%;
+        height:0;
+        transition: .5s ease;
+      }
 
-.img-hover:hover .overlay {
-  bottom: 0;
-  height: 100%;
-}
+      .img-hover:hover .overlay {
+        bottom: 0;
+        height: 100%;
+      }
 
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-.center-fa { 
-    background-color:none;
-    text-align:center;
-    vertical-align:middle;
-    display:table-cell;
-}
-.fa-asterisk {
-    vertical-align:middle;
-}
+      .text {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .center-fa { 
+          background-color:none;
+          text-align:center;
+          vertical-align:middle;
+          display:table-cell;
+      }
+      .fa-asterisk {
+          vertical-align:middle;
+      }
 
-.not-available {
-  background-color: #ea410c;
-}
-.available {
-  background-color: #acff7a;
-}
-.close-hour {
-  background-color: #e6e6e6;
-}
-/* padding-bottom and top for image */
-.mfp-no-margins img.mfp-img {
-  padding: 0;
-}
-/* position of shadow behind the image */
-.mfp-no-margins .mfp-figure:after {
-  top: 0;
-  bottom: 0;
-}
-/* padding for main container */
-.mfp-no-margins .mfp-container {
-  padding: 0;
-}
-</
+      .not-available {
+        background-color: #ea410c;
+      }
+      .available {
+        background-color: #acff7a;
+      }
+      .close-hour {
+        background-color: #e6e6e6;
+      }
+
     </style>
 </head>
 <body id="main-homepage">
@@ -176,11 +163,16 @@
     <!-- DataTables -->
     <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{URL::asset('partners/js/dataTables.bootstrap.min.js')}}"></script>
-    
-    <script type="text/javascript">
+
+    <script >
+      
+       
+    </script>
+  
+    <script>
       $( "#datepicker" ).datepicker({
-      prevText: '<i class="fa fa-fw fa-angle-left"></i>',
-      nextText: '<i class="fa fa-fw fa-angle-right"></i>',
+      // prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+      // nextText: '<i class="fa fa-fw fa-angle-right"></i>',
       inline: true,
       altField: '#datepicker2',
       altFormat: "yy-mm-dd",
@@ -225,13 +217,13 @@
     @yield('script')
 
     <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
+      $(function() {
+        $( "#datepicker" ).datepicker();
+      });
+    </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script type="text/javascript">
       $('#provinces').on('change', function(e){
         console.log(e);

@@ -64,8 +64,9 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
+
     Route::get('/', 'partnerController@dashboard')->name('partner.dashboard');
-    // new form
+
     Route::get('/form/new', 'PartnerController@showDetailMitra')->name('partner.profile.form');
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
     Route::get('/form/facilities', 'PartnerController@showFormFacilities')->name('partner.facilities.form');
@@ -93,24 +94,22 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/profile/upload/logo', 'PartnerController@uploadLogo')->name('partner.upload.logo');
     Route::get('/finished', 'PartnerController@bookingFinished')->name('booking.finished');
 
-// Fotostudio
+
+
+//----------------PackageController
+    // Tambah Paket
     Route::get('/package/add', 'PackageController@ShowAddPackage')->name('partner-addpackage');
     Route::post('/package/add', 'PackageController@AddPackage')->name('partner-addpackage-submit');
+    // Daftar Paket
     Route::get('/package/list', 'PackageController@ListPackage')->name('partner-editpackage');
+    // Button Edit Paket
     Route::post('/package/edit', 'PackageController@ShowEditPackagePS')->name('partner.edit.pkg');
+    // Button Delete Paket
     Route::post('/package/delete', 'PackageController@DeletePackagePS')->name('partner.delete.pkg');
+
     Route::post('/package/update', 'PackageController@EditPackagePS')->name('partner.edit.pkg.submit');
+    
     Route::get('/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
-// Kebaya
-    Route::get('/item/add', 'KebayaController@showAddItem')->name('add.item');
-    Route::post('/item/add', 'KebayaController@addItem')->name('submit.item');
-    Route::get('/item/list', 'KebayaController@listItem')->name('list.item');
-    Route::get('/item/delete', 'KebayaController@deleteItem')->name('delete.item');
-    Route::get('/item/edit', 'KebayaController@showEditItem')->name('edit.item');
-    Route::post('/item/edit', 'KebayaController@editItem')->name('submit.edit.item');
-    Route::get('/booking/offline/4/1', 'KebayaController@showStep1')->name('kebaya.off-booking');
-    Route::get('/booking/offline/4/2', 'KebayaController@showStep2')->name('kebaya.off-booking.step2');
-    Route::post('/booking/offline/4/2', 'KebayaController@submitStep2')->name('kebaya.off-booking.step2.submit');
 });
 
 // Route untuk email verification
@@ -152,6 +151,16 @@ Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashbo
 Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
+
+// <<<<<<< HEAD
+
+
+// Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
+// Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+// =======
+// Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
+    
+// >>>>>>> 6d797e1858b0f3fdf636b968d52e83ae26fbbd6f
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');

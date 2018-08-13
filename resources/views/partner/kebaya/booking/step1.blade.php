@@ -9,32 +9,32 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="header">
-                                <h4 class="title">Offline Booking</h4>
+                                <h4 class="title"><b>Offline Booking</b></h4>
                             </div>
                             <div class="content">
                                 <div class="row">
                                     @foreach($package as $key => $data)
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-12">
                                       <div class="card">
                                         <div class="row">
                                           <div class="col-md-12">
                                             <div class="header">
-                                              <h4 class="title">{{$data->name}}</h4>
+                                              <h4 class="title" style="text-align: center;">{{$data->name}}</h4>
                                             </div>
                                             <div class="content">
                                               <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-sm-12 col-md-12">
                                                   @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
-                                                  <img style="height: auto; width: 150px;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" />
+                                                  <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" />
                                                   @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
-                                                  <img style="height: auto; width: 150px;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" />
+                                                  <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" />
                                                   @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
-                                                  <img style="height: auto; width: 150px;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" />
+                                                  <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" />
                                                   @endif
                                                 </div>
-                                                <div class="col-md-6">
-                                                  <a href="{{route('kebaya.off-booking.step2', ['product_id' => $data->id])}}">
-                                                    <button type="submit" class="btn btn-primary">Pesan</button>
+                                                <div class="col-sm-12 col-md-12" style="padding: 25px;">
+                                                  <a href="{{route('kebaya.off-booking.step2', ['product_id' => $data->id])}}" >
+                                                    <button type="submit" class="btn btn-primary" style="margin: 0 auto; float: none; position: relative;display: flex;">Pesan</button>
                                                   </a>
                                                 </div>
                                               </div>
@@ -45,11 +45,11 @@
                                     </div>
                                     @endforeach
                                 </div> 
-                                <div class="row">
+                               <!--  <div class="row">
                                     <div class="col-md-12">
                                             <button type="submit" class="btn btn-block btn-info pull-right">Submit</button> 
                                     </div>
-                                </div>
+                                </div> -->
                             </div>   
                         </div>     
                     </div>
