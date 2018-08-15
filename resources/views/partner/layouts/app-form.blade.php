@@ -101,13 +101,6 @@
     <script src=" {{ URL::asset('partners/js/bootstrap-notify.js') }} "></script>
 
     <script>
-    $(function() {
-       $("#datepicker").datepicker({dateFormat: 'dd-mm-yy'});
-       $("#datepicker").datepicker({maxDate: 0});
-    });
-    </script>
-
-    <script>
       $(function () {
         $('#example1').DataTable()
         $('#example2').DataTable({

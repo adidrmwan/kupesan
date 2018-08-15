@@ -1,5 +1,5 @@
 <li>
-    <a href="{{ route('booking.schedule') }}">
+    <a href="{{ route('kebaya.schedule') }}">
         <i class="pe-7s-note2"></i>
         <p>Booking Schedule</p>
     </a>
@@ -17,7 +17,7 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('booking.history') }}">
+    <a href="{{ route('kebaya.history') }}">
         <i class="pe-7s-server"></i>
         <p>Booking History</p>
     </a>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class KebayaBooking extends Model
 {
     protected $primaryKey = 'booking_id';
-    protected $table = 'booking';
+    protected $table = 'kebaya_booking';
     public $timestamps = true;
     
     protected $fillable = [

@@ -110,6 +110,21 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/package/update', 'PackageController@EditPackagePS')->name('partner.edit.pkg.submit');
     
     Route::get('/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
+
+    // Kebaya
+    Route::get('/item/add', 'KebayaController@showAddItem')->name('add.item');
+    Route::post('/item/add', 'KebayaController@addItem')->name('submit.item');
+    Route::get('/item/list', 'KebayaController@listItem')->name('list.item');
+    Route::get('/item/delete', 'KebayaController@deleteItem')->name('delete.item');
+    Route::get('/item/edit', 'KebayaController@showEditItem')->name('edit.item');
+    Route::post('/item/edit', 'KebayaController@editItem')->name('submit.edit.item');
+    Route::get('/booking/offline/4/1', 'KebayaController@showStep1')->name('kebaya.off-booking');
+    Route::get('/booking/offline/4/2', 'KebayaController@showStep2')->name('kebaya.off-booking.step2');
+    Route::post('/booking/offline/4/2', 'KebayaController@submitStep2')->name('kebaya.off-booking.step2.submit');
+    Route::get('/booking/schedule/4', 'KebayaController@showBookingSchedule')->name('kebaya.schedule');
+    Route::get('/booking/history/4', 'KebayaController@showBookingHistory')->name('kebaya.history');
+    Route::get('/booking/cancel', 'KebayaController@bookingCancel')->name('kebaya.booking.cancel');
+    Route::get('/booking/finished', 'KebayaController@bookingFinished')->name('kebaya.booking.finished');
 });
 
 // Route untuk email verification

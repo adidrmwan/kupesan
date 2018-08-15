@@ -422,7 +422,7 @@ class PartnerController extends Controller
                     ->select('*')
                     ->first();
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.booking_status', 'done')->orderBy('booking.booking_start_date', 'asc')->get();
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.user_id', $user->id)->where('booking.booking_status', 'done')->orderBy('booking.booking_start_date', 'asc')->get();
         return view('partner.ps.booking-history', ['partner' => $partner, 'booking' => $booking]);
     }
 

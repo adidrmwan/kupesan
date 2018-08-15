@@ -101,7 +101,16 @@
             $('#list-package').DataTable();
         } );
     </script>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list-package2').DataTable();
+        } );
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list-package3').DataTable();
+        } );
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
