@@ -40,13 +40,13 @@
                         </button>
                     </li>
                 @elseif(Auth::user())
-                <li> <a href="{{route('dashboard')}}"><i class="fa fa-user" aria-hidden="true" style="padding-right: 5px;"></i>Profil-KU</a> </li>
+                <li> <a href="{{route('dashboard')}}"><i class="fa fa-user" aria-hidden="true" style="padding-right: 5px;"></i>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a> </li>
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                                  <i class="fa fa-sign-out" aria-hidden="true" style="padding-right: 5px;"></i>
-                        Logout
+                        Log-Out
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -31,12 +31,14 @@
                     </button>
                  @elseif(Auth::user())
 
-                <a href="{{ route('dashboard')}}" class="list-group-item" ><span><i class="fa fa-user link-icon"></i></span>Profil-KU</a>
+                <a href="{{ route('dashboard')}}" class="list-group-item" ><span><i class="fa fa-user link-icon"></i></span>
+                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                </a>
                  
                 <a href="{{ route('logout') }}" class="list-group-item"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    <span><i class="fa fa-sign-out link-icon"></i></span>Logout
+                                    <span><i class="fa fa-sign-out link-icon"></i></span>Log-Out
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

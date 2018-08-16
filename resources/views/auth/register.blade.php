@@ -103,7 +103,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confrim Password" required>
+                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                                                  <span><i class="fa fa-lock"></i></span>
                                             </div>
                                         </div>

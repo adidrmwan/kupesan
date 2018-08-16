@@ -121,9 +121,24 @@
                                             </div> 
                                         </div>
                                     </div>
-                                    <div class="padding-price filter-block">
-                                        <input type="text" name="tag_id" value="{{$tag_id}}" hidden="">
-                                        <button type="submit" class="btn btn-default" style="width: 100%;">Filter</button>
+                                    <hr>
+                                    <h3 style="margin-bottom: 20px;">Filter Tipe Paket</h3>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group" >
+                                                <select  class="form-control" name="" required>
+                                                    <option selected value="">Pilih Tema</option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>             
+                                        </div>    
+                                    </div>
+                                    <hr>
+                                    <div style="margin-top: 10px;" class="padding-price">
+                                        <div class="col-sm-12 col-md-12">
+                                            <input type="text" name="tag_id" value="{{$tag_id}}" hidden="">
+                                            <button type="submit" class="btn btn-default" style="width: 100%;">Filter</button>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -138,27 +153,33 @@
                     @foreach($allThemes as $data)
                     <div class="col-sm-6 col-md-4">
                         <div class="main-block flight-block">
-                            
-                                <div class="main-img img-hover">
-                                    <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+                                <div class="frame">
+                                    <div class="img-hover">
+                                        <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
 
-                                            @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                                            <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
-                                    </a>
+                                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                                                <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                        </a>
+                                    </div>
+                                    <div class="img-hover">
+                                        <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+                                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                                                <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+                                        </a>
+                                    </div>
+                                    <div class="img-hover">
+                                        <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+                                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                                                <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                                @endif
+                                        </a>
+                                    </div><!-- end flight-img -->
+                                    <div class = "details">
+                                        <h1>Lorem</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lorem nunc, sollicitudin a nisi sodales, imperdiet dignissim enim. Nam sapien quam</p>
+                                    </div>
                                 </div>
-                                <div class="main-img img-hover">
-                                    <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                                            <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
-                                    </a>
-                                </div>
-                                <div class="main-img img-hover">
-                                    <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                                            <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
-                                            @endif
-                                    </a>
-                                </div><!-- end flight-img -->
+                                
                                 
                                 <div class="flight-info">
                                     <div class="flight-title" style="text-align: center;">
@@ -168,10 +189,16 @@
                                     <ul class="list-unstyled list-inline offer-price-1">
                                         <li class="price">{{$data->pkg_name_them}}</li><br>
                                         <li >Rp {{$data->pkg_price_them}} / Jam</li><br>
-                                        <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br>
-                                        <li style="margin-top: 10px;">
+                                        <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
+                                        <li>
                                             <a href="{{route('check.auth', ['package_id' => $data->id])}}">
                                                 <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                                </button>
+                                            </a>
+                                        </li>
+                                        <li >
+                                            <a href="{{route('check.auth', ['package_id' => $data->id])}}">
+                                                <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">View More</span>
                                                 </button>
                                             </a>
                                         </li>

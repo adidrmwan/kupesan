@@ -10,7 +10,7 @@
                         <div class="col-sm-12">
                             
                             <div class="custom-form custom-form-fields">
-                                <h3>Login Partner-Ku</h3>
+                                <h3>Log-In Partner-Ku</h3>
                                 <form class="form-horizontal" method="POST" action="{{ route('login') }}"> 
                                     {{ csrf_field() }}
 
@@ -67,7 +67,7 @@
                                     </div>
                                     
                                     
-                                    <button class="btn btn-orange btn-block" type="submit">Login</button>
+                                    <button class="btn btn-orange btn-block" type="submit">Log-In</button>
 
                                     <div class="other-links">
                                         <!-- <p class="link-line">New Here ? <a href="register">Signup</a></p> -->
