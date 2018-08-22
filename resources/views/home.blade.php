@@ -39,6 +39,7 @@
                                         <div class="form-group right-icon" >
                                             <select  class="form-control" name="tag_id" required>
                                                 <option selected value="">Pilih Tema</option>
+                                                <option value="all">Semua</option>
                                                 @foreach($tag as $list)
                                                 <option value="{{$list->tag_id}}">{{$list->tag_title}}</option>
                                                 @endforeach
@@ -572,3 +573,6 @@
 
 @include('layouts.footer')
 @endsection
+
+
+

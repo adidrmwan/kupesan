@@ -235,6 +235,12 @@
   opacity: 1;
 }
 
+.input-group-addon {
+    width:1px;
+    background-color: white;
+    text-align:left;
+}
+
 </style>
 
 </head>

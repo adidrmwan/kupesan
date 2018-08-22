@@ -6,6 +6,7 @@ Route::get('/home', 'SearchController@home')->name('home');
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+
 Route::get('/', function () {
     
     if(Auth::check()) {    

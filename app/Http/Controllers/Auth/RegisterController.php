@@ -112,7 +112,7 @@ class RegisterController extends Controller
       if(!is_null($check)){
         $user = User::find($check->id_user);
         if ($user->is_activated ==1){
-          return redirect()->to('login')->with('success',"Your account is already actived.");
+          return redirect()->to('login')->with('success',"Account active successfully, please enter your e-mail and password to Log-In.");
 
         }
         $user->update(['is_activated' => 1]);

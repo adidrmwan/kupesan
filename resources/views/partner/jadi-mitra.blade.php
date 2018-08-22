@@ -19,14 +19,14 @@
                     </div><!-- end abt-cnt-2-img -->
             		<div id="abt-cnt-2-text" style="text-align: center;" class="section-padding">
                         <h3>Temukan berbagai kemungkinan baru untuk terhubung  dengan konsumen  dan mengembangkan usaha Anda dengan <br><b>KUPESAN.ID</b></h3>
-                         <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; " >
-                                <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">Daftar PARTNER-KU </a>
-                        </button>
-                        <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                                <a href="{{route('mitra.login')}}" style="color: white; text-decoration: none;">Log-In PARTNER-KU </a>
-                        </button>
-
-                        
+                        <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">
+                            <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; ">Daftar PARTNER-KU</button>
+                        </a>
+                    
+                    
+                        <a href="{{route('mitra.login')}}" style="color: white; text-decoration: none;">
+                            <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >Log-In PARTNER-KU</button>
+                        </a>
                     </div><!-- end abt-cnt-2-text -->
                 </div><!-- end columns -->
             </div><!-- end row -->

@@ -10,7 +10,7 @@
                         <div class="col-sm-12">
                             
                             <div class="custom-form custom-form-fields">
-                                <h3>Log-In Partner-Ku</h3>
+                                <h3>Log-In Partner-KU</h3>
                                 <form class="form-horizontal" method="POST" action="{{ route('login') }}"> 
                                     {{ csrf_field() }}
 
@@ -29,9 +29,9 @@
                                       </div>
                                     @endif
                                     <div class="row">
-                                      <div class="col-sm-12">
+                                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}" >
-                                             <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus />
+                                             <input id="email" type="email" class="form-control" name="email" placeholder="E-Mail" value="{{ old('email') }}" required autofocus />
                                              @if ($errors->has('email'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="row">
-                                      <div class="col-sm-12">
+                                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="form-group">
                                              <input id="password" type="password" class="form-control" name="password" placeholder="Password" required />
                                             @if ($errors->has('password'))
@@ -57,20 +57,20 @@
                                     </div>
                                     
                                     <div class="row">
-                                      <div class="col-sm-12">
+                                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="checkbox">
                                           <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} style="margin-top: 12px;"> Remember Me
                                           </label>
                                         </div>
                                       </div>
+                                      <button class="btn btn-orange btn-block" type="submit">LOG-IN AS PARTNER-KU</button>
                                     </div>
                                     
                                     
-                                    <button class="btn btn-orange btn-block" type="submit">Log-In</button>
 
                                     <div class="other-links">
-                                        <!-- <p class="link-line">New Here ? <a href="register">Signup</a></p> -->
+                                        <p class="link-line">New Here ? <a href="{{route('mitra.daftar')}}">Signup</a></p>
                                         <a class="simple-link" href="{{ route('password.request') }}"> Forgot Your Password?
                                         </a>
                                     </div>

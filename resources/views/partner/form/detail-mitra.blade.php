@@ -19,7 +19,7 @@
                   <div class="row">
                       <div class="col-md-7">
                         <div class="header">
-                            <h4 class="title">Informasi Utama</h4>
+                            <h4 class="title">Application Form</h4>
                         </div>
                         <div class="content">
                                 <div class="row">
@@ -175,7 +175,7 @@
                   <div class="row">
                     <div class="col-md-12">
                         <div class="content">
-                            <button type="submit" class="btn btn-block btn-info pull-right">Submit</button>
+                            <button type="submit" class="btn btn-block btn-info pull-right">Submit Application Form</button>
                             <div class="clearfix"></div> 
                         </div>  
                     </div>

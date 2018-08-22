@@ -108,27 +108,38 @@
                             {{ csrf_field() }}
                                 <div class="padding-price">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group">
                                                 <label style="color: white;">Min Price</label>
-                                                <input type="number" class="form-control" placeholder="Min Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="min_price" value="10000" required>
+                                                <div class="input-group md-12 xs-12 sm-12"> 
+                                                    <span class="input-group-addon">Rp</span>
+                                                    <input class="form-control number" placeholder="Min Price" name="min_price" min="0" required>
+                                                </div>
+
                                             </div>        
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group">
                                                 <label style="color: white;">Max Price</label>
-                                                <input type="number" class="form-control" placeholder="Max Price" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="max_price" value="100000" required>
+                                                <div class="input-group"> 
+                                                    <span class="input-group-addon">Rp</span>
+                                                    <input class="form-control number" placeholder="Max Price" name="max_price" min="0" required>
+                                                </div>
                                             </div> 
                                         </div>
                                     </div>
                                     <hr>
                                     <h3 style="margin-bottom: 20px;">Filter Tipe Paket</h3>
                                     <div class="row">
-                                        <div class="col-md-12 col-sm-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group" >
-                                                <select  class="form-control" name="" required>
-                                                    <option selected value="">Pilih Tema</option>
-                                                    <option value=""></option>
+                                                <select  class="form-control" name="type" required>
+                                                    <option selected value="All_type">Semua</option>
+                                                    <option value="Thematic_Set">Thematic Set</option>
+                                                    <option value="Ala_Carte">Room (Ala Carte)</option>
+                                                    <option value="Special_Studio">Special Studio</option>
                                                 </select>
                                             </div>             
                                         </div>    
@@ -216,4 +227,22 @@
 </div>
 </section>
 @include('layouts.footer')
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $('input.number').keyup(function(event) {
+
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function(index, value) {
+        return value
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        ;
+      });
+    });
+</script>
 @endsection

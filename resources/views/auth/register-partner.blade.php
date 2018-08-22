@@ -77,7 +77,6 @@
                                                     <ul>
                                                         <li><span class="text-muted"><small>One uppercase letter</small></span></li>
                                                         <li><span class="text-muted"><small>One number</small></span></li>
-                                                        <li><span class="text-muted"><small>One special character (#,$,%,@)</small></span></li>
                                                     </ul>
 
                                                     @if ($errors->has('password'))
@@ -94,7 +93,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confrim Password" required>
+                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                                                  <span><i class="fa fa-lock"></i></span>
                                             </div>
                                         </div>
@@ -106,7 +105,7 @@
                                 </form>
                                 
                                 <div class="other-links">
-                                    <p class="link-line">Already Have An Account ? <a href="{{route('mitra.login')}}">Log-In Here</a></p>
+                                    <p class="link-line">Already Have An Account ? <a href="{{route('mitra.login')}}">LOG-IN Here</a></p>
                                     <p>By registering, I agree with Terms & Conditions and Privacy Policy of Kupesan.</p>
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->

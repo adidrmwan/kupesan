@@ -34,10 +34,11 @@
                 @if(Auth::guest())
                     <li><a href="{{ route('login') }}" >Log-In</a></li>
                     <li><a href="{{ route('register') }}" >Register</a></li>
-                    <li>                                      
-                        <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >
-                            <a href="{{route('jadi.mitra')}}" style="color: white; text-decoration: none;">PARTNER-KU </a>
-                        </button>
+                    <li>
+                        <a href="{{route('jadi.mitra')}}" style=" margin-top: -10px;" >
+                            <button class="btn btn-orange" style="color: white; text-decoration: none; padding: 10px 30px;" >PARTNER-KU</button>
+                        </a>               
+                        
                     </li>
                 @elseif(Auth::user())
                 <li> <a href="{{route('dashboard')}}" class="text-uppercase"><i class="fa fa-user" aria-hidden="true" style="padding-right: 5px;"></i>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a> </li>
