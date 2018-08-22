@@ -36,6 +36,10 @@ Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('se
 Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 Route::post('/search/data', 'SearchController@searchData')->name('search.data');
 Route::get('/search/result/#1', 'SearchController@resultstudio')->name('resultstudio');
+
+// Kebaya
+Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.kebaya');
+
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superadmin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
@@ -184,3 +188,7 @@ Route::get('/json-village', 'CountryController@villages');
 Route::get('/json-regencies1','BookingController@regencies');
 Route::get('/json-districts1', 'BookingController@districts');
 Route::get('/json-village1', 'BookingController@villages');
+
+Route::get('/reset/link', function() {
+    return view('auth.passwords.reset');
+});

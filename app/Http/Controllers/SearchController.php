@@ -39,6 +39,21 @@ class SearchController extends Controller
         return view('daftar.fotostudio', ['allThemes' => $allThemes], compact('tag_id'));
     }
 
+    public function searchKebaya(Request $request)
+    {
+        $sdate = explode('/', $request->start_date, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
+        $booking_start_date = $sy.'-'.$sm.'-'.$sd;
+        $edate = explode('/', $request->end_date, 3); $em = $edate[0]; $ed = $edate[1]; $ey = $edate[2];
+        $booking_end_date = $ey.'-'.$em.'-'.$ed;
+        $time = '00:00:00';
+        $endtime = '23:59:59';
+        $start_date = date('Y-m-d H:i:s', strtotime("$booking_start_date $time"));
+        $end_date = date('Y-m-d H:i:s', strtotime("$booking_end_date $endtime"));
+        dd($request);
+
+        return view('result.kebaya', ['allThemes' => $allThemes], compact('tag_id'));
+    }
+
     public function searchData(Request $request)
     {
         // dd($request);

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
+    <nav class="navbar navbar-default main-navbar navbar-custom navbar-transparent landing-page-navbar" id="mynavbar">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" id="menu-button">
@@ -40,7 +40,7 @@
                         </button>
                     </li>
                 @elseif(Auth::user())
-                <li> <a href="{{route('dashboard')}}"><i class="fa fa-user" aria-hidden="true" style="padding-right: 5px;"></i>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a> </li>
+                <li> <a href="{{route('dashboard')}}" class="text-uppercase"><i class="fa fa-user" aria-hidden="true" style="padding-right: 5px;"></i>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a> </li>
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();

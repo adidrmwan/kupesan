@@ -4,10 +4,10 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 col-xs-12 col-lg-8">
+      <div class="col-md-12 col-xs-12 col-sm-12 col-lg-8">
         <div class="card">
           <div class="header">
-            <h4 class="title"><b>Add Product</b></h4>
+            <h4 class="title">Add Product</h4>
           </div>
           <div class="content">
             <form role="form" action="{{route('submit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>

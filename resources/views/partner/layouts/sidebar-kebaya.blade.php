@@ -10,12 +10,12 @@
         <p>Offline Booking</p>
     </a>
 </li>
-<li>
+<!-- <li>
     <a href="{{ route('form.dayoff') }}">
         <i class="pe-7s-note2"></i>
         <p>Form Day-Off</p>
     </a>
-</li>
+</li> -->
 <li>
     <a href="{{ route('kebaya.history') }}">
         <i class="pe-7s-server"></i>

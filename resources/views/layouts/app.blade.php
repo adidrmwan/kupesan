@@ -293,5 +293,22 @@
       });
     </script>
     @yield('script')
+
+    <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>
+    <script src=" {{ URL::asset('partners/js/jquery-ui.min.js') }} " type="text/javascript"></script>
+
+    <script type="text/javascript">
+      $('#startDate').datepicker({
+          minDate:0,
+          maxDate: "+3M"
+      });
+    </script>
+
+    <script type="text/javascript">
+      $('#endDate').datepicker({
+          minDate:0,
+          maxDate: "+3M"
+      });
+    </script>
 </body>
 </html>

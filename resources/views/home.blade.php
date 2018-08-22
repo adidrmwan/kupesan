@@ -4,26 +4,23 @@
 
 
 <section class="flexslider-container" id="flexslider-container-6">
-
     <div class="flexslider slider tour-slider" id="slider-6">
         <ul class="slides">
-            
             <li class="item-1 back-size" style="background:url(dist/images/home-bg.png) 50% 65%; background-size:cover; height:100%;">
                <div class="meta" >         
                     <div class="container" style="text-align: center;">
                         <span class="highlight-price highlight-2">Capture the time of your life with</span>
                         <h2>KUPESAN.ID</h2>
-                    </div><!-- end container -->  
-                </div><!-- end meta -->
-            </li><!-- end item-1 -->           
+                    </div>
+                </div>
+            </li>          
         </ul>
-    </div><!-- end slider -->
+    </div>
 
     <div class="search-tabs" id="search-tabs-1">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                
                     <ul class="nav nav-tabs center-tabs">
                         <li class="active"><a href="#studio" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Foto Studio</span></a></li>
                         <li><a href="#kebaya" data-toggle="tab"><span><i class="fa fa-female"></i></span><span class="st-text">Kebaya</span></a></li>
@@ -32,14 +29,12 @@
                     </ul>
 
                     <div class="tab-content">
-
+                        <!-- fotostudio -->
                         <div id="studio" class="tab-pane in active">
                             <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
-                                        
-                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >
                                             <select  class="form-control" name="tag_id" required>
@@ -59,15 +54,11 @@
                                             </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>                         
-                                    </div>
-                                                                       
+                                    </div>                       
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
                                         <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1">
-                                        
-                                    </div>
-                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                 </div>
                             </form>
                         </div>
@@ -75,7 +66,6 @@
                         <div id="fotografer" class="tab-pane">
                             <form>
                                 <div class="row">
-                                    
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
                                         <h1>Coming Soon</h1>        
                                     </div><!-- end columns -->
@@ -95,27 +85,38 @@
                                 </div><!-- end row -->
                             </form>
                         </div>
-                        
+
+                        <!-- kebaya -->
                         <div id="kebaya" class="tab-pane">
-                            <form>
+                            <form role="form" action="{{ route('search.kebaya') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="row">
-                                    
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
-                                        <h1>Coming Soon</h1>        
-                                    </div><!-- end columns -->
-                                    
-                                </div><!-- end columns -->
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                                        <div class="form-group right-icon" >
+                                            <input  class="form-control" id="startDate" name="start_date" data-date-format="yyyy-mm-dd" required="" placeholder="Pilih Tanggal Mulai">
+                                            <i class="fa fa-angle-down"></i>
+                                        </div>                         
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                                        <div class="form-group right-icon ">
+                                            <input  class="form-control" id="endDate" name="end_date" data-date-format="yyyy-mm-dd" placeholder="Pilih Tanggal Selesai" />
+                                            <i class="fa fa-angle-down"></i>
+                                        </div>                         
+                                    </div>                       
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
+                                        <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
+                                </div>
                             </form>
                         </div>
-
-                    </div><!-- end tab-content -->
-                    
-                </div><!-- end columns -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end search-tabs -->
-
-</section><!-- end flexslider-container -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section id="studio-offers" class="section-padding">
     <div class="container">

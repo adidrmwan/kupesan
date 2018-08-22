@@ -365,14 +365,15 @@ class KebayaController extends Controller
         // dd($request);
         $booking_id = $request->id;
         $booking = KebayaBooking::where('booking_id', $booking_id)->first();
-        $dateString = strtotime($booking->start_date);
-        $sdate = date('Y-m-d', $dateString);
-        dd($sdate);
-        $sdate = explode('/', $booking->start_date, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
-        $booking_start_date = $sy.'-'.$sm.'-'.$sd;
-        dd($booking_start_date);
-        $edate = explode('/', $booking->end_date, 3); $em = $edate[0]; $ed = $edate[1]; $ey = $edate[2];
+        $dateString_startDate = strtotime($booking->start_date);
+        $startDate = date('m/d/Y', $dateString_startDate);
+        $sdate = explode('/', $startDate, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
+
+        $dateString_endDate = strtotime($booking->end_date);
+        $endDate = date('m/d/Y', $dateString_endDate);
+        $edate = explode('/', $endDate, 3); $em = $edate[0]; $ed = $edate[1]; $ey = $edate[2];
         $booking_end_date = $ey.'-'.$em.'-'.$ed;
+
         $time = '00:00:00';
 
         if($sm == $em && $sd <= $ed) {
@@ -380,8 +381,7 @@ class KebayaController extends Controller
                 if($i >= $sd && $i <= $ed ){
                     $new_date = $sy.'-'.$sm.'-'.$i;
                     $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-                    $booking_check = KebayaCheck::where('package_id', $booking->package_id)->where('booking_date', $booking_date)->first();
-                    dd($booking_check);
+                    $booking_check = KebayaCheck::where('package_id', $booking->package_id)->where('booking_date', $booking_date)->delete();
                 }
             }
         } elseif ($sm < $em) {
@@ -389,18 +389,12 @@ class KebayaController extends Controller
                 if($i >= $sd) {
                     $new_date = $sy.'-'.$sm.'-'.$i;
                     $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-                    $booking_check = new KebayaCheck();
-                    $booking_check->package_id = $product_id;
-                    $booking_check->booking_date = $booking_date;
-                    $booking_check->save();
+                    $booking_check = KebayaCheck::where('package_id', $booking->package_id)->where('booking_date', $booking_date)->delete();
                 }
                 elseif ($i <= $ed) {
                     $new_date = $sy.'-'.$em.'-'.$i;
                     $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-                    $booking_check = new KebayaCheck();
-                    $booking_check->package_id = $product_id;
-                    $booking_check->booking_date = $booking_date;
-                    $booking_check->save();
+                    $booking_check = KebayaCheck::where('package_id', $booking->package_id)->where('booking_date', $booking_date)->delete();
                 }
             }
         }
