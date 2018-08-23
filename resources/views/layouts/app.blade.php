@@ -113,7 +113,10 @@
       .close-hour {
         background-color: #e6e6e6;
       }
-
+      select {
+        text-align-last: center;
+        text-align: center;
+      }
     </style>
 </head>
 <body id="main-homepage">
@@ -241,7 +244,7 @@
           $('#districts').append('<option value="" disable="true" selected="true">Pilih Jam Selesai</option>');
 
           $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>');
+          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option><option value="0">Tidak ada</option>');
 
           $.each(data, function(index, regenciesObj){
             $('#regencies').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +','+ date +'">'+ regenciesObj.num_hour +':00</option>');
@@ -261,13 +264,13 @@
         $.get('/json-districts1?jam_mulai=' + jam_mulai + '&durasi2=' + durasi2 + '&callback=?',function(data) {
           console.log(data);
           $('#districts').empty();
-          $('#districts').append('<option value="" disable="true" selected="true">Pilih Jam Selesai</option>');
+          $('#districts').append('<option class="text-center" value="" disable="true" selected="true">Pilih Jam Selesai</option>');
 
           $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>');
+          $('#villages').append('<option class="text-center" value="0" disable="true" selected="true">Pilih Jam Tambahan</option><option value="0">Tidak ada</option>');
 
           $.each(data, function(index, districtsObj){
-            $('#districts').append('<option value="'+ districtsObj.num_hour +','+ durasi2 +','+ pack_id +','+ date +','+ jam_mulai +'">'+ districtsObj.num_hour +':00</option>');
+            $('#districts').append('<option class="text-center" value="'+ districtsObj.num_hour +','+ durasi2 +','+ pack_id +','+ date +','+ jam_mulai +'">'+ districtsObj.num_hour +':00</option>');
           })
         });
       });
@@ -284,10 +287,10 @@
         $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
           console.log(data);
           $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>');
-
+          $('#villages').append('<option class="text-center" value="0" disable="true" selected="true">Pilih Jam Tambahan</option><option value="0">Tidak ada</option>');
+          $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
           $.each(data, function(index, villagesObj){
-            $('#villages').append('<option value="'+ villagesObj.num_hour +'">'+ villagesObj.num_hour +' Jam</option>');
+            $('#villages').append('<option class="text-center" value="'+ villagesObj.num_hour +'">'+ villagesObj.num_hour +' Jam</option>');
           })
         });
       });

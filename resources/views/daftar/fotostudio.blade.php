@@ -38,8 +38,7 @@
 <section class="innerpage-wrapper">
 	<div id="hotel-listing" class="bottom-padding">
         <div class="container">
-            <div class="row">        	
-                
+            <div class="row">     
                 <div class="col-xs-12 col-sm-12 col-md-4 side-bar left-side-bar" >
                     <!-- <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
@@ -100,6 +99,7 @@
                             </div>
                         </div>
                     </div> -->
+
                     <div class="col-xs-12 col-sm-12 col-md-12">            
                         <div class="side-bar-block filter-block ">
                             <h3>Filter Harga</h3>
@@ -157,9 +157,17 @@
                         </div><!-- end side-bar-block -->
                     </div>
                 </div><!-- end columns --> 
-                
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
-	
+                    <div class="col-sm-12 col-md-12">
+                        @if(empty($tema->tag_title))
+                        <h3><b><span style="color: #EA410C;">Semua Tema</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h3> 
+                        @else
+                        <h3><b>Tema <span style="color: #EA410C;">{{$tema->tag_title}}</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h3> 
+                        @endif
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
+	                   
 
                     @foreach($allThemes as $data)
                     <div class="col-sm-6 col-md-4">
@@ -202,7 +210,7 @@
                                         <li >Rp {{$data->pkg_price_them}} / Jam</li><br>
                                         <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
                                         <li>
-                                            <a href="{{route('check.auth', ['package_id' => $data->id])}}">
+                                            <a href="{{route('ask.page', ['package_id' => $data->id])}}">
                                                 <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                 </button>
                                             </a>
@@ -220,11 +228,10 @@
                         </div><!-- end flight-block -->
                     </div><!-- end columns -->
                     @endforeach
-
-            </div><!-- end row -->
-    	</div><!-- end container -->
+                </div>
+        	</div>
+        </div>
     </div>
-</div>
 </section>
 @include('layouts.footer')
 @endsection

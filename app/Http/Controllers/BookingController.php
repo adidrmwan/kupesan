@@ -17,6 +17,17 @@ use File;
 use Image;
 class BookingController extends Controller
 {
+    public function askPage(Request $request) {
+
+        $package_id = $request->package_id;
+        $package = PSPkg::where('id', $package_id)->get();
+        $id = PSPkg::where('id', $package_id)->first();
+        $partner = Partner::where('user_id', $id->user_id)
+                            ->select('user_id', 'pr_name', 'open_hour', 'close_hour')->first();
+        return view('pesan.ask', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id]);
+ 
+    }
+
     public function checkAuth(Request $request) {
         $package_id = $request->package_id;
         $package = PSPkg::where('id', $package_id)->get();

@@ -31,9 +31,9 @@
                     </div>
                 </div>                    
             </div> -->
-        </div><!-- end container -->
-    </div><!-- end search-result-page -->
-</section><!-- end innerpage-wrapper -->
+        </div>
+    </div>
+</section>
        
 <section class="innerpage-wrapper">
 	<div id="hotel-listing" class="bottom-padding">
