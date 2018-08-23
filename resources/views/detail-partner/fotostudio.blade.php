@@ -6,10 +6,17 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="page-title">{{$data->pr_name}}</h1>
-                <ul class="breadcrumb">
-                    <li class="active">{{$data->pr_addr}}, {{$data->pr_kel}}, {{$data->pr_kec}}, {{$data->pr_area}}, {{$data->pr_postal_code}}</li>
-                </ul>
+              <div class="col-sm-12 col-md-2">
+                <div id="abt-cnt-2-img">
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-10">
+                  <h1 class="page-title">{{$data->pr_name}}</h1>
+                  <ul class="breadcrumb">
+                      <li class="active">{{$data->pr_addr}}, {{$data->pr_kel}}, {{$data->pr_kec}}, {{$data->pr_area}}, {{$data->pr_postal_code}}</li>
+                  </ul>
+              </div>
             </div><!-- end columns -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -20,11 +27,11 @@
                 <div class="row">
                         <div class="col-sm-4 col-md-4">
                             <div class="row">
-                              <div class="col-sm-12 col-md-12">
+                              <!-- <div class="col-sm-12 col-md-12">
                                     <div id="abt-cnt-2-img">
                                         <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 50%; margin: 0 auto; float: none; display: block;position: relative;" />
                                     </div>
-                              </div>
+                              </div> -->
                                 <section id="thematic-offers" class="">
                                         <div class="col-sm-12">
                                             <div class="page-heading">
@@ -147,7 +154,7 @@
                           <section id="thematic-offers" class="">
                                       <div class="col-sm-12">
                                           <div class="page-heading">
-                                              <h2>Thematic Set</h2>
+                                              <h2>A LA CARTE</h2>
                                               <hr class="heading-line" />
                                           </div><!-- end page-heading -->
                                           
@@ -187,7 +194,7 @@
                           <section id="alacarte-offers" class="">
                                       <div class="col-sm-12">
                                           <div class="page-heading">
-                                              <h2>Ala Carte </h2>
+                                              <h2>SPECIAL PACKAGE </h2>
                                               <hr class="heading-line" />
                                           </div>
                                           
@@ -226,7 +233,7 @@
                           <section id="special-offers" class="">
                                       <div class="col-sm-12">
                                           <div class="page-heading">
-                                              <h2>Special Studio</h2>
+                                              <h2>SPECIAL STUDIO</h2>
                                               <hr class="heading-line" />
                                           </div><!-- end page-heading -->
                                           
