@@ -36,8 +36,8 @@
                             </form>
                                 
                             <div class="other-links">
-                                <p class="link-line">Already Have An Account ? <a href="{{ route('login') }}">LOG-IN Here</a></p>
-                                <p class="link-line">New Here ? <a href="{{ route('register') }}">Join Us</a></p>
+                                <p class="link-line">Already Have An Account ? <a href="{{ route('login') }}">Log-In Here</a></p>
+                                <p class="link-line">New Here ? <a href="{{ route('register') }}">Register</a></p>
                             </div><!-- end other-links -->
                         </div><!-- end custom-form -->
                     </div><!-- end forgot-password -->
