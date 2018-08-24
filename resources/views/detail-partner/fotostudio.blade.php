@@ -112,7 +112,7 @@
                                       <div class="col-xs-6 col-md-4">
                                         <div style="text-align: center;" >
                                           <span><i class="zmdi zmdi-male-female zmdi-hc-5x "></i></span>
-                                          <h5 style="text-align: center;">Kamar Mandi</h5>
+                                          <h5 style="text-align: center;">Toilet</h5>
                                         </div><!-- end b-feature-block -->
                                       </div><!-- end columns -->
                                       @else

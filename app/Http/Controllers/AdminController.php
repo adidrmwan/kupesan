@@ -7,6 +7,9 @@ use App\Booking;
 use App\PSPkg;
 use App\User;
 use App\Partner;
+use DB;
+use Mail;
+use Auth;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -39,18 +42,48 @@ class AdminController extends Controller
         $partner = Partner::join('partner_type', 'partner_type.id', '=', 'partner.pr_type')->join('users', 'users.id', '=', 'partner.user_id')->where('partner.status', '0')->get();
         $partner_confirmed = Partner::join('partner_type', 'partner_type.id', '=', 'partner.pr_type')->join('users', 'users.id', '=', 'partner.user_id')->where('partner.status', '1')->get();
         // dd($partner);
-        return view('superadmin.daftarpartner', ['partner' => $partner, 'partner_confirmed' => $partner_confirmed]);
+        $total_fotostudio = Partner::where('pr_type', '1')->count();
+        $total_fotografer = Partner::where('pr_type', '2')->count();
+        $total_mua = Partner::where('pr_type', '3')->count();
+        $total_kebaya = Partner::where('pr_type', '4')->count();
+        return view('superadmin.daftarpartner', ['partner' => $partner, 'partner_confirmed' => $partner_confirmed], compact('total_fotostudio', 'total_fotografer', 'total_mua', 'total_kebaya'));
     }
 
     public function confirmPartner(Request $request)
     {
-        // dd($request);
         $partner_id = $request->id;
+        
+        $user = User::where('id', $partner_id)->first()->toArray();
+
+        $user['link'] = str_random(30);
+
+        DB::table('partner_activations')->insert(['id_user'=>$user['id'],'token'=>$user['link']]);
+
+        Mail::send('emails.approve', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan - Partner Activation Account');
+        });
+
         $partner = Partner::where('user_id', $partner_id)->first();
         $partner->status = '1';
         $partner->save();
 
         return redirect()->back();
+    }
+
+    public function partnerActivation($token){
+      $check = DB::table('partner_activations')->where('token',$token)->first();
+      if(!is_null($check)){
+        $user = User::find($check->id_user);
+        if ($user->is_activated ==1){
+          return redirect()->to('partner-ku/login')->with('success',"Formulir pengajuan Anda sedang ditinjau. ");
+
+        }
+        $user->update(['is_activated' => 1]);
+        DB::table('user_activations')->where('token',$token)->delete();
+        return redirect()->to('partner-ku/login')->with('success',"Account active successfully, please enter your e-mail and password to Log-In.");
+      }
+      return redirect()->to('login')->with('Warning',"Your token is invalid");
     }
 
     public function cancelPartner(Request $request)

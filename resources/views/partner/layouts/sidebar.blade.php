@@ -22,16 +22,19 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                @if(!empty($partner->pr_name))
-                    <!-- kebaya -->
-                    @if($partner->pr_type == '4')
-                        @include('partner.layouts.sidebar-kebaya')
-                    @elseif($partner->pr_type == '1')
-                        @include('partner.layouts.sidebar-fotostudio')
-                    @endif
-                @else
-                @endif
+                @if($partner->status == '0')
                 
+                @elseif($partner->status == '1')
+                    @if(!empty($partner->pr_name))
+                        <!-- kebaya -->
+                        @if($partner->pr_type == '4')
+                            @include('partner.layouts.sidebar-kebaya')
+                        @elseif($partner->pr_type == '1')
+                            @include('partner.layouts.sidebar-fotostudio')
+                        @endif
+                    @else
+                    @endif
+                @endif
             </ul>
         </div>
     </div>

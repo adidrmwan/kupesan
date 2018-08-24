@@ -137,6 +137,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 
 // Route untuk email verification
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
+Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
 
 //Route untuk studio foto
 Route::get('/studio/detail', 'StudioController@studiodetail')->name('studio-detail');

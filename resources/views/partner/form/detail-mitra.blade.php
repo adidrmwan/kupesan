@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-info alert-dismissible">
-                    <h4>Selamat Datang, Partner-Ku!</h4>
-                    Silahkan mengisi form detail bisnis dibawah ini dengan lengkap untuk melanjutkan ke<b> tahap selanjutnya.</b>
+                    <h4>Selamat Datang, Partner-KU!</h4>
+                    Silahkan mengisi <em><b>Application Form</b></em> dibawah ini dengan lengkap untuk melanjutkan ke<b> tahap selanjutnya.</b>
                 </div>
             </div>
         </div>
@@ -156,9 +156,9 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="alert alert-warning" style="text-align: center;">
-                                        Upload logo usaha Anda di sini<br>dalam format file: JPG, JPEG, atau PNG. <br>
-                                        Maximum size: 512 KB
+                                    <div class="alert alert-danger" style="text-align: center;">
+                                        Upload logo dengan perbandingan<b> 1 : 1</b><br>dalam format file: <b>JPG, JPEG, atau PNG.</b> <br>
+                                        Maximum size: <b>512 KB</b>
                                     </div>
                                 </div>
                             </div>

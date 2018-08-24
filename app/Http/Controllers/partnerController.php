@@ -120,9 +120,12 @@ class PartnerController extends Controller
 
     public function showFormFacilities()
     {
-
         $user = Auth::user();
-        return view('partner.form.fasilitas');        
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        return view('partner.form.fasilitas', ['partner' => $partner]);        
         
     }
 
@@ -148,6 +151,10 @@ class PartnerController extends Controller
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
+        if ($partner->status == '0') {
+            return view('partner.home', ['partner' => $partner]);
+        }
+
         return view('partner.form.offline-booking', ['partner' => $partner]);        
         
     }
@@ -165,6 +172,9 @@ class PartnerController extends Controller
                     ->select('*')
                     ->first();
         $jam = Jam::all();
+        if ($partner->status == '0') {
+            return view('partner.home', ['partner' => $partner]);
+        }
         return view('partner.form.offline-booking', ['partner' => $partner], compact('jam'));        
         
     }
@@ -267,19 +277,27 @@ class PartnerController extends Controller
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
-        $tipe = DB::table('partner_type')
-                ->where('partner_type.id', '=', $partner->pr_type)
-                ->first();
-        $phone_number = $user->phone_number;
-        $jam = Jam::all();
-        $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
-        $partner_prov = Provinces::where('id', $partner->pr_prov)->first();
-        $partner_kota = Regencies::where('id', $partner->pr_kota)->first();
-        $partner_kel = Villages::where('id', $partner->pr_kel)->first();
-        $partner_kec = Districts::where('id', $partner->pr_kec)->first();
-        $email = $user->email;
-        $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
-        return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec'));
+
+        if ($partner->status == '0') {
+            return view('partner.home', ['partner' => $partner]);
+
+        }
+        else {
+            $tipe = DB::table('partner_type')
+                    ->where('partner_type.id', '=', $partner->pr_type)
+                    ->first();
+            $phone_number = $user->phone_number;
+            $jam = Jam::all();
+            $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
+            $partner_prov = Provinces::where('id', $partner->pr_prov)->first();
+            $partner_kota = Regencies::where('id', $partner->pr_kota)->first();
+            $partner_kel = Villages::where('id', $partner->pr_kel)->first();
+            $partner_kec = Districts::where('id', $partner->pr_kec)->first();
+            $email = $user->email;
+            $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
+
+            return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec'));
+        }
     }
 
     public function edit(Request $Request)
@@ -349,6 +367,7 @@ class PartnerController extends Controller
     public function EditPackagePartner($id)
     {
         $partner = PSPkg::find($id);
+
         return view('partner.ps.edit-package', ['partner' => $partner]);
     }
 
@@ -369,6 +388,10 @@ class PartnerController extends Controller
                     ->where('user_id',$user->id)
                     ->select('*')
                     ->first();
+
+        if ($partner->status == '0') {
+            return view('partner.home', ['partner' => $partner]);
+        }
         $title = 'Libur';
         $events = [];
                 $data = Booking::where('user_id', $partner->user_id);

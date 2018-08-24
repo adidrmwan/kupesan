@@ -7,15 +7,26 @@
         <div class="row">
 
             <div class="col-md-10">
+                @if($partner->status == ' 0')
                 <div class="card ">
                     <div class="header">
-                        <h4 class="title">Tasks</h4>
-                        <p class="category">Upcoming Events</p>
+                        <h4 class="title">Please wait..</h4>
                     </div>
                     <div class="content">
-                        <h3>No Upcoming Events</h3>
+                        <h3>Formulir pengajuan Anda sedang ditinjau. Pemberitahuan peninjauan akan dikirim ke e-mail terdaftar dengan waktu 1x24 jam. Terima Kasih</h3>
                     </div>
                 </div>
+                @elseif($partner->status == '1')
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">Event</h4>
+                        <small>Upcoming Event</small>
+                    </div>
+                    <div class="content">
+                        <h3>There is no event..</h3>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>
