@@ -9,7 +9,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 	<div class="dashboard-heading">
                         @foreach($user as $data)
-                        <p>Hai {{$data->first_name}} {{$data->last_name}}, Selamat Datang di kupesan.id !</p>
+                        <p>Hai {{$data->first_name}} {{$data->last_name}}, Selamat Datang di  <span style="color: #EA410C">KUPESAN.ID</span> </p>
                         @endforeach
                         <p>Semoga harimu indah</p>
                     </div><!-- end dashboard-heading -->
@@ -19,13 +19,13 @@
                     	<ul class="nav nav-tabs nav-justified">
                             <li class="active"><a href="#dsh-profile" data-toggle="tab"><span><i class="fa fa-user"></i></span>Profil</a></li>
                             <li><a href="#dsh-booking" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span>Pesanan</a></li>
-                            <li><a href="#dsh-wishlist" data-toggle="tab"><span><i class="fa fa-history"></i></span>Riwayat</a></li>
+                            <li><a href="#dsh-wishlist" data-toggle="tab"><span><i class="fa fa-history"></i></span>Histori</a></li>
                         </ul>
                     	
                         <div class="tab-content">                            
                             <div id="dsh-profile" class="tab-pane fade in active">
                             	<div class="dashboard-content user-profile">
-                                    <h2 class="dash-content-title">Profil-Ku</h2>
+                                    <h2 class="dash-content-title" style="color: #EA410C">PROFIL-KU</h2>
                                     <div class="panel panel-default ">
                                         <div class="panel-heading">
                                             <h4 style="text-align: center;">Detail Profil
@@ -56,7 +56,7 @@
                             
                             <div id="dsh-booking" class="tab-pane fade">
                             	<div class="dashboard-content booking-trips">
-                                    <h2 class="dash-content-title">PesananKU</h2>
+                                    <h2 class="dash-content-title" style="color: #EA410C">PESANANAN-KU</h2>
 
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
@@ -192,7 +192,7 @@
                             </div><!-- end dsh-booking -->
                             <div id="dsh-wishlist" class="tab-pane fade">
                             	<div class="dashboard-content wishlist">
-                                    <h2 class="dash-content-title">Riwayat PesananKU</h2>
+                                    <h2 class="dash-content-title" style="color: #EA410C">HISTORI-KU</h2>
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>kupesan.id | voucher</title>
+        <title>kupesan.id | Kode Booking</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="dist/images/logo.png" type="image/x-icon">
@@ -84,7 +84,7 @@
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 5 </strong>
                                     </span>
-                                    Voucher
+                                    Kode Booking
                                 </a> 
                             </li>                         
                             
@@ -139,7 +139,7 @@
                                             <span class="fa fa-circle-o fa-stack-2x"></span>
                                                 <strong class="fa-stack-1x"> 5 </strong>
                                         </span>
-                                        Voucher
+                                        Kode Booking
                                     </a> 
                                 </li>                    
                                 
@@ -160,7 +160,7 @@
                                                        @elseif($data->booking_status == 'confirmed')
                                                        <h3>Pemesananmu sudah dikonfirmasi.</h3>
                                                        @endif
-                                                       <p>Terima kasih telah melakukan pemesanan melalui kupesan.id.<br>Mohon menunggu konfirmasi voucher pemesanan Anda selama kurang lebih 30 menit. Terimakasih :)</p>
+                                                       <p>Terima kasih telah melakukan pemesanan melalui KUPESAN.ID,<br>Mohon menunggu Kode Booking anda selama kurang lebih 30 menit dan akan dikirimkan ke-email dan nomor handphone yang terdaftar. Terima Kasih.</p>
                                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
                                                         <a href="{{route('index')}}">
                                                             <button type="submit" class="btn btn-orange pull-left" style="float: right;">Selesai</button>
@@ -243,58 +243,63 @@
         <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
         
             <div id="footer-top" class="banner-padding ftr-top-grey ftr-text-white">
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
-                            <div id="abt-cnt-2-img">
-                                <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" alt="about-img" />
-                            </div>
-                        </div><!-- end columns -->
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
-                            <h3 class="footer-heading">Social Media</h3>
-                            <ul class="social-links list-unstyled list-unstyled">
-                                <li><a href="#"><span><i class="fa fa-facebook"></i></span> &nbsp;&nbsp;&nbsp;&nbsp; Kupesan </a></li>
-                                <li><a href="#"><span><i class="fa fa-twitter"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
-                                <li><a href="#"><span><i class="fa fa-instagram"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
-                            </ul>
-                        </div><!-- end columns -->
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
-                            <h3 class="footer-heading">Resources</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="{{ route('login') }}">Login</a></li>
-                                <li><a href="{{ route('register') }}">Register</a></li>
-                                <li><a href="{{route('jadi.mitra')}}">Daftar Mitra</a></li>
-                            </ul>
-                        </div><!-- end columns -->
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
+                    <div id="abt-cnt-2-img">
+                        <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" alt="Logo-Kupesan" />
+                    </div>
+                </div><!-- end columns -->
+                
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
+                    <h3 class="footer-heading">Social Media</h3>
+                    <ul class="social-links list-unstyled list-unstyled">
+                        <li><a href="#"><span><i class="fa fa-facebook"></i></span> &nbsp;&nbsp;&nbsp;&nbsp; Kupesan </a></li>
+                        <li><a href="#"><span><i class="fa fa-twitter"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-instagram"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-pinterest"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-whatsapp"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; +6282 233-610-702</a></li>
 
-                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-about">
-                            <h3 class="footer-heading">About US</h3>
-                            <p style="text-align: justify;">Kupesan.id adalah sebuah marketplace online yang ingin membawa perubahan dalam bentuk memudahkan masyarakat untuk mencari persewaan spot foto (dalam atau luar ruangan), persewaan gaun dan kebaya, penyedia jasa fotografer, serta penyedia jasa tata rias (make-up artist).</p>
-                        </div><!-- end columns -->
-                        
-                    </div><!-- end row -->
-                </div><!-- end container -->
-            </div><!-- end footer-top -->
+                    </ul>
+                </div><!-- end columns -->
+                
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('login') }}">Log-In</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{route('jadi.mitra')}}">Daftar PARTNER-KU</a></li>
+                    </ul>
+                </div><!-- end columns -->
 
-            <div id="footer-bottom" class="ftr-bot-black" >
-                <div class="container" style="color: white;">
-                    <div class="row" >
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright" >
-                            <p>© 2018 <a href="#">Kupesan.id</a>. All rights reserved.</p>
-                        </div><!-- end columns -->
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
-                            <ul class="list-unstyled list-inline">
-                                <li><a href="#">Terms & Condition</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                            </ul>
-                        </div><!-- end columns -->
-                    </div><!-- end row -->
-                </div><!-- end container -->
-            </div><!-- end footer-bottom -->
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-about">
+                    <h3 class="footer-heading">About US</h3>
+                    <p style="text-align: justify;">Kupesan.id adalah sebuah marketplace online yang ingin membawa perubahan dalam bentuk memudahkan masyarakat untuk mencari persewaan spot foto (dalam atau luar ruangan), persewaan gaun dan kebaya, penyedia jasa fotografer, serta penyedia jasa tata rias (make-up artist).</p>
+                    
+                </div><!-- end columns -->
+                
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end footer-top -->
+
+    <div id="footer-bottom" class="ftr-bot-black" >
+        <div class="container" style="color: white;">
+            <div class="row" >
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright" >
+                    <p>© 2018 <a href="home">Kupesan.id</a> | All rights reserved.</p>
+                </div><!-- end columns -->
+                
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="termsandcondition">Terms & Condition</a></li>
+                        <li><a href="privacy">Privacy Policy</a></li>
+                    </ul>
+                </div><!-- end columns -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end footer-bottom -->
+    
             
         </section><!-- end footer -->
 
