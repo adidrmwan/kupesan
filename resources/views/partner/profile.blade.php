@@ -1,4 +1,4 @@
-@extends('layouts.app-partner')
+@extends('partner.layouts.app-form')
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -161,6 +161,7 @@
 
                                     </div>
                                     <div class="content">
+                                        @if(empty($partner->pr_logo))
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="alert alert-warning" style="text-align: center;">
@@ -169,6 +170,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @else
+                                            @if(File::exists(public_path("logo/".$partner->pr_logo.".jpg")))
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @elseif(File::exists(public_path("logo/".$partner->pr_logo.".png")))
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @elseif(File::exists(public_path("logo/".$partner->pr_logo.".jpeg")))
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @endif
+                                        @endif
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="file-loading">

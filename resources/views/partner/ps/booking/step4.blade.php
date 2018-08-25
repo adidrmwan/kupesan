@@ -1,61 +1,40 @@
-@extends('partner.layouts.app-form')
+@extends('partner.layouts.app-ps')
 @section('title', 'Offline Booking')
 @section('content')
 <div class="content">
     <div class="container-fluid">   
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-8 col-xs-12 col-md-8 col-lg-8">
                 <div class="card">
+                  <form role="form" action="{{ route('form.offline.step2.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                  {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <div class="header">
                                 <h4 class="title">Offline Booking</h4>
+                                <p><span class="badge badge-secondary">Step 1</span> <i class="fa fa-arrow-right"></i> <span class="badge badge-primary">Step 2 : Pilih Tanggal</span></p>
+                                <p></p>
                             </div>
                             <div class="content">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <h5>Pilih Barang</h5>
-                                </div>
-                              </div>
-                              <div class="row">
-                                  @foreach($package as $key => $data)
-                                  <div class="col-md-2 col-sm-12">
-                                    <div class="card">
+                                <div class="row">
+                                  <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                       <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="header">
-                                            <h5 style="text-align: center;">{{$data->name}}</h5>
-                                          </div>
-                                          <div class="content">
-
-                                            <div class="row">
-                                              <div class="col-sm-12 col-md-12">
-                                                @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
-                                                <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" />
-                                                @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
-                                                <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" />
-                                                @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
-                                                <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" />
-                                                @endif
-                                              </div>
-                                              <div class="col-sm-12 col-md-12" style="padding: 25px;">
-                                                <a href="{{route('kebaya.off-booking.step2', ['product_id' => $data->id])}}" >
-                                                  <button type="submit" class="btn btn-primary" style="margin: 0 auto; float: none; position: relative;display: flex;">Pesan</button>
-                                                </a>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
                                       </div>
-                                    </div>
                                   </div>
-                                  @endforeach
                                 </div> 
-                            </div>   
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <input type="text" name="package_id" value="{{$package_id}}" hidden="">
+                                    <button type="submit" class="btn btn-block btn-info pull-right">Submit</button> 
+                                  </div>
+                                </div>     
+                            </div> 
                         </div>     
                     </div>
+                  </form>
                 </div>
             </div>
+            @include('partner.ps.booking.package-info')
         </div>
     </div>
 </div>  

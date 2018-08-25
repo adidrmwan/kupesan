@@ -4,12 +4,12 @@
                         <p>Booking Schedule</p>
                     </a>
                 </li>
-                <!-- <li>
+                <li>
                     <a href="{{ route('form.offline') }}">
                         <i class="pe-7s-note2"></i>
                         <p>Offline Booking</p>
                     </a>
-                </li> -->
+                </li>
                 <li>
                     <a href="{{ route('form.dayoff') }}">
                         <i class="pe-7s-note2"></i>

@@ -11,6 +11,7 @@ use Image;
 use Auth;
 use App\Partner;
 use App\PartnerTag;
+use App\PartnerDurasi;
 class PackageController extends Controller
 {
     public function ShowAddPackage()
@@ -22,7 +23,7 @@ class PackageController extends Controller
                     ->select('*')
                     ->first();
 
-        return view('partner.ps.add-package', compact('listTag', 'partner'));
+        return view('partner.ps.package.add', compact('listTag', 'partner'));
     }
 
     public function AddPackage(Request $request)
@@ -34,9 +35,28 @@ class PackageController extends Controller
         $package->partner_name = $partner->pr_name;
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_name_them = $request->input('pkg_name_them');
-        $package->pkg_duration_them = $request->input('pkg_duration_them');
-        $package->pkg_price_them = $request->input('pkg_price_them');
-        $package->pkg_overtime_them = $request->input('pkg_overtime_them');
+        $package->pkg_fotografer = $request->input('pkg_fotografer');
+        $package->pkg_print_size = $request->input('pkg_print_size');
+        $package->pkg_edited_photo = $request->input('pkg_edited_photo');
+
+        $price = $request->pkg_price_them;
+        $price_array = explode(".", $price);
+        $pkg_price_them = '';
+        foreach ($price_array as $key => $value) {
+            $pkg_price_them = $pkg_price_them . $price_array[$key];
+        }
+
+        $package->pkg_price_them = $pkg_price_them;
+
+        $overtime = $request->pkg_overtime_them;
+        $overtime_array = explode(".", $overtime);
+        $pkg_overtime_them = '';
+        foreach ($overtime_array as $key => $value) {
+            $pkg_overtime_them = $pkg_overtime_them . $overtime_array[$key];
+        }
+
+        $package->pkg_overtime_them = $pkg_overtime_them;
+
         $package->status = '1';
         
         $package->save();
@@ -53,7 +73,22 @@ class PackageController extends Controller
         }
         PartnerTag::insert($dataSet);
 
-        $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them;
+        $durasiSet = [];
+        if ($package->save()) {
+            for ($i = 0; $i < count($request->pkg_duration_them); $i++) {
+                $durasiSet[] = [
+                    'partner_id' => $partner->id,
+                    'package_id' => $package->id,
+                    'durasi' => $request->pkg_duration_them[$i],
+                ];
+            }
+        }
+        PartnerDurasi::insert($durasiSet);
+
+        $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them . '_1';
+        $package->pkg_img_them2 = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them . '_2';
+        $package->pkg_img_them3 = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them . '_3';
+        $package->pkg_img_them4 = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them . '_4';
         $package->save();
         if ($request->hasFile('pkg_img_them')) {
 
@@ -77,6 +112,73 @@ class PackageController extends Controller
 
             $package->save();
         }
+        if ($request->hasFile('pkg_img_them2')) {
+
+            //Found existing file then delete
+            $foto_new = $package->pkg_img_them2;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('pkg_img_them2');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+            $user = Auth::user();
+            $package= PSPkg::where('user_id',$user->id)->first();
+
+            $package->save();
+        }
+        if ($request->hasFile('pkg_img_them3')) {
+
+            //Found existing file then delete
+            $foto_new = $package->pkg_img_them3;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('pkg_img_them3');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+            $user = Auth::user();
+            $package= PSPkg::where('user_id',$user->id)->first();
+
+            $package->save();
+        }
+        if ($request->hasFile('pkg_img_them4')) {
+
+            //Found existing file then delete
+            $foto_new = $package->pkg_img_them4;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('pkg_img_them4');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+            $user = Auth::user();
+            $package= PSPkg::where('user_id',$user->id)->first();
+
+            $package->save();
+        }
+
         
         return redirect()->intended(route('partner-editpackage'));
         
@@ -96,7 +198,7 @@ class PackageController extends Controller
                     ->select('*')
                     ->first();
 
-        return view('partner.ps.list-package',['partner' => $partner, 'package' => $package]);
+        return view('partner.ps.package.list',['partner' => $partner, 'package' => $package]);
     }
 
     public function ShowEditPackagePS(Request $request)

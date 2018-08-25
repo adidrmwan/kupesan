@@ -1,5 +1,5 @@
 @extends('layouts.app-partner')
-
+@section('title', 'List Package')
 @section('content')
 <section class="content">
         <div class="row">
@@ -14,7 +14,9 @@
                                     <th>No</th>
                                     <th>Nama Paket</th>
                                     <th>Kategori Paket</th>
-                                    <th>Durasi Paket</th>
+                                    <th>Fotografer</th>
+                                    <th>Print Size</th>
+                                    <th>Edited Photo (pcs)</th>
                                     <th>Harga Paket (Per Jam)</th>
                                     <th>Harga Overtime (Per Jam)</th>
                                     <th>Edit</th>
@@ -24,18 +26,13 @@
                                     @foreach($package as $key => $data)
                                     <tr>
                                         <td>{{$key + 1}}</td>
-                                        <td>{{$data->pkg_name_them}}</td>
-                                        @if($data->pkg_category_them == 'Ala_Carte')
-                                        <td>Room (A la carte)</td>
-                                        @elseif($data->pkg_category_them == 'Thematic_Set')
-                                        <td>Thematic Set</td>
-                                        @elseif($data->pkg_category_them == 'Special_Studio')
-                                        <td>Special Studio</td>
-                                        @endif
-                                        <td>{{$data->pkg_duration_them}} Jam</td>
+                                        <td class="text-uppercase">{{$data->pkg_name_them}}</td>
+                                        <td>{{$data->pkg_category_them}}</td>
+                                        <td>{{$data->pkg_fotografer}}</td>
+                                        <td>{{$data->pkg_print_size}} R</td>
+                                        <td>{{$data->pkg_edited_photo}} lembar</td>
                                         <td>Rp {{$data->pkg_price_them}}</td>
                                         <td>Rp {{$data->pkg_overtime_them}}</td>
-
                                         <td>
                                             <form role="form" action="{{route('partner.edit.pkg')}}" method="post" enctype="multipart/form-data">
                                             {{ csrf_field() }}

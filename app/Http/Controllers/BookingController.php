@@ -10,6 +10,7 @@ use App\PSPkg;
 use Illuminate\Support\Facades\Input;
 use App\Jam;
 use App\Partner;
+use App\PartnerDurasi;
 use App\Booking;
 use Carbon\Carbon;
 use App\BookingCheck;
@@ -94,6 +95,7 @@ class BookingController extends Controller
         $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
                         ->where('num_hour', '<=', $partner->close_hour)->get();
                         
+        
         return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'bookingcheck' => $bookingcheck,'pid' => $package_id], compact('provinces', 'booking_date', 'open', 'close', 'partner_id'));
 
     }
@@ -102,8 +104,9 @@ class BookingController extends Controller
         $paket = explode(',', $request->durasi_paket, 3);
         $durasi = $paket[0];
         $package_id = $paket[1];
-        $date = $request->booking_date;
-        $jam_tambahan = $request->jam_tambahan;
+        $date = $paket[3];
+        $booking_overtime = $request->jam_tambahan;
+        $jam_tambahan = $booking_overtime[0];
         $package = PSPkg::where('id', $package_id)->first();
         $package_list = PSPkg::where('id', $package_id)->get();
         $mulai = explode(',', $request->jam_mulai, 4);
@@ -573,6 +576,14 @@ class BookingController extends Controller
       }
       
       return response()->json($villages);
+    }
+
+    public function villages2(){
+      $jam_selesai = Input::get('jam_selesai');
+      $jam_overtime = Input::get('jam_overtime');
+      $jam_mulai = Input::get('jam_mulai');
+      $districts = $jam_selesai + $jam_overtime;
+      return response()->json($districts);
     }
 
 }

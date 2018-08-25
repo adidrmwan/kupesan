@@ -294,7 +294,7 @@
           })
         });
       });
-    </script>
+  </script>
     @yield('script')
 
     <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>

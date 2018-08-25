@@ -84,7 +84,11 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/booking/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
     Route::get('/booking/history', 'PartnerController@showBookingHistory')->name('booking.history');
 
-    Route::get('/booking/offline', 'PartnerController@showFormOffline')->name('form.offline');
+    // fotostudio
+    Route::get('/booking/offline/1', 'PartnerController@showStep1')->name('form.offline');
+    Route::get('/booking/offline/1/2', 'PartnerController@showStep2')->name('form.offline.step2');
+    Route::post('/booking/offline/1/2', 'PartnerController@submitStep2')->name('form.offline.step2.submit');
+    Route::post('/booking/offline/1/3', 'PartnerController@submitStep3')->name('form.offline.step3.submit');
     Route::post('/booking/offline', 'PartnerController@submitFormOffline')->name('form.offline.submit');
 
     Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
@@ -193,6 +197,7 @@ Route::get('/json-village', 'CountryController@villages');
 Route::get('/json-regencies1','BookingController@regencies');
 Route::get('/json-districts1', 'BookingController@districts');
 Route::get('/json-village1', 'BookingController@villages');
+Route::get('/json-village2', 'BookingController@villages2');
 
 Route::get('/reset/link', function() {
     return view('auth.passwords.reset');

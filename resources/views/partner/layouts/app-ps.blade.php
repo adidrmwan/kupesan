@@ -60,6 +60,17 @@
             });
         });
   </script>
+  <style type="text/css">
+    .not-available {
+        background-color: #ea410c;
+      }
+      .available {
+        background-color: #acff7a;
+      }
+      .close-hour {
+        background-color: #e6e6e6;
+      }
+  </style>
 </head>
 <body>
 
@@ -141,11 +152,28 @@
         });
     </script>
 
-    <script>
-        $("#file-paket").fileinput({
-                'allowedFileExtensions': ['jpg', 'png', 'jpeg'],
-                'maxFileSize': 512,
+    <script type="text/javascript">
+      $( "#datepicker" ).datepicker({
+      inline: true,
+      altField: '#datepicker2',
+      altFormat: "yy-mm-dd",
+      minDate: 0,
+      maxDate: "+3M"
+    });
+    </script>
+    
+    <script type="text/javascript">
+      $('#datepicker2').change(function(){
+          $('#datepicker').datepicker('setDate', $(this).val());
+      });
+    </script>
 
+    <script type="text/javascript">
+    
+        $( document ).ready(function() {
+            $("#datepicker").datepicker({
+               dateFormat: "yyyy-mm-dd"
+            });
         });
     </script>
 

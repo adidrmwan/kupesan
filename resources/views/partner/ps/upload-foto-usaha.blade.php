@@ -16,7 +16,9 @@
                         @else
                         <input class="form-check-input" type="checkbox" value="1" name="toilet" id="defaultCheck1">
                         @endif
-                        <label class="form-check-label" for="defaultCheck1">Kamar Mandi</label>
+                        <label class="form-check-label" for="defaultCheck1" style="text-align: center;">
+                            <span><i class="zmdi zmdi-male-female zmdi-hc-5x"></i></span><br>Toilet
+                        </label>
                     </div>  
                 </div>
                 <div class="col-md-2">
@@ -26,7 +28,9 @@
                         @else
                         <input class="form-check-input" type="checkbox" value="1" name="wifi" id="defaultCheck2">
                         @endif
-                      <label class="form-check-label" for="defaultCheck2">Wi-Fi</label>
+                        <label class="form-check-label" for="defaultCheck2" style="text-align: center;">
+                            <span><i class="zmdi zmdi-wifi-alt zmdi-hc-5x"></i></span><br>Wi-Fi
+                        </label>
                     </div>  
                 </div>
                 <div class="col-md-2">
@@ -36,7 +40,9 @@
                         @else
                         <input class="form-check-input" type="checkbox" value="1" name="rganti" id="defaultCheck3">
                         @endif
-                      <label class="form-check-label" for="defaultCheck3">Ruang Ganti</label>
+                        <label class="form-check-label" for="defaultCheck3" style="text-align: center;">
+                            <span><i class="fa fa-exchange fa-5x fa-fw"></i></span><br>Ruang Ganti
+                        </label>
                     </div>  
                 </div>
                 <div class="col-md-2">
@@ -46,7 +52,9 @@
                         @else
                         <input class="form-check-input" type="checkbox" value="1" name="ac" id="defaultCheck4">
                         @endif
-                      <label class="form-check-label" for="defaultCheck4">AC</label>
+                        <label class="form-check-label" for="defaultCheck4" style="text-align: center;">
+                            <span><i class="fa fa-snowflake-o" aria-hidden="true"></i></span><br>AC
+                        </label>
                     </div>  
                 </div>
                 <div class="col-md-2">
@@ -56,12 +64,13 @@
                         @else
                         <input class="form-check-input" type="checkbox" value="1" name="parkir" id="defaultCheck5">
                         @endif
-                      <label class="form-check-label" for="defaultCheck5">Parkir</label>
+                        <label class="form-check-label" for="defaultCheck5" style="text-align: center;">
+                            <span><i class="zmdi zmdi-local-parking zmdi-hc-5x"></i></span><br>Parkir
+                        </label>
                     </div>  
                 </div>
                 <div class="col-md-1"></div>
-
-             </div>
+            </div>
              <div class="row">
                 <div class="col-md-12">
                     <div class="content">
