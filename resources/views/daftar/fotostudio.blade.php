@@ -207,7 +207,8 @@
                                     
                                     <ul class="list-unstyled list-inline offer-price-1">
                                         <li class="price">{{$data->pkg_name_them}}</li><br>
-                                        <li >Rp {{$data->pkg_price_them}} / Jam</li><br>
+
+                                        <li >Rp {{ number_format($data->pkg_price_them) }} / Jam</li><br>
                                         <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
                                         <li>
                                             <a href="{{route('ask.page', ['package_id' => $data->id])}}">

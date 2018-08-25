@@ -41,8 +41,6 @@
                                 </div>
                               </div>
                             </div>
-
-<<<<<<< HEAD
                                     <div class="row">
                                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="form-group">
@@ -68,48 +66,13 @@
                                       <button class="btn btn-orange btn-block" type="submit">LOG-IN AS PARTNER-KU</button>
                                     </div>
                                     
-                                    
-
+                                  
                                     <div class="other-links">
                                         <p class="link-line">New Here ? <a href="{{route('mitra.daftar')}}">Register</a></p>
                                         <a class="simple-link" href="{{ route('password.request') }}"> Forgot Your Password?
                                         </a>
                                     </div>
                                 </form>
-                            </div><!-- end custom-form -->
-=======
-                            <div class="row">
-                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="form-group">
-                                     <input id="password" type="password" class="form-control" name="password" placeholder="Password" required />
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                     <span><i class="fa fa-lock"></i></span>
-                                </div>
-                              </div>
-                            </div>
->>>>>>> 4b7ff8957e1e6ce8eb863b30a1e029f5a73461c6
-                            
-                            <div class="row">
-                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="checkbox">
-                                  <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} style="margin-top: 12px;"> Remember Me
-                                  </label>
-                                </div>
-                              </div>
-                              <button class="btn btn-orange btn-block" type="submit">LOG-IN AS PARTNER-KU</button>
-                            </div>
-                            
-                            
-
-                            <div class="other-links">
-                                <p class="link-line">New Here ? <a href="{{route('mitra.daftar')}}">Register</a></p>
-                                <a class="simple-link" href="{{ route('password.request') }}"> Forgot Your Password?
-                                </a>
                             </div>
                         </form>
                     </div>
@@ -120,5 +83,4 @@
     </div>
 </section>
 
-@include('layouts.footer')
 @endsection

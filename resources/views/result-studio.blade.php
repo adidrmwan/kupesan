@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master-studio')
 @section('title', 'Studio List')
 @section('content')
         
@@ -39,63 +39,95 @@
 	<div id="hotel-listing" class="bottom-padding">
         <div class="container">
             
-            <div class="col-sm-12 col-md-3 content-side">
+            <div class="col-sm-12 col-md-12 col-lg-12 content-side">
                 <h3><span class="label label-success">{{$word}}</span></h3>
                 @foreach($studio_data as $list)
-                    <div class="main-block hotel-block section-padding">
-                      <div class="main-img img-hover">
-                        <img class="img-responsive" src="{{ asset('logo/'.$list->pr_logo.'.png')  }}" alt= "Logo Mitra" />
-                      </div>
-                      
-                      <div class="main-info hotel-info">
-                          <div class="main-title hotel-title">
-                              <p style="text-align: center; padding: 10px;"><b>{{$list->pr_name}}</b></p>
-                              <p style="text-align: center; padding-bottom: 10px;">SURABAYA</p>
-                              
-                              <form role="form" action="{{route('detail.fotostudio')}}" method="post" enctype="multipart/form-data" style="float: none;margin: 0 auto; position: relative; display: flex;">
-                                {{ csrf_field() }}
-                                    <input type="text" name="user_id" value="{{$list->user_id}}" hidden="">
-                                    <button type="submit" class="btn btn-orange btn-lg pull-left" style="float: none;margin: 0 auto; position: relative; display: flex;">View More</button>
-                              </form>
-                            
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="main-block hotel-block section-padding">
+                          <div class="main-img img-hover">
+                            @if(File::exists(public_path("logo/".$list->pr_logo.".jpg")))
+                            <img src="{{ asset('logo/'.$list->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; " />
+                            @elseif(File::exists(public_path("logo/".$list->pr_logo.".png")))
+                            <img src="{{ asset('logo/'.$list->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                            @elseif(File::exists(public_path("logo/".$list->pr_logo.".jpeg")))
+                            <img src="{{ asset('logo/'.$list->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                            @endif
                           </div>
-                      </div>
+                          
+                          <div class="main-info hotel-info">
+                              <div class="main-title hotel-title">
+                                  <p style="text-align: center; padding: 10px;"><b>{{$list->pr_name}}</b></p>
+                                  <p style="text-align: center; padding-bottom: 10px;">SURABAYA</p>
+                                  
+                                  <form role="form" action="{{route('detail.fotostudio')}}" method="post" enctype="multipart/form-data" style="float: none;margin: 0 auto; position: relative; display: flex;">
+                                    {{ csrf_field() }}
+                                        <input type="text" name="user_id" value="{{$list->user_id}}" hidden="">
+                                        <button type="submit" class="btn btn-orange btn-lg pull-left" style="float: none;margin: 0 auto; position: relative; display: flex;">View More</button>
+                                  </form>
+                                
+                              </div>
+                          </div>
+                        </div>
                     </div>
                 @endforeach
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
                 @foreach($allThemes as $data)
-                    <div class="col-sm-4 col-md-3">
-                        <div class="main-block flight-block">
-                            <div class="main-img">
-                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    <div class="main-block flight-block">
+                        <div class="frame">
+                            <div class="img-hover">
+                                <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+
+                                        @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
                                         <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                </a>
+                            </div>
+                            <div class="img-hover">
+                                <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
                                         @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
                                         <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+                                </a>
+                            </div>
+                            <div class="img-hover">
+                                <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
                                         @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
                                         <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
                                         @endif
+                                </a>
+                            </div><!-- end flight-img -->
+                            <div class = "details">
+                                <h1>Lorem</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lorem nunc, sollicitudin a nisi sodales, imperdiet dignissim enim. Nam sapien quam</p>
                             </div>
-                            <div class="flight-info">
-                                <div class="flight-title" style="text-align: center;">
-                                    <h3>{{$data->partner_name}}</h3>
-                                </div>
-                                <ul class="list-unstyled list-inline offer-price-1">
-                                    <li class="price">{{$data->pkg_name_them}}</li>
-                                    <li class="price">Rp {{$data->pkg_price_them}} / Jam</li>
-                                    <li class="price">Rp {{$data->pkg_overtime_them}} / Overtime</li>
-                                    <li class="label label-success"></li>
-                                    <li style="margin-top: 10px;">
-                                        <a href="{{route('check.auth', ['package_id' => $data->id])}}">
-                                            <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                            </button>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                        </div>  
+                        <div class="flight-info">
+                            <div class="flight-title" style="text-align: center;">
+                                <h3>{{$data->partner_name}}</h3>
+                            </div><!-- end flight-title -->
+                            
+                            <ul class="list-unstyled list-inline offer-price-1">
+                                <li class="price">{{$data->pkg_name_them}}</li><br>
+
+                                <li >Rp {{ number_format($data->pkg_price_them) }} / Jam</li><br>
+                                <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
+                                <li>
+                                    <a href="{{route('ask.page', ['package_id' => $data->id])}}">
+                                        <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
+                                        </button>
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="{{route('check.auth', ['package_id' => $data->id])}}">
+                                        <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">View More</span>
+                                        </button>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
     	</div>

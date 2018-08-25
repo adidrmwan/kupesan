@@ -143,10 +143,15 @@ class SearchController extends Controller
         // dd($request);
         if ($request->has('word')) {
             $word = $request->word;
+
             $allThemes = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->orderBy('ps_package.pkg_price_them', 'asc')->get();
+
             $studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->get();
+
             $cek_studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->first();
+
             $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
+
             if (empty($cek_studio_data) && empty($cek_tag)) {
                 return view('errors.search-not-found');
             }
