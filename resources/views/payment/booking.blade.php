@@ -48,51 +48,39 @@
                     
                     <div class="collapse navbar-collapse" id="myNavbar1">
                         <ul class="nav navbar-nav navbar-right navbar-search-link">
-                            <li  style="cursor: default;"> 
-                                <a style="color:#EA410C">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 1 </strong>
-                                    </span>
+                            <li style="cursor: default;"> 
+                                <a>
+                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
                                     Pesan
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
+                            <li style="cursor: default;"> 
                                 <a>
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 2 </strong>
-                                    </span>
+                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
                                     Review
                                 </a> 
                             </li>
-                            <li class="" style="cursor: default;"> 
-                                <a>
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 3 </strong>
-                                    </span>
+                            <li  style="cursor: default;"> 
+                                <a >
+                                   <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
                                     Bayar
                                 </a> 
                             </li>
                             <li  style="cursor: default;"> 
-                                <a>
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 4 </strong>
-                                    </span>
+                               <a >
+                                   <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
                                     Proses
-                                </a> 
+                                </a>
                             </li>
                             <li  style="cursor: default;"> 
-                                <a>
+                                <a style="color:#EA410C">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 5 </strong>
                                     </span>
-                                    Voucher
+                                    Kode Booking
                                 </a> 
-                            </li>                      
+                            </li>                         
                             
                             <li></li>
                         </ul>
@@ -108,56 +96,50 @@
                     <div class="row">
 
                     <div class="navbar-collapse" id="myNavbar2" >
-                        <ul class="nav navbar-nav navbar-search-link" style="display: inline-flex;">
-                            <li class="active" style="cursor: default;"> 
-                                <a class="orange-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 1 </strong>
-                                    </span>
-                                    Pesan
-                                </a> 
-                            </li>
-                            <li class="" style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 2 </strong>
-                                    </span>
-                                    Review
-                                </a> 
-                            </li>
-                            <li class="" style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 3 </strong>
-                                    </span>
-                                    Bayar
-                                </a> 
-                            </li>
-                            <li  style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 4 </strong>
-                                    </span>
-                                    Proses
-                                </a> 
-                            </li>
-                            <li  style="cursor: default;"> 
-                                <a class="black-payment">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 5 </strong>
-                                    </span>
-                                    Voucher
-                                </a> 
-                            </li>                          
-                            
-                            <li></li>
-                        </ul>
-                    </div><!-- end navbar collapse -->
+                            <ul class="nav navbar-nav navbar-search-link" style="display: inline-flex;">
+                                <li  style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
+                                        </span>
+                                        Pesan
+                                    </a> 
+                                </li>
+                                <li class="active" style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
+                                        </span>
+                                        Review
+                                    </a> 
+                                </li>
+                                <li  style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
+                                        </span>
+                                        Bayar
+                                    </a>  
+                                </li>
+
+                                <li  style="cursor: default;"> 
+                                    <a class="black-payment">
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
+                                        </span>
+                                        Proses
+                                    </a> 
+                                </li>
+                                <li  style="cursor: default;"> 
+                                    <a class="orange-payment">
+                                        <span class="fa-stack"> 
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x"> 5 </strong>
+                                        </span>
+                                        Kode Booking
+                                    </a> 
+                                </li>                    
+                                
+                                <li></li>
+                            </ul>
+                        </div><!-- end navbar collapse -->
+                        
                     <form role="form" action="{{ route('form.booking') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                             {{ csrf_field() }}
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
@@ -320,7 +302,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-contact">
                     <div id="abt-cnt-2-img">
-                        <img src="{{URL::asset('dist/images/logo-navbar.png')}}" class="img-responsive" alt="about-img" />
+                        <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" class="img-responsive" alt="Logo-Kupesan" />
                     </div>
                 </div><!-- end columns -->
                 
@@ -330,21 +312,25 @@
                         <li><a href="#"><span><i class="fa fa-facebook"></i></span> &nbsp;&nbsp;&nbsp;&nbsp; Kupesan </a></li>
                         <li><a href="#"><span><i class="fa fa-twitter"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
                         <li><a href="#"><span><i class="fa fa-instagram"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-pinterest"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; Kupesan</a></li>
+                        <li><a href="#"><span><i class="fa fa-whatsapp"></i></span>&nbsp;&nbsp;&nbsp;&nbsp; +6282 233-610-702</a></li>
+
                     </ul>
                 </div><!-- end columns -->
                 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
                     <h3 class="footer-heading">Resources</h3>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('login') }}">Log-In</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
-                        <li><a href="{{route('jadi.mitra')}}">Daftar Mitra</a></li>
+                        <li><a href="{{route('jadi.mitra')}}">Daftar PARTNER-KU</a></li>
                     </ul>
                 </div><!-- end columns -->
 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-about">
                     <h3 class="footer-heading">About US</h3>
                     <p style="text-align: justify;">Kupesan.id adalah sebuah marketplace online yang ingin membawa perubahan dalam bentuk memudahkan masyarakat untuk mencari persewaan spot foto (dalam atau luar ruangan), persewaan gaun dan kebaya, penyedia jasa fotografer, serta penyedia jasa tata rias (make-up artist).</p>
+                    
                 </div><!-- end columns -->
                 
             </div><!-- end row -->
@@ -355,18 +341,19 @@
         <div class="container" style="color: white;">
             <div class="row" >
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright" >
-                    <p>© 2018 <a href="#">Kupesan.id</a>. All rights reserved.</p>
+                    <p>© 2018 <a href="home">Kupesan.id</a> | All rights reserved.</p>
                 </div><!-- end columns -->
                 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="#">Terms & Condition</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="termsandcondition">Terms & Condition</a></li>
+                        <li><a href="privacy">Privacy Policy</a></li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end footer-bottom -->
+    
     
 </section><!-- end footer -->
 

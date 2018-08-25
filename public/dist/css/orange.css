@@ -2959,8 +2959,9 @@ p{
 /************ FULL PAGE FORMS ************/
 
 #full-page-form{
-	background:linear-gradient(rgba(234, 65, 12,0.9), rgba(234, 65, 12,0.9)) 50% 40%;
+	background:linear-gradient(rgba(234, 65, 12,0.7), rgba(234, 65, 12,0.7)),url('../images/bg-login.jpg') 50% 40%;
 	background-size:cover;
+
 }
 
 .colored-border{
