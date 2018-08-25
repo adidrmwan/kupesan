@@ -17,8 +17,8 @@ class SearchController extends Controller
     {
         $tag = PartnerTag::join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')
                 ->distinct()->orderBy('tag_title', 'asc')->get(['ps_tag.tag_id', 'ps_tag.tag_title']);
-
-        return view('home', ['tag' => $tag]);
+        $studio = Partner::where('pr_type', '1')->get();
+        return view('home', ['tag' => $tag], compact('studio'));
     }
 
     public function searchFotostudio(Request $request)
@@ -53,21 +53,21 @@ class SearchController extends Controller
                                 ->orderBy('pkg_price_them', 'asc')->get();
                 }
 
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Thematic_Set'){                    
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'A La Carte'){                    
                     $allThemes = PSPkg::where('status', '1')
-                                ->where('pkg_category_them', 'Thematic_Set')
+                                ->where('pkg_category_them', 'A La Carte')
                                 ->whereBetween('pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('pkg_price_them', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Ala_Carte'){
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Package'){
                     $allThemes = PSPkg::where('status', '1')
-                                ->where('pkg_category_them', 'Ala_Carte')
+                                ->where('pkg_category_them', 'Special Package')
                                 ->whereBetween('pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('pkg_price_them', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special_Studio'){
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Studio'){
                     $allThemes = PSPkg::where('status', '1')
-                                ->where('pkg_category_them', 'Special_Studio')
+                                ->where('pkg_category_them', 'Special Studio')
                                 ->whereBetween('pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('pkg_price_them', 'asc')->get();
                 }
@@ -90,27 +90,27 @@ class SearchController extends Controller
                                 ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('ps_package.pkg_price_them', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Thematic_Set'){              
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'A La Carte'){              
                     $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
                                 ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
                                 ->where('ps_package.status', '1')
-                                ->where('ps_package.pkg_category_them', 'Thematic_Set')
+                                ->where('ps_package.pkg_category_them', 'A La Carte')
                                 ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('ps_package.pkg_price_them', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Ala_Carte'){
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Package'){
                     $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
                                 ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
                                 ->where('ps_package.status', '1')
-                                ->where('ps_package.pkg_category_them', 'Ala_Carte')
+                                ->where('ps_package.pkg_category_them', 'Special Package')
                                 ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('ps_package.pkg_price_them', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special_Studio'){
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Studio'){
                     $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
                                 ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
                                 ->where('ps_package.status', '1')
-                                ->where('ps_package.pkg_category_them', 'Special_Studio')
+                                ->where('ps_package.pkg_category_them', 'Special Studio')
                                 ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('ps_package.pkg_price_them', 'asc')->get();
                 }

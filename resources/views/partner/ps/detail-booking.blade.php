@@ -4,6 +4,24 @@
 <section class="content">
     <div class="container-fluid">
         @foreach($booking as $data)
+        @if($data->booking_status == 'libur')
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">{{$data->partner_name}}</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Mulai tanggal <em>{{\Carbon\Carbon::parse($data->booking_start_date)->format('d M Y')}}</em> sampai tanggal <em>{{\Carbon\Carbon::parse($data->booking_end_date)->format('d M Y')}}</em></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
         <div class="row">
             <div class="col-md-8">
                <div class="card">
@@ -82,6 +100,7 @@
                </div>
             </div>
         </div>
+        @endif
         @endforeach  
     </div>
         

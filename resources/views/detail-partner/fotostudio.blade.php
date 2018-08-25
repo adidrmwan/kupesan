@@ -8,14 +8,21 @@
             <div class="col-sm-12">
               <div class="col-sm-12 col-md-2">
                 <div id="abt-cnt-2-img">
-                    <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                    @if(File::exists(public_path("logo/".$data->pr_logo.".jpg")))
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
+                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".png")))
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
+                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".jpeg")))
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
+                    @endif
                 </div>
               </div>
               <div class="col-sm-12 col-md-10">
-                  <h1 class="page-title">{{$data->pr_name}}</h1>
-                  <ul class="breadcrumb">
-                      <li class="active">{{$data->pr_addr}}, {{$data->pr_kel}}, {{$data->pr_kec}}, {{$data->pr_area}}, {{$data->pr_postal_code}}</li>
-                  </ul>
+                <br><br>  
+                <h1 class="page-title">{{$data->pr_name}}</h1>
+                <ul class="breadcrumb">
+                    <li class="active">{{$data->pr_addr}}, {{$data->pr_kel}}, {{$kecamatan->name}}, {{$kota->name}}, {{$provinsi->name}}, {{$data->pr_postal_code}}</li>
+                </ul>
               </div>
             </div><!-- end columns -->
         </div><!-- end row -->
@@ -159,7 +166,7 @@
                                           </div><!-- end page-heading -->
                                           
                                           <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-thematic-offers">
-                                              @foreach($thematic as $listthem)
+                                              @foreach($carte as $listthem)
                                               <div class="item" style="padding: 10px;">
                                                   <div class="main-block hotel-block ">
                                                       <div class="main-img img-hover">
@@ -176,9 +183,10 @@
                                                       <div class="main-info hotel-info">
                                                           <div class="main-title hotel-title">
                                                               
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                              <a href="{{route('check.auth', ['package_id' => $listthem->id])}}">
+                                                            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_price_them)}} / Jam </p>
+                                                            <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
+                                                            
+                                                            <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
                                                             </a>
@@ -198,7 +206,8 @@
                                               <hr class="heading-line" />
                                           </div>
                                           
-                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-alacarte-offers">    @foreach($alacarte as $listthem)
+                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-alacarte-offers">    
+                                            @foreach($spack as $listthem)
                                               <div class="item" style="padding: 10px;">
                                                   <div class="main-block hotel-block ">
                                                       <div class="main-img img-hover">
@@ -216,7 +225,7 @@
                                                           <div class="main-title hotel-title">
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                              <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
+                                                              <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
                                                             </a>
@@ -238,7 +247,7 @@
                                           </div><!-- end page-heading -->
                                           
                                           <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-special-offers">
-                                              @foreach($special as $listthem)
+                                              @foreach($studio as $listthem)
                                               <div class="item" style="padding: 10px;">
                                                   <div class="main-block hotel-block ">
                                                       <div class="main-img img-hover">
@@ -257,7 +266,7 @@
                                                           <div class="main-title hotel-title">
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
                                                               <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                              <a href="{{route('check.auth', ['id' => $listthem->id, 'date' => $booking_date])}}">
+                                                              <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
                                                               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                                                               </button>
                                                             </a>

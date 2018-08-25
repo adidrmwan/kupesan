@@ -1,64 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Pesan')
 @section('content')
-        
+@include('pesan.cover-partner')        
         <!--===== INNERPAGE-WRAPPER ====-->
         <section class="innerpage-wrapper">
         	<div id="booking" class="innerpage-section-padding">
                 <div class="container">
                     <div class="row">
+                        @include('pesan.package-info')
 
-                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar left-side-bar">
-                            <div class="row">
-                            
-                                <div class="col-xs-12 col-sm-6 col-md-12">
-                                    <div class="side-bar-block detail-block style2 text-center">
-                                        <div class="col-xs-12 col-sm-6 col-md-12">
-                                            <div class="side-bar-block detail-block style2 text-center">
-                                                @foreach($package as $data)
-                                                <div class="detail-img text-center">
-                                                    @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                                                    <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
-                                                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                                                    <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
-                                                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                                                    <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
-                                                    @endif
-                                                </div>
-                                                        
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="pull-left">Nama Studio</td>
-                                                                <td class="pull-right">{{$data->partner_name}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pull-left">Nama Paket</td>
-                                                                <td class="pull-right"><b>{{$data->pkg_name_them}}</b></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pull-left">Harga Paket (Per Jam)</td>
-                                                                <td class="pull-right">Rp {{$data->pkg_price_them}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pull-left">Harga Overtime (Per Jam)</td>
-                                                                <td class="pull-right">Rp {{$data->pkg_overtime_them}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div><!-- end table-responsive -->
-                                                @endforeach
-                                            </div><!-- end side-bar-block -->
-                                        </div><!-- end columns -->                                
-                                    </div><!-- end row -->
-                                </div><!-- end columns -->                                
-                            </div><!-- end row -->
-                        
-                        </div><!-- end columns -->
                         <form role="form" action="{{ route('form.pesan2') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                                             {{ csrf_field() }}
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
@@ -87,6 +37,25 @@
                                                 </div>          
                                             </div>
                                         </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <table class="table">
+                                            <tr>
+                                                <th>Syarat dan Ketentuan</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <ul>
+                                                        <li>Maximum capacity 7 people.</li>
+                                                        <li>Damage property and equipment will be charge.</li>
+                                                        <li>Please be punctual, be on time, Respects other people booking as well.</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
         
@@ -97,7 +66,7 @@
                                 <input type="text" name="partner_id" value="{{$partner_id}}" hidden="">
                                 <input type="text" name="pid" value="{{$pid}}" hidden="">
                                 <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
-                                    <button type="submit" class="btn btn-orange" style="float: right;">Lanjut</button>
+                                    <button type="submit" class="btn btn-orange" style="float: right;">Lanjut Pilih Jadwal</button>
                                 </div>
                             </div> 
                         </div><!-- end columns -->

@@ -98,8 +98,15 @@
                                 </a>
                             </div><!-- end flight-img -->
                             <div class = "details">
-                                <h1>Lorem</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lorem nunc, sollicitudin a nisi sodales, imperdiet dignissim enim. Nam sapien quam</p>
+                                <br>
+                                <br>
+                                <br>
+                                <p style="text-align: center; color: white;">
+                                    <b>Type :</b> {{$data->pkg_category_them}} <br>
+                                    <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
+                                    <b>Print Size :</b> {{$data->pkg_print_size}}<br>
+                                    <b>Edited Photo :</b> {{$data->pkg_edited_photo}}
+                                </p>
                             </div>
                         </div>  
                         <div class="flight-info">

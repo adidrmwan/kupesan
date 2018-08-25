@@ -1,14 +1,19 @@
     <div class="sidebar" data-color="red" data-image="{{ URL::asset('dist/images/sidebar-partner.png') }}" >
         <div class="sidebar-wrapper">
             <div class="logo">
-
                 <div class="col-md-12 col-sm-12">
-                     <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" alt="Logo-Kupesan" style="max-width: 75%; margin-left: 20px;" />
-                </div>
-
-                <div class="col-md-12 col-sm-12">                
                     @if(!empty($partner->pr_name))
                     <a href="{{ route('partner.dashboard') }}" class="simple-text">
+                        @if(File::exists(public_path("logo/".$partner->pr_logo.".jpg")))
+                        <img src="{{ asset('logo/'.$partner->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; height: 70px; width: auto; display: block;position: relative; border-radius: 100%;" />
+                        @elseif(File::exists(public_path("logo/".$partner->pr_logo.".png")))
+                        <img src="{{ asset('logo/'.$partner->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; height: 70px; width: auto; display: block;position: relative; border-radius: 100%;" />
+                        @elseif(File::exists(public_path("logo/".$partner->pr_logo.".jpeg")))
+                        <img src="{{ asset('logo/'.$partner->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; height: 70px; width: auto; display: block;position: relative; border-radius: 100%;" />
+                        @endif
+
+                        <br>
+
                         {{$partner->pr_name}}
                     </a>
                     @else

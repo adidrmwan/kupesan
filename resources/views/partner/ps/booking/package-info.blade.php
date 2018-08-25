@@ -23,11 +23,11 @@
                 </tr>
                 <tr>
                     <th >Harga Paket</th>
-                    <td >Rp {{$data->pkg_price_them}}</td>
+                    <td >Rp {{number_format($data->pkg_price_them)}}</td>
                 </tr>
                 <tr>
                     <th >Harga Overtime</th>
-                    <td >Rp {{$data->pkg_overtime_them}}</td>
+                    <td >Rp {{number_format($data->pkg_overtime_them)}}</td>
                 </tr>
                 <tr>
                     <th >Photografer</th>

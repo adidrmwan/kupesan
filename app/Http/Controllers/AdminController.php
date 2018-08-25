@@ -10,6 +10,10 @@ use App\Partner;
 use DB;
 use Mail;
 use Auth;
+use App\Provinces;
+use App\Regencies;
+use App\Districts;
+use App\Villages;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -76,7 +80,7 @@ class AdminController extends Controller
       if(!is_null($check)){
         $user = User::find($check->id_user);
         if ($user->is_activated ==1){
-          return redirect()->to('partner-ku/login')->with('success',"Formulir pengajuan Anda sedang ditinjau. ");
+          return redirect()->to('partner-ku/login')->with('success',"Selamat, profil perusahan Anda telah berhasil kami tinjau.");
 
         }
         $user->update(['is_activated' => 1]);
@@ -95,5 +99,19 @@ class AdminController extends Controller
         $partner->save();
 
         return redirect()->back();
+    }
+
+    public function showPartner(Request $request)
+    {
+        $partner_id = $request->id;
+        $partner = Partner::join('users', 'users.id', '=', 'partner.user_id')->where('partner.user_id', $partner_id)->get();
+        $partner1 = Partner::join('users', 'users.id', '=', 'partner.user_id')->where('partner.user_id', $partner_id)->first();
+        foreach ($partner as $key => $value) {
+            $type = DB::table('partner_type')->where('id', $value->pr_type)->get();
+        }
+        $provinsi = Provinces::where('id', $partner1->pr_prov)->first();
+        $kota = Regencies::where('id', $partner1->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner1->pr_kec)->first();
+        return view('superadmin.partner.application-form', compact('partner', 'type', 'provinsi', 'kota', 'kecamatan'));
     }
 }

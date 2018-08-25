@@ -19,7 +19,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pilih Tanggal Libur</label>
+                                                    <label>Pilih Tanggal Mulai Libur</label>
                                                     <div id="datepicker"></div>            
                                                 </div>
                                             </div>
@@ -38,7 +38,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Judul</label>
-                                                    <input type="text" class="form-control" placeholder="Judul" name="durasi"> 
+                                                    <input type="text" class="form-control" placeholder="Judul" name="judul"> 
                                                 </div>
                                             </div>
                                         </div>
@@ -49,6 +49,8 @@
                                                     <select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_libur" required>
                                                         <option selected value="">Pilih Durasi Waktu</option>
                                                         <option value="full_day">Full Day (24 Jam)</option>
+<!--                                                         <option value="3">3 Hari</option>
+                                                        <option value="7">7 Hari</option> -->
                                                         <!-- <option value="half_day">Half Day (Isi jam mulai & jam selesai)</option> -->
                                                     </select>
                                                     <div class="invalid-feedback">

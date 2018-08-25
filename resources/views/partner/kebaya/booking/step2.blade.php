@@ -12,6 +12,8 @@
                         <div class="col-md-12">
                             <div class="header">
                                 <h4 class="title">Offline Booking</h4>
+                                <p><span class="badge badge-secondary">Step 1</span> <i class="fa fa-arrow-right"></i> <span class="badge badge-primary">Step 2 : Pilih Jadwal</span></p>
+                                <p></p>
                             </div>
                             <div class="content">
                               <form role="form" action="{{route('submit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -105,7 +107,7 @@
                   </form>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               @foreach($package as $data)
               <div class="card">
                 <div class="row">
@@ -137,7 +139,7 @@
                               </tr>
                               <tr>
                                 <th>Price</th>
-                                <td style="text-align: right;">Rp {{$data->price}}</td>
+                                <td style="text-align: right;">Rp {{number_format($data->price)}}</td>
                               </tr>
                             </tbody>
                           </table>

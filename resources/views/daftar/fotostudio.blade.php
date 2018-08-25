@@ -137,9 +137,9 @@
                                             <div class="form-group" >
                                                 <select  class="form-control" name="type" required>
                                                     <option selected value="All_type">Semua</option>
-                                                    <option value="Thematic_Set">Thematic Set</option>
-                                                    <option value="Ala_Carte">Room (Ala Carte)</option>
-                                                    <option value="Special_Studio">Special Studio</option>
+                                                    <option value="A La Carte">Ala Carte</option>
+                                                    <option value="Special Package">Special Package</option>
+                                                    <option value="Special Studio">Special Studio</option>
                                                 </select>
                                             </div>             
                                         </div>    
@@ -194,8 +194,15 @@
                                         </a>
                                     </div><!-- end flight-img -->
                                     <div class = "details">
-                                        <h1>Lorem</h1>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lorem nunc, sollicitudin a nisi sodales, imperdiet dignissim enim. Nam sapien quam</p>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <p style="text-align: center; color: white;">
+                                            <b>Type :</b> {{$data->pkg_category_them}} <br>
+                                            <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
+                                            <b>Print Size :</b> {{$data->pkg_print_size}}<br>
+                                            <b>Edited Photo :</b> {{$data->pkg_edited_photo}}
+                                        </p>
                                     </div>
                                 </div>
                                 
@@ -217,7 +224,7 @@
                                             </a>
                                         </li>
                                         <li >
-                                            <a href="{{route('check.auth', ['package_id' => $data->id])}}">
+                                            <a href="{{route('detail.fotostudio', ['id' => $data->user_id])}}">
                                                 <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">View More</span>
                                                 </button>
                                             </a>

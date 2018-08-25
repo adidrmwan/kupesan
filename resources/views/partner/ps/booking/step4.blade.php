@@ -6,25 +6,121 @@
         <div class="row">
             <div class="col-sm-8 col-xs-12 col-md-8 col-lg-8">
                 <div class="card">
-                  <form role="form" action="{{ route('form.offline.step2.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                  <form role="form" action="{{ route('form.offline.step4.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   {{ csrf_field() }}
                     <div class="row">
                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                             <div class="header">
                                 <h4 class="title">Offline Booking</h4>
-                                <p><span class="badge badge-secondary">Step 1</span> <i class="fa fa-arrow-right"></i> <span class="badge badge-primary">Step 2 : Pilih Tanggal</span></p>
+                                <p>
+                                  <span class="badge badge-secondary">Step 1</span> <i class="fa fa-arrow-right"></i> 
+                                  <span class="badge badge-secondary">Step 2</span> <i class="fa fa-arrow-right"></i> 
+                                  <span class="badge badge-secondary">Step 3</span> <i class="fa fa-arrow-right"></i> 
+                                  <span class="badge badge-primary">Step 4 : Data Customer + Review</span></p>
                                 <p></p>
                             </div>
                             <div class="content">
                                 <div class="row">
-                                  <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                  <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <h5>Data Customer</h5>
+                                      </div>
+                                    </div>
                                       <div class="row">
+                                        <div class="col-lg-12">
+                                          <div class="row">
+                                            <div class="form-group col-lg-12">
+                                              <label><span>Nama</span></label>
+                                              <input type="text" class="form-control" name="booking_user_name" placeholder="Nama Customer" required="">
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-lg-12">
+                                          <div class="row">
+                                            <div class="form-group col-lg-12">
+                                              <label><span>E-mail</span></label>
+                                              <input type="text" class="form-control" name="booking_user_email" placeholder="E-mail Customer" required="">
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-lg-12">
+                                          <div class="row">
+                                            <div class="form-group col-lg-12">
+                                              <label><span>HP</span></label>
+                                              <input type="text" class="form-control" name="booking_user_nohp" placeholder="No HP Customer" required="">
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
                                   </div>
+                                  @foreach($review as $key => $data)
+                                  <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6">
+                                    <div class="row">
+                                      <div class="col-lg-6">
+                                        <h5>Review</h5>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-lg-12">
+                                        <div class="card">
+                                          <div class="row">
+                                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                              <div class="header">
+                                                <input type="text" name="total" value="{{$data->total}}" hidden="">
+
+                                              </div>
+                                              <div class="content">
+                                                <div class="row">
+                                                  <div class="col-lg-12">
+                                                    <table class="table">
+                                                      <tr>
+                                                          <th colspan="2 " style="text-align: center;">Jadwal</th>
+                                                      </tr>
+                                                      <tr>
+                                                          <td >Tanggal</td>
+                                                          <td >{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td >Waktu</td>
+                                                          <td >{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <th colspan="2 " style="text-align: center;">Detail Harga</th>
+                                                      </tr>
+                                                      <tr>
+                                                          <td >Harga Paket</td>
+                                                          <td >Rp {{number_format($data->total_normal)}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td >Harga Overtime</td>
+                                                          <td >Rp {{number_format($data->total_overtime)}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th>Total</th>
+                                                        <th>Rp {{number_format($data->total)}}</th>
+                                                      </tr>
+                                                    </table>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  @endforeach
                                 </div> 
                                 <div class="row">
                                   <div class="col-md-12">
                                     <input type="text" name="package_id" value="{{$package_id}}" hidden="">
+                                    <input type="text" name="booking_date" value="{{$booking_date}}" hidden="">
+                                    <input type="text" name="bid" value="{{$bid}}" hidden="">
                                     <button type="submit" class="btn btn-block btn-info pull-right">Submit</button> 
                                   </div>
                                 </div>     

@@ -129,60 +129,31 @@
                 </div><!-- end page-heading -->
                 
                 <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-studio-offers">
-                    
+                    @foreach($studio as $data)
                     <div class="item">
+                        <a href="{{route('detail.fotostudio', ['id' => $data->user_id])}}">
                         <div class="main-block tour-block">
                             <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="studio-img" />
-                                </a>
-                            </div><!-- end offer-img -->
+                                    @if(File::exists(public_path("logo/".$data->pr_logo.".jpg")))
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; " />
+                                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".png")))
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".jpeg")))
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                    @endif
+                                                            </div><!-- end offer-img -->
                                 
                             <div class="main-info tour-info">
                                 <div class="main-title tour-title">
-                                    <a href=""> <b>Kupesan.id</b></a>
-                                    <p>urabaya</p>
-                                    
-                                </div><!-- end tour-title -->
-                            </div><!-- end tour-info -->
-                        </div><!-- end tour-block -->
-                    </div><!-- end item -->
-                    
-                    <div class="item">
-                        <div class="main-block tour-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="studio-img" />
-                                </a>
-                            </div><!-- end offer-img -->
-                                
-                            <div class="main-info tour-info">
-                                <div class="main-title tour-title">
-                                     <a href=""><b> Kupesan.id</b></a>
-                                    <p>Surabaya</p>
-                                </div><!-- end tour-title -->
-                            </div><!-- end tour-info -->
-                        </div><!-- end tour-block -->
-                    </div><!-- end item -->
-                    
-                    <div class="item">
-                        <div class="main-block tour-block">
-                            <div class="main-img">
-                                <a href="#">
-                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="studio-img" />
-                                </a>
-                            </div><!-- end offer-img -->
-                                
-                            <div class="main-info tour-info">
-                                <div class="main-title tour-title">
-                                     <a href=""><b> Kupesan.id</b></a>
+                                    <a> <b>{{$data->pr_name}}</b></a>
                                     <p>Surabaya</p>
                                     
                                 </div><!-- end tour-title -->
                             </div><!-- end tour-info -->
                         </div><!-- end tour-block -->
+                        </a>
                     </div><!-- end item -->
-                    
+                    @endforeach
                 </div><!-- end owl-tour-offers -->
             </div><!-- end columns -->
         </div><!-- end row -->

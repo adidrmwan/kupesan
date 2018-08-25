@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Pesan')
 @section('content')
+@include('pesan.cover-partner')        
         
         <!--===== INNERPAGE-WRAPPER ====-->
         <section class="innerpage-wrapper">
@@ -8,57 +9,8 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar left-side-bar">
-                            <div class="row">
-                            
-                                <div class="col-xs-12 col-sm-6 col-md-12">
-                                    <div class="side-bar-block detail-block style2 text-center">
-                                        <div class="col-xs-12 col-sm-6 col-md-12">
-                                            <div class="side-bar-block detail-block style2 text-center">
-                                                @foreach($package as $data)
-                                                <div class="detail-img text-center">
-                                                    @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                                                    <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
-                                                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                                                    <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
-                                                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                                                    <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
-                                                    @endif
-                                                </div>
-                                                        
-                                                <div class="table-responsive">
-                                                    <table class="table ">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="pull-left">Nama Studio</td>
-                                                                <td class="pull-right">{{$data->partner_name}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pull-left">Nama Paket</td>
-                                                                <td class="pull-right"><b>{{$data->pkg_name_them}}</b></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pull-left">Harga Paket (Per Jam)</td>
-                                                                <td class="pull-right">Rp {{$data->pkg_price_them}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="pull-left">Harga Overtime (Per Jam)</td>
-                                                                <td class="pull-right">Rp {{$data->pkg_overtime_them}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div><!-- end table-responsive -->
-                                                @endforeach
-                                            </div><!-- end side-bar-block -->
-                                        </div><!-- end columns -->                                
-                                    </div><!-- end row -->
-                                </div><!-- end columns -->                                
-                            </div><!-- end row -->
-                        
-                        </div><!-- end columns -->
+                        @include('pesan.package-info')
+
                         <form role="form" action="{{ route('form.pesan') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                                             {{ csrf_field() }}
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
@@ -300,10 +252,10 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group text-center">
                                                                 <label>Durasi Paket</label>
-                                                                <select class="form-control text-center" name="durasi_paket" id="provinces" required>
+                                                                <select class="form-control text-center" name="durasi_paket" id="provinces2" required>
                                                                   <option value="" disable="true" class="text-center" selected="true">Pilih Durasi Paket</option>
-                                                                    @foreach ($package as $key => $value)
-                                                                      <option class="text-center" value="{{$value->pkg_duration_them}},{{$value->id}},{{$booking_date}}">{{ $value->pkg_duration_them }} Jam</option>
+                                                                    @foreach ($durasi as $key => $value)
+                                                                      <option value="{{$value->durasi}},{{$package_id}},{{$booking_date}}">{{ $value->durasi }} Jam</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -313,7 +265,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group text-center">
                                                                 <label>Jam Mulai</label>
-                                                                <select class="form-control text-center" name="jam_mulai" id="regencies" required>
+                                                                <select class="form-control text-center" name="jam_mulai" id="regencies2" required>
                                                                   <option value="" disable="true" class="text-center" selected="true">Pilih Jam Mulai</option>
                                                                 </select>
                                                             </div>
@@ -321,8 +273,19 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group text-center">
                                                                 <label>Jam Selesai</label>
-                                                                <select class="form-control text-center" name="jam_selesai" id="districts" required>
+                                                                <select class="form-control text-center" name="jam_selesai" id="districts2" required>
                                                                   <option value="" disable="true" selected="true">Pilih Jam Selesai</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group text-center">
+                                                                <label>Jam Overtime<small> (opsional)</small></label>
+                                                                <select class="form-control text-center" name="jam_tambahan" id="villages2">
+                                                                  <option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>
+                                                                  <option value="0">Tidak ada</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -333,17 +296,6 @@
                                                                 <label>Jam Terpilih</label>
                                                                 <select class="form-control text-center" id="terpilih" disabled="">
                                                                   <option value="" disable="true" selected="true">Jam Terpilih</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group text-center">
-                                                                <label>Jam Overtime<small> (opsional)</small></label>
-                                                                <select class="form-control text-center" name="jam_tambahan" id="villages">
-                                                                  <option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>
-                                                                  <option value="0">Tidak ada</option>
                                                                 </select>
                                                             </div>
                                                         </div>

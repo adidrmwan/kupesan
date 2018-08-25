@@ -34,7 +34,7 @@ Route::get('/', function () {
 
 //Route Search Fotostudio di Home
 Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
-Route::post('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+Route::get('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 Route::post('/search/data', 'SearchController@searchData')->name('search.data');
 Route::get('/search/result/#1', 'SearchController@resultstudio')->name('resultstudio');
 
@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
     Route::get('/confirm/bukti', 'AdminController@confirmBukti')->name('confirm.bukti');
     Route::get('/partner-list', 'AdminController@partnerList')->name('daftar.partner');
     Route::get('/confirm/partner', 'AdminController@confirmPartner')->name('confirm.partner');
+    Route::get('/show/partner', 'AdminController@showPartner')->name('show.partner');
     Route::get('/cancel/partner', 'AdminController@cancelPartner')->name('cancel.partner');
 });
 
@@ -89,6 +90,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/booking/offline/1/2', 'PartnerController@showStep2')->name('form.offline.step2');
     Route::post('/booking/offline/1/2', 'PartnerController@submitStep2')->name('form.offline.step2.submit');
     Route::post('/booking/offline/1/3', 'PartnerController@submitStep3')->name('form.offline.step3.submit');
+    Route::post('/booking/offline/1/4', 'PartnerController@submitStep4')->name('form.offline.step4.submit');
     Route::post('/booking/offline', 'PartnerController@submitFormOffline')->name('form.offline.submit');
 
     Route::get('/profile', 'PartnerController@profile')->name('partner.profile');

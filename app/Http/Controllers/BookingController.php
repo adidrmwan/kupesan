@@ -16,6 +16,10 @@ use Carbon\Carbon;
 use App\BookingCheck;
 use File;
 use Image;
+use App\Provinces;
+use App\Regencies;
+use App\Districts;
+use App\Villages;
 class BookingController extends Controller
 {
     public function askPage(Request $request) {
@@ -33,10 +37,14 @@ class BookingController extends Controller
         $package_id = $request->package_id;
         $package = PSPkg::where('id', $package_id)->get();
         $id = PSPkg::where('id', $package_id)->first();
-        $partner = Partner::where('user_id', $id->user_id)
-                            ->select('user_id', 'pr_name', 'open_hour', 'close_hour')->first();
+        $partner = Partner::where('user_id', $id->user_id)->first();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
+        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+
         if(empty($request->booking_date)) {
-            return view('pesan.pilih-tanggal', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id]);
+            return view('pesan.pilih-tanggal', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
         }
  
     }
@@ -44,14 +52,18 @@ class BookingController extends Controller
         $package_id = $request->id;
         $package = PSPkg::where('id', $package_id)->get();
         $name = PSPkg::where('id', $package_id)->first();
-        $partner = Partner::where('user_id', $name->user_id)
-                            ->select('pr_name', 'open_hour', 'close_hour')->first();
+        $partner = Partner::where('user_id', $name->user_id)->first();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
+        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+
         $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
                             ->where('num_hour', '<', $partner->close_hour)->get();
 
         $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
                             ->where('num_hour', '<=', $partner->close_hour)->get();
-
+        $durasi = PartnerDurasi::where('package_id', $package_id)->get();
         $pid = $request->id;
         $prc = $name->pkg_price_them;
         $pname = $partner->pr_name;
@@ -65,7 +77,7 @@ class BookingController extends Controller
             $bookingcheck->save();
         }
         
-        return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte, 'bookingcheck' => $bookingcheck]);
+        return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte, 'bookingcheck' => $bookingcheck], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasi'));
     }
 
     public function showBooking2(Request $request)
@@ -73,9 +85,13 @@ class BookingController extends Controller
         $partner_id = $request->partner_id;
         $package_id = $request->pid;
         $package = PSPkg::where('id', $package_id)->get();
-        $partner = Partner::where('user_id', $partner_id)
-                            ->select('user_id', 'pr_name', 'open_hour', 'close_hour')->first();
-
+        $id = PSPkg::where('id', $package_id)->first();
+        $partner = Partner::where('user_id', $id->user_id)->first();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
+        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+        $durasi = PartnerDurasi::where('package_id', $package_id)->get();
         $booking_date = $request->booking_date;
 
         $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
@@ -96,7 +112,7 @@ class BookingController extends Controller
                         ->where('num_hour', '<=', $partner->close_hour)->get();
                         
         
-        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'bookingcheck' => $bookingcheck,'pid' => $package_id], compact('provinces', 'booking_date', 'open', 'close', 'partner_id'));
+        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'bookingcheck' => $bookingcheck,'pid' => $package_id], compact('provinces', 'booking_date', 'open', 'close', 'partner_id', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasi', 'package_id'));
 
     }
     public function showBooking(Request $request)
@@ -104,11 +120,11 @@ class BookingController extends Controller
         $paket = explode(',', $request->durasi_paket, 3);
         $durasi = $paket[0];
         $package_id = $paket[1];
-        $date = $paket[3];
+        $date = $paket[2];
         $booking_overtime = $request->jam_tambahan;
         $jam_tambahan = $booking_overtime[0];
-        $package = PSPkg::where('id', $package_id)->first();
-        $package_list = PSPkg::where('id', $package_id)->get();
+        $package = PSPkg::where('id', $package_id)->get();
+        $package_list = PSPkg::where('id', $package_id)->first();
         $mulai = explode(',', $request->jam_mulai, 4);
         if ($mulai < 10) {
             $jam_mulai = '0'.$mulai[0].':00:00';
@@ -130,6 +146,13 @@ class BookingController extends Controller
         $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $date)->first();
         $range_jam = DB::select('select num_hour from jam where num_hour BETWEEN :booking_start_time and :booking_selesai_jam', ['booking_start_time' => $booking_start_time, 'booking_selesai_jam' => $booking_selesai_jam]);
         $notavailable = '0';
+
+        $id = PSPkg::where('id', $package_id)->first();
+        $partner = Partner::where('user_id', $id->user_id)->first();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
+        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
         if(empty($bookingcheck)) {
             $bookingcheck = new BookingCheck();
             $bookingcheck->package_id = $package_id;
@@ -164,7 +187,7 @@ class BookingController extends Controller
                 if ($value->num_hour == '24' && $bookingcheck->num_hour_24 == '1') { $notavailable = '1';}
             }
             if($notavailable == '1'){
-                return view('pesan.pilih-tanggal', ['package' => $package_list, 'pid' => $package_id, 'partner_id' => $package->user_id]);
+                return view('pesan.pilih-tanggal', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
             }
         }
 
@@ -172,24 +195,61 @@ class BookingController extends Controller
         $booking = new Booking();
         $booking->user_id = Auth::user()->id;
         $booking->package_id = $package_id;
-        $booking->partner_name = $package->partner_name;
+        $booking->partner_name = $package_list->partner_name;
         $booking->booking_start_date = $booking_start_date;
         $booking->booking_end_date = $booking_end_date;
         $booking->booking_start_time = $booking_start_time;
         $booking->booking_end_time = $booking_end_time;
         $booking->booking_overtime = $jam_tambahan;
-        $booking->booking_normal_price = $package->pkg_price_them;
-        $booking->booking_overtime_price = $package->pkg_overtime_them;
+        $booking->booking_normal_price = $package_list->pkg_price_them;
+        $booking->booking_overtime_price = $package_list->pkg_overtime_them;
         $booking->booking_capacities = $request->input('booking_capacities');
         $booking->booking_status = 'on_booking';
         $booking->save();
         $bid = $booking->booking_id;
 
-        $review = Booking::where('booking_id', $bid)
-                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_img_them, ps_package.pkg_category_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime, (((booking_end_time - booking_start_time) * booking_normal_price) + (booking_overtime * booking_overtime_price)) as total'))
-                    ->get();
-        return view('payment.booking', ['bid' => $bid, 'review' => $review, 'date' => $date]);
+        $range_jam = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
+
+        foreach ($range_jam as $value) {
+            $b_date = $value->b_date;
+            $booking_start_date = date('Y-m-d', strtotime("$b_date"));
+            $bookingcheck = BookingCheck::where('package_id', $value->p_id)->where('booking_date', $booking_start_date)->first();
+            if (empty($bookingcheck)){
+                $bookingcheck = new BookingCheck();
+                $bookingcheck->package_id = $value->p_id;
+                $bookingcheck->booking_date = $value->b_date;
+                $bookingcheck->save();
+            }
+            if(!empty($bookingcheck)) {
+                if ($value->num_hour == '1') { $bookingcheck->num_hour_1 = '1';}
+                if ($value->num_hour == '2') { $bookingcheck->num_hour_2 = '1';}
+                if ($value->num_hour == '3') { $bookingcheck->num_hour_3 = '1';}
+                if ($value->num_hour == '4') { $bookingcheck->num_hour_4 = '1';}
+                if ($value->num_hour == '5') { $bookingcheck->num_hour_5 = '1';}
+                if ($value->num_hour == '6') { $bookingcheck->num_hour_6 = '1';}
+                if ($value->num_hour == '7') { $bookingcheck->num_hour_7 = '1';}
+                if ($value->num_hour == '8') { $bookingcheck->num_hour_8 = '1';}
+                if ($value->num_hour == '9') { $bookingcheck->num_hour_9 = '1';}
+                if ($value->num_hour == '10') { $bookingcheck->num_hour_10 = '1';}    
+                if ($value->num_hour == '11') { $bookingcheck->num_hour_11 = '1';}
+                if ($value->num_hour == '12') { $bookingcheck->num_hour_12 = '1';}
+                if ($value->num_hour == '13') { $bookingcheck->num_hour_13 = '1';}
+                if ($value->num_hour == '14') { $bookingcheck->num_hour_14 = '1';}
+                if ($value->num_hour == '15') { $bookingcheck->num_hour_15 = '1';}
+                if ($value->num_hour == '16') { $bookingcheck->num_hour_16 = '1';}
+                if ($value->num_hour == '17') { $bookingcheck->num_hour_17 = '1';}
+                if ($value->num_hour == '18') { $bookingcheck->num_hour_18 = '1';}
+                if ($value->num_hour == '19') { $bookingcheck->num_hour_19 = '1';}
+                if ($value->num_hour == '20') { $bookingcheck->num_hour_20 = '1';}    
+                if ($value->num_hour == '21') { $bookingcheck->num_hour_21 = '1';}
+                if ($value->num_hour == '22') { $bookingcheck->num_hour_22 = '1';}
+                if ($value->num_hour == '23') { $bookingcheck->num_hour_23 = '1';}
+                if ($value->num_hour == '24') { $bookingcheck->num_hour_24 = '1';} 
+                $bookingcheck->save();
+            }
+        }
+
+        return view('pesan.step4-cek-ketersediaan');
     }
 
     public function showReview(Request $request)

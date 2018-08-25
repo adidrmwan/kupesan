@@ -225,7 +225,7 @@
   left: 50%;
   transform: translate(-50%, -50%) rotateY(90deg);
   transform-origin: 50%;
-  background: rgba(255,255,255,0.9);  
+  background: #EA410C;  
   opacity: 0.5;
   transition: all 0.4s ease-in;
   

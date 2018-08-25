@@ -9,10 +9,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 	<div class="dashboard-heading">
                         @foreach($user as $data)
-                        <p>Hai {{$data->first_name}} {{$data->last_name}}, Selamat Datang di  <span style="color: #EA410C">KUPESAN.ID</span> </p>
+                        <p>Hai <b class="text-uppercase">{{$data->first_name}} {{$data->last_name}}</b>, Selamat Datang di  <span style="color: #EA410C"><b>KUPESAN.ID</b></span> </p>
                         @endforeach
                         <p>Semoga harimu indah</p>
-                    </div><!-- end dashboard-heading -->
+                    </div>
                 	
                     
                     <div id="dashboard-tabs">

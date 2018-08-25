@@ -1,26 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
-use App\Partner;
+use App\FasilitasPartner;
+use App\PartnerDurasi;
+use App\BookingCheck;
 use App\Fasilitas;
-use App\PSPkg;
 use App\Provinces;
 use App\Regencies;
 use App\Districts;
 use App\Villages;
 use App\Booking;
+use App\Partner;
+use App\PSPkg;
 use App\Jam;
-use App\BookingCheck;
-use App\FasilitasPartner;
-use App\PartnerDurasi;
-use File;
-use Image;
 use Carbon\Carbon;
-use MaddHatter\LaravelFullcalendar\Facades\Calendar;
+use Image;
+Use Alert;
+use Auth;
+use File;
 
 class PartnerController extends Controller
 {
@@ -304,33 +305,160 @@ class PartnerController extends Controller
                 return view('partner.ps.booking.step3', ['partner' => $partner], compact('package', 'package_id', 'jam_mulai', 'jam_selesai', 'booking_date', 'open', 'close', 'bookingcheck', 'durasi'))->with('warning',"Activation link has been sent to your e-mail, please click the link to activate your account."); 
             }
         }
+        $bookingcheck2 = Booking::where('booking_start_time', $booking_start_time)->where('booking_end_time', $booking_end_time)->where('booking_start_date', $booking_start_date)->where('booking_end_date', $booking_end_date)->where('package_id', $package_id)->first();
+        if (empty($bookingcheck2)) {
+            $packageI = PSPkg::where('id', $package_id)->first();
+            $booking = new Booking();
+            $booking->user_id = Auth::user()->id;
+            $booking->package_id = $package_id;
+            $booking->partner_name = $packageI->partner_name;
+            $booking->booking_start_date = $booking_start_date;
+            $booking->booking_end_date = $booking_end_date;
+            $booking->booking_start_time = $booking_start_time;
+            $booking->booking_end_time = $booking_end_time;
+            $booking->booking_overtime = $jam_tambahan;
+            $booking->booking_normal_price = $packageI->pkg_price_them;
+            $booking->booking_overtime_price = $packageI->pkg_overtime_them;
+            $booking->booking_status = 'on_booking';
+            $booking->save();
+            $bid = $booking->booking_id;
+        }else{
 
-        $packageI = PSPkg::where('id', $package_id)->first();
-        $booking = new Booking();
-        $booking->user_id = Auth::user()->id;
-        $booking->package_id = $package_id;
-        $booking->partner_name = $packageI->partner_name;
-        $booking->booking_start_date = $booking_start_date;
-        $booking->booking_end_date = $booking_end_date;
-        $booking->booking_start_time = $booking_start_time;
-        $booking->booking_end_time = $booking_end_time;
-        $booking->booking_overtime = $jam_tambahan;
-        $booking->booking_normal_price = $packageI->pkg_price_them;
-        $booking->booking_overtime_price = $packageI->pkg_overtime_them;
-        $booking->booking_status = 'on_booking';
-        $booking->save();
-        $bid = $booking->booking_id;
+            $bid = $bookingcheck2->booking_id;
+        }
 
         $review = Booking::where('booking_id', $bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_img_them, ps_package.pkg_category_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime, (((booking_end_time - booking_start_time) * booking_normal_price) + (booking_overtime * booking_overtime_price)) as total'))
                     ->get();
 
-        $range_jam2 = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
-        dd($range_jam2);
-
-        return view('partner.ps.booking.step4', ['partner' => $partner], compact('package', 'package_id', 'jam_mulai', 'jam_selesai', 'booking_date', 'open', 'close', 'bookingcheck', 'durasi', 'review'));
+        return view('partner.ps.booking.step4', ['partner' => $partner], compact('package', 'package_id', 'bid', 'booking_date', 'review', 'booking_date'));
     }
+
+    public function submitStep4(Request $request)
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+
+        if ($partner->status == '0') {
+            return view('partner.home', ['partner' => $partner]);
+        }
+        
+
+        $bid = $request->bid;
+        $booking_date = $request->booking_date;
+        $package_id = $request->package_id;
+        $package = PSPkg::where('id', $package_id)->get();
+
+        $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
+
+        $range_jam = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
+
+        $notavailable = '0';
+
+        if(empty($bookingcheck)) {
+            $bookingcheck = new BookingCheck();
+            $bookingcheck->package_id = $package_id;
+            $bookingcheck->booking_date = $booking_date;
+            $bookingcheck->save();
+        }
+        elseif (!empty($bookingcheck)) {
+            foreach ($range_jam as $key => $value) {
+                if ($value->num_hour == '1' && $bookingcheck->num_hour_1 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '2' && $bookingcheck->num_hour_2 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '3' && $bookingcheck->num_hour_3 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '4' && $bookingcheck->num_hour_4 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '5' && $bookingcheck->num_hour_5 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '6' && $bookingcheck->num_hour_6 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '7' && $bookingcheck->num_hour_7 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '8' && $bookingcheck->num_hour_8 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '9' && $bookingcheck->num_hour_9 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '10' && $bookingcheck->num_hour_10 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '11' && $bookingcheck->num_hour_11 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '12' && $bookingcheck->num_hour_12 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '13' && $bookingcheck->num_hour_13 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '14' && $bookingcheck->num_hour_14 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '15' && $bookingcheck->num_hour_15 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '16' && $bookingcheck->num_hour_16 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '17' && $bookingcheck->num_hour_17 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '18' && $bookingcheck->num_hour_18 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '19' && $bookingcheck->num_hour_19 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '20' && $bookingcheck->num_hour_20 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '21' && $bookingcheck->num_hour_21 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '22' && $bookingcheck->num_hour_22 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '23' && $bookingcheck->num_hour_23 == '1') { $notavailable = '1';}
+                if ($value->num_hour == '24' && $bookingcheck->num_hour_24 == '1') { $notavailable = '1';}
+            }
+            if($notavailable == '1'){
+                $open = $partner->open_hour;
+                $close = $partner->close_hour;
+                $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
+                            ->where('num_hour', '<', $partner->close_hour)->get();
+                $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
+                            ->where('num_hour', '<=', $partner->close_hour)->get();
+                $durasi = PartnerDurasi::where('package_id', $package_id)->get();
+
+                return view('partner.ps.booking.step3', ['partner' => $partner], compact('package', 'package_id', 'jam_mulai', 'jam_selesai', 'booking_date', 'open', 'close', 'bookingcheck', 'durasi'))->with('warning',"Activation link has been sent to your e-mail, please click the link to activate your account."); 
+            }
+        }
+
+        $range_jam = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
+
+        foreach ($range_jam as $value) {
+            $b_date = $value->b_date;
+            $booking_start_date = date('Y-m-d', strtotime("$b_date"));
+            $bookingcheck = BookingCheck::where('package_id', $value->p_id)->where('booking_date', $booking_start_date)->first();
+            if (empty($bookingcheck)){
+                $bookingcheck = new BookingCheck();
+                $bookingcheck->package_id = $value->p_id;
+                $bookingcheck->booking_date = $value->b_date;
+                $bookingcheck->save();
+            }
+            if(!empty($bookingcheck)) {
+                if ($value->num_hour == '1') { $bookingcheck->num_hour_1 = '1';}
+                if ($value->num_hour == '2') { $bookingcheck->num_hour_2 = '1';}
+                if ($value->num_hour == '3') { $bookingcheck->num_hour_3 = '1';}
+                if ($value->num_hour == '4') { $bookingcheck->num_hour_4 = '1';}
+                if ($value->num_hour == '5') { $bookingcheck->num_hour_5 = '1';}
+                if ($value->num_hour == '6') { $bookingcheck->num_hour_6 = '1';}
+                if ($value->num_hour == '7') { $bookingcheck->num_hour_7 = '1';}
+                if ($value->num_hour == '8') { $bookingcheck->num_hour_8 = '1';}
+                if ($value->num_hour == '9') { $bookingcheck->num_hour_9 = '1';}
+                if ($value->num_hour == '10') { $bookingcheck->num_hour_10 = '1';}    
+                if ($value->num_hour == '11') { $bookingcheck->num_hour_11 = '1';}
+                if ($value->num_hour == '12') { $bookingcheck->num_hour_12 = '1';}
+                if ($value->num_hour == '13') { $bookingcheck->num_hour_13 = '1';}
+                if ($value->num_hour == '14') { $bookingcheck->num_hour_14 = '1';}
+                if ($value->num_hour == '15') { $bookingcheck->num_hour_15 = '1';}
+                if ($value->num_hour == '16') { $bookingcheck->num_hour_16 = '1';}
+                if ($value->num_hour == '17') { $bookingcheck->num_hour_17 = '1';}
+                if ($value->num_hour == '18') { $bookingcheck->num_hour_18 = '1';}
+                if ($value->num_hour == '19') { $bookingcheck->num_hour_19 = '1';}
+                if ($value->num_hour == '20') { $bookingcheck->num_hour_20 = '1';}    
+                if ($value->num_hour == '21') { $bookingcheck->num_hour_21 = '1';}
+                if ($value->num_hour == '22') { $bookingcheck->num_hour_22 = '1';}
+                if ($value->num_hour == '23') { $bookingcheck->num_hour_23 = '1';}
+                if ($value->num_hour == '24') { $bookingcheck->num_hour_24 = '1';} 
+                $bookingcheck->save();
+            }
+        }
+
+        $booking = Booking::find($request->bid);
+
+        $booking->booking_user_name = $request->input('booking_user_name');
+        $booking->booking_user_nohp = $request->input('booking_user_nohp');
+        $booking->booking_user_email = $request->input('booking_user_email');
+        $booking->booking_total = $request->input('total');
+        $booking->booking_status = 'offline-booking';
+        $booking->save();
+
+
+        return view('partner.ps.booking.step5', ['partner' => $partner], compact('package', 'package_id', 'bid', 'booking_date' ));
+    }
+
 
     public function submitFormOffline(Request $request)
     {
@@ -358,6 +486,7 @@ class PartnerController extends Controller
         $date = $request->Tanggal_libur;
         $durasi = $request->durasi_libur;
         $judul = $request->judul;
+
         if($durasi == 'full_day') {
 
             $package = PSPkg::where('user_id', $user->id)->get();
@@ -413,33 +542,11 @@ class PartnerController extends Controller
             $booking->package_id = '100';
             $booking->save();
             return redirect()->back();
+        } elseif ($durasi == '3') {
+            
+        } elseif ($durasi == '7') {
+        
         }
-        // elseif ($durasi == 'half_day') {
-        //     $mulai = $request->jam_mulai_libur;
-        //     if ($mulai < 10) {
-        //         $jam_mulai = '0'.$mulai.':00:00';
-        //     } elseif ($mulai >= 10) {
-        //         $jam_mulai = $mulai.':00:00';
-        //     }
-        //     $booking_start_time = $mulai;
-        //     $booking_start_date = date('Y-m-d H:i:s', strtotime("$date $jam_mulai"));
-        //     $selesai = $request->jam_selesai_libur;
-        //     if ($selesai < 10) {
-        //         $jam_selesai = '0'.$selesai.':00:00';
-        //     } elseif ($mulai >= 10) {
-        //         $jam_selesai = $selesai.':00:00';
-        //     }
-        //     $booking_end_time = $selesai;
-        //     $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
-        //     $booking = new Booking();
-        //     $booking->user_id = $user->id;
-        //     $booking->booking_start_date = $booking_start_date;
-        //     $booking->booking_end_date = $booking_end_date;
-        //     $booking->booking_status = 'libur';
-        //     $booking->partner_name = 'Libur';
-        //     $booking->package_id = '100';
-        //     $booking->save();
-        // }
         return redirect()->intended(route('partner.dashboard')); 
     }
 
@@ -565,21 +672,38 @@ class PartnerController extends Controller
         if ($partner->status == '0') {
             return view('partner.home', ['partner' => $partner]);
         }
+
         $title = 'Libur';
         $events = [];
-                $data = Booking::where('user_id', $partner->user_id);
+                $data = Booking::where('user_id', $user->id)->get();
+                // dd($data);
                 if($data->count()) {
                     foreach ($data as $key => $value) {
+                        $judul = 'Off | ' . $value->booking_user_name;
                         if($value->booking_status == 'confirmed') {
                             $events[] = Calendar::event(
-                            $value->partner_name,
+                            $value->booking_user_name,
                             false,
                             $value->booking_start_date,
                             $value->booking_end_date,
                             null,
                             // Add color and link on event
                              [
-                                 'color' => '#ff0000',
+                                 'color' => '#28a745',
+                                 'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
+                             ]
+                            );
+                        }elseif($value->booking_status == 'offline-booking') {
+                            $events[] = Calendar::event(
+                            $judul,
+                            true,
+                            $value->booking_start_date,
+                            $value->booking_end_date,
+                            null,
+                            // Add color and link on event
+                             [
+                                 'color' => '#ffc107',
+                                 'textColor' => '#000000',
                                  'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
                              ]
                             );
@@ -587,14 +711,14 @@ class PartnerController extends Controller
                         elseif($value->booking_status == 'libur') {
                             $events[] = Calendar::event(
                             $value->partner_name,
-                            false,
+                            true,
                             $value->booking_start_date,
                             $value->booking_end_date,
                             null,
                             // Add color and link on event
                              [
-                                 'color' => '#009885',
-                                 'url' => '#',
+                                 'color' => '#dc3545',
+                                 'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
                              ]
                             );
                         }
@@ -602,7 +726,9 @@ class PartnerController extends Controller
                 }
         $calendar = Calendar::addEvents($events);
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'offline-booking')->orderBy('booking.booking_start_date', 'asc')->get();
+
+
         if ($request->has('show_id')) {
             $booking_show = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_id', $request->show_id)->get();
             return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar', 'booking', 'booking_show'));

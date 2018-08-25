@@ -49,7 +49,7 @@
     <link href=" {{ URL::asset('partners/css/pe-icon-7-stroke.css ') }}" rel="stylesheet" />
     <!-- sweet alert -->
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
+    @include('sweetalert::alert')
 <!-- date time picker -->  
   <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
 

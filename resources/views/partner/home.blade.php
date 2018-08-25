@@ -10,10 +10,10 @@
                 @if($partner->status == ' 0')
                 <div class="card ">
                     <div class="header">
-                        <h4 class="title">Please wait..</h4>
+                        <h4 class="title">Informasi</h4>
                     </div>
                     <div class="content">
-                        <h3>Formulir pengajuan Anda sedang ditinjau. Pemberitahuan peninjauan akan dikirim ke e-mail terdaftar dengan waktu 1x24 jam. Terima Kasih</h3>
+                        <h5>Formulir pengajuan Anda sedang ditinjau.<br>Pemberitahuan peninjauan akan dikirim melalui E-mail terdaftar dalam waktu 1x24 jam.<br><br>Terima Kasih</h5>
                     </div>
                 </div>
                 @elseif($partner->status == '1')

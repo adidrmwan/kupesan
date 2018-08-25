@@ -310,7 +310,7 @@
                                 <div class="row">
                                   <div class="col-md-12">
                                     <input type="text" name="package_id" value="{{$package_id}}" hidden="">
-                                    <button type="submit" class="btn btn-block btn-info pull-right">Submit</button> 
+                                    <button type="submit" id="confirm3" class="btn btn-block btn-info pull-right">Submit</button> 
                                   </div>
                                 </div>     
                             </div> 
@@ -411,5 +411,5 @@
           $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + total + ':00' + '</option>');
         });
       });
-  </script>
+</script>
 @endsection

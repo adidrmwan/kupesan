@@ -103,8 +103,10 @@
                     <td>{{$value->pr_owner_name}}</td>
                     <td>{{ date('d F Y', strtotime($value->created_at)) }}, {{ date('H:i', strtotime($value->created_at)) }}</td>
                     <td>
-                        <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-partner"><span style="color: white; text-decoration: none;">Show</span>
+                      <a href="{{route('show.partner', ['id' => $value->id])}}">
+                        <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Show</span>
                         </button>
+                      </a>
                       <a href="{{route('cancel.partner', ['id' => $value->id])}}">
                         <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
                         </button>
@@ -130,8 +132,7 @@
                     <th>Owner Name</th>
                     <th>Type</th>
                     <th>Register Date</th>
-                    <th>Details</th>
-                    <th>Cancel</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -145,73 +146,15 @@
                     
                     <td>{{ date('d F Y', strtotime($value->created_at)) }}, {{ date('H:i', strtotime($value->created_at)) }}</td>
                     <td>
-
-                        <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-partner"><span style="color: white; text-decoration: none;">Show</span>
+                      <a href="{{route('show.partner', ['id' => $value->id])}}">
+                        <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Show</span>
                         </button>
-                        <div class="modal fade" id="show-partner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h3 class="modal-title" id="exampleModalLabel"><strong>Partner Details</strong>
-                                  <span class="pull-right"><button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button></span></h3>
-                                </div>
-                                <div class="modal-body">
-                                  <table class="table table-condensed table-bordered table-striped">
-                                    <tbody>
-                                      <tr>
-                                        <th>Partner Name</th>
-                                        <td>{{$value->pr_name}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Owner Name</th>
-                                        <td>{{$value->pr_owner_name}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Work Hour</th>
-                                        <td>{{$value->open_hour}}:00 - {{$value->close_hour}}:00 WIB</td>
-                                      </tr>
-                                      <tr>
-                                        <th colspan="2"></th>
-                                      </tr>
-                                      <tr>
-                                        <th>Address</th>
-                                        <td>{{$value->pr_addr}}, {{$value->pr_kel}}, {{$value->pr_kec}}, {{$value->pr_kota}}, {{$value->pr_prov}}, {{$value->pr_postal_code}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Phone (1)</th>
-                                        <td>{{$value->pr_phone2}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Phone (2)</th>
-                                        <td>{{$value->phone_number}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Email</th>
-                                        <td>{{$value->email}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Deskripsi Usaha</th>
-                                        <td>{{$value->pr_desc}}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                    </td>
-                    <td>  
+                      </a>
                       <a href="{{route('cancel.partner', ['id' => $value->id])}}">
                         <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
                         </button>
                       </a>
-                    </td>
+                    </td> 
                   </tr>
                   @endforeach
                   </tbody>
