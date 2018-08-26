@@ -41,9 +41,9 @@
     <link rel="stylesheet" href="{{ URL::asset ('dist/css/flexslider.css') }} " type="text/css" />
     
     <!--Date-Picker Stylesheet-->
-    <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} ">
+    <!-- <link rel="stylesheet" href="{{ URL::asset ('dist/css/datepicker.css') }} "> -->
     <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>
-    <link href=" {{ URL::asset('partners/css/jquery-ui.structure.css ') }}" rel="stylesheet"/>
+    <!-- <link href=" {{ URL::asset('partners/css/jquery-ui.structure.css ') }}" rel="stylesheet"/> -->
     <link href=" {{ URL::asset('partners/css/jquery-ui.theme.css ') }}" rel="stylesheet"/>
     
     <!-- Magnific Gallery -->
@@ -140,7 +140,7 @@
     <script src="{{ URL::asset('dist/js/bootstrap.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
     <script src="{{ URL::asset('dist/js/slick.min.js') }} "></script>
-    <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
+    <!-- <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script> -->
     <!-- <script src="{{ URL::asset('dist/js/multiselect.js') }} "></script> -->
     <script src="{{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
     <script src="{{ URL::asset('dist/js/custom-navigation.js') }} "></script>
@@ -174,7 +174,7 @@
   
     <script>
       $( "#datepicker" ).datepicker({
-      // prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+       // prevText: '<i class="fa fa-fw fa-angle-left"></i>',
       // nextText: '<i class="fa fa-fw fa-angle-right"></i>',
       inline: true,
       altField: '#datepicker2',
@@ -190,7 +190,7 @@
       });
     </script>
 
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
     
         $( document ).ready(function() {
             $("#datepicker").datepicker({
@@ -198,7 +198,7 @@
             });
 
         });
-    </script>
+    </script> -->
 
     <script>
       $(function () {
@@ -214,7 +214,7 @@
       })
     </script>
 
-    <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
+    <!-- <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script> -->
     <script src="{{ URL::asset('partners/js/select2.js') }} "></script>
 
     @yield('script')
@@ -310,9 +310,6 @@
       });
 </script>
     @yield('script')
-
-    <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>
-    <script src=" {{ URL::asset('partners/js/jquery-ui.min.js') }} " type="text/javascript"></script>
 
     <script type="text/javascript">
       $('#startDate').datepicker({
