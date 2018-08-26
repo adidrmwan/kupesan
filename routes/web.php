@@ -58,8 +58,8 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 		return redirect()->intended(route('home'));
 	})->name('user.dashboard');
 
-    Route::get('/booking/0', 'BookingController@checkAuth')->name('check.auth');
-    Route::post('/booking/1', 'BookingController@showBooking2')->name('form.pesan2');
+    Route::get('/booking/0', 'BookingController@step2')->name('check.auth');
+    Route::post('/booking/1', 'BookingController@step3')->name('form.pesan2');
     Route::post('/booking/2', 'BookingController@showBooking')->name('form.pesan');
     Route::post('/booking/3', 'BookingController@showReview')->name('form.booking');
     Route::post('/booking/4', 'BookingController@showBayar')->name('form.bayar');
@@ -69,7 +69,7 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     Route::get('/profil-Ku', 'CustomerController@dashboard')->name('dashboard');
 });
 
-    Route::get('/booking/00', 'BookingController@askPage')->name('ask.page');
+    Route::get('/booking/00', 'BookingController@step1')->name('ask.page');
 
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){

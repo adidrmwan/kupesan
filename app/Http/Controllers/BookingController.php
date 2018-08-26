@@ -22,21 +22,34 @@ use App\Districts;
 use App\Villages;
 class BookingController extends Controller
 {
-    public function askPage(Request $request) {
+    public function step1(Request $request) {
 
         $package_id = $request->package_id;
+
         $package = PSPkg::where('id', $package_id)->get();
         $id = PSPkg::where('id', $package_id)->first();
-        $partner = Partner::where('user_id', $id->user_id)
-                            ->select('user_id', 'pr_name', 'open_hour', 'close_hour')->first();
-        return view('pesan.ask', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id]);
+
+        $partner = Partner::where('user_id', $id->user_id)->first();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
+        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+
+        if (Auth::user()) {
+            return redirect()->intended(route('check.auth', ['package_id' => $package_id]));
+        }
+
+        return view('online-booking.fotostudio.step1', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('package', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
  
     }
 
-    public function checkAuth(Request $request) {
+    public function step2(Request $request) {
+
         $package_id = $request->package_id;
+
         $package = PSPkg::where('id', $package_id)->get();
         $id = PSPkg::where('id', $package_id)->first();
+
         $partner = Partner::where('user_id', $id->user_id)->first();
         $provinsi = Provinces::where('id', $partner->pr_prov)->first();
         $kota = Regencies::where('id', $partner->pr_kota)->first();
@@ -44,46 +57,16 @@ class BookingController extends Controller
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
 
         if(empty($request->booking_date)) {
-            return view('pesan.pilih-tanggal', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
+            return view('online-booking.fotostudio.step2', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
         }
  
     }
-    public function checkAuth2(Request $request) {
-        $package_id = $request->id;
-        $package = PSPkg::where('id', $package_id)->get();
-        $name = PSPkg::where('id', $package_id)->first();
-        $partner = Partner::where('user_id', $name->user_id)->first();
-        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
-        $kota = Regencies::where('id', $partner->pr_kota)->first();
-        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
-        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
 
-        $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
-                            ->where('num_hour', '<', $partner->close_hour)->get();
-
-        $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
-                            ->where('num_hour', '<=', $partner->close_hour)->get();
-        $durasi = PartnerDurasi::where('package_id', $package_id)->get();
-        $pid = $request->id;
-        $prc = $name->pkg_price_them;
-        $pname = $partner->pr_name;
-
-        $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $bdte)->first();
-        // dd($bookingcheck);
-        if(empty($bookingcheck)) {
-            $bookingcheck = new BookingCheck();
-            $bookingcheck->package_id = $package_id;
-            $bookingcheck->booking_date = $bdte;
-            $bookingcheck->save();
-        }
-        
-        return view('pesan.pesan', ['package' => $package, 'partner' => $partner, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'pid' => $pid, 'prc' => $prc, 'pname' => $pname, 'bdte' => $bdte, 'bookingcheck' => $bookingcheck], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasi'));
-    }
-
-    public function showBooking2(Request $request)
+    public function step3(Request $request)
     {   
         $partner_id = $request->partner_id;
         $package_id = $request->pid;
+
         $package = PSPkg::where('id', $package_id)->get();
         $id = PSPkg::where('id', $package_id)->first();
         $partner = Partner::where('user_id', $id->user_id)->first();
@@ -95,6 +78,7 @@ class BookingController extends Controller
         $booking_date = $request->booking_date;
 
         $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
+        
         if(empty($bookingcheck)) {
 
             $bookingcheck = new BookingCheck();
@@ -102,17 +86,35 @@ class BookingController extends Controller
             $bookingcheck->booking_date = $booking_date;
             $bookingcheck->save();
         }
+
         $open = $partner->open_hour;
         $close = $partner->close_hour;
 
-        $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
-                        ->where('num_hour', '<', $partner->close_hour)->get();
+        $mytime = Carbon::now();
+        $waktu = $mytime->toDateTimeString();        
+        $waktu2 = explode(' ', $waktu);
+        $now_date = $waktu2[0];
+        $now_time = $waktu2[1];
+        $time_array = explode(':', $now_time);
+        $now_time = $time_array[0] + 6;
+        if ($booking_date == $now_date && $now_time > $open) {
+            dd($now_time);
+            $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
+                            ->where('num_hour', '<', $close)->get();
 
-        $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
-                        ->where('num_hour', '<=', $partner->close_hour)->get();
-                        
+            $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
+                            ->where('num_hour', '<=', $close)->get();
+        } else {
+            $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
+                            ->where('num_hour', '<', $partner->close_hour)->get();
+
+            $jam_selesai = DB::table('jam')->where('num_hour', '>', $partner->open_hour)
+                            ->where('num_hour', '<=', $partner->close_hour)->get();
+        }
+
         
-        return view('pesan.pesan', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'bookingcheck' => $bookingcheck,'pid' => $package_id], compact('provinces', 'booking_date', 'open', 'close', 'partner_id', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasi', 'package_id'));
+        
+        return view('online-booking.fotostudio.step3', ['package' => $package, 'jam_mulai' => $jam_mulai, 'jam_selesai' => $jam_selesai, 'bookingcheck' => $bookingcheck,'pid' => $package_id], compact('provinces', 'booking_date', 'open', 'close', 'partner_id', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasi', 'package_id'));
 
     }
     public function showBooking(Request $request)
@@ -187,7 +189,7 @@ class BookingController extends Controller
                 if ($value->num_hour == '24' && $bookingcheck->num_hour_24 == '1') { $notavailable = '1';}
             }
             if($notavailable == '1'){
-                return view('pesan.pilih-tanggal', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
+                return view('online-booking.fotostudio.step2', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
             }
         }
 
@@ -623,13 +625,13 @@ class BookingController extends Controller
           $villages = "Tidak bisa tambah";
       }
       elseif ($selesai == ($close_hour - 4) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'available' && $jam_selesai_2 == 'available')) {
-          $villages = Jam::where('num_hour', '<=' , '4')->get();
+          $villages = Jam::where('num_hour', '<' , '4')->get();
       }
       elseif ($selesai == ($close_hour - 3) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'available' && $jam_selesai_2 == 'not')) {
-          $villages = Jam::where('num_hour', '<=' , '3')->get();
+          $villages = Jam::where('num_hour', '<' , '3')->get();
       }
       elseif ($selesai == ($close_hour - 2) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'available')) {
-          $villages = Jam::where('num_hour', '<=' , '2')->get();
+          $villages = Jam::where('num_hour', '<' , '2')->get();
       }
       elseif ($selesai == ($close_hour - 1) || ($jam_mulai == 'available' && $jam_selesai == 'available' && $jam_selesai_1 == 'not')) {
           $villages = Jam::where('num_hour', '=' , '1')->get();

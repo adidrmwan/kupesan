@@ -161,41 +161,14 @@
                           <section id="thematic-offers" class="">
                                       <div class="col-sm-12">
                                           <div class="page-heading">
-                                              <h2>A LA CARTE</h2>
-                                              <hr class="heading-line" />
+                                            <h2>A LA CARTE</h2>
+                                            <hr class="heading-line" />
                                           </div><!-- end page-heading -->
                                           
                                           <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-thematic-offers">
-                                              @foreach($carte as $listthem)
-                                              <div class="item" style="padding: 10px;">
-                                                  <div class="main-block hotel-block ">
-                                                      <div class="main-img img-hover">
-                                                          <a class="image-popup-fit-width" href="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" >
-                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" id="myImg" alt= "Package Image" /> 
-                                                          </a>
-                                                          <div class="main-mask">
-                                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                                <li class="price" style="color: white;">{{$listthem->pkg_name_them}}</li>
-                                                              </ul>
-                                                          </div>
-                                                      </div>
-                                                      
-                                                      <div class="main-info hotel-info">
-                                                          <div class="main-title hotel-title">
-                                                              
-                                                            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_price_them)}} / Jam </p>
-                                                            <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                            
-                                                            <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
-                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                                              </button>
-                                                            </a>
-                                                            
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              @endforeach
+                                            @foreach($carte as $listthem)  
+                                              @include('partner-profile.fotostudio.paket')                                             
+                                            @endforeach
                                           </div>
                                       </div>
                           </section>
@@ -208,32 +181,8 @@
                                           
                                           <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-alacarte-offers">    
                                             @foreach($spack as $listthem)
-                                              <div class="item" style="padding: 10px;">
-                                                  <div class="main-block hotel-block ">
-                                                      <div class="main-img img-hover">
-                                                          <a class="image-popup-fit-width" href="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" >
-                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" alt= "Package Image" /> 
-                                                          </a>
-                                                          <div class="main-mask">
-                                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                                <li class="price" style="color: white;">{{$listthem->pkg_name_them}}</li>
-                                                              </ul>
-                                                          </div><!-- end main-mask -->
-                                                      </div><!-- end offer-img -->
-                                                      
-                                                      <div class="main-info hotel-info">
-                                                          <div class="main-title hotel-title">
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                              <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
-                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                                              </button>
-                                                            </a>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              @endforeach
+                                              @include('partner-profile.fotostudio.paket')                                             
+                                            @endforeach
                                           </div>
                                       </div>
 
@@ -248,33 +197,7 @@
                                           
                                           <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-special-offers">
                                               @foreach($studio as $listthem)
-                                              <div class="item" style="padding: 10px;">
-                                                  <div class="main-block hotel-block ">
-                                                      <div class="main-img img-hover">
-                                                          <a class="image-popup-fit-width" href="{{ URL::asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" >
-                                                              <img style="height: 250px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$listthem->pkg_img_them.'.jpg')  }}" alt= "Package Image" /> 
-                                                          </a>
-                                                          <div class="main-mask">
-                                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                                <li class="price" style="color: white;">{{$listthem->pkg_name_them}}</li>
-                                                              </ul>
-                                                          </div><!-- end main-mask -->
-                                                      </div><!-- end offer-img -->
-                                                      
-                                                      <div class="main-info hotel-info">
-
-                                                          <div class="main-title hotel-title">
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_price_them}} / Jam </p>
-                                                              <p><span>Rp</span>&nbsp;&nbsp;{{$listthem->pkg_overtime_them}} / Overtime</p>
-                                                              <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
-                                                              <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                                              </button>
-                                                            </a>
-                                                          </div>
-
-                                                      </div>
-                                                  </div>
-                                              </div>
+                                                @include('partner-profile.fotostudio.paket')
                                               @endforeach
                                               
                                           </div><!-- end owl-hotel-offers -->

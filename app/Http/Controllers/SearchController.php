@@ -45,7 +45,27 @@ class SearchController extends Controller
             if($tag_id == 'all'){
 
                 if (empty($request->min_price)) {
-                    $allThemes = PSPkg::where('status', '1')->orderBy('pkg_price_them', 'asc')->get();
+                    $allThemes = PSPkg::where('status', '1')
+                                ->orderBy('pkg_price_them', 'asc')->get();
+                    if ($request->type == 'All_type') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->orderBy('pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'A La Carte') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->where('pkg_category_them', 'A La Carte')
+                                    ->orderBy('pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Package') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->where('pkg_category_them', 'Special Package')
+                                    ->orderBy('pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Studio') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->where('pkg_category_them', 'Special Studio')
+                                    ->orderBy('pkg_price_them', 'asc')->get();
+                    }
                 }
                 elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'All_type'){
                     $allThemes = PSPkg::where('status', '1')
@@ -72,7 +92,7 @@ class SearchController extends Controller
                                 ->orderBy('pkg_price_them', 'asc')->get();
                 }
 
-                return view('daftar.fotostudio', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
+                return view('search-result.fotostudio.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
             }
 
             elseif($tag_id != 'all'){
@@ -82,6 +102,36 @@ class SearchController extends Controller
                                 ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
                                 ->where('ps_package.status', '1')
                                 ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+
+                    if ($request->type == 'All_type') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'A La Carte') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('pkg_category_them', 'A La Carte')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Package') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('pkg_category_them', 'Special Package')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Studio') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('pkg_category_them', 'Special Studio')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+
+
                 }
                 elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'All_type'){
                     $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
@@ -114,8 +164,8 @@ class SearchController extends Controller
                                 ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
                                 ->orderBy('ps_package.pkg_price_them', 'asc')->get();
                 }
-
-                return view('daftar.fotostudio', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
+                // dd($request);
+                return view('search-result.fotostudio.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
             }
         
         }

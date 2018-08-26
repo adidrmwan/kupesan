@@ -28,7 +28,7 @@ class StudioController extends Controller
         $kota = Regencies::where('id', $partner->pr_kota)->first();
         $kecamatan = Districts::where('id', $partner->pr_kec)->first();
     	$fasilitas = FasilitasPartner::where('user_id', $user_id)->get();
-        return view('detail-partner.fotostudio', ['detail' => $detail, 'album' => $album, 'fasilitas' => $fasilitas, 'booking_date' => $booking_date], compact('provinsi', 'kota', 'kecamatan', 'carte', 'spack', 'studio'));
+        return view('partner-profile.fotostudio.detail', ['detail' => $detail, 'album' => $album, 'fasilitas' => $fasilitas, 'booking_date' => $booking_date], compact('provinsi', 'kota', 'kecamatan', 'carte', 'spack', 'studio'));
     }
 
 }

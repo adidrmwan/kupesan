@@ -20,7 +20,7 @@
                     <li class="active">{{$partner->pr_addr}}, {{$partner->pr_kel}}, {{$kecamatan->name}}, {{$kota->name}}, {{$provinsi->name}}, {{$partner->pr_postal_code}}</li>
                 </ul>
               </div>
-            </div><!-- end columns -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end page-cover -->
+            </div>
+        </div>
+    </div>
+</section>
