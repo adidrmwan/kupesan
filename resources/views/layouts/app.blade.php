@@ -244,7 +244,7 @@
           $('#districts2').append('<option value="" disable="true" selected="true">Pilih Jam Selesai</option>');
 
           $('#villages2').empty();
-          $('#villages2').append('<option value="0" disable="true" selected="true">Pilih Jam Tambahan</option><option value="0">Tidak ada</option>');
+          $('#villages2').append('<option value="0" disable="true" selected="true">Tidak Ada</option>');
 
           $.each(data, function(index, regenciesObj){
             $('#regencies2').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +','+ date +'">'+ regenciesObj.num_hour +':00</option>');
@@ -267,7 +267,7 @@
           $('#districts2').append('<option class="text-center" value="" disable="true" selected="true">Pilih Jam Selesai</option>');
 
           $('#villages2').empty();
-          $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Pilih Jam Tambahan</option><option value="0">Tidak ada</option>');
+          $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
 
           $.each(data, function(index, districtsObj){
             $('#districts2').append('<option class="text-center" value="'+ districtsObj.num_hour +','+ durasi2 +','+ pack_id +','+ date +','+ jam_mulai +'">'+ districtsObj.num_hour +':00</option>');
@@ -287,7 +287,7 @@
         $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
           console.log(data);
           $('#villages2').empty();
-          $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Pilih Jam Tambahan</option><option value="0">Tidak ada</option>');
+          $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
           $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
           $.each(data, function(index, villagesObj){
             $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');

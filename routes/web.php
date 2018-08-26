@@ -45,6 +45,7 @@ Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.keb
 Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superadmin']], function(){
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/kupesan', 'SearchController@home')->name('admin.kupesan');
+    Route::get('/approve/booking', 'AdminController@approveBooking')->name('approve.booking');
     Route::get('/confirm/bukti', 'AdminController@confirmBukti')->name('confirm.bukti');
     Route::get('/partner-list', 'AdminController@partnerList')->name('daftar.partner');
     Route::get('/confirm/partner', 'AdminController@confirmPartner')->name('confirm.partner');
@@ -60,13 +61,14 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 
     Route::get('/booking/0', 'BookingController@step2')->name('check.auth');
     Route::post('/booking/1', 'BookingController@step3')->name('form.pesan2');
-    Route::post('/booking/2', 'BookingController@showBooking')->name('form.pesan');
+    Route::post('/booking/2', 'BookingController@step4')->name('form.pesan');
     Route::post('/booking/3', 'BookingController@showReview')->name('form.booking');
     Route::post('/booking/4', 'BookingController@showBayar')->name('form.bayar');
     Route::post('/booking/5', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
     Route::post('/booking/6', 'BookingController@uploadBukti')->name('upload.bukti');
     Route::get('/voucher', 'BookingController@voucher')->name('voucher');
     Route::get('/profil-Ku', 'CustomerController@dashboard')->name('dashboard');
+    Route::post('/booking/info/', 'CustomerController@showInfo')->name('booking.info'); 
 });
 
     Route::get('/booking/00', 'BookingController@step1')->name('ask.page');
@@ -144,6 +146,8 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 // Route untuk email verification
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
+Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
+
 
 //Route untuk studio foto
 Route::get('/studio/detail', 'StudioController@studiodetail')->name('studio-detail');

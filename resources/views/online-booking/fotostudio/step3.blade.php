@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pesan')
+@section('title', 'Booking')
 @section('content')
 @include('online-booking.fotostudio.cover-partner')   
         
@@ -26,197 +26,341 @@
                                                     <table class="table table-responsive table-condensed" style="text-align: center;">
                                                         <tr>
                                                             @if('1' >= $open && '1' < $close && empty($bookingcheck->num_hour_1))
-                                                            <td class="available">01:00 - 02:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">01:00 - 02:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '1' < $now_time)
+                                                                <td class="not-available">01:00 - 02:00</td>
+                                                                @else
+                                                                <td class="available">01:00 - 02:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_1 == '1')
-                                                            <td class="not-available">01:00 - 02:00</td>
+                                                                <td class="not-available">01:00 - 02:00</td>
                                                             @else                                                                        @endif
                                                         </tr>
                                                         <tr>                                                                        
                                                             @if('2' >= $open && '2' < $close && empty($bookingcheck->num_hour_2))
-                                                            <td class="available">02:00 - 03:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">02:00 - 03:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '2' < $now_time)
+                                                                <td class="not-available">02:00 - 03:00</td>
+                                                                @else
+                                                                <td class="available">02:00 - 03:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_2 == '1')
-                                                            <td class="not-available">02:00 - 03:00</td>
+                                                                <td class="not-available">02:00 - 03:00</td>
                                                             @else                                                                        @endif
                                                         </tr>
                                                         <tr>
                                                             @if('3' >= $open && '3' < $close && empty($bookingcheck->num_hour_3))
-                                                            <td class="available">03:00 - 04:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">03:00 - 04:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '3' < $now_time)
+                                                                <td class="not-available">03:00 - 04:00</td>
+                                                                @else
+                                                                <td class="available">03:00 - 04:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_3 == '1')
-                                                            <td class="not-available">03:00 - 04:00</td>
+                                                                <td class="not-available">03:00 - 04:00</td>
                                                             @else
                                                             @endif
                                                         </tr>
                                                         <tr>
                                                             @if('4' >= $open && '4' < $close && empty($bookingcheck->num_hour_4))
-                                                            <td class="available">04:00 - 05:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">04:00 - 05:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '4' < $now_time)
+                                                                <td class="not-available">04:00 - 05:00</td>
+                                                                @else
+                                                                <td class="available">04:00 - 05:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_4 == '1')
-                                                            <td class="not-available">04:00 - 05:00</td>
+                                                                <td class="not-available">04:00 - 05:00</td>
                                                             @else                                                                        @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('5' >= $open && '5' < $close && empty($bookingcheck->num_hour_5))
-                                                            <td class="available">05:00 - 06:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">05:00 - 06:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '5' < $now_time)
+                                                                <td class="not-available">05:00 - 06:00</td>
+                                                                @else
+                                                                <td class="available">05:00 - 06:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_5 == '1')
-                                                            <td class="not-available">05:00 - 06:00</td>
+                                                                <td class="not-available">05:00 - 06:00</td>
                                                             @else                                                                        @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('6' >= $open && '6' < $close && empty($bookingcheck->num_hour_6))
-                                                            <td class="available">06:00 - 07:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">06:00 - 07:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '6' < $now_time)
+                                                                <td class="not-available">06:00 - 07:00</td>
+                                                                @else
+                                                                <td class="available">06:00 - 07:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_6 == '1')
-                                                            <td class="not-available">06:00 - 07:00</td>
+                                                                <td class="not-available">06:00 - 07:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('7' >= $open && '7' < $close && empty($bookingcheck->num_hour_7))
-                                                            <td class="available">07:00 - 08:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">07:00 - 08:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '7' < $now_time)
+                                                                <td class="not-available">07:00 - 08:00</td>
+                                                                @else
+                                                                <td class="available">07:00 - 08:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_7== '1')
-                                                            <td class="not-available">07:00 - 08:00</td>
+                                                                <td class="not-available">07:00 - 08:00</td>
                                                             @else
                                                             @endif 
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('8' >= $open && '8' < $close && empty($bookingcheck->num_hour_8))
-                                                            <td class="available">08:00 -09:00</td>
-                                                            @elseif($bookingcheck->num_hour_8== '1')
-                                                            <td class="not-available">08:00 -09:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">08:00 -09:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '8' < $now_time)
+                                                                <td class="not-available">08:00 -09:00</td>
+                                                                @else
+                                                                <td class="available">08:00 -09:00</td>
+                                                                @endif
+                                                            elseif($bookingcheck->num_hour_8== '1')
+                                                                <td class="not-available">08:00 -09:00</td>
                                                             @else                                                                        @endif
                                                             
                                                         </tr>
-                                                        </tr>
                                                         <tr>
                                                             @if('9' >= $open && '9' < $close && empty($bookingcheck->num_hour_9))
-                                                            <td class="available">09:00 - 10.00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">09:00 - 10.00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '9' < $now_time)
+                                                                <td class="not-available">09:00 - 10.00</td>
+                                                                @else
+                                                                <td class="available">09:00 - 10.00</td>
+                                                                @endif                                                            
                                                             @elseif($bookingcheck->num_hour_9 == '1')
-                                                            <td class="not-available">09:00 - 10.00</td>
+                                                                <td class="not-available">09:00 - 10.00</td>
                                                             @else
                                                             @endif
                                                         </tr>
                                                         <tr>
                                                             @if('10' >= $open && '10' < $close && empty($bookingcheck->num_hour_10))
-                                                            <td class="available">10:00 - 11:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">10:00 - 11:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '10' < $now_time)
+                                                                <td class="not-available">10:00 - 11:00</td>
+                                                                @else
+                                                                <td class="available">10:00 - 11:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_10 == '1')
-                                                            <td class="not-available">10:00 - 11:00</td>
+                                                                <td class="not-available">10:00 - 11:00</td>
                                                             @else
                                                             @endif
                                                         </tr>
                                                         <tr>
                                                             @if('11' >= $open && '11' < $close && empty($bookingcheck->num_hour_11))
-                                                            <td class="available">11:00 - 12:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">11:00 - 12:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '11' < $now_time)
+                                                                <td class="not-available">11:00 - 12:00</td>
+                                                                @else
+                                                                <td class="available">11:00 - 12:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_11 == '1')
-                                                            <td class="not-available">11:00 - 12:00</td>
+                                                                <td class="not-available">11:00 - 12:00</td>
                                                             @else                                                                        @endif
                                                         </tr>
                                                         <tr>
                                                             @if('12' >= $open && '12' < $close && empty($bookingcheck->num_hour_12))
-                                                            <td class="available">12:00 - 13:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">12:00 - 13:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '12' < $now_time)
+                                                                <td class="not-available">12:00 - 13:00</td>    
+                                                                @else
+                                                                <td class="available">12:00 - 13:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_12 == '1')
-                                                            <td class="not-available">12:00 - 13:00</td>
+                                                                <td class="not-available">12:00 - 13:00</td>    
                                                             @else
                                                             @endif
                                                         </tr>
                                                         <tr>
                                                             @if('13' >= $open && '13' < $close && empty($bookingcheck->num_hour_13))
-                                                            <td class="available">13:00 - 14:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">13:00 - 14:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '13' < $now_time)
+                                                                <td class="not-available">13:00 - 14:00</td>
+                                                                @else
+                                                                <td class="available">13:00 - 14:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_13 == '1')
-                                                            <td class="not-available">13:00 - 14:00</td>
+                                                                <td class="not-available">13:00 - 14:00</td>
                                                             @else                                                                        @endif
                                                         </tr>
                                                         <tr>
                                                             @if('14' >= $open && '14' < $close && empty($bookingcheck->num_hour_14))
-                                                            <td class="available">14:00 - 15:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">14:00 - 15:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '14' < $now_time)
+                                                                <td class="not-available">14:00 - 15:00</td>
+                                                                @else
+                                                                <td class="available">14:00 - 15:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_14 == '1')
-                                                            <td class="not-available">14:00 - 15:00</td>
+                                                                <td class="not-available">14:00 - 15:00</td>
                                                             @else
                                                             @endif
                                                         </tr>
-                                                        <tr>                                                                       @if('15' >= $open && '15' < $close && empty($bookingcheck->num_hour_15))
-                                                            <td class="available">15:00 - 16:00</td>
+                                                        <tr>
+                                                            @if('15' >= $open && '15' < $close && empty($bookingcheck->num_hour_15))
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">15:00 - 16:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '15' < $now_time)
+                                                                <td class="not-available">15:00 - 16:00</td>
+                                                                @else
+                                                                <td class="available">15:00 - 16:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_15== '1')
-                                                            <td class="not-available">15:00 - 16:00</td>
+                                                                <td class="not-available">15:00 - 16:00</td>
                                                             @else                                                                        @endif
                                                         </tr>
                                                         <tr>
                                                             @if('16' >= $open && '16' < $close && empty($bookingcheck->num_hour_16))
-                                                            <td class="available">16:00 - 17:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">16:00 - 17:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '16' < $now_time)
+                                                                <td class="not-available">16:00 - 17:00</td>
+                                                                @else
+                                                                <td class="available">16:00 - 17:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_16== '1')
-                                                            <td class="not-available">16:00 - 17:00</td>
+                                                                <td class="not-available">16:00 - 17:00</td>
                                                             @else
                                                             @endif
                                                         </tr>
                                                         <tr>
                                                             
                                                             @if('17' >= $open && '17' < $close && empty($bookingcheck->num_hour_17))
-                                                            <td class="available">17:00 - 18:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">17:00 - 18:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '17' < $now_time)
+                                                                <td class="not-available">17:00 - 18:00</td>
+                                                                @else
+                                                                <td class="available">17:00 - 18:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_17 == '1')
-                                                            <td class="not-available">17:00 - 18:00</td>
+                                                                <td class="not-available">17:00 - 18:00</td>
                                                             @else
                                                             @endif
                                                         </tr>
                                                         <tr>
                                                             @if('18' >= $open && '18' < $close && empty($bookingcheck->num_hour_18))
-                                                            <td class="available">18:00 - 19:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">18:00 - 19:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '18' < $now_time)
+                                                                <td class="not-available">18:00 - 19:00</td>
+                                                                @else
+                                                                <td class="available">18:00 - 19:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_18 == '1')
-                                                            <td class="not-available">18:00 - 19:00</td>
+                                                                <td class="not-available">18:00 - 19:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('19' >= $open && '19' < $close && empty($bookingcheck->num_hour_19))
-                                                            <td class="available">19:00 - 20:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">19:00 - 20:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '19' < $now_time)
+                                                                <td class="not-available">19:00 - 20:00</td>
+                                                                @else
+                                                                <td class="available">19:00 - 20:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_19 == '1')
-                                                            <td class="not-available">19:00 - 20:00</td>
+                                                                <td class="not-available">19:00 - 20:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('20' >= $open && '20' < $close && empty($bookingcheck->num_hour_20))
-                                                            <td class="available">20:00 - 21:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">20:00 - 21:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '20' < $now_time)
+                                                                <td class="not-available">20:00 - 21:00</td>
+                                                                @else
+                                                                <td class="available">20:00 - 21:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_20 == '1')
-                                                            <td class="not-available">20:00 - 21:00</td>
+                                                                <td class="not-available">20:00 - 21:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('21' >= $open && '21' < $close && empty($bookingcheck->num_hour_21))
-                                                            <td class="available">21:00 - 22:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">21:00 - 22:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '21' < $now_time)
+                                                                <td class="not-available">21:00 - 22:00</td>
+                                                                @else
+                                                                <td class="available">21:00 - 22:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_21 == '1')
-                                                            <td class="not-available">21:00 - 22:00</td>
+                                                                <td class="not-available">21:00 - 22:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('22' >= $open && '22' < $close && empty($bookingcheck->num_hour_22))
-                                                            <td class="available">22:00 - 23:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">22:00 - 23:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '22' < $now_time)
+                                                                <td class="not-available">22:00 - 23:00</td>
+                                                                @else
+                                                                <td class="available">22:00 - 23:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_22== '1')
-                                                            <td class="not-available">22:00 - 23:00</td>
+                                                                <td class="not-available">22:00 - 23:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('23' >= $open && '23' < $close && empty($bookingcheck->num_hour_23))
-                                                            <td class="available">23:00 - 24:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">23:00 - 24:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '23' < $now_time)
+                                                                <td class="not-available">23:00 - 24:00</td>
+                                                                @else
+                                                                <td class="available">23:00 - 24:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_23== '1')
-                                                            <td class="not-available">23:00 - 24:00</td>
+                                                                <td class="not-available">23:00 - 24:00</td>
                                                             @else
                                                             @endif
                                                             
                                                         </tr>
                                                         <tr>
                                                             @if('24' >= $open && '24' < $close && empty($bookingcheck->num_hour_24))
-                                                            <td class="available">24:00 - 01:00</td>
+                                                                @if($date_flag == 'same_date' && $time_flag == 'less')
+                                                                <td class="available">24:00 - 01:00</td>
+                                                                @elseif($date_flag == 'same_date' && $time_flag == 'more' && '24' < $now_time)
+                                                                <td class="not-available">24:00 - 01:00</td>
+                                                                @else
+                                                                <td class="available">24:00 - 01:00</td>
+                                                                @endif
                                                             @elseif($bookingcheck->num_hour_24== '1')
-                                                            <td class="not-available">24:00 - 01:00</td>
+                                                                <td class="not-available">24:00 - 01:00</td>
                                                             @else
                                                             @endif
                                                             
@@ -282,8 +426,7 @@
                                                 <div class="form-group text-center">
                                                     <label>Jam Overtime<small> (opsional)</small></label>
                                                     <select class="form-control text-center" name="jam_tambahan" id="villages2">
-                                                      <option value="0" disable="true" selected="true">Pilih Jam Tambahan</option>
-                                                      <option value="0">Tidak ada</option>
+                                                      <option value="0" disable="true" selected="true">Tidak ada</option>
                                                     </select>
                                                 </div>
                                             </div>

@@ -75,7 +75,7 @@
           <div class="box-body">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">Unconfirmed <i class="glyphicon glyphicon-remove-circle"></i></a></li>
+                <li class="active"><a href="#revenue-chart" data-toggle="tab">Unreview <i class="glyphicon glyphicon-remove-circle"></i></a></li>
                 <li><a href="#sales-chart" data-toggle="tab">Confirmed <i class="glyphicon glyphicon-ok-circle"></i></a></li>
               </ul>
               <div class="tab-content no-padding">
@@ -84,156 +84,42 @@
                     <thead>
                     <tr>
                       <th>No</th>
-                      <th>User ID</th>
-                      <!-- <th>Paket ID</th> -->
-                      <th>Date</th>
-                      <th>Time</th>
+                      <th>Nama Partner</th>
+                      <th>Hp Partner</th>
+                      <th>Tanggal</th>
+                      <th>Waktu</th>
+                      <th>Nama Paket</th>
+                      <th>Tipe Paket</th>
                       <th>Total</th>
                       <th>Status</th>
-                      <th>Details</th>
-                      <th>Cancel</th>
-                      <th>Confirm</th>
+                      <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($booking as $key => $data)
+                    @foreach($booking_unapprove as $key => $data)
                     <tr>
                       <td>{{$key + 1}}</td>
-                      <td>{{$data->user_id}}</td>
+                      <td>{{$data->partner_name}}</td>
+                      <td>{{$data->phone_number}}</td>
                       <!-- <td>{{$data->package_id}}</td> -->
-                      <td>{{date('d F Y', strtotime($data->booking_at))}}</td>
-                      <td>{{date('H:m', strtotime($data->booking_at))}} WIB</td>
+                      <td>{{date('d F Y', strtotime($data->booking_start_date))}}</td>
+                      <td>{{date('H:i', strtotime($data->booking_start_date))}} - {{date('H:i', strtotime($data->booking_end_date))}} WIB</td>
+                      <td>{{$data->pkg_name_them}}</td>
+                      <td>{{$data->pkg_category_them}}</td>
                       <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'paid')
-                      <td><span class="label label-success">Transfered</span></td>
+                      @if($data->booking_status == 'un_approved')
+                      <td><span class="label label-danger">On Review</span></td>
                       @endif
-                      <td>
-
-                          <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-pemesan"><span style="color: white; text-decoration: none;">Show</span>
-                          </button>
-
-                            <div class="modal fade" id="show-pemesan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel"><strong>Detail Pesanan</strong>
-                                    <span class="pull-right"><button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button></span></h3>
-                                  </div>
-                                  <div class="modal-body">
-                                    <table class="table table-condensed table-bordered table-striped">
-                                      <tbody>
-                                        <tr>
-                                          <th>Nama Pemesan</th>
-                                          <td>{{$data->booking_user_name}}</td>
-                                        </tr>
-                                        <tr>
-                                          <th>No HP</th>
-                                          <td>{{$data->booking_user_nohp}}</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Email</th>
-                                          <td>{{$data->booking_user_email}}</td>
-                                        </tr>
-                                        <tr>
-                                          <th colspan="2"></th>
-                                        </tr>
-                                        <tr>
-                                          <th>Nama Studio</th>
-                                          <td>{{$data->partner_name}}</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Tipe Paket</th>
-                                          @if($data->pkg_category_them = 'Thematic_Set')
-                                          <td>Thematic Set</td>
-                                          @elseif($data->pkg_category_them = 'Special_Studio')
-                                          <td>Special Studio</td>
-                                          @elseif($data->pkg_category_them = 'Ala_Carte')
-                                          <td>>Room (Ala Carte)</td>
-                                          @endif
-                                        </tr>
-                                        <tr>
-                                          <th>Nama Paket</th>
-                                          <td>{{$data->pkg_name_them}}</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Tanggal Pesan</th>
-                                          <td>{{date('d F Y', strtotime($data->booking_start_date))}}</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Waktu Pesan</th>
-                                          <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Jumlah Tamu</th>
-                                          <td>{{$data->booking_capacities}} orang</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Status Pesanan</th>
-                                          @if($data->booking_status == 'paid')
-                                          <td><span class="label label-success">Transfered</span>&nbsp;<span class="label label-danger">Unconfirmed</span></td>
-                                          @endif
-                                        </tr>
-                                        <tr>
-                                          <th>Bukti Pembayaran</th>
-                                          <td>
-                                            <button type="submit" class="btn btn-primary btn-sm" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-bukti"><span style="color: white; text-decoration: none;">Show</span></button>
-                                            <div class="modal fade" id="show-bukti" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Bukti Pembayaran</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                      <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                    @if(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpg")))
-                                                    <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpg')  }}" alt= "Bukti Transfer" />
-                                                    @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".png")))
-                                                    <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.png')  }}" alt= "Bukti Transfer" /> 
-                                                    @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpeg")))
-                                                    <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpeg')  }}" alt= "Bukti Transfer" /> 
-                                                    @endif
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr style="background-color: #4b75a7; color: white;">
-                                          <th>Total</th>
-                                          <th>Rp {{$data->booking_total}}</th>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
-                                      <button type="submit" class="btn btn-success">Confirm</button>
-                                    </a>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                      </td>
                       <td>  
                         <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
                           </button>
                         </a>
-                      </td>  
-                      <td>  
-                        <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                        <a href="{{route('approve.booking', ['id' => $data->booking_id])}}">
+                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Approve</span>
                           </button>
                         </a>
-                      </td>
+                      </td> 
                     </tr>
                     @endforeach
                     </tbody>

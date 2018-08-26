@@ -17,13 +17,13 @@
                     
                     <div id="dashboard-tabs">
                     	<ul class="nav nav-tabs nav-justified">
-                            <li class="active"><a href="#dsh-profile" data-toggle="tab"><span><i class="fa fa-user"></i></span>Profil</a></li>
-                            <li><a href="#dsh-booking" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span>Pesanan</a></li>
+                            <li class="active"><a href="#dsh-booking" data-toggle="tab"><span><i class="fa fa-user"></i></span>Pesanan</a></li>
                             <li><a href="#dsh-wishlist" data-toggle="tab"><span><i class="fa fa-history"></i></span>Histori</a></li>
+                            <li><a href="#dsh-profile" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span>Profil</a></li>
                         </ul>
                     	
                         <div class="tab-content">                            
-                            <div id="dsh-profile" class="tab-pane fade in active">
+                            <div id="dsh-profile" class="tab-pane fade">
                             	<div class="dashboard-content user-profile">
                                     <h2 class="dash-content-title" style="color: #EA410C">PROFIL-KU</h2>
                                     <div class="panel panel-default ">
@@ -54,10 +54,57 @@
                                 </div>
                             </div>
                             
-                            <div id="dsh-booking" class="tab-pane fade">
+                            <div id="dsh-booking" class="tab-pane fade in active">
                             	<div class="dashboard-content booking-trips">
                                     <h2 class="dash-content-title" style="color: #EA410C">PESANANAN-KU</h2>
+                                    <div class="dashboard-listing booking-listing">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    @foreach($pesanan_unapprove as $listpesanan)
+                                                    <tr>
+                                                        <td class="dash-list-icon booking-list-date">
+                                                            <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                
+                                                            </ul>
+                                                            <ul class="list-unstyled booking-info">
+                                                                
 
+                                                            </ul>
+
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <br>
+                                                            <br>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+
+                                                            </ul>
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <div class="checkbox">
+                                                                <form role="form" action="{{ route('booking.info') }}" method="post" enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Belum disetujui</b></button>
+                                                                    <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr></tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
