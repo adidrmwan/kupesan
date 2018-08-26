@@ -2958,12 +2958,16 @@ p{
 
 /************ FULL PAGE FORMS ************/
 
-#full-page-form{
+.full-page-form-user{
 	background:linear-gradient(rgba(234, 65, 12,0.7), rgba(234, 65, 12,0.7)),url('../images/bg-login.jpg') 50% 40%;
 	background-size:cover;
 
 }
+.full-page-form-partner{
+	background:linear-gradient(rgba(234, 65, 12,0.7), rgba(234, 65, 12,0.7)),url('../images/bg-login-partner.jpg') 50% 40%;
+	background-size:cover;
 
+}
 .colored-border{
 	background: linear-gradient(to right,#000000 0%,#000000 5%,#EA410C 5%,#EA410C 10%,#000000 10%,#000000 15%,#EA410C 15%,#EA410C 20%,#000000 20%,#000000 25%,#EA410C 25%,#EA410C 30%,#000000 30%,#000000 35%,#EA410C 35%,#EA410C 40%,#000000 40%,#000000 45%,#EA410C 45%,#EA410C 50%,#000000 50%,#000000 55%,#EA410C 55%,#EA410C 60%,#000000 60%,#000000 65%,#EA410C 65%,#EA410C 70%,#000000 70%,#000000 75%,#EA410C 75%,#EA410C 80%,#000000 80%,#000000 85%,#EA410C 85%,#EA410C 90%,#000000 90%,#000000 95%,#EA410C 95%,#EA410C 100%);
 }
@@ -2994,7 +2998,6 @@ p{
 #full-page-form .custom-form input{
 	background:#f2f2f2;
 }
-
 /* -----------------------------------------------------
 		Popup Ad
    ----------------------------------------------------- */

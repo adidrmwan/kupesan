@@ -4,7 +4,7 @@
 @section('content')
 <section>
     <div class="colored-border"></div>
-    <div id="full-page-form">
+    <div id="full-page-form" class="full-page-form-partner">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -82,5 +82,5 @@
         </div>
     </div>
 </section>
-
+@include('layouts.footer')
 @endsection

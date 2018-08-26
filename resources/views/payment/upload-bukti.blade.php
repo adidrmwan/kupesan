@@ -85,12 +85,12 @@
                                     Pesan
                                 </a> 
                             </li>
-                            <li style="cursor: default;"> 
+                            <!-- <li style="cursor: default;"> 
                                 <a>
                                     <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
                                     Review
                                 </a> 
-                            </li>
+                            </li> -->
                             <li  style="cursor: default;"> 
                                 <a >
                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
@@ -109,7 +109,7 @@
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
                                             <strong class="fa-stack-1x"> 5 </strong>
                                     </span>
-                                    Kode Booking
+                                    Selesai
                                 </a> 
                             </li>                         
                             
@@ -136,13 +136,13 @@
                                         Pesan
                                     </a> 
                                 </li>
-                                <li class="active" style="cursor: default;"> 
+                                <!-- <li class="active" style="cursor: default;"> 
                                     <a class="black-payment">
                                         <span><i class="fa fa-check" aria-hidden="true"></i> 
                                         </span>
                                         Review
                                     </a> 
-                                </li>
+                                </li> -->
                                 <li  style="cursor: default;"> 
                                     <a class="black-payment">
                                         <span><i class="fa fa-check" aria-hidden="true"></i> 
@@ -164,7 +164,7 @@
                                             <span class="fa fa-circle-o fa-stack-2x"></span>
                                                 <strong class="fa-stack-1x"> 5 </strong>
                                         </span>
-                                        Kode Booking
+                                        Selesai
                                     </a> 
                                 </li>                    
                                 
