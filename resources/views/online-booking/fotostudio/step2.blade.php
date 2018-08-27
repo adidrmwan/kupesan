@@ -20,6 +20,20 @@
                                     <div class="col-sm-12 col-md-12  user-detail">
                                         <div class="row">
                                             <div class="row">
+                                                @if ($message = Session::get('warning'))
+                                                    <div class="alert alert-danger">                                                        {{ $message }} <b>Jam Operasional {{$partner->pr_name}}.</b>
+                                                    </div>
+                                                @elseif ($message = Session::get('not-available'))
+                                                    <div class="alert alert-danger">                                                        {{ $message }}
+                                                    </div>
+
+                                                @else
+                                                    <div class="alert alert-warning">
+                                                      Pemesanan hanya dapat dilakukan pada <b>Jam Operasional {{$partner->pr_name}}</b> dari Jam <b>{{$partner->open_hour}}:00 - {{$partner->close_hour}}:00 WIB</b>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Pilih Tanggal Pesan</label>

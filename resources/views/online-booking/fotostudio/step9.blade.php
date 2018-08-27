@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>kupesan.id | proses</title>
+        <title>kupesan.id | Selesai</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="dist/images/logo.png" type="image/x-icon">
@@ -33,32 +33,7 @@
             hr.style2 {
                 border-top: 1px double #8c8b8b;
             }
-            .btn-file {
-                position: relative;
-                overflow: hidden;
-                background-color: #EA410C;
-                color: white;
-            }
-            .btn-file input[type=file] {
-                position: absolute;
-                top: 0;
-                right: 0;
-                min-width: 100%;
-                min-height: 100%;
-                font-size: 100px;
-                text-align: right;
-                filter: alpha(opacity=0);
-                opacity: 0;
-                outline: none;
-                background: white;
-                cursor: inherit;
-                display: block;
-                color: white;
-            }
 
-            #img-upload{
-                width: 100%;
-            }
         </style>
     </head>
     
@@ -85,12 +60,6 @@
                                     Pesan
                                 </a> 
                             </li>
-                            <!-- <li style="cursor: default;"> 
-                                <a>
-                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
-                                    Review
-                                </a> 
-                            </li> -->
                             <li  style="cursor: default;"> 
                                 <a >
                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
@@ -107,7 +76,7 @@
                                 <a style="color:#EA410C">
                                     <span class="fa-stack"> 
                                         <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 5 </strong>
+                                            <strong class="fa-stack-1x"> 4 </strong>
                                     </span>
                                     Selesai
                                 </a> 
@@ -120,7 +89,7 @@
             </nav><!-- end navbar -->
         </div>
                
-        
+@foreach($review as $data)
         <!--===== INNERPAGE-WRAPPER ====-->
         <section class="innerpage-wrapper">
         	<div id="booking" class="innerpage-section-padding">
@@ -136,13 +105,6 @@
                                         Pesan
                                     </a> 
                                 </li>
-                                <!-- <li class="active" style="cursor: default;"> 
-                                    <a class="black-payment">
-                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
-                                        </span>
-                                        Review
-                                    </a> 
-                                </li> -->
                                 <li  style="cursor: default;"> 
                                     <a class="black-payment">
                                         <span><i class="fa fa-check" aria-hidden="true"></i> 
@@ -162,7 +124,7 @@
                                     <a class="orange-payment">
                                         <span class="fa-stack"> 
                                             <span class="fa fa-circle-o fa-stack-2x"></span>
-                                                <strong class="fa-stack-1x"> 5 </strong>
+                                                <strong class="fa-stack-1x"> 4 </strong>
                                         </span>
                                         Selesai
                                     </a> 
@@ -172,80 +134,96 @@
                             </ul>
                         </div><!-- end navbar collapse -->
 
-                            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
-                            	<div class="dashboard-content user-profile">
-                                        <h2 class="dash-content-title">Proses</h2>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading"><h4>Upload Bukti</h4></div>
-                                            <div class="panel-body">
-                                                <div class="row"> 
-                                                    <form role="form" action="{{ route('upload.bukti') }}" method="post" enctype="multipart/form-data">
-                                                    {{ csrf_field() }}                                                   
-                                                        <div class="col-sm-12 col-md-12  user-detail">
-                                                            <h4><b>Silahkan Mengupload Bukti Transfer</b></h4>
-                                                            <hr class="style5">
-                                                            <div class="form-group">
-                                                                <label>Upload Image</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-btn">
-                                                                        <span class="btn btn-default btn-file" style="color: white;">
-                                                                        Browse... <input type="file" id="imgInp" name="bukti_pembayaran" required="">
-                                                                        </span>
-                                                                    </span>
-                                                                    <input type="text" class="form-control" name="bukti_pembayaran" readonly>
-                                                                </div>
-                                                                <img id='img-upload'/>
-                                                            </div>
-                                                            <div>
-                                                                <button type="submit" class="btn btn-orange" style="color: white; max-width: 40%; float: none;display: block;position: relative;margin: 0 auto;">Upload</button>
-                                                            </div>
-                                                            <input type="text" name="bid" value="{{$bid}}" hidden="">
-                                                        </div><!-- end columns -->
-                                                    </form>
-                                                </div><!-- end row -->
-                                                
-                                            </div><!-- end panel-body -->
-                                        </div><!-- end panel-detault -->
+                            <section class="innerpage-wrapper">
+                                <div id="thank-you" class="section-padding">
+                                    <div class="container">
+                                        <div class="row">
 
-                                        <div class="panel panel-default" style="margin-top: 35px;">
-                                            <div class="panel-heading"><h4>Informasi Kode Booking</h4></div>
-                                            <div class="panel-body">
-                                                <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
+                                                <div class="space-right">
+                                                    <div class="thank-you-note">
+                                                       @if($data->booking_status == 'paid')
+                                                       <h3>Pemesananmu belum dikonfirmasi.</h3>
+                                                       @elseif($data->booking_status == 'confirmed')
+                                                       <h3>Pemesananmu sudah dikonfirmasi.</h3>
+                                                       @endif
+                                                       <p>Terima kasih telah melakukan pemesanan melalui KUPESAN.ID,<br>Mohon menunggu Kode Booking anda selama kurang lebih 30 menit dan akan dikirimkan ke-email dan nomor handphone yang terdaftar. Terima Kasih.</p>
+                                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                                                        <a href="{{route('index')}}">
+                                                            <button type="submit" class="btn btn-orange pull-left" style="float: right;">Selesai</button>
+                                                        </a>
+                                                        </div> 
+                                                   </div><!-- end thank-you-note -->
+                                                                              
+                                                   
+                                                </div><!-- end space-right -->
+                                            </div><!-- end columns --> 
+                                        </div><!-- end row -->
+                                    </div><!-- end container -->
+                                </div><!-- end thank-you --> 
+                            </section><!-- end innerpage-wrapper -->
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
+                                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10" style="margin: 0 auto; float: none; display: block; position: relative;">
+                                	<div class="dashboard-content user-profile" > 
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="t-info-heading"><span><i class="fa fa-info-circle"></i></span>Informasi</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row"> 
+                                                        <div class="traveler-info">
+                                                            
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <tbody>
+                                                                        <!-- <tr>
+                                                                            <td>Kode pesanan:</td>
+                                                                            <td></td>
+                                                                        </tr> -->
+                                                                        <tr>
+                                                                            <td>Nama Studio:</td>
+                                                                            <td>{{$data->partner_name}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Nama pemesan:</td>
+                                                                            <td>{{$data->booking_user_name}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Tanggal pesan:</td>
+                                                                            <td>{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Waktu:</td>
+                                                                            <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Nama Paket:</td>
+                                                                            <td>{{$data->pkg_name_them}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Tipe Paket</td>
+                                                                            <td>{{$data->pkg_category_them}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div><!-- end table-responsive -->
+                                                       </div><!-- end traveler-info -->
+                                                    </div><!-- end row -->
                                                     
-                                                    <div class="col-sm-12 col-md-12  user-detail">
-                                                        <p> Kode Booking akan terbit kurang lebih 30 menit setelah anda melakukan upload bukti transfer.</p>
-                                                    </div><!-- end columns -->
-                                                    
-                                                </div><!-- end row -->
-                                                
-                                            </div><!-- end panel-body -->
-                                        </div><!-- end panel-detault -->
-                                    </div><!-- end columns -->
-                            </div>						
-                            
-                            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 side-bar right-side-bar">
-                            
-                            </div>
-                            <!-- <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 content-side">
-                                <form class="lg-booking-form">
-                                    <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
-                                        <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                                    </div>
-                                    <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
-                                        <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
-                                    </div>
-                                </form>
-                            </div> -->
-                                
+                                                </div><!-- end panel-body -->
+                                            </div><!-- end panel-detault -->
+                                        </div><!-- end columns -->
+                                </div>
+                            </div>						                                
                     </div><!-- end row -->
                 </div><!-- end container -->         
             </div><!-- end flight-booking -->
         </section><!-- end innerpage-wrapper -->
         
+@endforeach
+        <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
         
-<section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
-        
-    <div id="footer-top" class="banner-padding ftr-top-grey ftr-text-white">
+            <div id="footer-top" class="banner-padding ftr-top-grey ftr-text-white">
         <div class="container">
             <div class="row">
                 
@@ -303,7 +281,8 @@
         </div><!-- end container -->
     </div><!-- end footer-bottom -->
     
-</section><!-- end footer -->
+            
+        </section><!-- end footer -->
 
         
         <!-- Page Scripts Starts -->
@@ -313,44 +292,7 @@
         <script src="{{URL::asset('dist/js/bootstrap-datepicker.js')}} "></script>
         <script src="{{URL::asset('dist/js/custom-navigation.js')}} "></script>
         <script src="{{URL::asset('dist/js/custom-date-picker.js')}} "></script>
-        <script type="text/javascript">
         
-        $(document).ready( function() {
-        $(document).on('change', '.btn-file :file', function() {
-        var input = $(this),
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        input.trigger('fileselect', [label]);
-        });
-
-        $('.btn-file :file').on('fileselect', function(event, label) {
-            
-            var input = $(this).parents('.input-group').find(':text'),
-                log = label;
-            
-            if( input.length ) {
-                input.val(log);
-            } else {
-                if( log ) alert(log);
-            }
-        
-        });
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function (e) {
-                    $('#img-upload').attr('src', e.target.result);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#imgInp").change(function(){
-            readURL(this);
-        });     
-    });
-        </script>
         <!-- Page Scripts Ends -->
     </body>
 </html>

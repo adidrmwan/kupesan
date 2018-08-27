@@ -57,6 +57,7 @@
                             <div id="dsh-booking" class="tab-pane fade in active">
                             	<div class="dashboard-content booking-trips">
                                     <h2 class="dash-content-title" style="color: #EA410C">PESANANAN-KU</h2>
+                                    <h3><span class="label label-warning">SEDANG DIPROSES</span></h3>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -92,7 +93,7 @@
                                                             <div class="checkbox">
                                                                 <form role="form" action="{{ route('booking.info') }}" method="post" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Belum disetujui</b></button>
+                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
                                                                     <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
                                                                 </form>
                                                             </div>
@@ -105,6 +106,58 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <br>
+
+                                    <h3><span class="label label-warning">PESANAN TERSEDIA</span></h3>
+                                    <div class="dashboard-listing booking-listing">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    @foreach($pesanan_approved as $listpesanan)
+                                                    <tr>
+                                                        <td class="dash-list-icon booking-list-date">
+                                                            <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                
+                                                            </ul>
+                                                            <ul class="list-unstyled booking-info">
+                                                                
+
+                                                            </ul>
+
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <br>
+                                                            <br>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+
+                                                            </ul>
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <div class="checkbox">
+                                                                <a href="{{ route('form.step6', ['bid' => $listpesanan->booking_id]) }}">
+                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
+                                                                </a>    
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr></tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <h3><span class="label label-warning">MENUNGGU PEMBAYARAN</span></h3>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -115,27 +168,31 @@
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3>{{$listpesanan->partner_name}}<span><h4></h4></span></h3>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li>Kode Booking :<span class="pull-right">{{$listpesanan->kode_booking}}</span></li>
-                                                                <li>Nama Pemesan :<span class="pull-right">{{$listpesanan->booking_user_name}}</span></li>
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                
                                                             </ul>
+                                                            <ul class="list-unstyled booking-info">
+                                                                
+
+                                                            </ul>
+
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <br>
+                                                            <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li><span>Detail Pemesanan</span></li>
-                                                                <li>Jam Pesan :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                <li>Tamu :<span class="pull-right">{{$listpesanan->booking_capacities}} Orang</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{$listpesanan->booking_total}}</span></li>
+                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+
                                                             </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
-                                                                <form role="form" action="{{ route('form.konfirmasi') }}" method="post" enctype="multipart/form-data">
+                                                                <form role="form" action="{{ route('form.step7') }}" method="post" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Konfirmasi Pembayaran</b></button>
+                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Bayar</b></button>
                                                                     <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
                                                                 </form>
                                                             </div>
@@ -148,6 +205,9 @@
                                             </table>
                                         </div>
                                     </div>
+
+                                    <br>
+                                    <h3><span class="label label-warning">MENUNGGU KONFIRMASI</span></h3>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -160,26 +220,30 @@
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3>{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li>Kode Booking :<span class="pull-right">{{$listpesanan->kode_booking}}</span></li>
-                                                                <li>Nama Pemesan :<span class="pull-right">{{$listpesanan->booking_user_name}}</span></li>
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                
                                                             </ul>
+                                                            <ul class="list-unstyled booking-info">
+                                                                
+
+                                                            </ul>
+
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <br>
+                                                            <br>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li><span>Detail Pemesanan</span></li>
-                                                                <li>Jam Pesan :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                <li>Tamu :<span class="pull-right">{{$listpesanan->booking_capacities}} Orang</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{$listpesanan->booking_total}}</span></li>
+                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+
                                                             </ul>
                                                         </td>
-                                                        <td></td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
-                                                                <form role="form" action="{{ route('upload.bukti') }}" method="post" enctype="multipart/form-data">
+                                                                <form role="form" action="{{ route('voucher') }}" method="post" enctype="multipart/form-data">
                                                                 {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-warning" style="float: right; color: white;"><b>Tunggu Konfirmasi</b></button>
+                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
                                                                     <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
                                                                 </form>
                                                             </div>
@@ -192,6 +256,10 @@
                                             </table>
                                         </div>
                                     </div>
+
+
+                                    <br>
+                                    <h3><span class="label label-success">PESANAN BERHASIL</span></h3>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -204,26 +272,28 @@
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3>{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li>Kode Booking :<span class="pull-right">{{$listpesanan->kode_booking}}</span></li>
-                                                                <li>Nama Pemesan :<span class="pull-right">{{$listpesanan->booking_user_name}}</span></li>
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                
                                                             </ul>
+                                                            <ul class="list-unstyled booking-info">
+                                                                
+
+                                                            </ul>
+
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <br>
+                                                            <br>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li><span>Detail Pemesanan</span></li>
-                                                                <li>Jam Pesan :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                <li>Tamu :<span class="pull-right">{{$listpesanan->booking_capacities}} Orang</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{$listpesanan->booking_total}}</span></li>
+                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+
                                                             </ul>
                                                         </td>
-                                                        <td></td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
-                                                                <a><button class="btn btn-success" style="float: right; color: white;"><b>Pembayaran Berhasil</b></button>
-                                                                </a>
-                                                                    
+                                                                <a class="btn btn-orange" style="float: right; color: white;">Kode Booking: {{$listpesanan->kode_booking}}</a>
                                                             </div>
                                                         </td>
                                                         <td></td>
@@ -234,7 +304,6 @@
                                             </table>
                                         </div>
                                     </div>
-
                                 </div><!-- end dashboard-content -->
                             </div><!-- end dsh-booking -->
                             <div id="dsh-wishlist" class="tab-pane fade">

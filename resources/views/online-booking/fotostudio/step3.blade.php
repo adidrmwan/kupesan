@@ -463,7 +463,7 @@
                         <input type="text" name="pid" value="{{$pid}}" hidden="">
                         <input type="text" name="booking_date" value="{{$booking_date}}" hidden="">
                         <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
-                            <button type="submit" class="btn btn-orange" style="float: right;">Cek Ketersediaan</button>
+                            <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                         </div>
                     </div> 
                 </div>

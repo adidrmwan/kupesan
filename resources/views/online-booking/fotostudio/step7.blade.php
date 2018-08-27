@@ -106,33 +106,27 @@
                                     Pesan
                                 </a> 
                             </li>
-                            <!-- <li style="cursor: default;"> 
-                                <a>
-                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
-                                    Review
+                            <li  style="cursor: default;"> 
+                                <a style="color:#EA410C">
+                                    <span class="fa-stack"> 
+                                        <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x"> 2 </strong>
+                                    </span>
+                                    Bayar
                                 </a> 
-                            </li> -->
+                            </li>                         
+                            </li>
                             <li  style="cursor: default;"> 
                                 <a >
                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
-                                    Bayar
+                                    Proses
                                 </a> 
                             </li>
                             <li  style="cursor: default;"> 
                                <a >
                                    <span class="fa-stack"><i class="fa fa-check" aria-hidden="true" style="margin-left: 13px;"></i></span>
-                                    Proses
-                                </a>
-                            </li>
-                            <li  style="cursor: default;"> 
-                                <a style="color:#EA410C">
-                                    <span class="fa-stack"> 
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x"> 5 </strong>
-                                    </span>
                                     Selesai
-                                </a> 
-                            </li>                         
+                                </a>
                             
                             <li></li>
                         </ul>
@@ -157,18 +151,21 @@
                                         Pesan
                                     </a> 
                                 </li>
-                                <!-- <li class="active" style="cursor: default;"> 
-                                    <a class="black-payment">
-                                        <span><i class="fa fa-check" aria-hidden="true"></i> 
+                                <li  style="cursor: default;"> 
+                                    <a class="orange-payment">
+                                        <span class="fa-stack"> 
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x"> 2 </strong>
                                         </span>
-                                        Review
+                                        Bayar
                                     </a> 
-                                </li> -->
+                                </li>                    
+                                
                                 <li  style="cursor: default;"> 
                                     <a class="black-payment">
                                         <span><i class="fa fa-check" aria-hidden="true"></i> 
                                         </span>
-                                        Bayar
+                                        Proses
                                     </a>  
                                 </li>
 
@@ -176,19 +173,9 @@
                                     <a class="black-payment">
                                         <span><i class="fa fa-check" aria-hidden="true"></i> 
                                         </span>
-                                        Proses
-                                    </a> 
-                                </li>
-                                <li  style="cursor: default;"> 
-                                    <a class="orange-payment">
-                                        <span class="fa-stack"> 
-                                            <span class="fa fa-circle-o fa-stack-2x"></span>
-                                                <strong class="fa-stack-1x"> 5 </strong>
-                                        </span>
                                         Selesai
                                     </a> 
-                                </li>                    
-                                
+                                </li>
                                 <li></li>
                             </ul>
                         </div><!-- end navbar collapse -->
@@ -256,48 +243,6 @@
                                             </div><!-- end panel-body -->
                                         </div><!-- end panel-detault -->
                             @foreach($review as $data)
-                            <div class="panel panel-default" style="margin-top: 35px;">
-                                <div class="panel-heading"><h4>Detail Pemesanan</h4></div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        
-                                        <div class="col-sm-12 col-md-12  user-detail">
-                                            <h3><b>{{$data->partner_name}}</b></h3>
-                                            <hr class="style5">
-                                            <ul class="list-unstyled" >
-                                                <li>@if($data->pkg_category_them = 'Thematic_Set')
-                                                    <span>{{$data->pkg_name_them}} - Thematic Set</span>
-                                                @elseif($data->pkg_category_them = 'Special_Studio')
-                                                    <span>{{$data->pkg_name_them}} - Special Studio</span>
-                                                @elseif($data->pkg_category_them = 'Ala_Carte')
-                                                    <span>{{$data->pkg_name_them}} - Room (Ala Carte)</span>
-                                                @endif
-                                                </li>
-                                                <li>
-                                                    <span>- Package Price :</span>
-                                                    <span style="float: right; ">Rp. {{$data->total_normal}}</span>
-                                                </li>
-                                                @if(!empty($data->booking_overtime))
-                                                <li>
-                                                    <span>- Overtime Price :</span>
-                                                    <span style="float: right; ">Rp. {{$data->total_overtime}}</span>
-                                                </li>
-                                                @endif
-                                            </ul>
-                                            <hr class="style5">
-
-                                            <ul class="list-unstyled" >
-                                                <li>
-                                                    <span>TOTAL</span>
-                                                    <span style="float: right; ">Rp. {{$data->booking_total}}</span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end columns -->
-                                        
-                                    </div><!-- end row -->
-                                    <input type="text" name="xxx" value="{{$data->total}}" hidden="">
-                                </div><!-- end panel-body -->
-                            </div>
                             
                                     </div><!-- end columns -->
                             </div>						

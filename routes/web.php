@@ -46,7 +46,10 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
 	Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/kupesan', 'SearchController@home')->name('admin.kupesan');
     Route::get('/approve/booking', 'AdminController@approveBooking')->name('approve.booking');
+    Route::get('/cancel/booking', 'AdminController@cancelBooking')->name('cancel.booking');
     Route::get('/confirm/bukti', 'AdminController@confirmBukti')->name('confirm.bukti');
+    Route::get('/cancel/bukti', 'AdminController@cancelBukti')->name('cancel.bukti');
+    Route::get('/show/bukti', 'AdminController@showBukti')->name('show.bukti');
     Route::get('/partner-list', 'AdminController@partnerList')->name('daftar.partner');
     Route::get('/confirm/partner', 'AdminController@confirmPartner')->name('confirm.partner');
     Route::get('/show/partner', 'AdminController@showPartner')->name('show.partner');
@@ -55,23 +58,26 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
 
 // Route untuk user yang member
 Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function(){
-	Route::get('/', function(){
-		return redirect()->intended(route('home'));
-	})->name('user.dashboard');
+    Route::get('/', function(){
+        return redirect()->intended(route('home'));
+    })->name('user.dashboard');
 
-    Route::get('/booking/0', 'BookingController@step2')->name('check.auth');
-    Route::post('/booking/1', 'BookingController@step3')->name('form.pesan2');
-    Route::post('/booking/2', 'BookingController@step4')->name('form.pesan');
-    Route::post('/booking/3', 'BookingController@showReview')->name('form.booking');
-    Route::post('/booking/4', 'BookingController@showBayar')->name('form.bayar');
-    Route::post('/booking/5', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
-    Route::post('/booking/6', 'BookingController@uploadBukti')->name('upload.bukti');
-    Route::get('/voucher', 'BookingController@voucher')->name('voucher');
-    Route::get('/profil-Ku', 'CustomerController@dashboard')->name('dashboard');
+    Route::get('/booking/ps/2', 'BookingController@step2')->name('check.auth');
+    Route::post('/booking/ps/3', 'BookingController@step3')->name('form.pesan2');
+    Route::post('/booking/ps/4', 'BookingController@step4')->name('form.pesan');
+    Route::post('/booking/ps/5', 'BookingController@step5')->name('form.step5');
+    Route::get('/booking/ps/6', 'BookingController@step6')->name('form.step6');
+    Route::post('/booking/ps/7', 'BookingController@step7')->name('form.step7');
+    Route::post('/booking/ps/8', 'BookingController@showKonfirmasi')->name('form.konfirmasi');   
+    Route::post('/booking/ps/9', 'BookingController@uploadBukti')->name('upload.bukti');
+    Route::get('/booking/ps/9', 'BookingController@voucher')->name('voucher');
+    
+    Route::post('/booking/7', 'BookingController@showReview')->name('form.booking');
+    Route::get('/profilKu', 'CustomerController@dashboard')->name('dashboard');
     Route::post('/booking/info/', 'CustomerController@showInfo')->name('booking.info'); 
 });
 
-    Route::get('/booking/00', 'BookingController@step1')->name('ask.page');
+    Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');
 
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
@@ -178,7 +184,6 @@ Route::get('/bayar', 'BookingController@bayar')->name('bayar');
 Route::get('/proses', 'BookingController@proses')->name('proses');
 
 
-Route::get('/dashboard', 'CustomerController@dashboard')->name('dashboard');
 Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');
 Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
 Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashboardadmin');

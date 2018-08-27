@@ -33,6 +33,12 @@ class CustomerController extends Controller
                     ->where('booking.booking_status', '=', 'un_approved')
                     ->get();
 
+        $pesanan_approved = Booking::where('booking.user_id', $user_id)
+                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
+                    ->where('booking.booking_status', '=', 'approved')
+                    ->get();
+
         $pesanan_paid = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
@@ -51,7 +57,7 @@ class CustomerController extends Controller
                     ->where('booking.booking_status', '=', 'done')
                     ->get();
         // dd($pesanan);
-        return view('user.dashboard', ['user' => $user, 'pesanan' => $pesanan, 'pesanan_paid' => $pesanan_paid, 'pesanan_confirmed' => $pesanan_confirmed, 'riwayat' => $riwayat], compact('pesanan_unapprove'));
+        return view('user.dashboard', ['user' => $user, 'pesanan' => $pesanan, 'pesanan_paid' => $pesanan_paid, 'pesanan_confirmed' => $pesanan_confirmed, 'riwayat' => $riwayat], compact('pesanan_unapprove', 'pesanan_approved'));
     }
 
     public function showInfo(Request $request) {
@@ -67,7 +73,7 @@ class CustomerController extends Controller
         $kecamatan = Districts::where('id', $partner->pr_kec)->first();
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
 
-        return view('online-booking.fotostudio.step4', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('package', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
+        return view('online-booking.fotostudio.step5', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('package', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
  
     }
 

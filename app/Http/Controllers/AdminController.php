@@ -14,6 +14,7 @@ use App\Provinces;
 use App\Regencies;
 use App\Districts;
 use App\Villages;
+use App\BookingCheck;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -26,13 +27,15 @@ class AdminController extends Controller
                             ->select('ps_package.*','partner.*','booking.*', 'users.phone_number', 'users.email')
                             ->get();
                             // dd($booking_unreview);
+        $booking_unconfirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'paid')->get();
+
         $booking_confirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'confirmed')->get();
         $total_partner = Partner::count();
         $total_user = User::join('role_user', 'role_user.user_id', '=', 'users.id')->where('role_user.role_id', '=', '2')->count();
         $total_booking_paid = Booking::where('booking_status', 'paid')->count();
         $total_booking_confirmed = Booking::where('booking_status', 'confirmed')->count();
         $total_booking = Booking::count();
-        return view('superadmin.dashboard', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove'));
+        return view('superadmin.dashboard', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed'));
     }
 
     public function approveBooking(Request $request)
@@ -51,9 +54,7 @@ class AdminController extends Controller
           $message->to($user['email']);
           $message->subject('Kupesan.id - Booking Approved');
         });
-        
-        $kode_booking = str_random(7);
-        $booking->kode_booking = $kode_booking;
+
         $booking->booking_status = 'approved';
         $booking->save();
 
@@ -65,33 +66,37 @@ class AdminController extends Controller
       if(!is_null($check)){
         $user = User::find($check->id_user);
         $bid = $check->booking_id;
-        $booking = Booking::where('booking_id', $bid)->first();
-        $id = PSPkg::where('id', $booking->package_id)->first();
-        $package = PSPkg::where('id', $booking->package_id)->get();
-        $partner = Partner::where('user_id', $id->user_id)->first();
-        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
-        $kota = Regencies::where('id', $partner->pr_kota)->first();
-        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
-        $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
 
         if ($user->is_activated == 1){
-          $review = Booking::where('booking_id', $bid)
-                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
-                    ->get();
-        return view('online-booking.fotostudio.step5', ['bid' => $bid, 'review' => $review], compact('package', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
+
+            return redirect()->route('form.step6', ['bid' => $bid]);
         }
+
         $user->update(['is_activated' => 1]);
 
-        $review = Booking::where('booking_id', $bid)
-                    ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
-                    ->get();
-        return view('online-booking.fotostudio.step5', ['bid' => $bid, 'review' => $review], compact('package', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
+        return redirect()->route('form.step6', ['bid' => $bid]);
       }
-      return redirect()->to('login')->with('Warning',"Your token is invalid");
+      return redirect()->to('home')->with('Warning',"Your token is invalid");
     }
 
+    public function cancelBooking(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->first();
+        $book = Booking::where('booking_id', $booking_id)->select('booking_id')->first()->toArray();
+        $user = User::where('id', $booking->user_id)->first()->toArray();
+        
+        Mail::send('emails.booking-cancel', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id - Booking Tidak Tersedia');
+        });
+        
+        $booking->booking_status = 'canceled';
+        $booking->save();
+
+        return redirect()->back();
+    }
 
     public function confirmBukti(Request $request)
     {
@@ -104,6 +109,63 @@ class AdminController extends Controller
         $booking->save();
 
         return redirect()->back();
+    }
+
+    public function cancelBukti(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->first();
+        $booking->booking_status = 'paid_unvalid';
+        $bid = $booking_id;
+
+        $range_jam2 = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
+
+        foreach ($range_jam2 as $value) {
+            $b_date = $value->b_date;
+            $booking_start_date = date('Y-m-d', strtotime("$b_date"));
+            $bookingcheck = BookingCheck::where('package_id', $value->p_id)->where('booking_date', $booking_start_date)->first();
+            if(!empty($bookingcheck)) {
+                if ($value->num_hour == '1') { $bookingcheck->num_hour_1 = null;}
+                if ($value->num_hour == '2') { $bookingcheck->num_hour_2 = null;}
+                if ($value->num_hour == '3') { $bookingcheck->num_hour_3 = null;}
+                if ($value->num_hour == '4') { $bookingcheck->num_hour_4 = null;}
+                if ($value->num_hour == '5') { $bookingcheck->num_hour_5 = null;}
+                if ($value->num_hour == '6') { $bookingcheck->num_hour_6 = null;}
+                if ($value->num_hour == '7') { $bookingcheck->num_hour_7 = null;}
+                if ($value->num_hour == '8') { $bookingcheck->num_hour_8 = null;}
+                if ($value->num_hour == '9') { $bookingcheck->num_hour_9 = null;}
+                if ($value->num_hour == '10') { $bookingcheck->num_hour_10 = null;}    
+                if ($value->num_hour == '11') { $bookingcheck->num_hour_11 = null;}
+                if ($value->num_hour == '12') { $bookingcheck->num_hour_12 = null;}
+                if ($value->num_hour == '13') { $bookingcheck->num_hour_13 = null;}
+                if ($value->num_hour == '14') { $bookingcheck->num_hour_14 = null;}
+                if ($value->num_hour == '15') { $bookingcheck->num_hour_15 = null;}
+                if ($value->num_hour == '16') { $bookingcheck->num_hour_16 = null;}
+                if ($value->num_hour == '17') { $bookingcheck->num_hour_17 = null;}
+                if ($value->num_hour == '18') { $bookingcheck->num_hour_18 = null;}
+                if ($value->num_hour == '19') { $bookingcheck->num_hour_19 = null;}
+                if ($value->num_hour == '20') { $bookingcheck->num_hour_20 = null;}    
+                if ($value->num_hour == '21') { $bookingcheck->num_hour_21 = null;}
+                if ($value->num_hour == '22') { $bookingcheck->num_hour_22 = null;}
+                if ($value->num_hour == '23') { $bookingcheck->num_hour_23 = null;}
+                if ($value->num_hour == '24') { $bookingcheck->num_hour_24 = null;} 
+                $bookingcheck->save();
+            }
+        }
+
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function showBukti(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->get();
+
+        return view('superadmin.booking.show-bukti', compact('booking'));
     }
 
     public function partnerList()
@@ -159,6 +221,14 @@ class AdminController extends Controller
     {
         // dd($request);
         $partner_id = $request->id;
+        
+        $user = User::where('id', $partner_id)->first()->toArray();
+
+        Mail::send('emails.cancel-partner', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan - Partner Cancellation Account');
+        });
+
         $partner = Partner::where('user_id', $partner_id)->first();
         $partner->status = '2';
         $partner->save();

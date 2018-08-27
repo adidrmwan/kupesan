@@ -4,55 +4,106 @@
 @include('online-booking.fotostudio.cover-partner')   
 <!--===== INNERPAGE-WRAPPER ====-->
 <section class="innerpage-wrapper">
-	<div id="booking" class="innerpage-section-padding">
+    <div id="booking" class="innerpage-section-padding">
         <div class="container">
             <div class="row">
                 @include('online-booking.fotostudio.package-info')
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">        
+                    @foreach($review as $data)
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Pesanan-KU</h4></div>
                         <div class="panel-body">
                             <div class="row">
+                                
                                 <div class="col-sm-12 col-md-12  user-detail">
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <h4>Dear <b class="text-uppercase">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b>,
-                                        <br>
-                                        <br>
-                                        <b style="color: #EA410C;">KUPESAN.ID</b> sedang mengecek ketersediaan jadwal pada <b>{{$partner->pr_name}}</b>. 
-                                        <br>
-                                        Kami akan mengirimkan e-mail untuk memberitahukan status pesanan Anda maksimal 6 jam dari sekarang. 
-                                        <br>
-                                        <br>
-                                        Anda juda dapat melihat status pesanan Anda <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>
-                                        <br>
-                                        <br>
-                                        Terima Kasih. </h4>
-                                      </div>
-                                    </div>
-                                        
-                                                 
+                                    <h5><b>Detail Pesanan</b></h5>
+                                    <ul class="list-unstyled" >
+                                        <li></li>
+                                        <li>
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td >Tanggal</td>
+                                                        <td>{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jadwal Pesanan</td>
+                                                        <td>
+                                                            {{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB 
+                                                            <br>
+                                                            Durasi {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB) 
+                                                            <br>
+                                                            @if(!empty($data->booking_overtime))
+                                                            Overtime {{$data->booking_overtime}} Jam
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tipe Paket</td>
+                                                        <td>{{$data->pkg_category_them}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </li>         
+                                    </ul>
+                                    <hr class="style5">
+                                    <h5><b>Detail Harga</b></h5>
+                                    <ul class="list-unstyled" >
+                                        <li></li>
+                                        <li>
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td >Harga Paket</td>
+                                                        <td>{{$data->booking_end_time - $data->booking_start_time}} Jam 
+                                                            <b>x</b>
+                                                            Rp {{number_format($data->booking_normal_price, 0, ',', '.')}}
+                                                        </td>
+                                                        <td style="text-align: : right; ">Rp {{number_format($data->total_normal, 0, ',', '.')}}</td>
+                                                    </tr>
+                                                    @if(!empty($data->booking_overtime))
+                                                    <tr>
+                                                        <td>Overtime</td>
+                                                        <td>{{$data->booking_overtime}} Jam 
+                                                            <b>x</b>
+                                                            Rp {{number_format($data->booking_overtime_price, 0, ',', '.')}}
+                                                        </td>
+                                                        <td style="text-align: : right; ">Rp {{number_format($data->total_overtime, 0, ',', '.')}}</td>
+                                                    </tr>
+                                                    @endif
+                                                    <tr>
+                                                        <td><b>TOTAL</b></td>
+                                                        <td></td>
+                                                        <td>Rp {{number_format($data->booking_total, 0, ',', '.')}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </li>      
+                                    </ul>
                                 </div><!-- end columns -->
                                 
                             </div><!-- end row -->
-                            
+                            <input type="text" name="xxx" value="{{$data->total}}" hidden="">
                         </div><!-- end panel-body -->
-                    </div><!-- end panel-detault -->
+                    </div>
+                    @endforeach
 
                     <div class="lg-booking-form">
-                        <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
-
+                        <div class="checkbox col-xs-12 col-sm-12 col-md-8 col-lg-8"  >
+                            <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
                         </div>
-                        <div class=" col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
-                            <a href="{{route('index')}}">
-                                <button class="btn btn-orange" style="float: right;"><span style="color: white; text-decoration: none;">Kembali</span>
-                                </button>
-                            </a>
+                        <div class="checkbox col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
+                            <form role="form" action="{{ route('form.step5') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                            {{ csrf_field() }}
+                                <input type="text" name="bid" value="{{$bid}}" hidden="">
+                                <button type="submit" class="btn btn-orange" style="float: right;">Cek Ketersediaan</button>
+                            </form>
                         </div>
                     </div> 
                 </div>
-        </div><!-- end container -->         
-    </div><!-- end flight-booking -->
+            </div><!-- end container -->         
+        </div><!-- end flight-booking -->
+    </div>
 </section>
 
 @include('layouts.footer')

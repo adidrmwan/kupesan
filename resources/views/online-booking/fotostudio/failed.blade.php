@@ -1,13 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Booking')
 @section('content')
-@include('online-booking.fotostudio.cover-partner')   
 <!--===== INNERPAGE-WRAPPER ====-->
 <section class="innerpage-wrapper">
-	<div id="booking" class="innerpage-section-padding">
+    <div id="booking" class="innerpage-section-padding">
         <div class="container">
             <div class="row">
-                @include('online-booking.fotostudio.package-info')
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Pesanan-KU</h4></div>
@@ -19,17 +17,11 @@
                                         <h4>Dear <b class="text-capitalize">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b>,
                                         <br>
                                         <br>
-                                        <b style="color: #EA410C;">KUPESAN.ID</b> sedang mengecek ketersediaan jadwal pada <b>{{$partner->pr_name}}</b>. 
-                                        <br>
-                                        Kami akan mengirimkan e-mail untuk memberitahukan status pesanan Anda maksimal 6 jam dari sekarang. 
+                                        Batas Waktu Pembayaran Anda telah habis. Silahkan kembali ke menu awal.
                                         <br>
                                         <br>
-                                        Anda juda dapat melihat status pesanan pada menu <b class="text-uppercase">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b> diatas atau <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>
-                                        <br>
-                                        <br>
-                                        Mohon kesediaan Anda untuk menunggu,
-                                        <br>
-                                        Terima Kasih. </h4>
+                                        Terimakasih.
+                                        </h4>
                                       </div>
                                     </div>
                                         

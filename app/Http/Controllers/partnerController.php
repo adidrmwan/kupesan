@@ -675,7 +675,7 @@ class PartnerController extends Controller
 
         $title = 'Libur';
         $events = [];
-                $data = Booking::where('user_id', $user->id)->get();
+                $data = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->get();
                 // dd($data);
                 if($data->count()) {
                     foreach ($data as $key => $value) {
