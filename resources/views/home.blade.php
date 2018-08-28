@@ -89,19 +89,28 @@
 
                         <!-- kebaya -->
                         <div id="kebaya" class="tab-pane">
-                            <form role="form" action="{{ route('search.kebaya') }}" method="post" enctype="multipart/form-data">
+                            <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >
-                                            <input  class="form-control" id="startDate" name="start_date" data-date-format="yyyy-mm-dd" required="" placeholder="Pilih Tanggal Mulai">
+                                            <select  class="form-control" name="tag_id" required>
+                                                <option selected value="">Pilih Tema</option>
+                                                <option value="all">Semua</option>
+                                                @foreach($tag as $list)
+                                                <option value="{{$list->tag_id}}">{{$list->tag_title}}</option>
+                                                @endforeach
+                                            </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>                         
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon ">
-                                            <input  class="form-control" id="endDate" name="end_date" data-date-format="yyyy-mm-dd" placeholder="Pilih Tanggal Selesai" />
+                                            <select  class="form-control" name="kota" required>
+                                                <option selected value="">Pilih Kota</option>
+                                                <option value="0">Kota Surabaya</option>
+                                            </select>
                                             <i class="fa fa-angle-down"></i>
                                         </div>                         
                                     </div>                       

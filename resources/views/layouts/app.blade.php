@@ -179,7 +179,7 @@
       inline: true,
       altField: '#datepicker2',
       altFormat: "yy-mm-dd",
-      minDate: 0,
+      minDate: 1,
       maxDate: "+3M"
     });
     </script>
@@ -313,14 +313,14 @@
 
     <script type="text/javascript">
       $('#startDate').datepicker({
-          minDate:0,
+          minDate:1as,
           maxDate: "+3M"
       });
     </script>
 
     <script type="text/javascript">
       $('#endDate').datepicker({
-          minDate:0,
+          minDate:1,
           maxDate: "+3M"
       });
     </script>
