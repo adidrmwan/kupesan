@@ -313,7 +313,7 @@
 
     <script type="text/javascript">
       $('#startDate').datepicker({
-          minDate:1as,
+          minDate:1,
           maxDate: "+3M"
       });
     </script>

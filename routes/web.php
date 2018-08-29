@@ -56,6 +56,9 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
     Route::get('/confirm/partner', 'AdminController@confirmPartner')->name('confirm.partner');
     Route::get('/show/partner', 'AdminController@showPartner')->name('show.partner');
     Route::get('/cancel/partner', 'AdminController@cancelPartner')->name('cancel.partner');
+
+    Route::get('/list/booking/kebaya', 'AdminController@listBookingKebaya')->name('list.booking.kebaya');
+
 });
 
 // Route untuk user yang member
@@ -80,6 +83,11 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 
     // kebaya 
     Route::get('/booking/kebaya/2', 'KebayaBookingController@step2')->name('kebaya.step2');
+    Route::post('/booking/kebaya/3', 'KebayaBookingController@step3')->name('kebaya.step3');
+    Route::get('/booking/kebaya/4', 'KebayaBookingController@step4')->name('kebaya.step4');
+    Route::post('/booking/kebaya/5', 'KebayaBookingController@step5')->name('kebaya.step5');
+    Route::post('/booking/kebaya/5', 'KebayaBookingController@step6')->name('kebaya.step6');
+    Route::post('/booking/kebaya/info', 'CustomerController@showKebayaInfo')->name('kebaya.booking.info');
 });
     Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
     Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');

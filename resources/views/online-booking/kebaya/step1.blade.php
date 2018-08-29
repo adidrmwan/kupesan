@@ -9,6 +9,7 @@
 	<div id="booking" class="innerpage-section-padding">
         <div class="container">
             <div class="row">
+                @include('online-booking.kebaya.package-info')
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Pesanan-KU</h4></div>
@@ -33,7 +34,7 @@
                         <input type="text" name="partner_id" value="{{$partner_id}}" hidden="">
                         <input type="text" name="package_id" value="{{$pid}}" hidden="">
                         <div class=" col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
-                            <a href="{{route('check.auth', ['package_id' => $pid])}}">
+                            <a href="{{route('kebaya.step2', ['package_id' => $pid])}}">
                                 <button type="submit" class="btn btn-orange" style="float: right;"><span style="color: white; text-decoration: none;">Log-In</span>
                                 </button>
                             </a>

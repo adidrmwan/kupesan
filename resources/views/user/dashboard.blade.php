@@ -85,7 +85,7 @@
                                                             <br>
                                                             <ul class="list-unstyled booking-info">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+                                                                <li>Total Harga :<span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
 
                                                             </ul>
                                                         </td>
@@ -106,6 +106,57 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <div class="dashboard-listing booking-listing">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    @foreach($kebaya_unapproved as $listpesanan)
+                                                    <tr>
+                                                        <td class="dash-list-icon booking-list-date">
+                                                            <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
+                                                                <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
+                                                                <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
+                                                                
+                                                            </ul>
+                                                            <ul class="list-unstyled booking-info">
+                                                                
+
+                                                            </ul>
+
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <br>
+                                                            <br>
+                                                            <ul class="list-unstyled booking-info">
+                                                                <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
+                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+
+                                                            </ul>
+                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail">
+                                                            <div class="checkbox">
+                                                                <form role="form" action="{{ route('kebaya.booking.info') }}" method="post" enctype="multipart/form-data">
+                                                                {{ csrf_field() }}
+                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
+                                                                    <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr></tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
                                     <br>
 
                                     <h3><span class="label label-warning">PESANAN TERSEDIA</span></h3>

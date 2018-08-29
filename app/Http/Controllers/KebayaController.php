@@ -372,9 +372,7 @@ class KebayaController extends Controller
         $package = KebayaProduct::where('id', $product_id)->first();
         $cek_booking_sdate = KebayaCheck::where('package_id', $product_id)->where('booking_date', $sdate)->first();
         $cek_booking_edate = KebayaCheck::where('package_id', $product_id)->where('booking_date', $edate)->first();
-        // berapa hari
-        $day = $ed - $sd + 1;
-        $total = ($package->price * $day) * $quantity;
+
         
         if(empty($cek_booking_sdate) && empty($cek_booking_edate)) {
             // $kode_booking = str_random(4);
@@ -534,7 +532,6 @@ class KebayaController extends Controller
             $booking->booking_total = $total;
             $booking->partner_name = $package2->partner_name;
             $booking->kode_booking = '4'.$kode_booking;
-                $booking->save();
             $booking->save();
         }
         $detail_pesanan = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')->where('booking_id', $request->booking_id)->get();

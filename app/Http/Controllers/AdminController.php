@@ -15,6 +15,7 @@ use App\Regencies;
 use App\Districts;
 use App\Villages;
 use App\BookingCheck;
+use App\KebayaBooking;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -27,6 +28,27 @@ class AdminController extends Controller
                             ->select('ps_package.*','partner.*','booking.*', 'users.phone_number', 'users.email')
                             ->get();
                             // dd($booking_unreview);
+        $booking_unconfirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'paid')->get();
+
+        $booking_confirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'confirmed')->get();
+        $total_partner = Partner::count();
+        $total_user = User::join('role_user', 'role_user.user_id', '=', 'users.id')->where('role_user.role_id', '=', '2')->count();
+        $total_booking_paid = Booking::where('booking_status', 'paid')->count();
+        $total_booking_confirmed = Booking::where('booking_status', 'confirmed')->count();
+        $total_booking = Booking::count();
+        return view('superadmin.dashboard', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed'));
+    }
+
+    public function listBookingKebaya()
+    {
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'on_review')->get();
+        $booking_unapprove = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                            ->join('partner', 'kebaya_product.partner_id', '=', 'partner.user_id')
+                            ->join('users', 'users.id', '=', 'partner.user_id')
+                            ->where('kebaya_booking.booking_status', 'un_approved')
+                            ->select('kebaya_product.name','partner.*','kebaya_booking.start_date', 'kebaya_booking.end_date', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'users.phone_number', 'users.email')
+                            ->get();
+        dd($booking_unapprove);
         $booking_unconfirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'paid')->get();
 
         $booking_confirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'confirmed')->get();

@@ -135,9 +135,15 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="">
           <a href="{{route('index')}}">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-building"></i> <span>Fotostudio</span>
           </a>
         </li>
+        <li class="">
+          <a href="{{route('list.booking.kebaya')}}">
+            <i class="fa fa-female"></i> <span>Kebaya</span>
+          </a>
+        </li>
+
         <li class="">
           <a href="{{route('daftar.partner')}}">
             <i class="fa fa-list"></i> <span>Daftar Partner</span>
