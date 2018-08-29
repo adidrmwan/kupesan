@@ -6,13 +6,16 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="card">
-                  <form role="form" action="{{ route('kebaya.off-booking.step2.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                  <form role="form" action="{{ route('kebaya.off-booking.step3.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="header">
                                 <h4 class="title">Offline Booking</h4>
-                                <p><span class="badge badge-secondary">Step 1</span> <i class="fa fa-arrow-right"></i> <span class="badge badge-primary">Step 2 : Pilih Jadwal</span></p>
+                                <p>
+                                  <span class="badge badge-secondary">Step 1</span> <i class="fa fa-arrow-right"></i> 
+                                  <span class="badge badge-secondary">Step 2</span> <i class="fa fa-arrow-right"></i> 
+                                  <span class="badge badge-primary">Step 3 : Detail Lainnya</span></p>
                                 <p></p>
                             </div>
                             <div class="content">
@@ -22,26 +25,11 @@
                                   <div class="col-md-12">
                                     <div class="row">
                                       <div class="col-md-12">
-                                        <h5>Durasi Sewa</h5>
-                                        <small><b style="color: red;">*</b> Jika durasi sewa hanya 1 (satu) hari, pilih Tanggal Selesai sama dengan Tanggal Mulai.</small>
+                                        <h5></h5>
+                                        <small><b style="color: red;">*</b> Tersedia <b>{{$quantity2}}</b> kebaya pada tanggal <b>{{ date('d F Y', strtotime($booking->start_date)) }}</b> sampai dengan <b>{{ date('d F Y', strtotime($booking->end_date)) }}</b>.</small>
                                       </div>
                                     </div>
                                     <div class="row">
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-                                          <label>Tanggal Mulai</label> 
-                                          <input  class="form-control" id="startDate" name="start_date" data-date-format="yyyy-mm-dd" required="" placeholder="Tanggal Mulai">
-                                          <div class="invalid-feedback">Wajib diisi.</div>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-                                          <label>Tanggal Selesai</label> 
-                                          <input  class="form-control" id="endDate" name="end_date" data-date-format="yyyy-mm-dd" placeholder="Tanggal Selesai" />
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- <div class="row">
                                       <div class="col-md-12">
                                         <div class="form-group">
                                           <label>Kuantitas</label>
@@ -55,7 +43,6 @@
                                         </div>
                                       </div>
                                     </div>
-
                                     <div class="row">
                                       <div class="col-md-12">
                                         <h5>Detail Pelanggan</h5>
@@ -84,13 +71,14 @@
                                           <div class="invalid-feedback">Wajib diisi.</div>
                                         </div>
                                       </div>
-                                    </div> -->
-                                    
+                                    </div>
                                   </div>
                                 </div> 
                                 <div class="row">
                                   <div class="col-md-12">
-                                    <input type="text" name="product_id" value="{{$product_id}}" hidden="">
+                                    <small>Dengan menekan tombol dibawah, berarti Anda sudah yakin dengan pesanan Anda.</small>
+                                    <br>
+                                    <input type="text" name="booking_id" value="{{$booking_id}}" hidden="">
                                     <button type="submit" class="btn btn-block btn-info pull-right">Cek Ketersediaan</button> 
                                   </div>
                                 </div> 
@@ -156,58 +144,6 @@
 <script src="{{ URL::asset('dist/js/custom-date-picker.js') }} "></script>
 <script src="{{ URL::asset('dist/js/bootstrap-datepicker.js') }} "></script>
 
-<script type="text/javascript">
-      $('#provinces').on('change', function(e){
-        console.log(e);
-        var province_id = e.target.value;
-        $.get('/json-regencies?province_id=' + province_id,function(data) {
-          console.log(data);
-          $('#regencies').empty();
-          $('#regencies').append('<option value="0" disable="true" selected="true">Pilih Kota/Kabupaten</option>');
-
-          $('#districts').empty();
-          $('#districts').append('<option value="0" disable="true" selected="true">Pilih Kecamatan</option>');
-
-          $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Kelurahan</option>');
-
-          $.each(data, function(index, regenciesObj){
-            $('#regencies').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
-          })
-        });
-      });
-
-      $('#regencies').on('change', function(e){
-        console.log(e);
-        var regencies_id = e.target.value;
-        $.get('/json-districts?regencies_id=' + regencies_id,function(data) {
-          console.log(data);
-          $('#districts').empty();
-          $('#districts').append('<option value="0" disable="true" selected="true">Pilih Kecamatan</option>');
-
-          $.each(data, function(index, districtsObj){
-            $('#districts').append('<option value="'+ districtsObj.id +'">'+ districtsObj.name +'</option>');
-          })
-        });
-      });
-
-      $('#districts').on('change', function(e){
-        console.log(e);
-        var districts_id = e.target.value;
-        $.get('/json-village?districts_id=' + districts_id,function(data) {
-          console.log(data);
-          $('#villages').empty();
-          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Kelurahan</option>');
-
-          $.each(data, function(index, villagesObj){
-            $('#villages').append('<option value="'+ villagesObj.id +'">'+ villagesObj.name +'</option>');
-          })
-        });
-      });
-    </script>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <script>
 $(function() {
@@ -247,37 +183,5 @@ $(function() {
 
 <link href=" {{ URL::asset('partners/css/jquery-ui.css ') }}" rel="stylesheet"/>
 <script src=" {{ URL::asset('partners/js/jquery-ui.min.js') }} " type="text/javascript"></script>
-
-<script type="text/javascript">
-  var array = {!! json_encode($disableDates) !!}
-  var trima = []
-  for (i = 0; i < array.length; i++ ) {
-      trima.push(array[i].substring(10,""))
-  }
-  $('#startDate').datepicker({
-      minDate:0,
-      maxDate: "+3M",
-      beforeShowDay: function(date){
-          var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-          return [ trima.indexOf(string) == -1 ]
-      }
-  });
-</script>
-
-<script type="text/javascript">
-  var array = {!! json_encode($disableDates) !!}
-  var trima = []
-  for (i = 0; i < array.length; i++ ) {
-      trima.push(array[i].substring(10,""))
-  }
-  $('#endDate').datepicker({
-      minDate:0,
-      maxDate: "+3M",
-      beforeShowDay: function(date){
-          var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-          return [ trima.indexOf(string) == -1 ]
-      }
-  });
-</script>
 
 @endsection

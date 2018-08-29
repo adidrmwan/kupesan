@@ -92,7 +92,7 @@ class AdminController extends Controller
           $message->subject('Kupesan.id - Booking Tidak Tersedia');
         });
         
-        $booking->booking_status = 'canceled';
+        $booking->booking_status = 'canceled_by_admin';
         $booking->save();
 
         return redirect()->back();

@@ -16,8 +16,11 @@ use App\KebayaKategori;
 use App\KebayaProduct;
 use App\KebayaBooking;
 use App\KebayaCheck;
+use App\KebayaUkuran;
 use App\Booking;
-
+use App\KebayaPartnerTema;
+use App\KebayaPartnerWarna;
+use DateTime;
 
 class KebayaController extends Controller
 {
@@ -46,14 +49,45 @@ class KebayaController extends Controller
         $package->price = $request->input('price');
         $package->quantity = $request->input('quantity');
         $package->size = $request->input('size');
+        $package->description = $request->input('description');
         $package->status = '1';
         $package->save();
 
-        $package = KebayaProduct::find($package->id);
-        $package->id = '40'.$package->partner_id.'00'.$package->id;
-        $package->image = $package->id . '_' . $package->category . '_' . $package->set . '_' . $package->size;
-        $package->save();
+        $dataSet = [];
+        if ($user) {
+            for ($i = 0; $i < count($request->tema); $i++) {
+                $dataSet[] = [
+                    'partner_id' => $user->id,
+                    'package_id' => $package->id,
+                    'tema' => $request->tema[$i],
+                ];
+            }
+        }
+        KebayaPartnerTema::insert($dataSet);
 
+        $dataSet2 = [];
+        if ($user) {
+            for ($i = 0; $i < count($request->warna); $i++) {
+                $dataSet2[] = [
+                    'partner_id' => $user->id,
+                    'package_id' => $package->id,
+                    'warna' => $request->warna[$i],
+                ];
+            }
+        }
+        KebayaPartnerWarna::insert($dataSet2);
+
+        $package = KebayaProduct::find($package->id);
+        if(empty($package->id)) {
+            $package->id = '40'.$package->partner_id.$package->id;
+            $package->save();
+        }
+
+        $package->image  = $package->id . '_1_' . $package->category . '_' . $package->size;
+        $package->image2 = $package->id . '_2_' . $package->category . '_' . $package->size;
+        $package->image3 = $package->id . '_3_' . $package->category . '_' . $package->size;
+        $package->image4 = $package->id . '_4_' . $package->category . '_' . $package->size;
+        $package->save();
         if ($request->hasFile('image')) {
             $foto_new = $package->image;
             if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
@@ -67,6 +101,69 @@ class KebayaController extends Controller
             }
 
             $foto = $request->file('image');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+
+            $package = KebayaProduct::where('partner_id',$user->id)->first();
+            $package->save();
+        }
+
+        if ($request->hasFile('image2')) {
+            $package = KebayaProduct::find($package->id);
+            $foto_new = $package->image2;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('image2');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+
+            $package = KebayaProduct::where('partner_id',$user->id)->first();
+            $package->save();
+        }
+
+        if ($request->hasFile('image3')) {
+            $package = KebayaProduct::find($package->id);
+            $foto_new = $package->image3;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('image3');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+
+            $package = KebayaProduct::where('partner_id',$user->id)->first();
+            $package->save();
+        }
+
+        if ($request->hasFile('image4')) {
+            $package = KebayaProduct::find($package->id);
+            $foto_new = $package->image4;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('image4');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
 
@@ -126,7 +223,10 @@ class KebayaController extends Controller
         $package->save();
       	
       	$package = KebayaProduct::find($package->id);
-        $package->image = $package->id . '_' . $package->category . '_' . $package->set . '_' . $package->size;
+        $package->image = $package->id . '_1_' . $package->category . '_' . $package->set . '_' . $package->size;
+        $package->image2 = $package->id . '_2_' . $package->category . '_' . $package->set . '_' . $package->size;
+        $package->image3 = $package->id . '_3_' . $package->category . '_' . $package->set . '_' . $package->size;
+        $package->image4 = $package->id . '_4_' . $package->category . '_' . $package->set . '_' . $package->size;
         $package->save();
 
         if ($request->hasFile('image')) {
@@ -143,6 +243,69 @@ class KebayaController extends Controller
             }
 
             $foto = $request->file('image');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+
+            $package = KebayaProduct::where('partner_id',$user->id)->first();
+            $package->save();
+        }
+
+        if ($request->hasFile('image2')) {
+            $package = KebayaProduct::find($package->id);
+            $foto_new = $package->image2;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('image2');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+
+            $package = KebayaProduct::where('partner_id',$user->id)->first();
+            $package->save();
+        }
+
+        if ($request->hasFile('image3')) {
+            $package = KebayaProduct::find($package->id);
+            $foto_new = $package->image3;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('image3');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
+
+            $package = KebayaProduct::where('partner_id',$user->id)->first();
+            $package->save();
+        }
+
+        if ($request->hasFile('image4')) {
+            $package = KebayaProduct::find($package->id);
+            $foto_new = $package->image4;
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/img_pkg/' . $foto_new .'.png' ))){
+                File::delete(public_path('/img_pkg/' . $foto_new .'.png' ));
+            }
+
+            $foto = $request->file('image4');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->save( public_path('/img_pkg/' . $foto_name ) );
 
@@ -174,8 +337,10 @@ class KebayaController extends Controller
                     ->first();
     	$product_id = $request->product_id;
         $package = KebayaProduct::join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')->where('kebaya_product.id', $product_id)->select('kebaya_category.category_name', 'kebaya_product.*')->get();
+        $package2 = KebayaProduct::find($product_id);
 
-        $booking_check = KebayaCheck::where('package_id', $product_id)->select('booking_date as disableDates')->get();
+        $booking_check = KebayaCheck::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking_check.package_id')->where('kebaya_booking_check.package_id', $product_id)->where('kebaya_booking_check.kuantitas', '=', $package2->quantity)->select('booking_date as disableDates')->get();
+  
         $disableDates = array_column($booking_check->toArray(), 'disableDates');
 
         $package2 = KebayaProduct::where('id', $product_id)->first();
@@ -212,59 +377,70 @@ class KebayaController extends Controller
         $total = ($package->price * $day) * $quantity;
         
         if(empty($cek_booking_sdate) && empty($cek_booking_edate)) {
-            $kode_booking = str_random(4);
-        	$booking = new KebayaBooking();
-        	$booking->user_id = $user->id;
-        	$booking->package_id = $product_id;
-            $booking->partner_id = $package->partner_id;
-        	$booking->user_name = $user_name;
-        	$booking->user_nohp = $user_nohp;
-        	$booking->user_email = $user_email;
-        	$booking->start_date = $start_date;
-        	$booking->end_date = $end_date;
-        	$booking->quantity = $quantity;
-        	$booking->booking_price = $package->price;
-            $booking->booking_total = $total;
-        	$booking->booking_status = 'offline-booking';
-            $booking->save();
+            // $kode_booking = str_random(4);
 
-            $booking->kode_booking = '4'.$sd.$sm.$kode_booking;
-            $booking->save();
+                $booking = new KebayaBooking();
+                $booking->user_id = $user->id;
+                $booking->package_id = $product_id;
+                $booking->partner_id = $package->partner_id;
+                $booking->start_date = $start_date;
+                $booking->end_date = $end_date;
+                $booking->booking_status = 'cek_ketersediaan';
+                $booking->booking_price = $package->price;
+                $booking->booking_total = $total;
+                $booking->save();
 
-        	if($sm == $em && $sd <= $ed) {
-		        for ($i=1; $i <= 31 ; $i++) { 
-		        	if($i >= $sd && $i <= $ed ){
-		        		$new_date = $sy.'-'.$sm.'-'.$i;
-		        		$booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-		        		$booking_check = new KebayaCheck();
-		        		$booking_check->package_id = $product_id;
-		        		$booking_check->booking_date = $booking_date;
-		        		$booking_check->save();
-		        	}
-		        }
-	        	
-	        } elseif ($sm < $em) {
-	        	for ($i=1; $i <=31 ; $i++) { 
-	        		if($i >= $sd) {
-	        			$new_date = $sy.'-'.$sm.'-'.$i;
-		        		$booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-		        		$booking_check = new KebayaCheck();
-		        		$booking_check->package_id = $product_id;
-		        		$booking_check->booking_date = $booking_date;
-		        		$booking_check->save();
-	        		}
-	        		elseif ($i <= $ed) {
-	        			$new_date = $sy.'-'.$em.'-'.$i;
-		        		$booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-		        		$booking_check = new KebayaCheck();
-		        		$booking_check->package_id = $product_id;
-		        		$booking_check->booking_date = $booking_date;
-		        		$booking_check->save();
-	        		}
-	        	}
-	        }
+                
+                $booking_id = $booking->booking_id;
 
-        	return redirect()->intended(route('kebaya.schedule')); 
+                if($sm == $em && $sd <= $ed) {
+                    for ($i=1; $i <= 31 ; $i++) { 
+                        if($i >= $sd && $i <= $ed ){
+                            $new_date = $sy.'-'.$sm.'-'.$i;
+                            $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
+                            $kebaya_booking_check_2 = KebayaCheck::where('package_id', $product_id)->where('booking_date', $booking_date)->first();
+                            if (empty($kebaya_booking_check_2)) {
+                                $booking_check = new KebayaCheck();
+                                $booking_check->package_id = $product_id;
+                                $booking_check->booking_date = $booking_date;
+                                // $booking_check->kuantitas = $quantity;
+                                $booking_check->save();
+                            }
+                        }
+                    }
+                    
+                } elseif ($sm < $em) {
+                    for ($i=1; $i <=31 ; $i++) { 
+                        if($i >= $sd) {
+                            $new_date = $sy.'-'.$sm.'-'.$i;
+                            $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
+                            $kebaya_booking_check_2 = KebayaCheck::where('package_id', $product_id)->where('booking_date', $booking_date)->first();
+                            if (empty($kebaya_booking_check_2)) {
+                                $booking_check = new KebayaCheck();
+                                $booking_check->package_id = $product_id;
+                                $booking_check->booking_date = $booking_date;
+                                $booking_check->kuantitas = $quantity;
+                                $booking_check->save();
+                            }
+                        }
+                        elseif ($i <= $ed) {
+                            $new_date = $sy.'-'.$em.'-'.$i;
+                            $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
+                            $kebaya_booking_check_2 = KebayaCheck::where('package_id', $product_id)->where('booking_date', $booking_date)->first();
+                            if (empty($kebaya_booking_check_2)) {
+                                $booking_check = new KebayaCheck();
+                                $booking_check->package_id = $product_id;
+                                $booking_check->booking_date = $booking_date;
+                                $booking_check->kuantitas = $quantity;
+                                $booking_check->save();
+                            }
+                        }
+                    }
+                }
+
+             
+            return redirect()->intended(route('kebaya.off-booking.step3', ['booking_id' => $booking_id]));
+
         } else {
             return redirect()->intended(route('kebaya.off-booking')); 
         }
@@ -272,6 +448,116 @@ class KebayaController extends Controller
         // $package = KebayaProduct::join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')->where('partner_id', $user->id)->where('status', '1')->select('kebaya_category.category_name', 'kebaya_product.*')->get();
 
         return view('partner.kebaya.booking.step1', ['partner' => $partner]);    
+    }
+
+    public function showStep3(Request $request)
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+
+        $booking = KebayaBooking::find($request->booking_id);
+        $package = KebayaProduct::where('id', $booking->package_id)->get();
+        $package2 = KebayaProduct::where('id', $booking->package_id)->first();
+        $package_id = $package2->id;
+        $booking_id = $booking->booking_id;
+        $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
+        $booking_end_date = date('Y-m-d', strtotime("$booking->end_date"));
+
+        $kebaya_booking_check = KebayaCheck::where('package_id', $package_id)->whereBetween('booking_date', [$booking_start_date, $booking_end_date])->get(['kuantitas']);
+
+        $kuantitas = '0';
+        foreach ($kebaya_booking_check as $key => $value) {
+            if ($value->kuantitas > $kuantitas) {
+                    $kuantitas = $value->kuantitas;
+                }    
+        }
+        $quantity2 = $package2->quantity - $kuantitas;
+        if ($kuantitas == $quantity2) {
+            return redirect()->route('kebaya.off-booking')->with('warning', 'Stok kebaya sudah tidak tersedia.');
+        }
+
+        return view('partner.kebaya.booking.step3', ['partner' => $partner], compact('quantity2', 'package_id', 'package', 'booking', 'booking_id'));    
+
+    }
+
+    public function submitStep3(Request $request)
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        $quantity = $request->quantity;
+        $user_name = $request->user_name;
+        $user_email = $request->user_email;
+        $user_nohp = $request->user_nohp;
+        
+        $booking = KebayaBooking::find($request->booking_id);
+        $package = KebayaProduct::where('id', $booking->package_id)->get();
+        $package2 = KebayaProduct::where('id', $booking->package_id)->first();
+        $package_id = $package2->id;
+        $booking_id = $booking->booking_id;
+        $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
+        $booking_end_date = date('Y-m-d', strtotime("$booking->end_date"));
+        
+        $fdate = $booking->start_date;
+        $tdate = $booking->end_date;
+        $datetime1 = new DateTime($fdate);
+        $datetime2 = new DateTime($tdate);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a');
+        $total = ($package2->price * ($days + 1)) * $quantity;
+
+        $max_quantity = $package2->quantity;
+        $kebaya_booking_check = KebayaCheck::where('package_id', $package_id)->whereBetween('booking_date', [$booking_start_date, $booking_end_date])->get();
+        if(empty($booking->kode_booking)) {
+
+            foreach ($kebaya_booking_check as $key => $value) {
+                if (($quantity + $value->kuantitas) <= $max_quantity) {
+                    $booking_check = KebayaCheck::find($value->id);
+                    $booking_check->kuantitas = $booking_check->kuantitas + $quantity;
+                    $booking_check->save();
+                } else {
+                    return redirect()->route('kebaya.off-booking')->with('warning', 'Stok kebaya sudah tidak tersedia.');
+                }
+
+            }
+            $kode_booking = str_random(8);
+            $booking->user_name = $user_name;
+            $booking->user_nohp = $user_nohp;
+            $booking->user_email = $user_email;
+            $booking->quantity = $quantity;
+            $booking->booking_price = $package2->price;
+            $booking->booking_total = $total;
+            $booking->partner_name = $package2->partner_name;
+            $booking->kode_booking = '4'.$kode_booking;
+                $booking->save();
+            $booking->save();
+        }
+        $detail_pesanan = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')->where('booking_id', $request->booking_id)->get();
+
+        $deposit = '100000';
+
+        return view('partner.kebaya.booking.step4', ['partner' => $partner], compact('quantity2', 'package_id', 'package', 'booking', 'booking_id', 'detail_pesanan', 'deposit')); 
+    }
+
+    public function submitStep4(Request $request)
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+        
+        $booking = KebayaBooking::find($request->booking_id);
+        $booking->deposit = '100000';
+        $booking->booking_status = 'offline-booking';
+        $booking->save();
+
+        return view('partner.kebaya.booking.step5', compact('partner'));
     }
 
     public function showBookingSchedule(Request $request)
@@ -414,5 +700,35 @@ class KebayaController extends Controller
         $booking->save();
 
         return redirect()->back();
+    }
+
+
+    public function updatePU(Request $request)
+    {
+        $user = Auth::user();
+
+        $dataSet = [];
+        if ($user) {
+            for ($i = 0; $i < count($request->ukuran); $i++) {
+                $dataSet[] = [
+                    'partner_id' => $user->id,
+                    'ukuran' => $request->ukuran[$i],
+                    'panjang' => $request->panjang[$i],
+                    'lebar' => $request->lebar[$i],
+                ];
+            }
+        }
+        KebayaUkuran::insert($dataSet);
+
+        return redirect()->intended(route('partner.profile'));
+    }
+
+    public function deletePU(Request $request)
+    {
+        $user = Auth::user();
+        $pu = KebayaUkuran::find($request->id);
+        $pu->delete();
+
+        return redirect()->intended(route('partner.profile'));
     }
 }

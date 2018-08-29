@@ -79,7 +79,7 @@
                                                   <div class="col-lg-12">
                                                     <table class="table">
                                                       <tr>
-                                                          <th colspan="2 " style="text-align: center;">Jadwal</th>
+                                                          <th colspan="2 " style="text-align: center;">Detail Pemesanan</th>
                                                       </tr>
                                                       <tr>
                                                           <td >Tanggal</td>

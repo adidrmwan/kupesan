@@ -89,7 +89,7 @@
 
                         <!-- kebaya -->
                         <div id="kebaya" class="tab-pane">
-                            <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
+                            <form role="form" action="{{ route('search.kebaya') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
@@ -98,8 +98,8 @@
                                             <select  class="form-control" name="tag_id" required>
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="all">Semua</option>
-                                                @foreach($tag as $list)
-                                                <option value="{{$list->tag_id}}">{{$list->tag_title}}</option>
+                                                @foreach($tema as $list)
+                                                <option value="{{$list->tema_id}}">{{$list->tema_name}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="fa fa-angle-down"></i>

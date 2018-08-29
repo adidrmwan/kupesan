@@ -4,7 +4,7 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 col-xs-12 col-sm-12 col-lg-8">
+      <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
         <div class="card">
           <div class="header">
             <h4 class="title">Add Product</h4>
@@ -12,21 +12,43 @@
           <div class="content">
             <form role="form" action="{{route('submit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
             {{ csrf_field() }}
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label>Upload Gambar</label>
-                      <div class="alert alert-info" style="text-align: center;">
-                        <b style="color: red;">*</b> Ukuran gambar maksimal 512 KB <br> dengan format .PNG atau .JPG
-                      </div>
-                      <div class="file-loading">
-                        <input id="file-0a" class="file" type="file" name="image" required="">
-                      </div>
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="row">
+                  <div class="col-md-12 col-lg-12">
+                    <div class="alert alert-info alert-dismissible">
+                      <h4>Upload Foto</h4>
+                      Minimal upload 1(satu) foto dengan perbandingan <b>1:1</b><br>dalam format file <b>JPG, JPEG, atau PNG.</b> <br>
+                        Ukuran Maksimal <b>512 KB</b>
+                    </div>
+                  </div>
+                </div> 
+                <div class="row">
+                  <div class="col-md-6 col-lg-6">
+                    <div class="file-loading">
+                      <input id="file-0a" class="file" type="file" name="image" required="">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6">
+                    <div class="file-loading">
+                      <input id="file-0a" class="file" type="file" name="image2">
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6 col-lg-6">
+                    <div class="file-loading">
+                      <input id="file-0a" class="file" type="file" name="image3">
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6">
+                    <div class="file-loading">
+                      <input id="file-0a" class="file" type="file" name="image4">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -39,9 +61,9 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Kategori</label>
+                        <label>Tipe</label>
                         <select  class="form-control" id="inlineFormCustomSelectPref" name="category" required>
-                          <option selected value="">Pilih Kategori</option>
+                          <option selected value="">Pilih Tipe</option>
                           @foreach($kategori as $list)
                           <option value="{{$list->id}}">Kebaya {{$list->category_name}}</option>
                           @endforeach
@@ -105,16 +127,34 @@
                       </div>
                     </div> 
                   </div>
-                  <!-- <div class="row">
+                  <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Tags</label>
-                        <select id="tags" class="form-control" name="tag[]"></select>
+                        <label>Warna</label>
+                        <select id="warna" class="form-control" name="warna[]"></select>
                       </div>
                     </div>
-                  </div> -->
-                </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Tema</label>
+                        <select id="tema" class="form-control" name="tema[]"></select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Catatan Tambahan</label>
+                        <small>(contoh: Bahan Balotely, Tidak untuk di setrika)</small>
+                        <textarea class="form-control" name="description" style="height: 185px;"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                
               </div>
+            </div>
               <div class="row">
                 <div class="col-md-12">
                   <button type="submit" class="btn btn-info btn-fill btn-block">Submit</button>
@@ -130,4 +170,49 @@
 </div>
         
 @endsection
+
+@section('script')
+<script type="text/javascript">
+  var tags = $('#warna');
+    $(tags).select2({
+      data:[
+        {id:1,text:"Biru"},
+        {id:2,text:"Coklat"},
+        {id:3,text:"Hijau"},
+        {id:4,text:"Jingga"},
+        {id:5,text:"Kuning"},
+        {id:6,text:"Merah"},
+        {id:2,text:"Pink"},
+        {id:3,text:"Putih"},
+        {id:4,text:"Hitam"},
+        {id:5,text:"Ungu"},
+        {id:6,text:"Pastel"},
+        {id:7,text:"Peach"},
+      ],
+      multiple: true,
+      placeholder: "Pilih Warna",
+      width: "100%"
+    });
+</script>
+
+<script type="text/javascript">
+  var tags = $('#tema');
+    $(tags).select2({
+      data:[
+        {id:1,text:"Modern"},
+        {id:2,text:"Jawa"},
+        {id:2,text:"Sunda"},
+        {id:3,text:"Bali"},
+        {id:4,text:"Encim"},
+        {id:5,text:"Kartini"},
+        {id:6,text:"Kutu Baru"},
+      ],
+      multiple: true,
+      placeholder: "Pilih Tema Kebaya",
+      width: "100%"
+    });
+</script>
+
+@endsection
+
 

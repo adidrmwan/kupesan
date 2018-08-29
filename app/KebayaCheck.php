@@ -14,6 +14,7 @@ class KebayaCheck extends Model
         'partner_id',
         'package_id',
         'booking_date',
+        'kuantitas',
     ];
 
     public function partner()

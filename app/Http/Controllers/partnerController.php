@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\FasilitasPartner;
 use App\PartnerDurasi;
+use App\KebayaUkuran;
 use App\BookingCheck;
 use App\Fasilitas;
 use App\Provinces;
@@ -22,6 +23,7 @@ use Image;
 Use Alert;
 use Auth;
 use File;
+use App\Tnc;
 
 class PartnerController extends Controller
 {
@@ -445,9 +447,9 @@ class PartnerController extends Controller
                 $bookingcheck->save();
             }
         }
-
+        $kode_booking = $kode_booking = str_random(7);
         $booking = Booking::find($request->bid);
-
+        $booking->kode_booking = $kode_booking; 
         $booking->booking_user_name = $request->input('booking_user_name');
         $booking->booking_user_nohp = $request->input('booking_user_nohp');
         $booking->booking_user_email = $request->input('booking_user_email');
@@ -575,8 +577,11 @@ class PartnerController extends Controller
             $partner_kec = Districts::where('id', $partner->pr_kec)->first();
             $email = $user->email;
             $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
-
-            return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec'));
+            $tnc = Tnc::where('partner_id', $user->id)->get();
+            if($partner->pr_type = '4') {
+                $pu = KebayaUkuran::where('partner_id', $user->id)->get();
+            }
+            return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc', 'pu'));
         }
     }
 
@@ -726,13 +731,8 @@ class PartnerController extends Controller
                 }
         $calendar = Calendar::addEvents($events);
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'offline-booking')->orderBy('booking.booking_start_date', 'asc')->get();
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'offline-booking')->orWhere('booking.booking_status', 'confirmed')->orderBy('booking.booking_start_date', 'asc')->get();
 
-
-        if ($request->has('show_id')) {
-            $booking_show = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_id', $request->show_id)->get();
-            return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar', 'booking', 'booking_show'));
-        }
         return view('partner.ps.booking-schedule', ['partner' => $partner], compact('calendar', 'booking'));
     }
 
@@ -744,8 +744,10 @@ class PartnerController extends Controller
                     ->select('*')
                     ->first();
 
-        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking.user_id', $user->id)->where('booking.booking_status', 'done')->orderBy('booking.booking_start_date', 'asc')->get();
-        return view('partner.ps.booking-history', ['partner' => $partner, 'booking' => $booking]);
+        $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'done')->orderBy('booking.booking_start_date', 'asc')->get();
+        $booking_cancelled = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_status', 'cancelled_by_partner')->orderBy('booking.booking_start_date', 'asc')->get();
+
+        return view('partner.ps.booking-history', ['partner' => $partner, 'booking' => $booking], compact('booking_cancelled'));
     }
 
     public function showDetailBooking(Request $request)
@@ -781,6 +783,79 @@ class PartnerController extends Controller
         return redirect()->back();
     }
 
+    public function bookingCancel(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->first();
+        $booking->booking_status = 'cancelled_by_partner';
+        $bid = $booking_id;
 
+        $range_jam2 = DB::select('select j.num_hour, b.p_id, b.b_date from jam j, (select package_id as p_id, booking_start_date as b_date,  booking_start_time as mulai, (booking_end_time + booking_overtime - 1) as selesai from booking where booking_id = :id ) b where j.num_hour BETWEEN b.mulai and b.selesai', ['id' => $bid]);
+
+        foreach ($range_jam2 as $value) {
+            $b_date = $value->b_date;
+            $booking_start_date = date('Y-m-d', strtotime("$b_date"));
+            $bookingcheck = BookingCheck::where('package_id', $value->p_id)->where('booking_date', $booking_start_date)->first();
+            if(!empty($bookingcheck)) {
+                if ($value->num_hour == '1') { $bookingcheck->num_hour_1 = null;}
+                if ($value->num_hour == '2') { $bookingcheck->num_hour_2 = null;}
+                if ($value->num_hour == '3') { $bookingcheck->num_hour_3 = null;}
+                if ($value->num_hour == '4') { $bookingcheck->num_hour_4 = null;}
+                if ($value->num_hour == '5') { $bookingcheck->num_hour_5 = null;}
+                if ($value->num_hour == '6') { $bookingcheck->num_hour_6 = null;}
+                if ($value->num_hour == '7') { $bookingcheck->num_hour_7 = null;}
+                if ($value->num_hour == '8') { $bookingcheck->num_hour_8 = null;}
+                if ($value->num_hour == '9') { $bookingcheck->num_hour_9 = null;}
+                if ($value->num_hour == '10') { $bookingcheck->num_hour_10 = null;}    
+                if ($value->num_hour == '11') { $bookingcheck->num_hour_11 = null;}
+                if ($value->num_hour == '12') { $bookingcheck->num_hour_12 = null;}
+                if ($value->num_hour == '13') { $bookingcheck->num_hour_13 = null;}
+                if ($value->num_hour == '14') { $bookingcheck->num_hour_14 = null;}
+                if ($value->num_hour == '15') { $bookingcheck->num_hour_15 = null;}
+                if ($value->num_hour == '16') { $bookingcheck->num_hour_16 = null;}
+                if ($value->num_hour == '17') { $bookingcheck->num_hour_17 = null;}
+                if ($value->num_hour == '18') { $bookingcheck->num_hour_18 = null;}
+                if ($value->num_hour == '19') { $bookingcheck->num_hour_19 = null;}
+                if ($value->num_hour == '20') { $bookingcheck->num_hour_20 = null;}    
+                if ($value->num_hour == '21') { $bookingcheck->num_hour_21 = null;}
+                if ($value->num_hour == '22') { $bookingcheck->num_hour_22 = null;}
+                if ($value->num_hour == '23') { $bookingcheck->num_hour_23 = null;}
+                if ($value->num_hour == '24') { $bookingcheck->num_hour_24 = null;} 
+                $bookingcheck->save();
+            }
+        }
+
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function updateTNC(Request $request)
+    {
+        $user = Auth::user();
+
+        $dataSet = [];
+        if ($user) {
+            for ($i = 0; $i < count($request->tnc); $i++) {
+                $dataSet[] = [
+                    'partner_id' => $user->id,
+                    'tnc_desc' => $request->tnc[$i],
+                ];
+            }
+        }
+        Tnc::insert($dataSet);
+
+        return redirect()->intended(route('partner.profile'));
+    }
+
+    public function deleteTNC(Request $request)
+    {
+        $user = Auth::user();
+        $tnc = Tnc::find($request->id);
+        $tnc->delete();
+
+        return redirect()->intended(route('partner.profile'));
+    }
 
 }

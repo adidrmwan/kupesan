@@ -40,18 +40,22 @@
                                                 </tr>
                                             </thead>
                                             <tr>
-                                                <td colspan="2"><b>{{$data->partner_name}} - {{$package->pkg_name_them}} Package</b></td>
+                                                <td colspan="2" style="text-align: center;"><b>{{$package->pkg_name_them}}</b></td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 50%;">Tanggal</td>
-                                                <td style="width: 50%;">{{\Carbon\Carbon::parse($data->booking_start_date)->format('d M Y')}}</td>
+                                                <td style="width: 50%;">{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Waktu</td>
-                                                <td>{{\Carbon\Carbon::parse($data->booking_start_date)->format('H:i')}} - {{\Carbon\Carbon::parse($data->booking_end_date)->format('H:i')}}</td>
+                                                <td>Jadwal</td>
+                                                <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                                             </tr>
                                             <tr>
-                                                <td>Jam Tambahan</td>
+                                                <td>Durasi Paket</td>
+                                                <td>{{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Durasi Overtime</td>
                                                 <td>2 Jam</td>
                                             </tr>
                                         </table>

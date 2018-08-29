@@ -51,41 +51,43 @@
               <thead>
                 <th>No</th>
                 <th>Kode Booking</th>
-                <th>Package Name</th>
-                <th>Size</th>
-                <th>Set</th>
-                <th>Quantity</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Nama Paket</th>
+                <th>Tipe Paket</th>
+                <th>Tanggal</th>
+                <th>Jadwal</th>
                 <th>Name (Customer)</th> 
                 <th>Phone (Customer)</th> 
                 <th>Total (Rp)</th> 
                 <th>Status</th>
                 <th>Cancel</th>
-                <th>Confirm</th>
+                <th>Done</th>
               </thead>
               <tbody>
                 @foreach($booking as $key => $data)
                 <tr>
                   <td>{{$key + 1}}</td>
                   <td>{{$data->kode_booking}}</td>
-                  <td>{{$data->name}}</td>
-                  <td>{{$data->size}}</td>
-                  <td>{{$data->set}}</td>
-                  <td>{{$data->quantity}}</td>
-                  <td>{{\Carbon\Carbon::parse($data->start_date)->format('d M Y')}}</td>
-                  <td>{{\Carbon\Carbon::parse($data->end_date)->format('d M Y')}}</td>
-                  <td>{{$data->user_name}}</td> 
-                  <td>{{$data->user_nohp}}</td> 
-                  <td>{{$data->booking_total}}</td> 
-                  <td><h5><span class="badge badge-pill badge-warning">Offline</span></h5></td> 
+                  <td>{{$data->pkg_name_them}}</td>
+                  <td>{{$data->pkg_category_them}}</td>
+                  <td>{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
+                  <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00</td>
+                  <td>{{$data->booking_user_name}}</td> 
+                  <td>{{$data->booking_user_nohp}}</td> 
+                  <td>Rp {{number_format($data->booking_total, 0, ',', '.')}}</td> 
+                  @if($data->booking_status == 'offline-booking')
+                  <td><h5><span class="badge badge-pill badge-warning">Off</span></h5></td> 
+                  @elseif($data->booking_status == 'confirmed')
+                  <td><h5><span class="badge badge-pill badge-success">On</span></h5></td> 
+                  @endif
                   <td style="text-align: center;">
-                    <a href="{{route('kebaya.booking.cancel', ['id' => $data->booking_id])}}">
+                    @if($data->booking_status == 'offline-booking')
+                    <a href="{{route('booking.cancel', ['id' => $data->booking_id])}}">
                       <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button>
                     </a>
+                    @endif
                   </td>   
                   <td style="text-align: center;">
-                    <a href="{{route('kebaya.booking.finished', ['id' => $data->booking_id])}}">
+                    <a href="{{route('booking.finished', ['id' => $data->booking_id])}}">
                       <button type="submit" class="btn btn-success"><i class="fa fa-check"></i></button>
                     </a>
                   </td>

@@ -9,6 +9,8 @@ use App\Partner;
 use App\Booking;
 use App\PSPkg;
 use App\PartnerTag;
+use App\kebayaTema;
+use App\KebayaProduct;
 use App\Tag;
 
 class SearchController extends Controller
@@ -17,8 +19,145 @@ class SearchController extends Controller
     {
         $tag = PartnerTag::join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')
                 ->distinct()->orderBy('tag_title', 'asc')->get(['ps_tag.tag_id', 'ps_tag.tag_title']);
+        $tema = kebayaTema::join('kebaya_partner_tema', 'kebaya_tema.tema_id', '=', 'kebaya_partner_tema.tema')->distinct()->orderBy('tema_name', 'asc')->get(['kebaya_tema.tema_name', 'kebaya_tema.tema_id']);
+        
         $studio = Partner::where('pr_type', '1')->get();
-        return view('home', ['tag' => $tag], compact('studio'));
+        return view('home', compact('studio', 'tema', 'tag'));
+    }
+
+    public function searchKebaya(Request $request)
+    {
+        $tag_id = $request->tag_id;
+
+        if($request->has('tag_id')) {
+
+            if($tag_id == 'all'){
+
+                if (empty($request->min_price)) {
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->orderBy('price', 'asc')->get();
+                    if ($request->type == 'All_type') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->orderBy('price', 'asc')->get();
+                    }
+                    elseif ($request->type == 'A La Carte') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->where('pkg_category_them', 'A La Carte')
+                                    ->orderBy('price', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Package') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->where('pkg_category_them', 'Special Package')
+                                    ->orderBy('price', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Studio') {
+                        $allThemes = PSPkg::where('status', '1')
+                                    ->where('pkg_category_them', 'Special Studio')
+                                    ->orderBy('price', 'asc')->get();
+                    }
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'All_type'){
+                    $allThemes = PSPkg::where('status', '1')
+                                ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
+
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'A La Carte'){                    
+                    $allThemes = PSPkg::where('status', '1')
+                                ->where('pkg_category_them', 'A La Carte')
+                                ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Package'){
+                    $allThemes = PSPkg::where('status', '1')
+                                ->where('pkg_category_them', 'Special Package')
+                                ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Studio'){
+                    $allThemes = PSPkg::where('status', '1')
+                                ->where('pkg_category_them', 'Special Studio')
+                                ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
+
+                return view('search-result.kebaya.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
+            }
+
+            elseif($tag_id != 'all'){
+
+                if (empty($request->min_price)) {
+                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+
+                    if ($request->type == 'All_type') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'A La Carte') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('pkg_category_them', 'A La Carte')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Package') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('pkg_category_them', 'Special Package')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Special Studio') {
+                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('pkg_category_them', 'Special Studio')
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    }
+
+
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'All_type'){
+                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'A La Carte'){              
+                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('ps_package.pkg_category_them', 'A La Carte')
+                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Package'){
+                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('ps_package.pkg_category_them', 'Special Package')
+                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                }
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Studio'){
+                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
+                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                                ->where('ps_package.status', '1')
+                                ->where('ps_package.pkg_category_them', 'Special Studio')
+                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
+                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                }
+                // dd($request);
+                return view('search-result.fotostudio.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
+            }
+        
+        }
     }
 
     public function searchFotostudio(Request $request)
@@ -172,21 +311,7 @@ class SearchController extends Controller
 
     }
 
-    public function searchKebaya(Request $request)
-    {
-        $sdate = explode('/', $request->start_date, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
-        $booking_start_date = $sy.'-'.$sm.'-'.$sd;
-        $edate = explode('/', $request->end_date, 3); $em = $edate[0]; $ed = $edate[1]; $ey = $edate[2];
-        $booking_end_date = $ey.'-'.$em.'-'.$ed;
-        $time = '00:00:00';
-        $endtime = '23:59:59';
-        $start_date = date('Y-m-d H:i:s', strtotime("$booking_start_date $time"));
-        $end_date = date('Y-m-d H:i:s', strtotime("$booking_end_date $endtime"));
-        
-        dd($request);
 
-        return view('result.kebaya', ['allThemes' => $allThemes], compact('tag_id'));
-    }
 
     public function searchData(Request $request)
     {

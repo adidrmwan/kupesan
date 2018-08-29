@@ -84,7 +84,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
                     @foreach($allThemes as $data)
                     <div class="col-sm-6 col-md-4">
-                        @include('search-result.fotostudio.paket')
+                        @include('search-result.kebaya.paket')
                     </div>
                     @endforeach
                 </div>

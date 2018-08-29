@@ -24,7 +24,8 @@
                                         Ukuran Maksimal <b>512 KB</b>
                                     </div>
                                   </div>
-                                </div>                                <div class="row">
+                                </div>                                
+                                <div class="row">
                                   <div class="col-md-6 col-lg-6">
                                     <div class="file-loading">
                                       <input id="file-0a" class="file" type="file" name="pkg_img_them" required="">

@@ -20,7 +20,11 @@ class KebayaProduct extends Model
         'quantity',
         'size',
         'image',
+        'image2',
+        'image3',
+        'image4',
         'status',
+        'description',
     ];
 
     public function users()

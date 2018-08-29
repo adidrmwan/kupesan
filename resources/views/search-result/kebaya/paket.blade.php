@@ -25,11 +25,9 @@
             <br>
             <br>
             <p style="text-align: center; color: white;">
-                <b>Type :</b> {{$data->pkg_category_them}} <br>
-                <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
-                <b>Print Size :</b> {{$data->pkg_print_size}}<br>
-                <b>Edited Photo :</b> {{$data->pkg_edited_photo}}
-            </p>
+                <b>Set :</b> {{$data->set}} <br>
+                <b>Size :</b> {{$data->size}}   <br>
+                <b>Quantity :</b> {{$data->quantity}}<br>            </p>
         </div>
     </div>
     
@@ -40,12 +38,12 @@
         </div><!-- end flight-title -->
         
         <ul class="list-unstyled list-inline offer-price-1">
-            <li class="price">{{$data->pkg_name_them}}</li><br>
+            <li class="price">{{$data->name}}</li><br>
 
-            <li >Rp {{ number_format($data->pkg_price_them, 0, ',', '.') }} / Jam</li><br>
+            <li >Rp {{ number_format($data->price, 0, ',', '.') }} / Hari</li><br>
             <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
             <li>
-                <a href="{{route('ask.page', ['package_id' => $data->id])}}">
+                <a href="{{route('kebaya.step1', ['package_id' => $data->id])}}">
                     <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
                     </button>
                 </a>

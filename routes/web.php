@@ -35,6 +35,8 @@ Route::get('/', function () {
 //Route Search Fotostudio di Home
 Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
 Route::get('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.kebaya');
+Route::get('/detail/kebaya', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 Route::post('/search/data', 'SearchController@searchData')->name('search.data');
 Route::get('/search/result/#1', 'SearchController@resultstudio')->name('resultstudio');
 
@@ -74,9 +76,12 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     
     Route::post('/booking/7', 'BookingController@showReview')->name('form.booking');
     Route::get('/profilKu', 'CustomerController@dashboard')->name('dashboard');
-    Route::post('/booking/info/', 'CustomerController@showInfo')->name('booking.info'); 
-});
+    Route::post('/booking/info/', 'CustomerController@showInfo')->name('booking.info');
 
+    // kebaya 
+    Route::get('/booking/kebaya/2', 'KebayaBookingController@step2')->name('kebaya.step2');
+});
+    Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
     Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');
 
 // Role untuk user yang partner
@@ -90,10 +95,10 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/form/facilities', 'PartnerController@submitFormFacilities')->name('partner.facilities.form.submit');
     Route::get('/form/dayoff', 'PartnerController@showFormDayOff')->name('form.dayoff');
     Route::post('/form/dayoff', 'PartnerController@submitFormDayOff')->name('form.dayoff.submit');
-    Route::get('/booking/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
-    Route::get('/booking/history', 'PartnerController@showBookingHistory')->name('booking.history');
 
     // fotostudio
+    Route::get('/booking/ps/schedule', 'PartnerController@showBookingSchedule')->name('booking.schedule');
+    Route::get('/booking/ps/history', 'PartnerController@showBookingHistory')->name('booking.history');
     Route::get('/booking/offline/1', 'PartnerController@showStep1')->name('form.offline');
     Route::get('/booking/offline/1/2', 'PartnerController@showStep2')->name('form.offline.step2');
     Route::post('/booking/offline/1/2', 'PartnerController@submitStep2')->name('form.offline.step2.submit');
@@ -112,9 +117,11 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 
     Route::post('/profile/edit', 'PartnerController@submitEditProfile')->name('partner.profile.form.edit');
     Route::post('/profile/fasilitas', 'AlbumController@updateFasilitas')->name('update.fasilitas');
-
+    Route::post('/profile/tnc', 'PartnerController@updateTNC')->name('update.tnc');
+    Route::get('/profile/tnc/delete', 'PartnerController@deleteTNC')->name('delete.tnc');
     Route::post('/profile/upload/logo', 'PartnerController@uploadLogo')->name('partner.upload.logo');
-    Route::get('/finished', 'PartnerController@bookingFinished')->name('booking.finished');
+    Route::get('/booking/ps/finished', 'PartnerController@bookingFinished')->name('booking.finished');
+    Route::get('/booking/ps/cancel', 'PartnerController@bookingCancel')->name('booking.cancel');
 
 
 
@@ -143,10 +150,15 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/booking/offline/4/1', 'KebayaController@showStep1')->name('kebaya.off-booking');
     Route::get('/booking/offline/4/2', 'KebayaController@showStep2')->name('kebaya.off-booking.step2');
     Route::post('/booking/offline/4/2', 'KebayaController@submitStep2')->name('kebaya.off-booking.step2.submit');
+    Route::get('/booking/offline/4/3', 'KebayaController@showStep3')->name('kebaya.off-booking.step3');
+    Route::post('/booking/offline/4/3', 'KebayaController@submitStep3')->name('kebaya.off-booking.step3.submit');
+    Route::post('/booking/offline/4/4', 'KebayaController@submitStep4')->name('kebaya.off-booking.step4.submit');
     Route::get('/booking/schedule/4', 'KebayaController@showBookingSchedule')->name('kebaya.schedule');
     Route::get('/booking/history/4', 'KebayaController@showBookingHistory')->name('kebaya.history');
     Route::get('/booking/cancel', 'KebayaController@bookingCancel')->name('kebaya.booking.cancel');
     Route::get('/booking/finished', 'KebayaController@bookingFinished')->name('kebaya.booking.finished');
+    Route::post('/profile/panduan-ukuran/update', 'KebayaController@updatePU')->name('kebaya.update.pu');
+    Route::get('/profile/panduan-ukuran/delete', 'KebayaController@deletePU')->name('kebaya.delete.pu');
 });
 
 // Route untuk email verification
@@ -190,16 +202,6 @@ Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashbo
 Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
-
-// <<<<<<< HEAD
-
-
-// Route::get('/resultstudio', 'CustomerController@resultstudio')->name('resultstudio');
-// Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
-// =======
-// Route::get('/notfound', 'CustomerController@notfound')->name('notfound');
-    
-// >>>>>>> 6d797e1858b0f3fdf636b968d52e83ae26fbbd6f
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');
