@@ -44,7 +44,51 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <h3 style="margin-bottom: 20px;">Filter Ukuran</h3>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="form-check col-sm-12 col-md-3">
+                                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
+                                                S
+                                              </label>
+                                            </div>
+                                            <div class="form-check col-sm-12 col-md-3">
+                                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
+                                                M
+                                              </label>
+                                            </div> 
+                                            <div class="form-check col-sm-12 col-md-3">
+                                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
+                                                L
+                                              </label>
+                                            </div>
+                                            <div class="form-check col-sm-12 col-md-3">
+                                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
+                                                XL
+                                              </label>
+                                            </div>              
+                                        </div>    
+                                    </div>
+                                    <hr>
                                     <h3 style="margin-bottom: 20px;">Filter Tipe Paket</h3>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="form-group" >
+                                                <select  class="form-control" name="type" required>
+                                                    <option selected value="All_type">Semua</option>
+                                                    <option value="A La Carte">Ala Carte</option>
+                                                    <option value="Special Package">Special Package</option>
+                                                    <option value="Special Studio">Special Studio</option>
+                                                </select>
+                                            </div>             
+                                        </div>    
+                                    </div>
+                                    <hr>
+                                    <h3 style="margin-bottom: 20px;">Filter Tipe Warna</h3>
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group" >
