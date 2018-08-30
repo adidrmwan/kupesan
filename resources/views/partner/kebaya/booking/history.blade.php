@@ -22,34 +22,37 @@
                   <table class="table table-bordered table-striped table-responsive" id="list-package2">
                       <thead>
                           <th>No</th>
-                          <th>Package Type</th>
+                          <th>Booking Code</th>
+                          <th>Package ID</th>
                           <th>Package Name</th>
-                          <th>Date</th>
-                          <th>Duration</th>
-                          <th>Booking Details</th>
-                          <th>Finished</th>
+                          <th>Size</th>
+                          <th>Set</th>
+                          <th>Quantity</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Name (Customer)</th> 
+                          <th>E-mail (Customer)</th> 
+                          <th>Phone (Customer)</th> 
+                          <th>Total (Rp)</th> 
                       </thead>
                       <tbody>
-                          @foreach($booking as $key => $data)
-                          <tr>
-                              <td>{{$key + 1}}</td>
-                              <td>{{$data->kode_booking}}</td>
-                              @if($data->pkg_category_them = 'Thematic_Set')
-                              <td>Thematic Set</td>
-                              @elseif($data->pkg_category_them = 'Special_Studio')
-                              <td>Special Studio</td>
-                              @elseif($data->pkg_category_them = 'Ala_Carte')
-                              <td>>Room (Ala Carte)</td>
-                              @endif
-                              <td>{{$data->pkg_name_them}}</td>
-                              <td>{{\Carbon\Carbon::parse($data->booking_start_date)->format('d M Y')}}</td>
-                              <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
-                              <td>
-                                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#show_history{{$data->booking_id}}" contenteditable="false">Show All Details</button>
-                              </td>   
-                          </tr>
-
-                          @endforeach
+                        @foreach($booking as $key => $data)
+                        <tr>
+                          <td>{{$key + 1}}</td>
+                          <td>{{$data->kode_booking}}</td>
+                          <td>{{$data->package_id}}</td>
+                          <td>{{$data->name}}</td>
+                          <td>{{$data->size}}</td>
+                          <td>{{$data->set}}</td>
+                          <td>{{$data->quantity}}</td>
+                          <td>{{\Carbon\Carbon::parse($data->start_date)->format('d M Y')}}</td>
+                          <td>{{\Carbon\Carbon::parse($data->end_date)->format('d M Y')}}</td>
+                          <td>{{$data->user_name}}</td> 
+                          <td>{{$data->user_nohp}}</td> 
+                          <td>{{$data->user_email}}</td> 
+                          <td>Rp {{number_format($data->booking_total,0),',','.'}}</td> 
+                        </tr>
+                        @endforeach
                       </tbody>
                   </table>
                 </div>
@@ -85,7 +88,7 @@
                           <td>{{$data->user_name}}</td> 
                           <td>{{$data->user_nohp}}</td> 
                           <td>{{$data->user_email}}</td> 
-                          <td>{{$data->booking_total}}</td> 
+                          <td>Rp. {{number_format($data->booking_total,0,',','.')}}</td> 
                         </tr>
                         @endforeach
                       </tbody>

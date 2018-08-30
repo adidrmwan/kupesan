@@ -9,9 +9,10 @@ use App\Partner;
 use App\Booking;
 use App\PSPkg;
 use App\PartnerTag;
-use App\kebayaTema;
+use App\KebayaTema;
 use App\KebayaProduct;
 use App\Tag;
+use App\KebayaPartnerTema;
 
 class SearchController extends Controller
 {
@@ -28,56 +29,81 @@ class SearchController extends Controller
     public function searchKebaya(Request $request)
     {
         $tag_id = $request->tag_id;
+        $tema = KebayaTema::where('tema_id', $tag_id)->first();
+
+        $min = $request->min_price;
+        $min_array = explode(".", $min);
+        $min_price = '';
+        foreach ($min_array as $key => $value) {
+            $min_price = $min_price . $min_array[$key];
+        }
+
+        $max  = $request->max_price;
+        $max_array = explode(".", $max);
+        $max_price = '';
+        foreach ($max_array as $key => $value) {
+            $max_price = $max_price . $max_array[$key];
+        }
+        // dd($request);
 
         if($request->has('tag_id')) {
 
             if($tag_id == 'all'){
+                
 
                 if (empty($request->min_price)) {
                     $allThemes = KebayaProduct::where('status', '1')
                                 ->orderBy('price', 'asc')->get();
                     if ($request->type == 'All_type') {
-                        $allThemes = PSPkg::where('status', '1')
+                        $allThemes = KebayaProduct::where('status', '1')
+                                ->orderBy('price', 'asc')->get();
+                    }
+                    elseif ($request->type == 'Setelan') {
+                        $allThemes = KebayaProduct::where('status', '1')
+                                    ->where('set', 'Setelan')
                                     ->orderBy('price', 'asc')->get();
                     }
-                    elseif ($request->type == 'A La Carte') {
-                        $allThemes = PSPkg::where('status', '1')
-                                    ->where('pkg_category_them', 'A La Carte')
+                    elseif ($request->type == 'Atasan') {
+                        $allThemes = KebayaProduct::where('status', '1')
+                                    ->where('set', 'Atasan')
                                     ->orderBy('price', 'asc')->get();
                     }
-                    elseif ($request->type == 'Special Package') {
-                        $allThemes = PSPkg::where('status', '1')
-                                    ->where('pkg_category_them', 'Special Package')
+                    elseif ($request->type == 'Bawahan') {
+                        $allThemes = KebayaProduct::where('status', '1')
+                                    ->where('set', 'Bawahan')
                                     ->orderBy('price', 'asc')->get();
                     }
-                    elseif ($request->type == 'Special Studio') {
-                        $allThemes = PSPkg::where('status', '1')
-                                    ->where('pkg_category_them', 'Special Studio')
-                                    ->orderBy('price', 'asc')->get();
-                    }
+
                 }
                 elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'All_type'){
-                    $allThemes = PSPkg::where('status', '1')
+                    $allThemes = KebayaProduct::where('status', '1')
                                 ->whereBetween('price', [$min_price, $max_price])
                                 ->orderBy('price', 'asc')->get();
                 }
 
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'A La Carte'){                    
-                    $allThemes = PSPkg::where('status', '1')
-                                ->where('pkg_category_them', 'A La Carte')
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Setelan'){                    
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->where('set', 'Setelan')
                                 ->whereBetween('price', [$min_price, $max_price])
                                 ->orderBy('price', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Package'){
-                    $allThemes = PSPkg::where('status', '1')
-                                ->where('pkg_category_them', 'Special Package')
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Atasan'){
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->where('set', 'Atasan')
                                 ->whereBetween('price', [$min_price, $max_price])
                                 ->orderBy('price', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Studio'){
-                    $allThemes = PSPkg::where('status', '1')
-                                ->where('pkg_category_them', 'Special Studio')
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Bawahano'){
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->where('set', 'Bawahan')
                                 ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
+
+                if ($request->has('size')) {
+
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->where('size', $request->size)
                                 ->orderBy('price', 'asc')->get();
                 }
 
@@ -85,76 +111,77 @@ class SearchController extends Controller
             }
 
             elseif($tag_id != 'all'){
-
+                
                 if (empty($request->min_price)) {
-                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->orderBy('kebaya_product.price', 'asc')->get();
 
-                    if ($request->type == 'All_type') {
-                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    if ($request->type == 'Setelan') {
+                        $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->where('set', 'Setelan')
+                                ->orderBy('kebaya_product.price', 'asc')->get();
                     }
-                    elseif ($request->type == 'A La Carte') {
-                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->where('pkg_category_them', 'A La Carte')
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    elseif ($request->type == 'Atasan') {
+                        $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->where('set', 'Atasan')
+                                ->orderBy('kebaya_product.price', 'asc')->get();
                     }
-                    elseif ($request->type == 'Special Package') {
-                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->where('pkg_category_them', 'Special Package')
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
-                    }
-                    elseif ($request->type == 'Special Studio') {
-                        $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->where('pkg_category_them', 'Special Studio')
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    elseif ($request->type == 'Bawahan') {
+                        $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->where('set', 'Bawahan')
+                                ->orderBy('kebaya_product.price', 'asc')->get();
                     }
 
 
                 }
                 elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'All_type'){
-                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                    $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
+                                ->orderBy('kebaya_product.price', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'A La Carte'){              
-                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->where('ps_package.pkg_category_them', 'A La Carte')
-                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Setelan'){              
+                    $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->where('set', 'Setelan')
+                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
+                                ->orderBy('kebaya_product.price', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Package'){
-                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->where('ps_package.pkg_category_them', 'Special Package')
-                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Atasan'){
+                    $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->where('set', 'Atasan')
+                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
+                                ->orderBy('kebaya_product.price', 'asc')->get();
                 }
-                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Special Studio'){
-                    $allThemes = PartnerTag::where('ps_package_tag.tag_id', $tag_id)
-                                ->join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
-                                ->where('ps_package.status', '1')
-                                ->where('ps_package.pkg_category_them', 'Special Studio')
-                                ->whereBetween('ps_package.pkg_price_them', [$min_price, $max_price])
-                                ->orderBy('ps_package.pkg_price_them', 'asc')->get();
+                elseif($request->has('min_price') && $request->has('max_price') && $request->type == 'Bawahan'){
+                    $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
+                                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
+                                ->where('kebaya_product.status', '1')
+                                ->where('set', 'Bawahan')
+                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
+                                ->orderBy('kebaya_product.price', 'asc')->get();
+                }
+
+                if ($request->has('size')) {
+
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->where('size', $request->size)
+                                ->orderBy('price', 'asc')->get();
                 }
                 // dd($request);
-                return view('search-result.fotostudio.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
+                return view('search-result.kebaya.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
             }
         
         }

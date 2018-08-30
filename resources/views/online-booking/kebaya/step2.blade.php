@@ -10,18 +10,18 @@
         <div class="container">
             <div class="row">
                 @include('online-booking.kebaya.package-info')
-                <form role="form" action="{{ route('kebaya.step3') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                <form role="form" action="{{ route('kebaya.submit.step2') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                 {{ csrf_field() }}
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Pesanan-Ku</h4></div>
+                        <div class="panel-heading"><h4>Pesanan-KU</h4></div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12  user-detail">
                                         <div class="row">
                                             <div class="row">
                                                 @if ($message = Session::get('warning'))
-                                                    <div class="alert alert-danger">                                                        {{ $message }} <b>Jam Operasional {{$partner->pr_name}}.</b>
+                                                    <div class="alert alert-danger">                                                        {{ $message }} <b>Jam Operasional {{$partner->pr_name}}</b> dari Jam <b>{{$partner->open_hour}}:00 - {{$partner->close_hour}}:00 WIB</b>
                                                     </div>
                                                 @elseif ($message = Session::get('not-available'))
                                                     <div class="alert alert-danger">                                                        {{ $message }}
@@ -36,14 +36,14 @@
                                             <div class="row">
                                               <div class="col-md-6">
                                                 <div class="form-group">
-                                                  <label>Tanggal Mulai</label> 
-                                                  <input  class="form-control" id="startDate" name="start_date" data-date-format="yyyy-mm-dd" required="" placeholder="Tanggal Mulai">
+                                                  <label>Tanggal Pesan</label> 
+                                                  <input  class="form-control" id="startDate" name="start_date" data-date-format="yyyy-mm-dd" required="" placeholder="Tanggal Pesan (Pengambilan)">
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
                                                 <div class="form-group">
-                                                  <label>Tanggal Selesai</label> 
-                                                  <input  class="form-control" id="endDate" name="end_date" data-date-format="yyyy-mm-dd" placeholder="Tanggal Selesai" />
+                                                  <label>Tanggal Pengembalian</label> 
+                                                  <input  class="form-control" id="endDate" name="end_date" data-date-format="yyyy-mm-dd" placeholder="Tanggal Pengembalian" />
                                                 </div>
                                               </div>
                                             </div>

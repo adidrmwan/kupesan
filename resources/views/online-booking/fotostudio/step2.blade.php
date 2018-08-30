@@ -14,14 +14,14 @@
                 {{ csrf_field() }}
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Pesanan-Ku</h4></div>
+                        <div class="panel-heading"><h4>Pesanan-KU</h4></div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12  user-detail">
                                         <div class="row">
                                             <div class="row">
                                                 @if ($message = Session::get('warning'))
-                                                    <div class="alert alert-danger">                                                        {{ $message }} <b>Jam Operasional {{$partner->pr_name}}.</b>
+                                                    <div class="alert alert-danger">                                                        {{ $message }} <b>Jam Operasional {{$partner->pr_name}}</b> dari Jam <b>{{$partner->open_hour}}:00 - {{$partner->close_hour}}:00 WIB</b>
                                                     </div>
                                                 @elseif ($message = Session::get('not-available'))
                                                     <div class="alert alert-danger">                                                        {{ $message }}

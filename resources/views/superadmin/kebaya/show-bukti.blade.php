@@ -18,15 +18,15 @@
                 <tbody>
                   <tr>
                     <th>Nama Pemesan</th>
-                    <td>{{$data->booking_user_name}}</td>
+                    <td>{{$data->user_name}}</td>
                   </tr>
                   <tr>
                     <th>No HP</th>
-                    <td>{{$data->booking_user_nohp}}</td>
+                    <td>{{$data->user_nohp}}</td>
                   </tr>
                   <tr>
                     <th>Email</th>
-                    <td>{{$data->booking_user_email}}</td>
+                    <td>{{$data->user_email}}</td>
                   </tr>
                   <tr>
                     <th colspan="2"></th>
@@ -37,17 +37,11 @@
                   </tr>
                   <tr>
                     <th>Tanggal Pesan</th>
-                    <td>{{date('d F Y', strtotime($data->booking_start_date))}}</td>
+                    <td>{{date('d F Y', strtotime($data->start_date))}}</td>
                   </tr>
                   <tr>
-                    <th>Waktu Pesan</th>
-                    <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
-                  </tr>
-                  <tr>
-                    <th>Status Pesanan</th>
-                    @if($data->booking_status == 'paid')
-                    <td><span class="label label-success">Paid</span>&nbsp;<span class="label label-success">Unconfirmed</span></td>
-                    @endif
+                    <th>Tanggal Pengembalian</th>
+                    <td>{{date('d F Y', strtotime($data->end_date))}}</td>
                   </tr>
                   <tr>
                     <th>Bukti Pembayaran</th>
@@ -61,9 +55,18 @@
                               @endif
                     </td>
                   </tr>
+                  <tr>
+                    <th>Harga Paket</th>
+                    <th>Rp {{number_format($data->booking_total,0,',','.')}}</th>
+                  </tr>
+                  <tr>
+                    <th>Deposito</th>
+                    <th>Rp {{number_format($deposito,0,',','.')}}</th>
+                  </tr>
+
                   <tr style="background-color: #4b75a7; color: white;">
                     <th>Total</th>
-                    <th>Rp {{number_format($data->booking_total,2,',','.')}}</th>
+                    <th>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</th>
                   </tr>
                 </tbody>
               </table>            
@@ -72,18 +75,18 @@
           <div class="row">
             <div class=""></div>
             <div class="col-lg-12 pull-right" >
-              <a href="{{route('cancel.bukti', ['id' => $data->booking_id])}}">
+              <a href="{{route('kebaya.cancel.bukti', ['id' => $data->booking_id])}}">
                 <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
                 </button>
               </a>
               @if($data->status == '1')
               @else
-              <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
+              <a href="{{route('kebaya.confirm.bukti', ['id' => $data->booking_id])}}">
                 <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
                 </button>
               </a>
               @endif
-              <a href="{{route('index')}}">
+              <a href="{{route('list.booking.kebaya')}}">
                 <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Back</span>
                 </button>
               </a>

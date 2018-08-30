@@ -567,7 +567,10 @@ class KebayaController extends Controller
 
         $title = 'Libur';
         $events = [];
-        $data = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.partner_id', $user->id)->get();
+        $data = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                    ->where('kebaya_booking.partner_id', $user->id)->get();
+
+        // dd($data);
 
         if($data->count()) {
             foreach ($data as $key => $value) {
@@ -581,7 +584,7 @@ class KebayaController extends Controller
                     null,
                     // Add color and link on event
                      [
-                         'color' => '#ff0000',
+                         'color' => '#28a745',
                          'url' => route('detail.booking', ['booking_id' => $value->booking_id]),
                      ]
                     );
@@ -595,7 +598,7 @@ class KebayaController extends Controller
                     null,
                     // Add color and link on event
                      [
-                         'color' => '#009885',
+                         'color' => '#dc3545',
                          'url' => '#',
                      ]
                     );
@@ -618,12 +621,12 @@ class KebayaController extends Controller
         }
         $calendar = Calendar::addEvents($events);
 
-        $booking = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.partner_id', $user->id)->where('kebaya_booking.booking_status', 'offline-booking')->orderBy('kebaya_booking.start_date', 'asc')->get();
-        
-        // if ($request->has('show_id')) {
-        //     $booking_show = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('ps_package.user_id', $user->id)->where('booking.booking_id', $request->show_id)->get();
-        //     return view('partner.kebaya.booking.schedule', ['partner' => $partner], compact('calendar', 'booking', 'booking_show'));
-        // }
+        $booking = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                    ->where('kebaya_booking.partner_id', $user->id)
+                    ->where('kebaya_booking.booking_status', 'offline-booking')
+                    ->orwhere('kebaya_booking.booking_status', 'confirmed')
+                    ->select('kebaya_booking.*', 'kebaya_product.name', 'kebaya_product.size', 'kebaya_product.set')
+                    ->orderBy('kebaya_booking.start_date', 'asc')->get();
 
         return view('partner.kebaya.booking.schedule', ['partner' => $partner], compact('calendar', 'booking'));
     }
@@ -636,9 +639,17 @@ class KebayaController extends Controller
                     ->select('*')
                     ->first();
 
-        $booking = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.partner_id', $user->id)->where('kebaya_booking.booking_status', 'done')->orderBy('kebaya_booking.start_date', 'asc')->get();
+        $booking = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                    ->where('kebaya_booking.partner_id', $user->id)
+                    ->where('kebaya_booking.booking_status', 'done')
+                    ->select('kebaya_booking.*', 'kebaya_product.name', 'kebaya_product.size', 'kebaya_product.set')
+                    ->orderBy('kebaya_booking.start_date', 'asc')->get();
 
-        $booking_offline = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.partner_id', $user->id)->where('kebaya_booking.booking_status', 'offline-booking-done')->orderBy('kebaya_booking.start_date', 'asc')->get();
+        $booking_offline = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                    ->where('kebaya_booking.partner_id', $user->id)
+                    ->where('kebaya_booking.booking_status', 'offline-booking-done')
+                    ->select('kebaya_booking.*', 'kebaya_product.name', 'kebaya_product.size', 'kebaya_product.set')
+                    ->orderBy('kebaya_booking.start_date', 'asc')->get();
         // dd($booking_offline);
         return view('partner.kebaya.booking.history', ['partner' => $partner, 'booking' => $booking], compact('booking_offline'));
     }
@@ -694,6 +705,17 @@ class KebayaController extends Controller
         $booking_id = $request->id;
         $booking = KebayaBooking::where('booking_id', $booking_id)->first();
         $booking->booking_status = 'offline-booking-done';
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function bookingFinishedOnline(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = KebayaBooking::where('booking_id', $booking_id)->first();
+        $booking->booking_status = 'done';
         $booking->save();
 
         return redirect()->back();

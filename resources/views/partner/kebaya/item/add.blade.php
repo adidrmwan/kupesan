@@ -146,7 +146,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Catatan Tambahan</label>
+                        <label>Informasi Produk</label>
                         <small>(contoh: Bahan Balotely, Tidak untuk di setrika)</small>
                         <textarea class="form-control" name="description" style="height: 185px;"></textarea>
                       </div>

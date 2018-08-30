@@ -92,7 +92,7 @@
                       <th>Nama Paket</th>
                       <th>Tipe Paket</th>
                       <th>Total</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -106,10 +106,10 @@
                       <td>{{date('H:i', strtotime($data->booking_start_date))}} - {{date('H:i', strtotime($data->booking_end_date))}} WIB</td>
                       <td>{{$data->pkg_name_them}}</td>
                       <td>{{$data->pkg_category_them}}</td>
-                      <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'un_approved')
+                      <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
+                     <!--  @if($data->booking_status == 'un_approved')
                       <td><span class="label label-danger">On Review</span></td>
-                      @endif
+                      @endif -->
                       <td>  
                         <a href="{{route('cancel.booking', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
@@ -135,7 +135,7 @@
                       <th>Tanggal Pesan</th>
                       <th>Jadwal Pesan</th>
                       <th>Total</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -147,10 +147,10 @@
                       <td>{{$data->booking_user_nohp}}</td>
                       <td>{{date('d F Y', strtotime($data->booking_start_date))}}</td>
                       <td>{{date('H:i', strtotime($data->booking_start_date))}} - {{date('H:i', strtotime($data->booking_end_date))}} WIB</td>
-                      <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'paid')
+                      <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
+                     <!--  @if($data->booking_status == 'paid')
                       <td><span class="label label-success">Sudah Bayar</span></td>
-                      @endif
+                      @endif -->
                       <td>  
                         <a href="{{route('show.bukti', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Show Bukti Pembayaran</span>
@@ -181,7 +181,7 @@
                       <th>Date</th>
                       <th>Time</th>
                       <th>Total</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Details</th>
                     </tr>
                     </thead>
@@ -194,10 +194,10 @@
                       <!-- <td>{{$data->package_id}}</td> -->
                       <td>{{date('d F Y', strtotime($data->booking_at))}}</td>
                       <td>{{date('H:m', strtotime($data->booking_at))}} WIB</td>
-                      <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'confirmed')
+                      <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
+                      <!-- @if($data->booking_status == 'confirmed')
                       <td><span class="label label-success">Confirmed</span></td>
-                      @endif
+                      @endif -->
                       <td>
 
                           <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-pemesan"><span style="color: white; text-decoration: none;">Show</span>

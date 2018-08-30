@@ -3,7 +3,7 @@ Selamat, {{ $first_name }} {{ $last_name}}!
 <br>
 Pesanan Anda masih tersedia.
 <br>
-Untuk melanjutkan pesanan Anda tekan link dibawah ini:
+Silahkan melanjutkan pesanan Anda melalui link dibawah ini:
 <br>
 
 {{ url('booking/approved', $link)}}

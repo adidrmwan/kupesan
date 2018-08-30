@@ -10,11 +10,11 @@
         <div class="container">
             <div class="row">
                 @include('online-booking.kebaya.package-info')
-                <form role="form" action="{{ route('kebaya.step5') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
+                <form role="form" action="{{ route('kebaya.submit.step3') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                 {{ csrf_field() }}
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 content-side">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Pesanan-Ku</h4></div>
+                        <div class="panel-heading"><h4>Pesanan-KU</h4></div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12  user-detail">

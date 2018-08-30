@@ -87,12 +87,15 @@
                       <th>No</th>
                       <th>Nama Partner</th>
                       <th>No Hp Partner</th>
-                      <th>Tanggal Pesan</th>
-                      <th>Tanggal Pengambilan Pesan</th>
+                      <th>Tanggal Pengambilan</th>
+                      <th>Tanggal Pengembalian</th>
+                      <th>ID Paket</th>
                       <th>Nama Paket</th>
                       <th>Tipe Paket</th>
+                      <th>Ukuran</th>
+                      <th>Kuantitas</th>
                       <th>Total</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -100,22 +103,25 @@
                     @foreach($booking_unapprove as $key => $data)
                     <tr>
                       <td>{{$key + 1}}</td>
-                      <td>{{$data->partner_name}}</td>
+                      <td>{{$data->pr_name}}</td>
                       <td>{{$data->phone_number}}</td>
                       <td>{{date('d F Y', strtotime($data->start_date))}}</td>
                       <td>{{date('d F Y', strtotime($data->end_date))}}</td>
+                      <td>{{$data->package_id}}</td>
                       <td>{{$data->name}}</td>
                       <td>{{$data->set}}</td>
-                      <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'un_approved')
+                      <td>{{$data->size}}</td>
+                      <td>{{$data->quantity}} pcs</td>
+                      <td>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</td>
+                      <!-- @if($data->booking_status == 'un_approved')
                       <td><span class="label label-danger">On Review</span></td>
-                      @endif
+                      @endif -->
                       <td>  
-                        <a href="{{route('cancel.booking', ['id' => $data->booking_id])}}">
+                        <a href="{{route('kebaya.cancel.booking', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
                           </button>
                         </a>
-                        <a href="{{route('approve.booking', ['id' => $data->booking_id])}}">
+                        <a href="{{route('kebaya.approve.booking', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Approve</span>
                           </button>
                         </a>
@@ -133,9 +139,9 @@
                       <th>Nama Pemesan</th>
                       <th>No HP Pemesan</th>
                       <th>Tanggal Pesan</th>
-                      <th>Jadwal Pesan</th>
+                      <th>Tanggal Pengembalian</th>
                       <th>Total</th>
-                      <th>Status</th>
+                      <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -143,24 +149,24 @@
                     @foreach($booking_unconfirmed as $key => $data)
                     <tr>
                       <td>{{$key + 1}}</td>
-                      <td>{{$data->booking_user_name}}</td>
-                      <td>{{$data->booking_user_nohp}}</td>
-                      <td>{{date('d F Y', strtotime($data->booking_start_date))}}</td>
-                      <td>{{date('H:i', strtotime($data->booking_start_date))}} - {{date('H:i', strtotime($data->booking_end_date))}} WIB</td>
-                      <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'paid')
+                      <td>{{$data->user_name}}</td>
+                      <td>{{$data->user_nohp}}</td>
+                      <td>{{date('d F Y', strtotime($data->start_date))}}</td>
+                      <td>{{date('d F Y', strtotime($data->end_date))}}</td>
+                      <td>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</td>
+                      <!-- @if($data->booking_status == 'paid')
                       <td><span class="label label-success">Sudah Bayar</span></td>
-                      @endif
+                      @endif -->
                       <td>  
-                        <a href="{{route('show.bukti', ['id' => $data->booking_id])}}">
+                        <a href="{{route('kebaya.show.bukti', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Show Bukti Pembayaran</span>
                           </button>
                         </a>
-                        <a href="{{route('cancel.bukti', ['id' => $data->booking_id])}}">
+                        <a href="{{route('kebaya.cancel.bukti', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
                           </button>
                         </a>
-                        <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
+                        <a href="{{route('kebaya.confirm.bukti', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
                           </button>
                         </a>
@@ -178,11 +184,11 @@
                       <th>Kode Booking</th>
                       <th>User ID</th>
                       <!-- <th>Paket ID</th> -->
-                      <th>Date</th>
-                      <th>Time</th>
+                      <th>Tanggal Pesan</th>
+                      <th>Tanggal Pengembalian</th>
+                      <th>Harga</th>
+                      <th>Deposito</th>
                       <th>Total</th>
-                      <th>Status</th>
-                      <th>Details</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -192,17 +198,11 @@
                       <td>{{$data->kode_booking}}</td>
                       <td>{{$data->user_id}}</td>
                       <!-- <td>{{$data->package_id}}</td> -->
-                      <td>{{date('d F Y', strtotime($data->booking_at))}}</td>
-                      <td>{{date('H:m', strtotime($data->booking_at))}} WIB</td>
-                      <td>Rp {{$data->booking_total}}</td>
-                      @if($data->booking_status == 'confirmed')
-                      <td><span class="label label-success">Confirmed</span></td>
-                      @endif
-                      <td>
-
-                          <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-pemesan"><span style="color: white; text-decoration: none;">Show</span>
-                          </button>
-                      </td>
+                      <td>{{date('d F Y', strtotime($data->start_date))}}</td>
+                      <td>{{date('d F Y', strtotime($data->end_date))}}</td>
+                      <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
+                      <td>Rp {{number_format($deposito,0,',','.')}}</td>
+                      <td>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</td>
                     </tr>
                     @endforeach
                     </tbody>

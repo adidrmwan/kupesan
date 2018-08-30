@@ -77,18 +77,29 @@
                   <td>{{\Carbon\Carbon::parse($data->end_date)->format('d M Y')}}</td>
                   <td>{{$data->user_name}}</td> 
                   <td>{{$data->user_nohp}}</td> 
-                  <td>{{$data->booking_total}}</td> 
-                  <td><h5><span class="badge badge-pill badge-warning">Offline</span></h5></td> 
+                  <td>Rp {{number_format($data->booking_total,0,',','.')}}</td> 
+                  @if($data->booking_status == 'offline-booking')
+                  <td><h5><span class="badge badge-pill badge-warning">Off</span></h5></td> 
                   <td style="text-align: center;">
                     <a href="{{route('kebaya.booking.cancel', ['id' => $data->booking_id])}}">
                       <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button>
                     </a>
-                  </td>   
+                  </td> 
                   <td style="text-align: center;">
                     <a href="{{route('kebaya.booking.finished', ['id' => $data->booking_id])}}">
                       <button type="submit" class="btn btn-success"><i class="fa fa-check"></i></button>
                     </a>
                   </td>
+                  @elseif($data->booking_status == 'confirmed')
+                  <td><h5><span class="badge badge-pill badge-success">On</span></h5></td> 
+                  <td></td>
+                  <td style="text-align: center;">
+                    <a href="{{route('kebaya.booking.finished.online', ['id' => $data->booking_id])}}">
+                      <button type="submit" class="btn btn-success"><i class="fa fa-check"></i></button>
+                    </a>
+                  </td>
+                  @endif
+                  
                 </tr>
                 @endforeach
               </tbody>

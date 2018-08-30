@@ -16,6 +16,7 @@ use App\Districts;
 use App\Villages;
 use App\BookingCheck;
 use App\KebayaBooking;
+use App\KebayaCheck;
 class AdminController extends Controller
 {
     public function dashboard()
@@ -46,18 +47,21 @@ class AdminController extends Controller
                             ->join('partner', 'kebaya_product.partner_id', '=', 'partner.user_id')
                             ->join('users', 'users.id', '=', 'partner.user_id')
                             ->where('kebaya_booking.booking_status', 'un_approved')
-                            ->select('kebaya_product.name','partner.*','kebaya_booking.start_date', 'kebaya_booking.end_date', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'users.phone_number', 'users.email')
+                            ->select('kebaya_product.name','kebaya_product.set','kebaya_product.size','partner.pr_name','partner.pr_name','kebaya_booking.start_date', 'kebaya_booking.end_date','kebaya_booking.booking_id','kebaya_booking.package_id','kebaya_booking.booking_status', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'users.phone_number', 'users.email')
                             ->get();
-        dd($booking_unapprove);
-        $booking_unconfirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'paid')->get();
+        // dd($booking_unapprove);
+        $booking_unconfirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.booking_status', 'paid')->get();
 
-        $booking_confirmed = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'confirmed')->get();
+        $booking_confirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.booking_status', 'confirmed')->get();
+
         $total_partner = Partner::count();
         $total_user = User::join('role_user', 'role_user.user_id', '=', 'users.id')->where('role_user.role_id', '=', '2')->count();
         $total_booking_paid = Booking::where('booking_status', 'paid')->count();
         $total_booking_confirmed = Booking::where('booking_status', 'confirmed')->count();
         $total_booking = Booking::count();
-        return view('superadmin.dashboard', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed'));
+
+        $deposito = '100000';
+        return view('superadmin.kebaya.booking-list', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed', 'deposito'));
     }
 
     public function approveBooking(Request $request)
@@ -188,6 +192,118 @@ class AdminController extends Controller
         $booking = Booking::where('booking_id', $booking_id)->get();
 
         return view('superadmin.booking.show-bukti', compact('booking'));
+    }
+
+    // kebaya
+
+    public function approveBookingKebaya(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = KebayaBooking::find($booking_id);
+        $book = KebayaBooking::where('booking_id', $booking_id)->select('booking_id')->first()->toArray();
+        $user = User::where('id', $booking->user_id)->first()->toArray();
+        
+        $user['link'] = '4'.str_random(30).'KbY';
+
+        DB::table('booking_activations_kebaya')->insert(['id_user'=>$user['id'], 'booking_id'=>$book['booking_id'], 'token'=>$user['link']]);
+
+        Mail::send('emails.booking-approve-kebaya', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id - Booking Approved');
+        });
+
+        $booking->booking_status = 'approved';
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function bookingActivationKebaya($token){
+      $check = DB::table('booking_activations_kebaya')->where('token',$token)->first();
+      if(!is_null($check)){
+        $user = User::find($check->id_user);
+        $bid = $check->booking_id;
+
+        if ($user->is_activated == 1){
+
+            return redirect()->route('kebaya.step6', ['bid' => $bid]);
+        }
+
+        $user->update(['is_activated' => 1]);
+
+        return redirect()->route('kebaya.step6', ['bid' => $bid]);
+      }
+      return redirect()->to('home')->with('Warning',"Your token is invalid");
+    }
+
+    public function cancelBookingKebaya(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = KebayaBooking::find($booking_id);
+
+        $book = KebayaBooking::where('booking_id', $booking_id)->select('booking_id')->first()->toArray();
+        $user = User::where('id', $booking->user_id)->first()->toArray();
+        
+        Mail::send('emails.booking-cancel', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id - Booking Tidak Tersedia');
+        });
+        
+        $booking->booking_status = 'canceled_by_admin';
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function confirmBuktiKebaya(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = KebayaBooking::find($booking_id);
+        $kode_booking = '4x'.str_random(7);
+        $booking->kode_booking = $kode_booking;
+        $booking->booking_status = 'confirmed';
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function cancelBuktiKebaya(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = KebayaBooking::find($booking_id);
+        $booking->booking_status = 'paid_unvalid';
+        $bid = $booking_id;
+        $package_id = $booking->package_id;
+        $quantity_cancel = $booking->quantity;
+        $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
+        $booking_end_date = date('Y-m-d', strtotime("$booking->end_date"));
+
+        $kebaya_booking_check = KebayaCheck::where('package_id', $package_id)->whereBetween('booking_date', [$booking_start_date, $booking_end_date])->get();
+        // dd($kebaya_booking_check);
+
+        foreach ($kebaya_booking_check as $key => $value) {
+            $kuantitas = $value->kuantitas;
+            $kebaya_cancel = KebayaCheck::find($value->id);
+            $kebaya_cancel->kuantitas =   $kuantitas - $quantity_cancel;
+            $kebaya_cancel->save();
+        }
+
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function showBuktiKebaya(Request $request)
+    {
+
+        $booking_id = $request->id;
+        $booking = KebayaBooking::where('booking_id', $booking_id)->get();
+        $deposito = '100000';
+        return view('superadmin.kebaya.show-bukti', compact('booking', 'deposito'));
     }
 
     public function partnerList()

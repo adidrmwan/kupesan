@@ -3,7 +3,7 @@ Maaf, {{ $first_name }} {{ $last_name}}.
 <br>
 Pesanan Anda tidak tersedia.
 <br>
-Silahkan kembali lagi ke KUPESAN.ID dengan menekan link dibawah ini:
+Silahkan melakukan pesanan kembali di KUPESAN.ID melalui link dibawah ini:
 <br>
 
 {{ url('home')}}

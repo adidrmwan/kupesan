@@ -57,9 +57,23 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
     Route::get('/show/partner', 'AdminController@showPartner')->name('show.partner');
     Route::get('/cancel/partner', 'AdminController@cancelPartner')->name('cancel.partner');
 
+    // kebaya
+
+    Route::get('/kebaya/approve/booking', 'AdminController@approveBookingKebaya')->name('kebaya.approve.booking');
+    Route::get('/kebaya/cancel/booking', 'AdminController@cancelBookingKebaya')->name('kebaya.cancel.booking');
+    Route::get('/kebaya/confirm/bukti', 'AdminController@confirmBuktiKebaya')->name('kebaya.confirm.bukti');
+    Route::get('/kebaya/cancel/bukti', 'AdminController@cancelBuktiKebaya')->name('kebaya.cancel.bukti');
+    Route::get('kebaya//show/bukti', 'AdminController@showBuktiKebaya')->name('kebaya.show.bukti');
+
     Route::get('/list/booking/kebaya', 'AdminController@listBookingKebaya')->name('list.booking.kebaya');
 
 });
+
+// Route untuk email verification
+Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
+Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
+Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
+Route::get('/booking/approved/kebaya/{token}', 'AdminController@bookingActivationKebaya');
 
 // Route untuk user yang member
 Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function(){
@@ -83,10 +97,16 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
 
     // kebaya 
     Route::get('/booking/kebaya/2', 'KebayaBookingController@step2')->name('kebaya.step2');
-    Route::post('/booking/kebaya/3', 'KebayaBookingController@step3')->name('kebaya.step3');
+    Route::post('/booking/kebaya/2', 'KebayaBookingController@submitStep2')->name('kebaya.submit.step2');
+    Route::get('/booking/kebaya/3', 'KebayaBookingController@step3')->name('kebaya.step3');
+    Route::post('/booking/kebaya/3', 'KebayaBookingController@submitStep3')->name('kebaya.submit.step3');
     Route::get('/booking/kebaya/4', 'KebayaBookingController@step4')->name('kebaya.step4');
-    Route::post('/booking/kebaya/5', 'KebayaBookingController@step5')->name('kebaya.step5');
-    Route::post('/booking/kebaya/5', 'KebayaBookingController@step6')->name('kebaya.step6');
+    Route::post('/booking/kebaya/4', 'KebayaBookingController@submitStep4')->name('kebaya.submit.step4');
+    Route::get('/booking/kebaya/6', 'KebayaBookingController@step6')->name('kebaya.step6');
+    Route::post('/booking/kebaya/7', 'KebayaBookingController@step7')->name('kebaya.step7');
+    Route::post('/booking/kebaya/8', 'KebayaBookingController@step8')->name('kebaya.step8');
+    Route::post('/booking/kebaya/9', 'KebayaBookingController@uploadBukti')->name('kebaya.upload.bukti');
+    Route::get('/booking/kebaya/9', 'KebayaBookingController@step9')->name('kebaya.step9');
     Route::post('/booking/kebaya/info', 'CustomerController@showKebayaInfo')->name('kebaya.booking.info');
 });
     Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
@@ -165,14 +185,12 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/booking/history/4', 'KebayaController@showBookingHistory')->name('kebaya.history');
     Route::get('/booking/cancel', 'KebayaController@bookingCancel')->name('kebaya.booking.cancel');
     Route::get('/booking/finished', 'KebayaController@bookingFinished')->name('kebaya.booking.finished');
+    Route::get('/booking/finished/online', 'KebayaController@bookingFinishedOnline')->name('kebaya.booking.finished.online');
     Route::post('/profile/panduan-ukuran/update', 'KebayaController@updatePU')->name('kebaya.update.pu');
     Route::get('/profile/panduan-ukuran/delete', 'KebayaController@deletePU')->name('kebaya.delete.pu');
 });
 
-// Route untuk email verification
-Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
-Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
-Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
+
 
 
 //Route untuk studio foto
