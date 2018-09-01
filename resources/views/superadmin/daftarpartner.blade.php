@@ -108,11 +108,11 @@
                         </button>
                       </a>
                       <a href="{{route('cancel.partner', ['id' => $value->id])}}">
-                        <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                        <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;" onclick="return confirm('Are you sure want to cancel?')"><span style="color: white; text-decoration: none;">Cancel</span>
                         </button>
                       </a>
                       <a href="{{route('confirm.partner', ['id' => $value->id])}}">
-                        <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                        <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;" onclick="return confirm('Are you sure want to cancel?')"><span style="color: white; text-decoration: none;">Confirm</span>
                         </button>
                       </a>
 

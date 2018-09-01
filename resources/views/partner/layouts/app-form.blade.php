@@ -142,6 +142,15 @@
     </script>
 
     <script>
+        $("#file-detail-mitra").fileinput({
+                theme: 'fa',
+                'allowedFileExtensions': ['jpg', 'png', 'jpeg'],
+                'maxFileSize': 3072,
+
+        });
+    </script>
+
+    <script>
         $("#file-paket").fileinput({
                 'allowedFileExtensions': ['jpg', 'png', 'jpeg'],
                 'maxFileSize': 512,

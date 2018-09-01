@@ -10,6 +10,8 @@ use App\Partner;
 use DB;
 use Mail;
 use Auth;
+use File;
+use Image;
 use App\Provinces;
 use App\Regencies;
 use App\Districts;
@@ -337,6 +339,29 @@ class AdminController extends Controller
         $partner->status = '1';
         $partner->save();
 
+        $foto_ktp = $partner->ktp;
+        $foto_bangunan = $partner->bangunan;
+        if( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.jpeg' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.jpeg' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.jpeg' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.jpg' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.png' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.png' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.png' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.jpg' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.png' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.png' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.png' ));
+        }
+
         return redirect()->back();
     }
 
@@ -371,6 +396,29 @@ class AdminController extends Controller
         $partner->status = '2';
         $partner->save();
 
+        $foto_ktp = $partner->ktp;
+        $foto_bangunan = $partner->bangunan;
+        if( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.jpeg' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.jpeg' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.jpeg' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.jpg' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.png' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.png' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.png' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.jpg' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.jpg' ));
+        }
+        elseif( File::exists(public_path('/partner_ktp/' . $foto_ktp .'.png' ))){
+            File::delete(public_path('/partner_ktp/' . $foto_ktp .'.png' ));
+            File::delete(public_path('/partner_ktp/' . $foto_bangunan .'.png' ));
+        }
+        
         return redirect()->back();
     }
 

@@ -102,7 +102,7 @@ class RegisterController extends Controller
           $message->to($user['email']);
           $message->subject('Kupesan - Activation Code');
         });
-        return redirect()->to('login')->with('success',"Activation link has been sent to your e-mail, please click the link to activate your account.");
+        return redirect()->to('login')->with('success',"Activation link has been sent to your e-mail. Please click the link to activate your account.");
       }
       return back()->with('errors',$validator->errors());
     }
@@ -112,12 +112,12 @@ class RegisterController extends Controller
       if(!is_null($check)){
         $user = User::find($check->id_user);
         if ($user->is_activated ==1){
-          return redirect()->to('login')->with('success',"Account active successfully, please enter your e-mail and password to Log-In.");
+          return redirect()->to('login')->with('active',"Account active successfully. Please enter your e-mail and password to Log-In.");
 
         }
         $user->update(['is_activated' => 1]);
         DB::table('user_activations')->where('token',$token)->delete();
-        return redirect()->to('login')->with('success',"Account active successfully, please enter your e-mail and password to Log-In.");
+        return redirect()->to('login')->with('active',"Account active successfully. Please enter your e-mail and password to Log-In.");
       }
       return redirect()->to('login')->with('Warning',"Your token is invalid");
     }

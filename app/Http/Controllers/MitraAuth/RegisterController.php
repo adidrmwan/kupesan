@@ -85,11 +85,11 @@ class RegisterController extends Controller
 
             DB::table('user_activations')->insert(['id_user'=>$user['id'],'token'=>$user['link']]);
             
-            Mail::send('emails.activation', $user, function($message) use ($user){
+            Mail::send('emails.activation-partner', $user, function($message) use ($user){
               $message->to($user['email']);
               $message->subject('Kupesan - Activation Code');
             });
-            return redirect()->to('partner-ku/login')->with('success',"Activation link has been sent to your e-mail, please click the link to activate your account.");
+            return redirect()->to('partner-ku/login')->with('success',"Activation link has been sent to your e-mail. Please click the link to activate your account.");
             ; 
         }
         return back()->with('errors',$validator->errors());
@@ -100,7 +100,7 @@ class RegisterController extends Controller
       if(!is_null($check)){
         $user = User::find($check->id_user);
         if ($user->is_activated ==1){
-          return redirect()->to('partner-ku/login')->with('success',"Account active successfully, please enter your e-mail and password to Log-In.");
+          return redirect()->to('partner-ku/login')->with('success',"Account active successfully. Please enter your e-mail and password to Log-In.");
 
         }
         $user->update(['is_activated' => 1]);

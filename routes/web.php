@@ -71,6 +71,7 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
 
 // Route untuk email verification
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
+Route::get('/partner/activation/2/{token}', 'MitraAuth\RegisterController@userActivation');
 Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
 Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
 Route::get('/booking/approved/kebaya/{token}', 'AdminController@bookingActivationKebaya');
@@ -119,6 +120,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 
     Route::get('/form/new', 'PartnerController@showDetailMitra')->name('partner.profile.form');
     Route::post('/form/new', 'PartnerController@submitDetailMitra')->name('partner.profile.form.submit');
+    
     Route::get('/form/facilities', 'PartnerController@showFormFacilities')->name('partner.facilities.form');
     Route::post('/form/facilities', 'PartnerController@submitFormFacilities')->name('partner.facilities.form.submit');
     Route::get('/form/dayoff', 'PartnerController@showFormDayOff')->name('form.dayoff');

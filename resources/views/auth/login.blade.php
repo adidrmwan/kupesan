@@ -14,17 +14,13 @@
                           {{ csrf_field() }}
 
                            @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                              <p>
-                                {{ $message }}
-                              </p>
+                            <div class="alert alert-success" style="text-align: center;">
+                              {{ $message }}
                             </div>
                           @endif
                           @if ($message = Session::get('warning'))
-                            <div class="alert alert-warning">
-                              <p>
-                                {{ $message }}
-                              </p>
+                            <div class="alert alert-warning" style="text-align: center;">
+                              {{ $message }}
                             </div>
                           @endif
                           <div class="row">

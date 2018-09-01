@@ -6,14 +6,14 @@
 
         <div class="row">
 
-            <div class="col-md-10">
+            <div class="col-lg-8">
                 @if($partner->status == ' 0')
                 <div class="card ">
                     <div class="header">
                         <h4 class="title">Informasi</h4>
                     </div>
                     <div class="content">
-                        <h5>Formulir pengajuan Anda sedang ditinjau.<br>Pemberitahuan peninjauan akan dikirim melalui E-mail terdaftar dalam waktu 1x24 jam.<br><br>Terima Kasih</h5>
+                        <h5>Formulir pengajuan Anda sedang ditinjau.<br>Pemberitahuan peninjauan akan dikirim oleh kami dalam waktu 2-3 hari.<br><br>Terima Kasih</h5>
                     </div>
                 </div>
                 @elseif($partner->status == '1')

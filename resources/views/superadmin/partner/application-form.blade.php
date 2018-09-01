@@ -2,6 +2,7 @@
 @section('title', 'Application Form')
 @section('content')
 
+@foreach($partner as $key => $value)
 <section class="content">  
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
@@ -11,7 +12,6 @@
           
         </div>
         <div class="box-body">
-          @foreach($partner as $key => $value)
           <div class="row">
             <div class="col-lg-12">
               <table class="table table-condensed table-bordered table-striped">
@@ -27,6 +27,10 @@
                   <tr>
                     <th>Partner Name</th>
                     <td>{{$value->pr_name}}</td>
+                  </tr>
+                  <tr>
+                    <th>Register Name</th>
+                    <td>{{$value->first_name}} {{$value->last_name}}</td>
                   </tr>
                   <tr>
                     <th>Owner Name</th>
@@ -68,16 +72,76 @@
             </div>  
           </div>
           <div class="row">
-            <div class=""></div>
+            @if($value->status == '1')
+            <div class="col-lg-12">
+              <div class="box-header">
+                <h1 class="box-title">PARTNER INI TELAH DITINJAU.</h1> 
+              </div>
+            </div>
+            @else
+            <div class="col-lg-6">
+              <div class="box-header">
+                <h3 class="box-title">Foto KTP</h3> 
+              </div>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    @if(File::exists(public_path("partner_ktp/".$value->ktp.".jpg")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->ktp.'.jpg')  }}" alt= "ktp" />
+                    @elseif(File::exists(public_path("partner_ktp/".$value->ktp.".png")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->ktp.'.png')  }}" alt= "ktp" /> 
+                    @elseif(File::exists(public_path("partner_ktp/".$value->ktp.".jpeg")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->ktp.'.jpeg')  }}" alt= "ktp" /> 
+                    @elseif(File::exists(public_path("partner_ktp/".$value->ktp.".JPG")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->ktp.'.JPG')  }}" alt= "ktp" />
+                    @elseif(File::exists(public_path("partner_ktp/".$value->ktp.".PNG")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->ktp.'.PNG')  }}" alt= "ktp" /> 
+                    @elseif(File::exists(public_path("partner_ktp/".$value->ktp.".JPEG")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->ktp.'.JPEG')  }}" alt= "ktp" /> 
+                    @endif
+                  </div>  
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="box-header">
+                <h3 class="box-title">Foto Fisik Bangunan</h3> 
+              </div>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    @if(File::exists(public_path("partner_ktp/".$value->bangunan.".jpg")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->bangunan.'.jpg')  }}" alt= "bangunan" />
+                    @elseif(File::exists(public_path("partner_ktp/".$value->bangunan.".png")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->bangunan.'.png')  }}" alt= "bangunan" /> 
+                    @elseif(File::exists(public_path("partner_ktp/".$value->bangunan.".jpeg")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->bangunan.'.jpeg')  }}" alt= "bangunan" /> 
+                    @elseif(File::exists(public_path("partner_ktp/".$value->bangunan.".JPG")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->bangunan.'.JPG')  }}" alt= "bangunan" />
+                    @elseif(File::exists(public_path("partner_ktp/".$value->bangunan.".PNG")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->bangunan.'.PNG')  }}" alt= "bangunan" /> 
+                    @elseif(File::exists(public_path("partner_ktp/".$value->bangunan.".JPEG")))
+                    <img style="height: auto; width: 500px;" class="img-responsive" src="{{ asset('../partner_ktp/'.$value->bangunan.'.JPEG')  }}" alt= "bangunan" /> 
+                    @endif
+                  </div>  
+                </div>
+              </div>
+            </div>
+            @endif
+          </div>
+
+          <div class="row">
+            <br>
+            <br>
             <div class="col-lg-12 pull-right" >
-              <a href="{{route('cancel.partner', ['id' => $value->id])}}">
-                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
-                </button>
-              </a>
               @if($value->status == '1')
               @else
+              <a href="{{route('cancel.partner', ['id' => $value->id])}}">
+                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel?')">Cancel</span>
+                </button>
+              </a>
               <a href="{{route('confirm.partner', ['id' => $value->id])}}">
-                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm?')">Confirm</span>
                 </button>
               </a>
               @endif
@@ -87,10 +151,10 @@
               </a>
             </div>
           </div>
-            @endforeach
         </div>
       </div>
     </div>
   </div>
 </section>
+@endforeach
 @endsection

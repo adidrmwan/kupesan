@@ -94,30 +94,51 @@ class PartnerController extends Controller
         $partner->pr_phone2 = $request->input('pr_phone2');
         $partner->status = '0';
         $partner->save();
+        
 
-        $logo = Partner::where('user_id', $user->id)->first();
-        $logo->pr_logo = $logo->id . '_' . $logo->pr_type . '_' . $logo->pr_name;
-        $logo->save();
-
-        if ($request->hasFile('pr_logo')) {
-            //Found existing file then delete
-            $foto_new = $logo->pr_logo;
-            if( File::exists(public_path('/logo/' . $foto_new .'.jpeg' ))){
-                File::delete(public_path('/logo/' . $foto_new .'.jpeg' ));
+        $partner = Partner::where('user_id', $user->id)->first();
+        $created_date = date('Y_m_d_H_i', strtotime("$partner->created_at"));
+        $partner->pr_phone = $user->phone_number;
+        $partner->ktp = $created_date . '_' . $partner->pr_type . '_' . $partner->pr_name . '_KTP';
+        $partner->bangunan = $created_date . '_' . $partner->pr_type . '_' . $partner->pr_name . '_Toko'; 
+        $partner->save();
+        
+        if ($request->hasFile('ktp')) {
+            $foto_new = $partner->ktp;
+            if( File::exists(public_path('/partner_ktp/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/partner_ktp/' . $foto_new .'.jpeg' ));
             }
-            if( File::exists(public_path('/logo/' . $foto_new .'.jpg' ))){
-                File::delete(public_path('/logo/' . $foto_new .'.jpg' ));
+            if( File::exists(public_path('/partner_ktp/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/partner_ktp/' . $foto_new .'.jpg' ));
             }
-            if( File::exists(public_path('/logo/' . $foto_new .'.png' ))){
-                File::delete(public_path('/logo/' . $foto_new .'.png' ));
+            if( File::exists(public_path('/partner_ktp/' . $foto_new .'.png' ))){
+                File::delete(public_path('/partner_ktp/' . $foto_new .'.png' ));
             }
-            $foto = $request->file('pr_logo');
+            $foto = $request->file('ktp');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
-            Image::make($foto)->save( public_path('/logo/' . $foto_name ) );
-            $user = Auth::user();
-            $logo = Partner::where('user_id', $user->id)->first();
-            $logo->save();
+            Image::make($foto)->save( public_path('/partner_ktp/' . $foto_name ) );
+        $partner = Partner::where('user_id', $user->id)->first();
+            $partner->save();
         }
+
+        if ($request->hasFile('bangunan')) {
+            $foto_new = $partner->bangunan;
+            if( File::exists(public_path('/partner_ktp/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/partner_ktp/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/partner_ktp/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/partner_ktp/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/partner_ktp/' . $foto_new .'.png' ))){
+                File::delete(public_path('/partner_ktp/' . $foto_new .'.png' ));
+            }
+            $foto = $request->file('bangunan');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/partner_ktp/' . $foto_name ) );
+        $partner = Partner::where('user_id', $user->id)->first();
+            $partner->save();
+        }
+
         return redirect()->intended(route('partner.dashboard')); 
     }
 

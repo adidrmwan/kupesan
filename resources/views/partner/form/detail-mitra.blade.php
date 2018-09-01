@@ -40,7 +40,9 @@
                                                 <select class="form-control" required="" name="pr_type">
                                                     <option value="">Pilih Kategori Usaha</option>
                                                     @foreach($type as $list)
+                                                    @if($list->id != '2' && $list->id != '3')
                                                     <option value="{{$list->id}}">{{$list->type_name}}</option>
+                                                    @endif
                                                     @endforeach
                                                 </select>
                                                 <div class="invalid-feedback">Silahkan pilih kategori usaha Anda.</div>
@@ -116,61 +118,82 @@
                                 </div>    
                         </div>
                         @include('partner.form.alamat-mitra')       
-                      </div>
-                      <div class="col-md-5">
                         <div class="header">
                             <h4 class="title">Kontak</h4>
                         </div>
                         <div class="content">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input type="text" class="form-control" placeholder="Tuliskan alamat usaha"
                                               disabled="" value="{{$email}}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Telepon/HP (1)<small><b style="color: red;"> *</b></small></label>
+                                        <label>HP (No Whatsapp)<small><b style="color: red;"> *</b></small></label>
                                           <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" aria-describedby="basic-addon1" name="pr_phone" value="{{$phone_number}}" required>
                                           <div class="invalid-feedback">
                                               Silahkan isi no. telepon aktif.
                                           </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Telepon/HP (2)</label>
+                                        <label>HP (2)</label>
                                           <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" name="pr_phone2" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                      </div>
+                      <div class="col-md-5">
+                        <!-- upload ktp -->
                         <div class="header">
-                            <h4 class="title">Logo</h4>
-
+                            <h4 class="title">Upload Identitas (KTP)</h4>
+                            <small>Kartu Tanda Penduduk</small>
                         </div>
                         <div class="content">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="alert alert-danger" style="text-align: center;">
-                                        Upload logo dengan perbandingan<b> 1 : 1</b><br>dalam format file: <b>JPG, JPEG, atau PNG.</b> <br>
-                                        Maximum size: <b>512 KB</b>
+                                        Upload dalam format file: <b>JPG, JPEG, atau PNG.</b> <br>
+                                        Maximum size: <b>3 MB (megabytes)</b>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="file-loading">
-                                        <input id="file-0a" class="file" type="file" name="pr_logo">
+                                        <input id="file-detail-mitra" class="file" type="file" name="ktp" required="">
                                     </div>
                                 </div>
                             </div>
-                        </div>      
+                        </div>     
+                        <div class="header">
+                            <h4 class="title">Upload Fisik Bangunan</h4>
+                            <small>Tampak depan dari tempat usaha</small>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger" style="text-align: center;">
+                                        Upload dalam format file: <b>JPG, JPEG, atau PNG.</b> <br>
+                                        Maximum size: <b>3 MB (megabytes)</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="file-loading">
+                                        <input id="file-detail-mitra" class="file" type="file" name="bangunan" required="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                       </div>
+                      <!-- upload fisik bangunan -->
                   </div>
                   <div class="row">
                     <div class="col-md-12">
