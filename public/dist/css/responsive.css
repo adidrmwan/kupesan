@@ -59,6 +59,9 @@ Author:			Star Travel
 	.checkbox .radio {
 		margin-left: 20px;
 	}
+	.pull-right-booking {
+		float: right;
+	}
 }
 
 @media(min-width:992px){
@@ -77,6 +80,9 @@ Author:			Star Travel
 	
 	.checkbox .radio {
 		margin-left: 20px;
+	}
+	.pull-right-booking {
+		float: right;
 	}
 }
 
