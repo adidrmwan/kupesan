@@ -6,6 +6,7 @@
 	<div id="dashboard" class="innerpage-section-padding">
         <div class="container">
             <div class="row">
+
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 	<div class="dashboard-heading">
                         @foreach($user as $data)
@@ -34,7 +35,7 @@
                                                   <button type="submit" class="btn btn-orange" style="color: white;"><b>Edit</b></button>
                                                 </a>
                                             </span> -->
-                                        </h4>
+                                            </h4>
                                             
                                         </div>
                                         <div class="panel-body">
@@ -55,7 +56,7 @@
                             </div>
                             
                             <div id="dsh-booking" class="tab-pane fade in active">
-                            	<div class="dashboard-content booking-trips">
+                            	<div class="dashboard-content booking-trips col-xs-12 col-sm-10 col-md-10">
                                     <h2 class="dash-content-title" style="color: #EA410C">PESANANAN-KU</h2>
                                     <h3><span class="label label-warning">SEDANG DIPROSES</span></h3>
                                     <div class="dashboard-listing booking-listing">
@@ -64,30 +65,24 @@
                                                 <tbody>
                                                     @foreach($pesanan_unapprove as $listpesanan)
                                                     <tr>
+                                                        
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                        <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
-                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                    <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                    <li>Total Harga :<span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                                </div>
                                                                 
                                                             </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
 
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                <li>Total Harga :<span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-
-                                                            </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
@@ -98,9 +93,7 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td></td>
                                                     </tr>
-                                                    <tr></tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -112,33 +105,27 @@
                                                 <tbody>
                                                     @foreach($kebaya_unapproved as $listpesanan)
                                                     <tr>
+                                                        
                                                         <td class="dash-list-icon booking-list-date">
-                                                            <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
+                                                            <div class="b-date">
+                                                            <p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p>
+                                                            </div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                        <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
-                                                                <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
-                                                                <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                                
+                                                            <div class="col-md-6 col-sm-12">
+                                                                <li>Nama Paket :<span class="pull-right-booking">{{ $listpesanan->name }}</span></li>
+                                                                <li>Tanggal Pesan:<span class="pull-right-booking">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
+                                                                <li>Tanggal Pengembalian :<span class="pull-right-booking">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                <li>Harga Paket : <span class="pull-right-booking">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                                <li>Deposit : <span class="pull-right-booking">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
+                                                                <li>Total :<span class="pull-right-booking"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                </div>
                                                             </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-
-                                                            </ul>
-                                                        </td>
+                                                        </td>                
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
                                                                 <form role="form" action="{{ route('kebaya.booking.info') }}" method="post" enctype="multipart/form-data">
@@ -148,9 +135,7 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td></td>
                                                     </tr>
-                                                    <tr></tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -166,29 +151,21 @@
                                                 <tbody>
                                                     @foreach($pesanan_approved as $listpesanan)
                                                     <tr>
+                                                        
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
                                                                 <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
                                                                 <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-
+                                                            </div>
                                                             </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
@@ -198,9 +175,9 @@
                                                                 </a>    
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                        
                                                     </tr>
-                                                    <tr></tr>
+                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -212,31 +189,24 @@
                                                 <tbody>
                                                     @foreach($kebaya_approved as $listpesanan)
                                                     <tr>
+                                                    
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
                                                                 <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
                                                                 <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
                                                                 <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
                                                                 <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-
+                                                            </div>
+                                                                
                                                             </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
@@ -246,9 +216,9 @@
                                                                 </a>    
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                        
                                                     </tr>
-                                                    <tr></tr>
+                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -263,29 +233,27 @@
                                                 <tbody>
                                                     @foreach($pesanan_pembayaran as $listpesanan)
                                                     <tr>
+                                                    
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}<span><h4></h4></span></h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
                                                                 <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                                <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
+                                                                <ul class="list-unstyled booking-info">
+                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                    <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
 
+                                                                </ul>
+                                                            </div>
                                                             </ul>
 
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-
-                                                            </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
@@ -296,9 +264,8 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td></td>
                                                     </tr>
-                                                    <tr></tr>
+                                                   
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -310,32 +277,31 @@
                                                 <tbody>
                                                     @foreach($kebaya_pembayaran as $listpesanan)
                                                     <tr>
+                                                    
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}<span><h4></h4></span></h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
                                                                 <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
                                                                 <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                                
+                                                            </div>
+
+                                                            <div class="col-md-6 col-sm-12">
+                                                                <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
+                                                                <ul class="list-unstyled booking-info">
+                                                                    <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                                    <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
+                                                                    <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+
+                                                                </ul>
+                                                            </div> 
                                                                 
                                                             </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
 
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-
-                                                            </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
@@ -346,9 +312,9 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                        
                                                     </tr>
-                                                    <tr></tr>
+                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -363,30 +329,24 @@
                                                 <tbody>
                                                     @foreach($pesanan_paid as $listpesanan)
                                                     <tr>
+                                                    
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
                                                                 <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-
+                                                                    <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+                                                            </div>
                                                             </ul>
+                                                       
+
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
@@ -397,9 +357,9 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                        
                                                     </tr>
-                                                    <tr></tr>
+                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -411,31 +371,23 @@
                                                 <tbody>
                                                     @foreach($kebaya_paid as $listpesanan)
                                                     <tr>
+                                                        
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
                                                                 <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
                                                                 <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                             <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
                                                                 <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
                                                                 <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-
+                                                            </div>
                                                             </ul>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
@@ -447,9 +399,9 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                    
                                                     </tr>
-                                                    <tr></tr>
+                                                
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -464,39 +416,33 @@
                                                 <tbody>
                                                     @foreach($pesanan_confirmed as $listpesanan)
                                                     <tr>
+                                                    
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
                                                                 <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                            <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
                                                                 <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-
+                                                            </div>
                                                             </ul>
+                                                           
+
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
                                                                 <a class="btn btn-orange" style="float: right; color: white;">Kode Booking: {{$listpesanan->kode_booking}}</a>
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                        
                                                     </tr>
-                                                    <tr></tr>
+                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -508,49 +454,41 @@
                                                 <tbody>
                                                     @foreach($kebaya_confirmed as $listpesanan)
                                                     <tr>
+                                                    
                                                         <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3>{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
+                                                            <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
                                                                 <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
                                                                 <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                                
-                                                            </ul>
-                                                            <ul class="list-unstyled booking-info">
-                                                                
-
-                                                            </ul>
-
-                                                        </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <br>
-                                                            <br>
-                                                            <ul class="list-unstyled booking-info">
-                                                                <li>Set :<span class="pull-right">{{ $listpesanan->set }}</span></li>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12">
+                                                            <li>Set :<span class="pull-right">{{ $listpesanan->set }}</span></li>
                                                                 <li>Ukuran :<span class="pull-right">{{ $listpesanan->size }}</span></li>
                                                                 <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-
+                                                            </div>
                                                             </ul>
+
                                                         </td>
                                                         <td class="dash-list-text booking-list-detail">
                                                             <div class="checkbox">
                                                                 <a class="btn btn-orange" style="float: right; color: white;">Kode Booking: {{$listpesanan->kode_booking}}</a>
                                                             </div>
                                                         </td>
-                                                        <td></td>
+                                                        
                                                     </tr>
-                                                    <tr></tr>
+                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-
-                                </div><!-- end dashboard-content -->
-                            </div><!-- end dsh-booking -->
+                                </div>
+                            </div>
                             <div id="dsh-wishlist" class="tab-pane fade">
                             	<div class="dashboard-content wishlist">
                                     <h2 class="dash-content-title" style="color: #EA410C">HISTORI-KU</h2>
@@ -560,7 +498,7 @@
                                                 @foreach($riwayat as $data)
                                                 <tr class="list-content">
                                                     <td class="list-text wishlist-text">
-                                                        <h3>{{$data->partner_name}}</h3>
+                                                        <h3 >{{$data->partner_name}}</h3>
                                                         <p>
                                                             <span>Nama Pemesan :</span> {{$data->booking_user_name}}<br>
                                                             <span>Tanggal :</span> {{ date('d F Y', strtotime($data->booking_start_date)) }}
@@ -571,24 +509,24 @@
                                                         <br>
                                                             <ul class="list-unstyled booking-info">
                                                                 <li><span>Detail Pemesanan</span></li>
-                                                                <li>Jam Pesan :<span class="pull-right">{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}}}:00</span></li>
-                                                                <li>Tamu :<span class="pull-right">{{$data->booking_capacities}} Orang</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{$data->booking_total}}</span></li>
+                                                                <li>Jam Pesan :<span class="pull-right-booking">{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00</span></li>
+                                                                <li>Tamu :<span class="pull-right-booking">{{$data->booking_capacities}} Orang</span></li>
+                                                                <li>Total Harga :<span class="pull-right-booking"> Rp {{$data->booking_total}}</span></li>
                                                             </ul>
                                                     </td>
                                                 </tr>
                                                 @endforeach
                                              </tbody>
                                          </table>
-                                    </div><!-- end table-responsive -->
-                                </div><!-- end dashboard-content -->
+                                    </div>
+                                </div>
                                 <div class="dashboard-content wishlist">
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
                                                 @foreach($kebaya_riwayat as $data)
                                                 <tr class="list-content">
-                                                    <td class="list-text wishlist-text">
+                                                    <td class="list-text wishlist-text" style="padding: 5px;">
                                                         <h3>{{$data->partner_name}}</h3>
                                                         <p>
                                                             <span>Nama Pemesan :</span> {{$data->user_name}}<br>
@@ -601,26 +539,26 @@
                                                         <br>
                                                             <ul class="list-unstyled booking-info">
                                                                 <li><span>Detail Pemesanan</span></li>
-                                                                <li>Jam Pesan :<span class="pull-right">{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}}}:00</span></li>
-                                                                <li>Tamu :<span class="pull-right">{{$data->booking_capacities}} Orang</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{$data->booking_total}}</span></li>
+                                                                <li>Jam Pesan :<span class="pull-right-booking">{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00</span></li>
+                                                                <li>Tamu :<span class="pull-right-booking">{{$data->booking_capacities}} Orang</span></li>
+                                                                <li>Total Harga :<span class="pull-right-booking"> Rp {{$data->booking_total}}</span></li>
                                                             </ul>
                                                     </td>
                                                 </tr>
                                                 @endforeach
                                              </tbody>
                                          </table>
-                                    </div><!-- end table-responsive -->
-                                </div><!-- end dashboard-content -->
-                            </div><!-- end dsh-wishlist -->
+                                    </div>
+                                </div>
                             </div>
-                        </div><!-- end tab-content -->
-                    </div><!-- end dashboard-tabs -->
-                </div><!-- end columns -->
-            </div><!-- end row -->
-        </div><!-- end container -->   
-    </div><!-- end contact-us -->
-</section><!-- end innerpage-wrapper -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>   
+    </div>
+</section>
 
 <div id="edit-profile" class="modal custom-modal fade" role="dialog">
     <div class="modal-dialog">
