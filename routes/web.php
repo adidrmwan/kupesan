@@ -225,7 +225,6 @@ Route::get('/proses', 'BookingController@proses')->name('proses');
 Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');
 Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
 Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashboardadmin');
-Route::get('/forgotpassword', 'CustomerController@forgotpassword')->name('forgotpassword');
 Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
@@ -238,6 +237,3 @@ Route::get('/json-districts1', 'BookingController@districts');
 Route::get('/json-village1', 'BookingController@villages');
 Route::get('/json-village2', 'BookingController@villages2');
 
-Route::get('/reset/link', function() {
-    return view('auth.passwords.reset');
-});
