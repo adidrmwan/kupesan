@@ -12,10 +12,10 @@
                     </div>
 
                     <div class="content">
-                        <form role="form" action="{{route('partner-addpackage-submit')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form role="form" action="{{route('partner.addpackage.submit')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {{ csrf_field() }}
                             <div class="row">
-                              <div class="col-md-7">
+                              <div class="col-md-8">
                                 <div class="row">
                                   <div class="col-md-12 col-lg-12">
                                     <div class="alert alert-info alert-dismissible">
@@ -50,7 +50,7 @@
                                   </div>
                                 </div>
                               </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                   <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -66,7 +66,7 @@
                                             <label>Kategori Paket</label>
                                             <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_category_them" required>
                                                 <option selected value="">Pilih Kategori Paket</option>
-                                                <option value="A La Carte">Ala Carte</option>
+                                                <option value="A La Carte">A La Carte</option>
                                                 <option value="Special Package">Special Package</option>
                                                 <option value="Special Studio">Special Studio</option>
                                             </select>
@@ -76,43 +76,46 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Durasi Paket</label>
-                                            <select id="durasi" class="form-control" name="pkg_duration_them[]" required=""></select>
-                                            <!-- <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_duration_them" required>
+                                      <button type="button" class="btn btn-info addPaket">Tambah Durasi Paket</button>
+                                      <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                              <label>Durasi Paket</label>
+                                              <select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_jam[]" required>
                                                 <option selected value="">Pilih Durasi Paket</option>
                                                 <option value="1">1 Jam</option>
                                                 <option value="2">2 Jam</option>
                                                 <option value="3">3 Jam</option>
                                                 <option value="4">4 Jam</option>
                                                 <option value="5">5 Jam</option>
-                                            </select> -->
-                                            <div class="invalid-feedback">Wajib diisi.</div>
+                                              </select>
+                                              <div class="invalid-feedback">Wajib diisi.</div> 
+                                            </div>
                                         </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                            <label>Harga Paket (Per Jam)</label>
+                                        <div class="col-md-7">
+                                          <div class="form-group">
+                                            <label>Harga Paket</label>
                                             <div class="input-group mb-4">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">Rp</span>
                                               </div>
-                                              <input class="form-control number" placeholder="Harga Paket" min="1000" name="pkg_price_them" required>
+                                              <input class="form-control number" placeholder="Harga Paket" min="1000" name="durasi_harga[]" required>
                                             <div class="invalid-feedback">Wajib diisi.</div>
                                             </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                      </div>
+                                    </div>  
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
                                       <div class="form-group">
                                             <label>Harga Overtime (Per Jam)</label>
                                             <div class="input-group mb-4">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1">Rp</span>
                                               </div>
-                                              <input class="form-control number" placeholder="Harga Paket" min="1000" name="pkg_overtime_them" required>
-                                            <div class="invalid-feedback">Wajib diisi.</div>
+                                              <input class="form-control number" placeholder="Harga Overtime" min="1000" name="pkg_overtime_them">
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +198,28 @@
     });
 </script>
 <script type="text/javascript">
+$(document).on('click', '.addPaket', function(){
+    var html = '<div class="row"><div class="col-md-5"><select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_jam[]" required><option selected value="">Pilih Durasi Paket</option><option value="1">1 Jam</option><option value="2">2 Jam</option><option value="3">3 Jam</option><option value="4">4 Jam</option><option value="5">5 Jam</option></select><div class="invalid-feedback">Wajib diisi.</div></div><div class="col-md-7"><div class="input-group mb-4"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">Rp</span></div><input class="form-control number2" placeholder="Harga Paket" min="1000" name="durasi_harga[]" required><div class="invalid-feedback">Wajib diisi.</div></div></div></div>';
+  $(this).parent().append(html);
+});
+</script>
+<script type="text/javascript">
     $('input.number').keyup(function(event) {
+
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function(index, value) {
+        return value
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        ;
+      });
+    });
+</script>
+<script type="text/javascript">
+    $('input.number2').keyup(function(event) {
 
       // skip for arrow keys
       if(event.which >= 37 && event.which <= 40) return;

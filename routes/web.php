@@ -136,7 +136,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/booking/offline/1/4', 'PartnerController@submitStep4')->name('form.offline.step4.submit');
     Route::post('/booking/offline', 'PartnerController@submitFormOffline')->name('form.offline.submit');
 
-    Route::get('/profile', 'PartnerController@profile')->name('partner.profile');
+    Route::get('/profile/ps', 'PartnerController@profile')->name('partner.profile');
     
     Route::get('/booking/detail', 'PartnerController@showDetailBooking')->name('detail.booking');
 
@@ -155,22 +155,18 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 
 
 
-//----------------PackageController
-    // Tambah Paket
-    Route::get('/package/add', 'PackageController@ShowAddPackage')->name('partner-addpackage');
-    Route::post('/package/add', 'PackageController@AddPackage')->name('partner-addpackage-submit');
-    // Daftar Paket
-    Route::get('/package/list', 'PackageController@ListPackage')->name('partner-editpackage');
-    // Button Edit Paket
-    Route::post('/package/edit', 'PackageController@ShowEditPackagePS')->name('partner.edit.pkg');
-    // Button Delete Paket
-    Route::post('/package/delete', 'PackageController@DeletePackagePS')->name('partner.delete.pkg');
-
-    Route::post('/package/update', 'PackageController@EditPackagePS')->name('partner.edit.pkg.submit');
-    
-    Route::get('/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
+    // fotostudio paket
+    Route::get('/ps/package/add', 'PackageController@showAddPackage')->name('partner.addpackage');
+    Route::post('/ps/package/add', 'PackageController@addPackage')->name('partner.addpackage.submit');
+    Route::get('/ps/package/list', 'PackageController@listPackage')->name('partner.listpackage');
+    Route::post('/ps/package/edit', 'PackageController@showEditPackage')->name('partner.editpackage');
+    Route::post('/ps/package/update', 'PackageController@editPackage')->name('partner.editpackage.submit');
+    Route::post('/ps/package/delete', 'PackageController@deletePackage')->name('partner.deletepackage');
+    Route::get('/ps/package/update/{$id}', 'PartnerController@UpdatePackagePartner')->name('partner-updatepackage-button');
+    Route::get('/ps/package/duration/delete', 'PackageController@deleteDurasi')->name('durasi.delete');
 
     // Kebaya
+    Route::get('/profile/4', 'KebayaController@profile')->name('kebaya.profile');
     Route::get('/item/add', 'KebayaController@showAddItem')->name('add.item');
     Route::post('/item/add', 'KebayaController@addItem')->name('submit.item');
     Route::get('/item/list', 'KebayaController@listItem')->name('list.item');

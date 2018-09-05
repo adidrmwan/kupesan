@@ -599,11 +599,10 @@ class PartnerController extends Controller
             $email = $user->email;
             $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
             $tnc = Tnc::where('partner_id', $user->id)->get();
-            if($partner->pr_type = '4') {
-                $pu = KebayaUkuran::where('partner_id', $user->id)->get();
-            }
-            return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc', 'pu'));
+            $partner->pr_type = '1';
+
         }
+        return view('partner.ps.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc'));
     }
 
     public function edit(Request $Request)

@@ -8,16 +8,8 @@
                 <div class="bd-example bd-example-tabs">
                     <nav class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#daftarBooking" role="tab" aria-controls="home" aria-expanded="true">Detail Bisnis</a>
-                        <!-- fotostudio -->
-                        @if($partner->pr_type == '1')
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#jadwalBooking" role="tab" aria-controls="profile" aria-expanded="false">Fasilitas</a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#tnc" role="tab" aria-controls="profile" aria-expanded="false">Syarat dan ketentuan</a>
-
-                        <!-- kebaya -->
-                        @elseif($partner->pr_type == '4')
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#ukuran" role="tab" aria-controls="profile" aria-expanded="false">Panduan Ukuran</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#tnc" role="tab" aria-controls="profile" aria-expanded="false">Syarat dan ketentuan</a>
-                        @endif
                     </nav>
                 </div>
                 <div class="tab-content" id="nav-tabContent">
@@ -211,9 +203,6 @@
                     <div class="tab-pane fade" id="tnc" role="tabpanel" aria-labelledby="nav-profile-tab" aria-expanded="false">
                         @include('partner.ps.tnc')
                     </div>
-                    <div class="tab-pane fade" id="ukuran" role="tabpanel" aria-labelledby="nav-profile-tab" aria-expanded="false">
-                        @include('partner.kebaya.panduan-ukuran')
-                    </div>
                 </div>
             </div>
         </div>
@@ -224,7 +213,7 @@
 @section('script')
 <script type="text/javascript">
 $(document).on('click', '.addService', function(){
-    var html = '<input type="text" class="form-control" name="tnc[]" placeholder="Syarat dan Ketentuan">';
+    var html = '<div class="row"><div class="col-md-12"><input type="text" class="form-control" name="tnc[]" placeholder="Syarat dan Ketentuan"></div></div>';
   $(this).parent().append(html);
 });
 </script>

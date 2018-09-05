@@ -23,7 +23,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <button type="button" class="btn btn-info addService">Add More</button>
-                    <input type="text" class="form-control" name="tnc[]" placeholder="Syarat dan Ketentuan">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="tnc[]" placeholder="Syarat dan Ketentuan">
+                        </div>
+                    </div>
                 </div>
             </div>
              <div class="row">

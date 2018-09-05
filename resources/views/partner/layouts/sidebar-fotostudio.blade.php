@@ -34,25 +34,19 @@
         <p>Upload Portofolio</p>
     </a>
 </li>
-<!-- <li>
-    <a href="{{ route('partner.portofolio') }}">
-        <i class="pe-7s-user"></i>
-        <p>Terms & Condition</p>
-    </a>
-</li> -->
 <li>
     <a>
         <i class="pe-7s-photo"> </i> <p> Package</p> 
     </a>
     <ul class="list-unstyled" id="pageSubmenu">
         <li style="margin-left: 35px;">
-            <a href="{{ route('partner-addpackage') }}">
+            <a href="{{ route('partner.addpackage') }}">
                 <i class="pe-7s-plus"></i>
                 <p> Add Package </p>
             </a>
         </li>
         <li style="margin-left: 35px;">
-            <a href="{{ route('partner-editpackage') }}">
+            <a href="{{ route('partner.listpackage') }}">
                 <i class="pe-7s-note2"></i>
                 <p> List Package </p>
             </a>

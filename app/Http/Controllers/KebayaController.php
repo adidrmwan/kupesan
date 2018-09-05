@@ -24,6 +24,41 @@ use DateTime;
 
 class KebayaController extends Controller
 {
+    public function profile()
+    {
+        $user = Auth::user();
+        $partner = DB::table('partner')
+                    ->where('user_id',$user->id)
+                    ->select('*')
+                    ->first();
+
+        if ($partner->status == '0') {
+            return view('partner.home', ['partner' => $partner]);
+
+        }
+        else {
+            $tipe = DB::table('partner_type')
+                    ->where('partner_type.id', '=', $partner->pr_type)
+                    ->first();
+            $phone_number = $user->phone_number;
+            $jam = Jam::all();
+            $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
+            $partner_prov = Provinces::where('id', $partner->pr_prov)->first();
+            $partner_kota = Regencies::where('id', $partner->pr_kota)->first();
+            $partner_kel = Villages::where('id', $partner->pr_kel)->first();
+            $partner_kec = Districts::where('id', $partner->pr_kec)->first();
+            $email = $user->email;
+            $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
+            $tnc = Tnc::where('partner_id', $user->id)->get();
+            $partner->pr_type = '1';
+            if($partner->pr_type == '4') {
+                $partner->pr_type = '4';
+                $pu = KebayaUkuran::where('partner_id', $user->id)->get();
+            }
+            return view('partner.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc', 'pu'));
+        }
+    }
+    
     public function showAddItem()
     {
         $listTag = DB::table('ps_tag')->get();
