@@ -235,7 +235,8 @@
         var durasi = spl[0];
         var pack_id = spl[1];
         var date = spl[2];
-        $.get('/json-regencies1?pack_id=' + pack_id + '&durasi=' + durasi + '&callback=?',function(data) {
+        var harga = spl[3];
+        $.get('/json-regencies1?pack_id=' + pack_id + '&durasi=' + durasi + '&harga=' + harga + '&callback=?',function(data) {
           console.log(data);
           $('#regencies2').empty();
           $('#regencies2').append('<option value="" disable="true" selected="true">Pilih Jam Mulai</option>');
@@ -260,8 +261,8 @@
         var durasi2 = spl[1];
         var pack_id = spl[2];
         var date = spl[3];
-
-        $.get('/json-districts1?jam_mulai=' + jam_mulai + '&durasi2=' + durasi2 + '&callback=?',function(data) {
+        var jam_selesai = +spl[0] + +spl[1];
+        $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
           console.log(data);
           $('#districts2').empty();
           $('#districts2').append('<option class="text-center" value="" disable="true" selected="true">Pilih Jam Selesai</option>');
@@ -269,8 +270,10 @@
           $('#villages2').empty();
           $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
 
-          $.each(data, function(index, districtsObj){
-            $('#districts2').append('<option class="text-center" value="'+ districtsObj.num_hour +','+ durasi2 +','+ pack_id +','+ date +','+ jam_mulai +'">'+ districtsObj.num_hour +':00</option>');
+          $('#terpilih').empty();
+          $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
+          $.each(data, function(index, villagesObj){
+            $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
           })
         });
       });

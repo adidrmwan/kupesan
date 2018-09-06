@@ -9,6 +9,7 @@ use App\Partner;
 use App\Booking;
 use App\PSPkg;
 use App\PartnerTag;
+use App\PartnerDurasi;
 use App\KebayaTema;
 use App\KebayaProduct;
 use App\Tag;
@@ -114,7 +115,7 @@ class SearchController extends Controller
                 $min_price = $min_price . $min_array[$key];
             }
         } else {
-            $min_price = PSPkg::min('pkg_price_them');
+            $min_price = PartnerDurasi::min('durasi_harga');
         }
 
         if (!empty($request->max_price)) {
@@ -125,7 +126,13 @@ class SearchController extends Controller
                 $max_price = $max_price . $max_array[$key];
             }
         } else {
-            $max_price = PSPkg::max('pkg_price_them');
+            // $max_price = PartnerDurasi::join('ps_package', 'ps_durasi.package_id', '=', 'ps_package.id')
+            //                 ->select('ps_durasi.package_id', DB::raw('MAX(ps_durasi.durasi_harga) as harga_min'))
+            //                 ->groupBy('ps_durasi.package_id')
+            //                 ->havingRaw('MAX(ps_durasi.durasi_harga) > ?', [999])
+            //                 ->get();
+            $max_price = PartnerDurasi::max('durasi_harga');
+
         }
 
         if($tag_id == 'all'){

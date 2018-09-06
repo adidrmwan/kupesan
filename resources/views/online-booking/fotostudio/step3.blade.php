@@ -384,7 +384,6 @@
                                         <div class="row">
                                             <div class="col-md-12" >
                                                 <div class="form-group text-center">
-
                                                     <label><span style="text-align: center;">Tanggal Terpilih</span></label>
                                                     <input type="text" class="form-control text-center" id="datepicker2" value="{{ date('d F Y', strtotime($booking_date)) }}" disabled="" name="booking_date">
                                                 </div>
@@ -396,15 +395,15 @@
                                                     <label>Durasi Paket</label>
                                                     <select class="form-control text-center" name="durasi_paket" id="provinces2" required>
                                                       <option value="" disable="true" class="text-center" selected="true">Pilih Durasi Paket</option>
-                                                        @foreach ($durasi as $key => $value)
-                                                          <option value="{{$value->durasi}},{{$package_id}},{{$booking_date}}">{{ $value->durasi }} Jam</option>
+                                                        @foreach ($durasiPaket as $key => $value)
+                                                          <option value="{{$value->durasi_jam}},{{$package_id}},{{$booking_date}},{{$value->durasi_harga}}">{{ $value->durasi_jam }} Jam - Rp {{ number_format($value->durasi_harga,0,',','.') }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group text-center">
                                                     <label>Jam Mulai</label>
                                                     <select class="form-control text-center" name="jam_mulai" id="regencies2" required>
@@ -412,15 +411,9 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group text-center">
-                                                    <label>Jam Selesai</label>
-                                                    <select class="form-control text-center" name="jam_selesai" id="districts2" required>
-                                                      <option value="" disable="true" selected="true">Pilih Jam Selesai</option>
-                                                    </select>
-                                                </div>
-                                            </div>
                                         </div>
+                                        @foreach($package as $data)
+                                        @if($data->pkg_overtime_them != '0')
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group text-center">
@@ -431,6 +424,17 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @else
+                                        <div class="row">
+                                            <div class="col-md-12" >
+                                                <div class="form-group text-center">
+                                                    <label>Jam Overtime<small> (opsional)</small></label>
+                                                    <input type="text" class="form-control text-center" placeholder="Tidak Tersedia" name="jam_tambahan" disabled="">
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        @endif
+                                        @endforeach
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group text-center">

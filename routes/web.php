@@ -6,42 +6,30 @@ Route::get('/home', 'SearchController@home')->name('home');
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-
 Route::get('/', function () {
-    
     if(Auth::check()) {    
-        
         $user = Auth::user();
         $userrole = DB::table('role_user')
                     ->where('user_id', $user->id)
                     ->select('role_id')
                     ->first();
-        // dd($userrole);
         if ( $userrole->role_id == '1' ) {
                return redirect()->route('admin.dashboard');
-        }
-        elseif ( $userrole->role_id == '2' ) {
+        } elseif ( $userrole->role_id == '2' ) {
                return redirect()->route('user.dashboard');
-        }
-        elseif ( $userrole->role_id == '3' ) {
+        } elseif ( $userrole->role_id == '3' ) {
                return redirect()->route('partner.dashboard');
         }  
     }
-
     return redirect()->intended(route('home'));      
-
 })->name('index');
 
-//Route Search Fotostudio di Home
-Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
-Route::get('/detail/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
-Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.kebaya');
-Route::get('/detail/kebaya', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+// Search at Home
+Route::post('/ps/search', 'SearchController@searchFotostudio')->name('search.fotostudio');
+Route::get('/ps/detail', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+Route::post('/kby/search', 'SearchController@searchKebaya')->name('search.kebaya');
+Route::get('/kby/detail', 'StudioController@detailKebaya')->name('detail.kebaya');
 Route::post('/search/data', 'SearchController@searchData')->name('search.data');
-Route::get('/search/result/#1', 'SearchController@resultstudio')->name('resultstudio');
-
-// Kebaya
-Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.kebaya');
 
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superadmin']], function(){
@@ -64,7 +52,6 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
     Route::get('/kebaya/confirm/bukti', 'AdminController@confirmBuktiKebaya')->name('kebaya.confirm.bukti');
     Route::get('/kebaya/cancel/bukti', 'AdminController@cancelBuktiKebaya')->name('kebaya.cancel.bukti');
     Route::get('kebaya//show/bukti', 'AdminController@showBuktiKebaya')->name('kebaya.show.bukti');
-
     Route::get('/list/booking/kebaya', 'AdminController@listBookingKebaya')->name('list.booking.kebaya');
 
 });
@@ -75,6 +62,8 @@ Route::get('/partner/activation/2/{token}', 'MitraAuth\RegisterController@userAc
 Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
 Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
 Route::get('/booking/approved/kebaya/{token}', 'AdminController@bookingActivationKebaya');
+Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
+Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');
 
 // Route untuk user yang member
 Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function(){
@@ -110,8 +99,7 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     Route::get('/booking/kebaya/9', 'KebayaBookingController@step9')->name('kebaya.step9');
     Route::post('/booking/kebaya/info', 'CustomerController@showKebayaInfo')->name('kebaya.booking.info');
 });
-    Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
-    Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');
+
 
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
@@ -153,8 +141,6 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/booking/ps/finished', 'PartnerController@bookingFinished')->name('booking.finished');
     Route::get('/booking/ps/cancel', 'PartnerController@bookingCancel')->name('booking.cancel');
 
-
-
     // fotostudio paket
     Route::get('/ps/package/add', 'PackageController@showAddPackage')->name('partner.addpackage');
     Route::post('/ps/package/add', 'PackageController@addPackage')->name('partner.addpackage.submit');
@@ -188,18 +174,9 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/profile/panduan-ukuran/delete', 'KebayaController@deletePU')->name('kebaya.delete.pu');
 });
 
-
-
-
 //Route untuk studio foto
 Route::get('/studio/detail', 'StudioController@studiodetail')->name('studio-detail');
 Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
-
-//Route untuk partner
-Route::get('/homepartner', 'PartnerController@homepartner')->name('partner-home');
-Route::get('/userpartner', 'PartnerController@userpartner')->name('partner-user');
-Route::get('/schedulepartner', 'PartnerController@schedulepartner')->name('partner-schedule');
-Route::get('/testingpartner', 'HomeController@testingpartner')->name('testingpartner');
 
 // Route Jadi Mitra
 Route::get('/partner-ku/login', 'MitraAuth\RegisterController@showLoginForm')->name('mitra.login');
@@ -207,24 +184,7 @@ Route::get('/partner-ku/register', 'MitraAuth\RegisterController@showRegistratio
 Route::post('/partner-ku/register', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
 Route::get('/partner-ku', 'PartnerController@showJadiMitra')->name('jadi.mitra');
 
-
-//Route Booking
-
-
-//Route untuk testing saja
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
-
-Route::get('/booking', 'BookingController@booking')->name('booking');
-Route::get('/review', 'BookingController@review')->name('review');
-Route::get('/bayar', 'BookingController@bayar')->name('bayar');
-Route::get('/proses', 'BookingController@proses')->name('proses');
-
-
-Route::get('/studioresult', 'CustomerController@studioresult')->name('studioresult');
-Route::get('/pesan', 'CustomerController@pesan')->name('pesan');
-Route::get('/dashboardadmin', 'CustomerController@dashboardadmin')->name('dashboardadmin');
-Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
-Route::get('/termsandcondition', 'CustomerController@tnc')->name('termsandcondition');
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');

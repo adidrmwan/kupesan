@@ -83,6 +83,10 @@ class PackageController extends Controller
         }
         PartnerDurasi::insert($durasiSet);
 
+        $durasiPaket = PartnerDurasi::where('package_id', $package->id)->min('durasi_harga');
+        $package->pkg_price_them = $durasiPaket;
+        $package->save();
+        
         if ($request->hasFile('pkg_img_them')) {
             $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them . '_1';
             $package->save();
