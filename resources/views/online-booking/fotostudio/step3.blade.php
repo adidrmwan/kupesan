@@ -131,7 +131,7 @@
                                                                 @else
                                                                 <td class="available">08:00 -09:00</td>
                                                                 @endif
-                                                            elseif($bookingcheck->num_hour_8== '1')
+                                                            @elseif($bookingcheck->num_hour_8== '1')
                                                                 <td class="not-available">08:00 -09:00</td>
                                                             @else                                                                        @endif
                                                             

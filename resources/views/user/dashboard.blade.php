@@ -6,7 +6,6 @@
 	<div id="dashboard" class="innerpage-section-padding">
         <div class="container">
             <div class="row">
-
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 	<div class="dashboard-heading">
                         @foreach($user as $data)
@@ -14,15 +13,12 @@
                         @endforeach
                         <p>Semoga harimu indah</p>
                     </div>
-                	
-                    
                     <div id="dashboard-tabs">
                     	<ul class="nav nav-tabs nav-justified">
                             <li class="active"><a href="#dsh-booking" data-toggle="tab"><span><i class="fa fa-user"></i></span>Pesanan</a></li>
                             <li><a href="#dsh-wishlist" data-toggle="tab"><span><i class="fa fa-history"></i></span>Histori</a></li>
                             <li><a href="#dsh-profile" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span>Profil</a></li>
                         </ul>
-                    	
                         <div class="tab-content">                            
                             <div id="dsh-profile" class="tab-pane fade">
                             	<div class="dashboard-content user-profile">
@@ -54,7 +50,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div id="dsh-booking" class="tab-pane fade in active">
                             	<div class="dashboard-content booking-trips col-xs-12 col-sm-10 col-md-10">
                                     <h2 class="dash-content-title" style="color: #EA410C">PESANANAN-KU</h2>
@@ -65,10 +60,10 @@
                                                 <tbody>
                                                     @foreach($pesanan_unapprove as $listpesanan)
                                                     <tr>
-                                                        
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                         <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
@@ -79,20 +74,17 @@
                                                                 <div class="col-md-6 col-sm-12">
                                                                     <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
                                                                     <li>Total Harga :<span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                                    <li>
+                                                                        <form role="form" action="{{ route('booking.info') }}" method="post" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                            <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
+                                                                            <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
+                                                                        </form>
+                                                                    </li>
                                                                 </div>
-                                                                
                                                             </ul>
-
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <form role="form" action="{{ route('booking.info') }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
-                                                                    <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
-                                                                </form>
-                                                            </div>
-                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -105,12 +97,12 @@
                                                 <tbody>
                                                     @foreach($kebaya_unapproved as $listpesanan)
                                                     <tr>
-                                                        
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date">
                                                             <p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p>
                                                             </div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                         <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
@@ -123,18 +115,17 @@
                                                                 <li>Harga Paket : <span class="pull-right-booking">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
                                                                 <li>Deposit : <span class="pull-right-booking">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
                                                                 <li>Total :<span class="pull-right-booking"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                <li>
+                                                                    <form role="form" action="{{ route('kebaya.booking.info') }}" method="post" enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                        <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
+                                                                        <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
+                                                                    </form>
+                                                                </li>
                                                                 </div>
                                                             </ul>
                                                         </td>                
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <form role="form" action="{{ route('kebaya.booking.info') }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
-                                                                    <input type="text" name="package_id" value="{{$listpesanan->package_id}}" hidden="">
-                                                                </form>
-                                                            </div>
-                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -151,10 +142,10 @@
                                                 <tbody>
                                                     @foreach($pesanan_approved as $listpesanan)
                                                     <tr>
-                                                        
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
@@ -164,20 +155,17 @@
                                                             </div>
                                                             <div class="col-md-6 col-sm-12">
                                                                 <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
+                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total, 0, ',','.')}}</span></li>
+                                                                <li>
+                                                                    <a href="{{ route('form.step6', ['bid' => $listpesanan->booking_id]) }}">
+                                                                        <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
+                                                                    </a>    
+                                                                </li>
                                                             </div>
                                                             </ul>
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <a href="{{ route('form.step6', ['bid' => $listpesanan->booking_id]) }}">
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
-                                                                </a>    
-                                                            </div>
-                                                        </td>
-                                                        
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
-                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -189,10 +177,10 @@
                                                 <tbody>
                                                     @foreach($kebaya_approved as $listpesanan)
                                                     <tr>
-                                                    
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
@@ -205,18 +193,15 @@
                                                                 <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
                                                                 <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
                                                                 <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                <li>
+                                                                    <a href="{{ route('kebaya.step6', ['bid' => $listpesanan->booking_id]) }}">
+                                                                        <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
+                                                                    </a>    
+                                                                </li>
                                                             </div>
-                                                                
                                                             </ul>
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <a href="{{ route('kebaya.step6', ['bid' => $listpesanan->booking_id]) }}">
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
-                                                                </a>    
-                                                            </div>
-                                                        </td>
-                                                        
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
                                                     
                                                     @endforeach
@@ -233,39 +218,34 @@
                                                 <tbody>
                                                     @foreach($pesanan_pembayaran as $listpesanan)
                                                     <tr>
-                                                    
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
+                                                        <td></td>
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}<span><p><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></p></span></h3>
                                                             <ul class="list-unstyled booking-info">
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
-                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                            </div>
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
-                                                                <ul class="list-unstyled booking-info">
-                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                    <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-
-                                                                </ul>
-                                                            </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                    <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <ul class="list-unstyled booking-info">
+                                                                        <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                        <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total, 0, ',','.')}}</span></li>
+                                                                        <li>
+                                                                            <form role="form" action="{{ route('form.step7') }}" method="post" enctype="multipart/form-data">
+                                                                            {{ csrf_field() }}
+                                                                                <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan Pembayaran</b></button>
+                                                                                <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
+                                                                            </form>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                             </ul>
-
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <form role="form" action="{{ route('form.step7') }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Bayar</b></button>
-                                                                    <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
-                                                                </form>
-                                                            </div>
-                                                        </td>
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
-                                                   
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -277,42 +257,36 @@
                                                 <tbody>
                                                     @foreach($kebaya_pembayaran as $listpesanan)
                                                     <tr>
-                                                    
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
-                                                                <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
-                                                                <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                            </div>
-
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
-                                                                <ul class="list-unstyled booking-info">
-                                                                    <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                    <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                    <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-
-                                                                </ul>
-                                                            </div> 
-                                                                
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
+                                                                    <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
+                                                                    <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
+                                                                    <ul class="list-unstyled booking-info">
+                                                                        <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
+                                                                        <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
+                                                                        <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                        <li>
+                                                                            <form role="form" action="{{ route('kebaya.step7') }}" method="post" enctype="multipart/form-data">
+                                                                            {{ csrf_field() }}
+                                                                                <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Bayar</b></button>
+                                                                                <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
+                                                                            </form>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div> 
                                                             </ul>
-
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <form role="form" action="{{ route('kebaya.step7') }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Bayar</b></button>
-                                                                    <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                        
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
                                                     
                                                     @endforeach
@@ -329,37 +303,32 @@
                                                 <tbody>
                                                     @foreach($pesanan_paid as $listpesanan)
                                                     <tr>
-                                                    
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
-                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                            </div>
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                    <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-                                                            </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                    <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                    <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total, 0, ',','.')}}</span></li>
+                                                                    <li>
+                                                                        <form role="form" action="{{ route('voucher') }}" method="post" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                            <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
+                                                                            <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
+                                                                        </form>
+                                                                    </li>
+                                                                </div>
                                                             </ul>
-                                                       
-
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <form role="form" action="{{ route('voucher') }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
-                                                                    <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                        
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
-                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -371,10 +340,10 @@
                                                 <tbody>
                                                     @foreach($kebaya_paid as $listpesanan)
                                                     <tr>
-                                                        
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
@@ -387,21 +356,18 @@
                                                              <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
                                                                 <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
                                                                 <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                <li>
+                                                                    <form role="form" action="{{ route('kebaya.step9') }}" method="post" enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                        <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
+                                                                        <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
+                                                                    </form>
+                                                                </li>
                                                             </div>
                                                             </ul>
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <form role="form" action="{{ route('kebaya.step9') }}" method="post" enctype="multipart/form-data">
-                                                                {{ csrf_field() }}
-                                                                    <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lihat</b></button>
-                                                                    <input type="text" name="bid" value="{{$listpesanan->booking_id}}" hidden="">
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
-                                                
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -416,33 +382,28 @@
                                                 <tbody>
                                                     @foreach($pesanan_confirmed as $listpesanan)
                                                     <tr>
-                                                    
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
-                                                                <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
-                                                            </div>
-                                                            <div class="col-md-6 col-sm-12">
-                                                            <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
-                                                                <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total)}}</span></li>
-                                                            </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Tanggal :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</span></li>
+                                                                    <li>Waktu :<span class="pull-right">{{$listpesanan->booking_start_time}}:00 - {{$listpesanan->booking_end_time + $listpesanan->booking_overtime}}:00</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->pkg_name_them }}</span></li>
+                                                                    <li>Total Harga :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total, 0, ',','.')}}</span></li>
+                                                                    <li>
+                                                                        <a class="btn btn-success" style="float: right; color: white;">Kode Booking: <span class="text-uppercase">{{$listpesanan->kode_booking}}</span></a>
+                                                                    </li>
+                                                                </div>
                                                             </ul>
-                                                           
-
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <a class="btn btn-orange" style="float: right; color: white;">Kode Booking: {{$listpesanan->kode_booking}}</a>
-                                                            </div>
-                                                        </td>
-                                                        
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
-                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>
@@ -454,34 +415,30 @@
                                                 <tbody>
                                                     @foreach($kebaya_confirmed as $listpesanan)
                                                     <tr>
-                                                    
-                                                        <td class="dash-list-icon booking-list-date">
+                                                        <td></td>
+                                                        <!-- <td class="dash-list-icon booking-list-date">
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="dash-list-text booking-list-detail">
                                                             <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
                                                             <ul class="list-unstyled booking-info">
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
-                                                                <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
-                                                                <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
-                                                            </div>
-                                                            <div class="col-md-6 col-sm-12">
-                                                            <li>Set :<span class="pull-right">{{ $listpesanan->set }}</span></li>
-                                                                <li>Ukuran :<span class="pull-right">{{ $listpesanan->size }}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
-                                                            </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
+                                                                    <li>Tanggal Pesan:<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->start_date)) }}</span></li>
+                                                                    <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-12">
+                                                                    <li>Set :<span class="pull-right">{{ $listpesanan->set }}</span></li>
+                                                                    <li>Ukuran :<span class="pull-right">{{ $listpesanan->size }}</span></li>
+                                                                    <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                    <li>
+                                                                        <a class="btn btn-success" style="float: right; color: white;">Kode Booking: <span class="text-uppercase">{{$listpesanan->kode_booking}}</span></a>
+                                                                    </li>
+                                                                </div>
                                                             </ul>
-
                                                         </td>
-                                                        <td class="dash-list-text booking-list-detail">
-                                                            <div class="checkbox">
-                                                                <a class="btn btn-orange" style="float: right; color: white;">Kode Booking: {{$listpesanan->kode_booking}}</a>
-                                                            </div>
-                                                        </td>
-                                                        
+                                                        <td class="dash-list-text booking-list-detail"></td>
                                                     </tr>
-                                                    
                                                     @endforeach
                                                 </tbody>
                                             </table>

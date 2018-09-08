@@ -9,7 +9,7 @@
                   <h3 class="title">List Package</h3>
                 </div>
                 <div class="content">
-                    <table class="table table-bordered table-striped table-condensed" id="list-package">
+                    <table class="table table-bordered table-striped table-responsive table-condensed" id="list-package">
                         <thead>
                             <th>No</th>
                             <th>Nama Paket</th>

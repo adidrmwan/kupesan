@@ -60,10 +60,10 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <ul>
-                                                <li>Maximum capacity 7 people.</li>
-                                                <li>Damage property and equipment will be charge.</li>
-                                                <li>Please be punctual, be on time, Respects other people booking as well.</li>
+                                            <ul>@foreach($tnc as $key => $data)
+                                                <li><p>{{$data->tnc_desc}}</p></li>
+                                                @endforeach
+
                                             </ul>
                                         </td>
                                     </tr>

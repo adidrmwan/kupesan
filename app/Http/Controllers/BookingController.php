@@ -20,6 +20,7 @@ use App\Provinces;
 use App\Regencies;
 use App\Districts;
 use App\Villages;
+use App\Tnc;
 class BookingController extends Controller
 {
     public function step1(Request $request) 
@@ -47,7 +48,6 @@ class BookingController extends Controller
 
     public function step2(Request $request) 
     {
-        dd($request);
         if (Auth::user()) {
             $package_id = $request->package_id;
             $package = PSPkg::where('id', $package_id)->get();
@@ -58,8 +58,9 @@ class BookingController extends Controller
             $kecamatan = Districts::where('id', $partner->pr_kec)->first();
             $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
             $durasiPaket = PartnerDurasi::where('package_id', $package_id)->get();
+            $tnc = Tnc::where('partner_id', $partner->user_id)->get();
             if(empty($request->booking_date)) {
-                return view('online-booking.fotostudio.step2', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket'));
+                return view('online-booking.fotostudio.step2', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'tnc'));
             }
         }
         return redirect()->route('login');
@@ -135,7 +136,7 @@ class BookingController extends Controller
         $package_id = $paket[1];
         $date = $paket[2];
         $harga_paket = $paket[3];
-
+        $pkg_price_them = $harga_paket;
         $booking_overtime = $request->jam_tambahan;
         $jam_tambahan = $booking_overtime[0];
 
@@ -161,9 +162,7 @@ class BookingController extends Controller
         $booking_end_time = $selesai;
         $booking_end_date = date('Y-m-d H:i:s', strtotime("$date $jam_selesai"));
         $booking_selesai_jam = $booking_end_time + $jam_tambahan - 1;
-        dd($booking_selesai_jam);
 
-        // now Date
         $mytime = Carbon::now();
         $waktu = $mytime->toDateTimeString();        
         $waktu2 = explode(' ', $waktu);
@@ -171,9 +170,6 @@ class BookingController extends Controller
         $now_time = $waktu2[1];
         $time_array = explode(':', $now_time);
         $now_time = $time_array[0] + 5;
-
-        // end now Date
-
 
         $range_jam = DB::select('select num_hour from jam where num_hour BETWEEN :booking_start_time and :booking_selesai_jam', ['booking_start_time' => $booking_start_time, 'booking_selesai_jam' => $booking_selesai_jam]);
         $notavailable = '0';
@@ -184,7 +180,7 @@ class BookingController extends Controller
         $kota = Regencies::where('id', $partner->pr_kota)->first();
         $kecamatan = Districts::where('id', $partner->pr_kec)->first();
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
-        
+        $durasiPaket = PartnerDurasi::where('package_id', $package_id)->get();
         
         // cek ketersediaan tanggal dan jam dari database
         $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $date)->first();
@@ -219,8 +215,7 @@ class BookingController extends Controller
                 }
                 if($notavailable == '1'){
                     return redirect()->route('check.auth', ['package_id' => $package_id])->with('not-available',"Mohon Maaf Pesanan Anda Tidak Tersedia. Silahkan ubah jadwal pesanan.");
-                }            
-                else {
+                } else {
                     $booking = new Booking();
                     $booking->user_id = Auth::user()->id;   
                     $booking->package_id = $package_id;
@@ -230,32 +225,30 @@ class BookingController extends Controller
                     $booking->booking_start_time = $booking_start_time;
                     $booking->booking_end_time = $booking_end_time;
                     $booking->booking_overtime = $jam_tambahan;  
-                    $booking->booking_normal_price = $package_list->pkg_price_them;
+                    $booking->booking_normal_price = $pkg_price_them;
                     $booking->booking_overtime_price = $package_list->pkg_overtime_them;
                     $booking->booking_user_name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
                     $booking->booking_user_nohp = Auth::user()->phone_number;
                     $booking->booking_user_email = Auth::user()->email;
                     $booking->booking_status = 'belum_cek_ketersediaan';
                     $booking->save();
-                    $booking->booking_total = (($booking->booking_end_time - $booking_start_time) * $booking->booking_normal_price) + ($booking->booking_overtime * $booking->booking_overtime_price);
+                    $booking->booking_total = $harga_paket + ($booking->booking_overtime * $booking->booking_overtime_price);
                     $booking->save();
                     $bid = $booking->booking_id;
                 }
             }
         }
         else {
-            
             $bid = $bookingcheck2->booking_id;
         }
-        
         $booking2 = Booking::find($bid);
         
         $review = Booking::where('booking_id', $bid)
                         ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                        ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
+                        ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, booking.booking_normal_price as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
                         ->get();
 
-        return view('online-booking.fotostudio.step4', compact('bid', 'review', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'package'));
+        return view('online-booking.fotostudio.step4', compact('bid', 'review', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'package', 'durasiPaket'));
     }
 
     public function step5 (Request $request)
@@ -309,8 +302,9 @@ class BookingController extends Controller
         $kota = Regencies::where('id', $partner->pr_kota)->first();
         $kecamatan = Districts::where('id', $partner->pr_kec)->first();
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+        $durasiPaket = PartnerDurasi::where('package_id', $id->id)->get();
 
-        return view('online-booking.fotostudio.step5', compact('bid', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'package'));
+        return view('online-booking.fotostudio.step5', compact('bid', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'package'));
     }
 
     public function step6(Request $request)
@@ -327,13 +321,14 @@ class BookingController extends Controller
             $kota = Regencies::where('id', $partner->pr_kota)->first();
             $kecamatan = Districts::where('id', $partner->pr_kec)->first();
             $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+            $durasiPaket = PartnerDurasi::where('package_id', $id->id)->get();
 
             $review = Booking::where('booking_id', $bid)
                         ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                        ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
+                        ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
                         ->get();
 
-            return view('online-booking.fotostudio.step6', compact('bid', 'review', 'package','partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'package'));
+            return view('online-booking.fotostudio.step6', compact('bid', 'review', 'package','partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'package'));
         }
 
         return redirect()->route('index');

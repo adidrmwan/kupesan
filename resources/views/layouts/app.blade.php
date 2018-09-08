@@ -227,91 +227,91 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-      $('#provinces2').on('change', function(e){
-        console.log(e);
-        var text = e.target.value;
-        var spl = text.split(',');
-        var durasi = spl[0];
-        var pack_id = spl[1];
-        var date = spl[2];
-        var harga = spl[3];
-        $.get('/json-regencies1?pack_id=' + pack_id + '&durasi=' + durasi + '&harga=' + harga + '&callback=?',function(data) {
-          console.log(data);
-          $('#regencies2').empty();
-          $('#regencies2').append('<option value="" disable="true" selected="true">Pilih Jam Mulai</option>');
+  <script type="text/javascript">
+        $('#provinces2').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var durasi = spl[0];
+          var pack_id = spl[1];
+          var date = spl[2];
+          var harga = spl[3];
+          $.get('/json-regencies1?pack_id=' + pack_id + '&durasi=' + durasi + '&harga=' + harga + '&callback=?',function(data) {
+            console.log(data);
+            $('#regencies2').empty();
+            $('#regencies2').append('<option value="" disable="true" selected="true">Pilih Jam Mulai</option>');
 
-          $('#districts2').empty();
-          $('#districts2').append('<option value="" disable="true" selected="true">Pilih Jam Selesai</option>');
+            $('#districts2').empty();
+            $('#districts2').append('<option value="" disable="true" selected="true">Pilih Jam Selesai</option>');
 
-          $('#villages2').empty();
-          $('#villages2').append('<option value="0" disable="true" selected="true">Tidak Ada</option>');
+            $('#villages2').empty();
+            $('#villages2').append('<option value="" disable="true" selected="true">Tidak Ada</option>');
 
-          $.each(data, function(index, regenciesObj){
-            $('#regencies2').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +','+ date +'">'+ regenciesObj.num_hour +':00</option>');
-          })
+            $.each(data, function(index, regenciesObj){
+              $('#regencies2').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +','+ date +'">'+ regenciesObj.num_hour +':00</option>');
+            })
+          });
         });
-      });
 
-      $('#regencies2').on('change', function(e){
-        console.log(e);
-        var text = e.target.value;
-        var spl = text.split(',');
-        var jam_mulai = spl[0];
-        var durasi2 = spl[1];
-        var pack_id = spl[2];
-        var date = spl[3];
-        var jam_selesai = +spl[0] + +spl[1];
-        $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
-          console.log(data);
-          $('#districts2').empty();
-          $('#districts2').append('<option class="text-center" value="" disable="true" selected="true">Pilih Jam Selesai</option>');
+        $('#regencies2').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var jam_mulai = spl[0];
+          var durasi2 = spl[1];
+          var pack_id = spl[2];
+          var date = spl[3];
+          var jam_selesai = +spl[0] + +spl[1];
+          $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
+            console.log(data);
+            $('#districts2').empty();
+            $('#districts2').append('<option class="text-center" value="" disable="true" selected="true">Pilih Jam Selesai</option>');
 
-          $('#villages2').empty();
-          $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
+            $('#villages2').empty();
+            $('#villages2').append('<option class="text-center" value="'+ 0 +','+ jam_selesai +','+ jam_mulai + '" disable="true" selected="true">Tidak Ada</option>');
 
-          $('#terpilih').empty();
-          $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
-          $.each(data, function(index, villagesObj){
-            $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
-          })
+            $('#terpilih').empty();
+            $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
+            $.each(data, function(index, villagesObj){
+              $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
+            })
+          });
         });
-      });
 
-      $('#districts2').on('change', function(e){
-        console.log(e);
-        var text = e.target.value;
-        var spl = text.split(',');
-        var jam_selesai = spl[0];
-        var durasi2 = spl[1];
-        var pack_id = spl[2];
-        var date = spl[3];
-        var jam_mulai = spl[4];
-        $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
-          console.log(data);
-          $('#villages2').empty();
-          $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
-          $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
-          $.each(data, function(index, villagesObj){
-            $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
-          })
+        $('#districts2').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var jam_selesai = spl[0];
+          var durasi2 = spl[1];
+          var pack_id = spl[2];
+          var date = spl[3];
+          var jam_mulai = spl[4];
+          $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
+            console.log(data);
+            $('#villages2').empty();
+            $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
+            $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
+            $.each(data, function(index, villagesObj){
+              $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
+            })
+          });
         });
-      });
-      $('#villages2').on('change', function(e){
-        console.log(e);
-        var text = e.target.value;
-        var spl = text.split(',');
-        var jam_overtime = spl[0];
-        var jam_selesai = spl[1];
-        var jam_mulai = spl[2];
-        var total = +spl[0] + +spl[1];
-        $.get('/json-village2?jam_selesai=' + jam_selesai + '&jam_overtime=' + jam_overtime + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
-          console.log(data);
-          $('#terpilih').empty();
-          $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + total + ':00' + '</option>');
+        $('#villages2').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var jam_overtime = spl[0];
+          var jam_selesai = spl[1];
+          var jam_mulai = spl[2];
+          var total = +spl[0] + +spl[1];
+          $.get('/json-village2?jam_selesai=' + jam_selesai + '&jam_overtime=' + jam_overtime + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
+            console.log(data);
+            $('#terpilih').empty();
+            $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + total + ':00' + '</option>');
+          });
         });
-      });
-</script>
+  </script>
     @yield('script')
 
     <script type="text/javascript">

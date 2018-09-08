@@ -169,11 +169,13 @@
                                         </div>
                                         @else
                                             @if(File::exists(public_path("logo/".$partner->pr_logo.".jpg")))
-                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.jpg')  }}" class="img-responsive" alt="logo" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
                                             @elseif(File::exists(public_path("logo/".$partner->pr_logo.".png")))
-                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.png')  }}" class="img-responsive" alt="logo" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
                                             @elseif(File::exists(public_path("logo/".$partner->pr_logo.".jpeg")))
-                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.jpeg')  }}" class="img-responsive" alt="logo" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @else
+                                            <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload-photo.PNG')  }}" alt= "logo" />
                                             @endif
                                         @endif
                                         <div class="row">

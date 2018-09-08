@@ -40,7 +40,7 @@
                   @foreach($booking as $key => $data)
                   <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{$data->kode_booking}}</td>
+                    <td class="text-uppercase">{{$data->kode_booking}}</td>
                     <td>{{$data->pkg_name_them}}</td>
                     <td>{{$data->pkg_category_them}}</td>
                     <td>{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
@@ -58,7 +58,7 @@
             </div>
             <div class="tab-pane fade" id="jadwalBooking" role="tabpanel" aria-labelledby="nav-profile-tab" aria-expanded="false">
               <br>
-              <table class="table table-bordered table-striped table-responsive table-condensed" id="list-package3">
+              <table class="table table-bordered table-striped table-responsive table-condensed" id="list-package4">
                 <thead>
                   <th>No</th>
                   <th>Kode Booking</th>
@@ -75,7 +75,7 @@
                   @foreach($booking_cancelled as $key => $data)
                   <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{$data->kode_booking}}</td>
+                    <td class="text-uppercase">{{$data->kode_booking}}</td>
                     <td>{{$data->pkg_name_them}}</td>
                     <td>{{$data->pkg_category_them}}</td>
                     <td>{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>

@@ -113,6 +113,11 @@
             $('#list-package3').DataTable();
         } );
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list-package4').DataTable();
+        } );
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {

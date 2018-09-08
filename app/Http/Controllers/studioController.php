@@ -11,6 +11,7 @@ use App\Provinces;
 use App\Regencies;
 use App\Districts;
 use App\Villages;
+use App\Tnc;
 
 class StudioController extends Controller
 {
@@ -28,7 +29,8 @@ class StudioController extends Controller
         $kota = Regencies::where('id', $partner->pr_kota)->first();
         $kecamatan = Districts::where('id', $partner->pr_kec)->first();
     	$fasilitas = FasilitasPartner::where('user_id', $user_id)->get();
-        return view('partner-profile.fotostudio.detail', ['detail' => $detail, 'album' => $album, 'fasilitas' => $fasilitas, 'booking_date' => $booking_date], compact('provinsi', 'kota', 'kecamatan', 'carte', 'spack', 'studio'));
+        $tnc = Tnc::where('partner_id', $user_id)->get();
+        return view('partner-profile.fotostudio.detail', ['detail' => $detail, 'album' => $album, 'fasilitas' => $fasilitas, 'booking_date' => $booking_date], compact('provinsi', 'kota', 'kecamatan', 'carte', 'spack', 'studio', 'tnc'));
     }
 
 }

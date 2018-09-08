@@ -95,7 +95,7 @@
                                     {{ csrf_field() }}
                                     <small>* Jika pesanan dari customer sudah selesai, klik tombol dibawah ini.</small>
                                     <input type="text" name="booking_id" value="{{$data->booking_id}}" hidden="">
-                                    <button type="submit" class="btn btn-block btn-info pull-right">Order Completed</button>
+                                    <button type="submit" class="btn btn-block btn-info pull-right" onclick="return confirm('Are you sure want to complete this booking?')">Order Completed</button>
                                     <div class="clearfix"></div> 
                                 </form>
                             </div>

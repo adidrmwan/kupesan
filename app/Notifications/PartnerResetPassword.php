@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ResetPassword extends Notification
+class PartnerResetPassword extends Notification
 {
     use Queueable;
 
@@ -43,8 +43,8 @@ class ResetPassword extends Notification
         return (new MailMessage)
                     
                     ->from('info@kupesan.id')
-                    ->subject( 'Reset Password | Kupesan.id' )
-                    ->action('Reset Password', route('password.reset.token',['token' => $this->token]))
+                    ->subject( 'Reset Password | Partner-KU' )
+                    ->action('Reset Password', route('mitra.password.reset.token',['token' => $this->token]))
                     ->line('Terima Kasih Telah Menggunakan KUPESAN.ID');
     }
 

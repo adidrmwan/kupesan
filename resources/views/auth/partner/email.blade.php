@@ -11,11 +11,8 @@
                     <div id="forgot-password">
                         <div class="custom-form custom-form-fields">
                             <h3>Password Reset</h3>
-                            
-
-                            <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                            <form class="form-horizontal" method="POST" action="{{ route('mitra.password.email') }}">
                             {{ csrf_field() }}
-
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12">
                                         @if (session('status'))

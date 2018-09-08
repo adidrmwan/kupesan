@@ -20,8 +20,7 @@
       <div class="main-info hotel-info">
           <div class="main-title hotel-title">
               
-            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_price_them)}} / Jam </p>
-            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_overtime_them)}} / Overtime</p>
+            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_price_them)}} / Paket </p>
             
             <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
               <button type="submit" class="btn btn-orange pull-right" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>

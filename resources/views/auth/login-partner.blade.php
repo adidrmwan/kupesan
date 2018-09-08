@@ -65,7 +65,7 @@
                                   
                                     <div class="other-links">
                                         <p class="link-line">New Here ? <a href="{{route('mitra.daftar')}}">Register</a></p>
-                                        <a class="simple-link" href="{{ route('password.request') }}"> Forgot Your Password?
+                                        <a class="simple-link" href="{{ route('mitra.password.request') }}"> Forgot Your Password?
                                         </a>
                                     </div>
                                 </form>

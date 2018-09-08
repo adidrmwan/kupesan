@@ -1,11 +1,18 @@
 <?php
 Auth::routes();
-
 Route::get('/home', 'SearchController@home')->name('home');
-
+Route::group(['prefix' => 'partner-ku'], function(){
+    Route::get('', 'PartnerController@showJadiMitra')->name('jadi.mitra');
+    Route::get('login', 'MitraAuth\RegisterController@showLoginForm')->name('mitra.login');
+    Route::get('register', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
+    Route::post('register', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
+    Route::get('password/reset', 'MitraAuth\ForgotPasswordController@showLinkRequestForm')->name('mitra.password.request');
+    Route::post('password/email', 'MitraAuth\ForgotPasswordController@sendResetLinkEmail')->name('mitra.password.email');
+    Route::get('password/reset/{token}', 'MitraAuth\ResetPasswordController@showResetForm')->name('mitra.password.reset.token');
+    Route::post('password/reset', 'MitraAuth\ResetPasswordController@reset')->name('mitra.password.reset');
+});
 Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
-
 Route::get('/', function () {
     if(Auth::check()) {    
         $user = Auth::user();
@@ -46,7 +53,6 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
     Route::get('/cancel/partner', 'AdminController@cancelPartner')->name('cancel.partner');
 
     // kebaya
-
     Route::get('/kebaya/approve/booking', 'AdminController@approveBookingKebaya')->name('kebaya.approve.booking');
     Route::get('/kebaya/cancel/booking', 'AdminController@cancelBookingKebaya')->name('kebaya.cancel.booking');
     Route::get('/kebaya/confirm/bukti', 'AdminController@confirmBuktiKebaya')->name('kebaya.confirm.bukti');
@@ -62,15 +68,13 @@ Route::get('/partner/activation/2/{token}', 'MitraAuth\RegisterController@userAc
 Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
 Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
 Route::get('/booking/approved/kebaya/{token}', 'AdminController@bookingActivationKebaya');
-Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
-Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');
+
 
 // Route untuk user yang member
 Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function(){
     Route::get('/', function(){
         return redirect()->intended(route('home'));
     })->name('user.dashboard');
-
     Route::get('/booking/ps/2', 'BookingController@step2')->name('check.auth');
     Route::post('/booking/ps/3', 'BookingController@step3')->name('form.pesan2');
     Route::post('/booking/ps/4', 'BookingController@step4')->name('form.pesan');
@@ -82,7 +86,7 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     Route::get('/booking/ps/9', 'BookingController@voucher')->name('voucher');
     
     Route::post('/booking/7', 'BookingController@showReview')->name('form.booking');
-    Route::get('/profilKu', 'CustomerController@dashboard')->name('dashboard');
+    Route::get('/profil-KU', 'CustomerController@dashboard')->name('dashboard');
     Route::post('/booking/info/', 'CustomerController@showInfo')->name('booking.info');
 
     // kebaya 
@@ -99,8 +103,8 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     Route::get('/booking/kebaya/9', 'KebayaBookingController@step9')->name('kebaya.step9');
     Route::post('/booking/kebaya/info', 'CustomerController@showKebayaInfo')->name('kebaya.booking.info');
 });
-
-
+Route::get('/booking/kebaya/1', 'KebayaBookingController@step1')->name('kebaya.step1');
+Route::get('/booking/ps/1', 'BookingController@step1')->name('ask.page');
 // Role untuk user yang partner
 Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], function(){
 
@@ -179,10 +183,7 @@ Route::get('/studio/detail', 'StudioController@studiodetail')->name('studio-deta
 Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
 
 // Route Jadi Mitra
-Route::get('/partner-ku/login', 'MitraAuth\RegisterController@showLoginForm')->name('mitra.login');
-Route::get('/partner-ku/register', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
-Route::post('/partner-ku/register', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
-Route::get('/partner-ku', 'PartnerController@showJadiMitra')->name('jadi.mitra');
+
 
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
 

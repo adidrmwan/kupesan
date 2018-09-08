@@ -22,13 +22,23 @@
                   </th>
                 </tr>
                 <tr>
-                    <th >Harga Paket</th>
-                    <td >Rp {{number_format($data->pkg_price_them)}}</td>
+                  <th align="top">Durasi / Harga Paket</th>
+                  <td></td>
                 </tr>
+                <tr>
+                  <th></th>
+                  <td>
+                    @foreach($durasiPaket as $paket)
+                      <p>{{$paket->durasi_jam}} Jam / Rp {{number_format($paket->durasi_harga,0,',','.')}}</p>
+                    @endforeach
+                  </td>
+                </tr>
+                @if($data->pkg_overtime_them != '0')
                 <tr>
                     <th >Harga Overtime</th>
                     <td >Rp {{number_format($data->pkg_overtime_them)}}</td>
                 </tr>
+                @endif
                 <tr>
                     <th >Photografer</th>
                     <td >{{$data->pkg_fotografer}}</td>

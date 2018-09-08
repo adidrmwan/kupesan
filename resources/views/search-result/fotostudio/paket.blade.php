@@ -29,7 +29,7 @@
                 <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
                 <b>Print Size :</b> {{$data->pkg_print_size}}<br>
                 <b>Edited Photo :</b> {{$data->pkg_edited_photo}}<br>
-                <b>Capacity : </b>
+                <!-- <b>Capacity : </b> -->
             </p>
         </div>
     </div>

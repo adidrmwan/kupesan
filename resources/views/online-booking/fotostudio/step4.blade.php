@@ -31,10 +31,10 @@
                                                         <td>
                                                             {{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB 
                                                             <br>
-                                                            Durasi {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB) 
+                                                            Paket : {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB) 
                                                             <br>
                                                             @if(!empty($data->booking_overtime))
-                                                            Overtime {{$data->booking_overtime}} Jam
+                                                            Overtime : {{$data->booking_overtime}} Jam
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -54,10 +54,11 @@
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <td >Harga Paket</td>
-                                                        <td>{{$data->booking_end_time - $data->booking_start_time}} Jam 
-                                                            <b>x</b>
-                                                            Rp {{number_format($data->booking_normal_price, 0, ',', '.')}}
+                                                        <td>Paket</td>
+                                                        <td>
+                                                            <!-- {{$data->booking_end_time - $data->booking_start_time}} Jam 
+                                                            <b>:</b>
+                                                            Rp {{number_format($data->booking_normal_price, 0, ',', '.')}} -->
                                                         </td>
                                                         <td style="text-align: : right; ">Rp {{number_format($data->total_normal, 0, ',', '.')}}</td>
                                                     </tr>
@@ -74,7 +75,7 @@
                                                     <tr>
                                                         <td><b>TOTAL</b></td>
                                                         <td></td>
-                                                        <td>Rp {{number_format($data->booking_total, 0, ',', '.')}}</td>
+                                                        <td><b>Rp {{number_format($data->booking_total, 0, ',', '.')}}</b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

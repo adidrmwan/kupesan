@@ -102,7 +102,7 @@
                                 </section><!-- end hotel-offers -->
                                 <div class="col-sm-12 col-md-12">
                                     <div class="page-heading white-heading">
-                                            <h3>Feature / Amenities / Rules</h3>
+                                      <h3>Feature / Amenities</h3>
                                     </div>
                                     <div class="row">
                                       @foreach($fasilitas as $listfasil)
@@ -153,7 +153,22 @@
                                       @endif
                                       @endforeach
                                     </div>
-                                </div>                                
+                                </div>    
+                                <div class="col-sm-12 col-md-12">
+                                  <div class="page-heading white-heading">
+                                    <h3>Rules</h3>
+                                  </div>
+                                  <div class="row">
+                                    <table class="table">
+                                        @foreach($tnc as $key => $data)
+                                        <tr>
+                                          <td><b>{{$key + 1}}</b></td>
+                                          <td><p>{{$data->tnc_desc}}</p></td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                  </div>
+                                </div>                           
                             </div>
                         </div>
                         

@@ -36,8 +36,11 @@
                                  <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                                     <input id="password" type="password" class="form-control" name="password" placeholder="Password" required >
-                                    <span class="text-muted"><small>The password must be contain at least 8 characters.</small></span>
-
+                                    <span class="text-muted"><small>The password must be contain at least 8 characters including :</small></span><br> 
+                                        <ul>
+                                            <li><span class="text-muted"><small>One uppercase letter</small></span></li>
+                                            <li><span class="text-muted"><small>One number</small></span></li>
+                                        </ul>
                                     <span><i class="fa fa-lock"></i></span>
 
                                     @if ($errors->has('password'))

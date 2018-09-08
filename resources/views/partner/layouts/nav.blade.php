@@ -5,7 +5,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 <span><i class="pe-7s-menu "></i></span>
             </button>
-            <a href="{{ route('partner.dashboard') }}">
+            <a href="{{ route('home') }}">
                 <img src="{{ URL::asset('dist/images/logo-navbar.png') }}" alt="Logo-Kupesan" style="max-width: 75%; margin-left: 20px;" />
             </a>
         </div>

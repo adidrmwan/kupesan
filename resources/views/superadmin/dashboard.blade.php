@@ -112,11 +112,11 @@
                       @endif -->
                       <td>  
                         <a href="{{route('cancel.booking', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel this booking?')">Cancel</span>
                           </button>
                         </a>
                         <a href="{{route('approve.booking', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Approve</span>
+                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to aprrove this booking?')">Approve</span>
                           </button>
                         </a>
                       </td> 
@@ -157,11 +157,11 @@
                           </button>
                         </a>
                         <a href="{{route('cancel.bukti', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel this booking?')">Cancel</span>
                           </button>
                         </a>
                         <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm this booking?')">Confirm</span>
                           </button>
                         </a>
                       </td> 
@@ -199,7 +199,6 @@
                       <td><span class="label label-success">Confirmed</span></td>
                       @endif -->
                       <td>
-
                           <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-pemesan"><span style="color: white; text-decoration: none;">Show</span>
                           </button>
                       </td>

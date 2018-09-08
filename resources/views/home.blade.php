@@ -138,31 +138,52 @@
                 </div><!-- end page-heading -->
                 
                 <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-studio-offers">
-                    @foreach($studio as $data)
+                    @foreach($thumbnailStudio as $key => $data)
                     <div class="item">
                         <a href="{{route('detail.fotostudio', ['id' => $data->user_id])}}">
                         <div class="main-block tour-block">
                             <div class="main-img">
                                     @if(File::exists(public_path("logo/".$data->pr_logo.".jpg")))
-                                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; " />
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative; " />
                                     @elseif(File::exists(public_path("logo/".$data->pr_logo.".png")))
-                                    <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
                                     @elseif(File::exists(public_path("logo/".$data->pr_logo.".jpeg")))
-                                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".PNG")))
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.PNG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".JPEG")))
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.JPEG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".JPG")))
+                                    <img src="{{ asset('logo/'.$data->pr_logo.'.JPG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                                    @else
+                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="kebaya-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
                                     @endif
-                                                            </div><!-- end offer-img -->
-                                
+                            </div>
                             <div class="main-info tour-info">
                                 <div class="main-title tour-title">
                                     <a> <b>{{$data->pr_name}}</b></a>
                                     <p>Surabaya</p>
-                                    
                                 </div><!-- end tour-title -->
                             </div><!-- end tour-info -->
                         </div><!-- end tour-block -->
                         </a>
-                    </div><!-- end item -->
+                    </div>
                     @endforeach
+                    <div class="item">
+                        <a href="{{route('detail.fotostudio', ['id' => $data->user_id])}}">
+                        <div class="main-block tour-block">
+                            <div class="main-img">
+                                <img src="dist/images/studio-foto.png" class="img-responsive" alt="kebaya-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                            </div>
+                            <div class="main-info tour-info">
+                                <div class="main-title tour-title">
+                                    <a> <b>Kupesan.id</b></a>
+                                    <p>Surabaya</p>
+                                </div><!-- end tour-title -->
+                            </div><!-- end tour-info -->
+                        </div><!-- end tour-block -->
+                        </a>
+                    </div>
                 </div><!-- end owl-tour-offers -->
             </div><!-- end columns -->
         </div><!-- end row -->

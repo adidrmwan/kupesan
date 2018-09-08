@@ -86,23 +86,29 @@
                                                           <td >{{ date('d F Y', strtotime($data->booking_start_date)) }}</td>
                                                       </tr>
                                                       <tr>
-                                                          <td >Waktu</td>
-                                                          <td >{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
+                                                          <td >Jadwal</td>
+                                                          <td >
+                                                            {{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB<br>
+                                                            Durasi Paket : {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB)<br>
+                                                            Overtime : {{$data->booking_overtime}} Jam
+                                                          </td>
                                                       </tr>
                                                       <tr>
                                                           <th colspan="2 " style="text-align: center;">Detail Harga</th>
                                                       </tr>
                                                       <tr>
-                                                          <td >Harga Paket</td>
-                                                          <td >Rp {{number_format($data->total_normal)}}</td>
+                                                          <td>Paket</td>
+                                                          <td>Rp {{number_format($data->total_normal,0,',','.')}}</td>
                                                       </tr>
+                                                      @if($data->total_overtime != '0')
                                                       <tr>
-                                                          <td >Harga Overtime</td>
-                                                          <td >Rp {{number_format($data->total_overtime)}}</td>
+                                                          <td>Overtime</td>
+                                                          <td>Rp {{number_format($data->total_overtime,0,',','.')}}</td>
                                                       </tr>
+                                                      @endif
                                                       <tr>
                                                         <th>Total</th>
-                                                        <th>Rp {{number_format($data->total)}}</th>
+                                                        <th>Rp {{number_format($data->total,0,',','.')}}</th>
                                                       </tr>
                                                     </table>
                                                   </div>

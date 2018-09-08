@@ -14,6 +14,7 @@
         
         <!-- Font Awesome Stylesheet -->
         <link rel="stylesheet" href=" {{URL::asset('dist/css/font-awesome.min.css ')}}">
+        <link rel="stylesheet" href="{{ URL::asset ('dist/css/material-design-iconic-font.min.css') }} ">
             
         <!-- Custom Stylesheets -->	
         <link rel="stylesheet" href=" {{URL::asset('dist/css/style.css ')}}">

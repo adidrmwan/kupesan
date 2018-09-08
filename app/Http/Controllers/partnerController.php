@@ -196,8 +196,9 @@ class PartnerController extends Controller
         }
         $package_id = $request->package_id;
         $package = PSPkg::where('id', $package_id)->get();
+        $durasiPaket = PartnerDurasi::where('package_id', $package_id)->get();
 
-        return view('partner.ps.booking.step2', ['partner' => $partner], compact('package', 'package_id'));        
+        return view('partner.ps.booking.step2', ['partner' => $partner], compact('package', 'package_id', 'durasiPaket'));        
         
     }
 
@@ -213,6 +214,7 @@ class PartnerController extends Controller
         }
         $package_id = $request->package_id;
         $package = PSPkg::where('id', $package_id)->get();
+        $durasiPaket = PartnerDurasi::where('package_id', $package_id)->get();
 
         $open = $partner->open_hour;
         $close = $partner->close_hour;
@@ -234,7 +236,7 @@ class PartnerController extends Controller
 
         $durasi = PartnerDurasi::where('package_id', $package_id)->get();
 
-        return view('partner.ps.booking.step3', ['partner' => $partner], compact('package', 'package_id', 'jam_mulai', 'jam_selesai', 'booking_date', 'open', 'close', 'bookingcheck', 'durasi'));    
+        return view('partner.ps.booking.step3', ['partner' => $partner], compact('package', 'package_id', 'jam_mulai', 'jam_selesai', 'booking_date', 'open', 'close', 'bookingcheck', 'durasi', 'durasiPaket'));    
     }
 
     public function submitStep3(Request $request)
@@ -255,10 +257,12 @@ class PartnerController extends Controller
             return view('partner.home', ['partner' => $partner]);
         }
 
-        $paket = explode(',', $request->durasi_paket, 3);
+        $paket = explode(',', $request->durasi_paket, 4);
         $durasi2 = $paket[0];
         $package_id = $request->package_id;
         $booking_date = $paket[2];
+        $harga_paket = $paket[3];
+
         $booking_overtime = $request->jam_tambahan;
         $jam_tambahan = $booking_overtime[0];
 
@@ -274,15 +278,15 @@ class PartnerController extends Controller
         $booking_start_time = $mulai[0];
         $booking_start_date = date('Y-m-d H:i:s', strtotime("$booking_date $jam_mulai"));
         
-        $selesai = explode(',', $request->jam_selesai, 5);
+        $selesai = $booking_start_time + $durasi2;
         if ($selesai < 10) {
-            $jam_selesai = '0'.$selesai[0].':00:00';
+            $jam_selesai = '0'.$selesai.':00:00';
         } elseif ($mulai >= 10) {
-            $jam_selesai = $selesai[0].':00:00';
+            $jam_selesai = $selesai.':00:00';
         }
-        $booking_end_time = $selesai[0];
+        $booking_end_time = $selesai;
         $booking_end_date = date('Y-m-d H:i:s', strtotime("$booking_date $jam_selesai"));
-
+        $packageI = PSPkg::where('id', $package_id)->first();
         $booking_selesai_jam = $booking_end_time + $jam_tambahan - 1;
 
         $bookingcheck = BookingCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
@@ -330,7 +334,7 @@ class PartnerController extends Controller
         }
         $bookingcheck2 = Booking::where('booking_start_time', $booking_start_time)->where('booking_end_time', $booking_end_time)->where('booking_start_date', $booking_start_date)->where('booking_end_date', $booking_end_date)->where('package_id', $package_id)->first();
         if (empty($bookingcheck2)) {
-            $packageI = PSPkg::where('id', $package_id)->first();
+            
             $booking = new Booking();
             $booking->user_id = Auth::user()->id;
             $booking->package_id = $package_id;
@@ -340,7 +344,7 @@ class PartnerController extends Controller
             $booking->booking_start_time = $booking_start_time;
             $booking->booking_end_time = $booking_end_time;
             $booking->booking_overtime = $jam_tambahan;
-            $booking->booking_normal_price = $packageI->pkg_price_them;
+            $booking->booking_normal_price = $harga_paket;
             $booking->booking_overtime_price = $packageI->pkg_overtime_them;
             $booking->booking_status = 'on_booking';
             $booking->save();
@@ -352,10 +356,11 @@ class PartnerController extends Controller
 
         $review = Booking::where('booking_id', $bid)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
-                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_img_them, ps_package.pkg_category_them, (((booking_end_time - booking_start_time) * booking_normal_price) ) as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime, (((booking_end_time - booking_start_time) * booking_normal_price) + (booking_overtime * booking_overtime_price)) as total'))
+                    ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_img_them, ps_package.pkg_category_them, booking.booking_normal_price as total_normal, ((booking_overtime * booking_overtime_price) ) as total_overtime, (booking_normal_price + (booking_overtime * booking_overtime_price)) as total'))
                     ->get();
+        $durasiPaket = PartnerDurasi::where('package_id', $package_id)->get();
 
-        return view('partner.ps.booking.step4', ['partner' => $partner], compact('package', 'package_id', 'bid', 'booking_date', 'review', 'booking_date'));
+        return view('partner.ps.booking.step4', ['partner' => $partner], compact('package', 'package_id', 'bid', 'booking_date', 'review', 'booking_date', 'durasiPaket'));
     }
 
     public function submitStep4(Request $request)
@@ -474,7 +479,7 @@ class PartnerController extends Controller
         $booking->booking_user_name = $request->input('booking_user_name');
         $booking->booking_user_nohp = $request->input('booking_user_nohp');
         $booking->booking_user_email = $request->input('booking_user_email');
-        $booking->booking_total = $request->input('total');
+        $booking->booking_total = $booking->booking_normal_price + ($booking->booking_overtime * $booking->booking_overtime_price);
         $booking->booking_status = 'offline-booking';
         $booking->save();
 
@@ -704,10 +709,11 @@ class PartnerController extends Controller
                 // dd($data);
                 if($data->count()) {
                     foreach ($data as $key => $value) {
-                        $judul = 'Off | ' . $value->booking_user_name;
+                        $judulOff = 'Off | ' . $value->booking_user_name;
+                        $judulOn = 'On | ' . $value->booking_user_name;
                         if($value->booking_status == 'confirmed') {
                             $events[] = Calendar::event(
-                            $value->booking_user_name,
+                            $judulOn,
                             false,
                             $value->booking_start_date,
                             $value->booking_end_date,
@@ -720,7 +726,7 @@ class PartnerController extends Controller
                             );
                         }elseif($value->booking_status == 'offline-booking') {
                             $events[] = Calendar::event(
-                            $judul,
+                            $judulOff,
                             true,
                             $value->booking_start_date,
                             $value->booking_end_date,

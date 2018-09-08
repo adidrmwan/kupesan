@@ -23,8 +23,8 @@ class SearchController extends Controller
                 ->distinct()->orderBy('tag_title', 'asc')->get(['ps_tag.tag_id', 'ps_tag.tag_title']);
         $tema = kebayaTema::join('kebaya_partner_tema', 'kebaya_tema.tema_id', '=', 'kebaya_partner_tema.tema')->distinct()->orderBy('tema_name', 'asc')->get(['kebaya_tema.tema_name', 'kebaya_tema.tema_id']);
         
-        $studio = Partner::where('pr_type', '1')->get();
-        return view('home', compact('studio', 'tema', 'tag'));
+        $thumbnailStudio = Partner::where('pr_type', '1')->take(3)->get();
+        return view('home', compact('thumbnailStudio', 'tema', 'tag'));
     }
 
     public function searchKebaya(Request $request)

@@ -73,13 +73,13 @@
             <div class=""></div>
             <div class="col-lg-12 pull-right" >
               <a href="{{route('cancel.bukti', ['id' => $data->booking_id])}}">
-                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel this booking?')">Cancel</span>
                 </button>
               </a>
               @if($data->status == '1')
               @else
               <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
-                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm this booking?')">Confirm</span>
                 </button>
               </a>
               @endif

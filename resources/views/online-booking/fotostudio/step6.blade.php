@@ -14,6 +14,8 @@
         
         <!-- Font Awesome Stylesheet -->
         <link rel="stylesheet" href=" {{URL::asset('dist/css/font-awesome.min.css ')}}">
+        <link rel="stylesheet" href="{{ URL::asset ('dist/css/material-design-iconic-font.min.css') }} ">
+
             
         <!-- Custom Stylesheets --> 
         <link rel="stylesheet" href=" {{URL::asset('dist/css/style.css ')}}">
@@ -204,10 +206,10 @@
                                                                 <td>
                                                                     {{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB 
                                                                     <br>
-                                                                    Durasi {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB) 
+                                                                    Paket : {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB) 
                                                                     <br>
                                                                     @if(!empty($data->booking_overtime))
-                                                                    Overtime {{$data->booking_overtime}} Jam
+                                                                    Overtime : {{$data->booking_overtime}} Jam
                                                                     @endif
                                                                 </td>
                                                             </tr>
@@ -227,12 +229,13 @@
                                                     <table class="table">
                                                         <tbody>
                                                             <tr>
-                                                                <td >Harga Paket</td>
-                                                                <td>{{$data->booking_end_time - $data->booking_start_time}} Jam 
+                                                                <td>Paket</td>
+                                                                <td>
+                                                                    <!-- {{$data->booking_end_time - $data->booking_start_time}} Jam 
                                                                     <b>x</b>
-                                                                    Rp {{number_format($data->booking_normal_price, 0, ',', '.')}}
+                                                                    Rp {{number_format($data->booking_normal_price, 0, ',', '.')}} -->
                                                                 </td>
-                                                                <td style="text-align: : right; ">Rp {{number_format($data->total_normal, 0, ',', '.')}}</td>
+                                                                <td style="text-align: : right; ">Rp {{number_format($data->booking_normal_price, 0, ',', '.')}}</td>
                                                             </tr>
                                                             @if(!empty($data->booking_overtime))
                                                             <tr>
@@ -247,7 +250,7 @@
                                                             <tr>
                                                                 <td><b>TOTAL</b></td>
                                                                 <td></td>
-                                                                <td>Rp {{number_format($data->booking_total, 0, ',', '.')}}</td>
+                                                                <td><b>Rp {{number_format($data->booking_total, 0, ',', '.')}}</b></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
