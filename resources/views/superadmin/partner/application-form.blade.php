@@ -75,7 +75,7 @@
             @if($value->status == '1')
             <div class="col-lg-12">
               <div class="box-header">
-                <h1 class="box-title">PARTNER INI TELAH DITINJAU.</h1> 
+                <h1 class="label label-success">PARTNER INI TELAH DITINJAU.</h1> 
               </div>
             </div>
             @else
@@ -137,11 +137,11 @@
               @if($value->status == '1')
               @else
               <a href="{{route('cancel.partner', ['id' => $value->id])}}">
-                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel?')">Cancel</span>
+                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel this partner?')">Cancel</span>
                 </button>
               </a>
               <a href="{{route('confirm.partner', ['id' => $value->id])}}">
-                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm?')">Confirm</span>
+                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm this partner?')">Confirm</span>
                 </button>
               </a>
               @endif

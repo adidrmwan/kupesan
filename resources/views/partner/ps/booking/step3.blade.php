@@ -258,7 +258,7 @@
                                           <div class="row">
                                             <div class="form-group col-lg-12">
                                               <label><span>Tanggal Terpilih</span></label>
-                                              <input type="text" class="form-control" id="datepicker2" value="{{ date('d F Y', strtotime($booking_date)) }}" disabled="" name="booking_date">
+                                              <input type="text" class="form-control text-center" id="datepicker2" value="{{ date('d F Y', strtotime($booking_date)) }}" disabled="" name="booking_date">
                                             </div>
                                           </div>
                                           <div class="row">
@@ -280,6 +280,8 @@
                                               </select>
                                             </div>
                                           </div>
+                                          @foreach($package as $data)
+                                          @if($data->pkg_overtime_them != '0')
                                           <div class="row">
                                             <div class="form-group col-lg-12">
                                               <label>Jam Overtime<small> (opsional)</small></label>
@@ -289,6 +291,15 @@
                                               </select>
                                             </div>
                                           </div>
+                                          @else
+                                          <div class="row">
+                                            <div class="form-group col-lg-12" >
+                                              <label>Jam Overtime<small> (opsional)</small></label>
+                                              <input type="text" class="form-control text-center" placeholder="Tidak Tersedia" name="jam_tambahan" disabled="">
+                                            </div>
+                                          </div>
+                                          @endif
+                                          @endforeach 
                                           <div class="row">
                                             <div class="form-group col-lg-12">
                                               <label>Jam Terpilih</label>

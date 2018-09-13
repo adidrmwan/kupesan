@@ -26,7 +26,7 @@
             <div class="col-md-8">
                <div class="card">
                     <div class="header">
-                        <h3 class="title"><b>Booking Code : {{$data->kode_booking}}</b></h3>
+                        <h3 class="title"><b class="text-uppercase">Booking Code : {{$data->kode_booking}}</b></h3>
                     </div>
                     <div class="content">
                         <div class="row">

@@ -49,9 +49,9 @@
                                                     <select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_libur" required>
                                                         <option selected value="">Pilih Durasi Waktu</option>
                                                         <option value="full_day">Full Day (24 Jam)</option>
-<!--                                                         <option value="3">3 Hari</option>
-                                                        <option value="7">7 Hari</option> -->
-                                                        <!-- <option value="half_day">Half Day (Isi jam mulai & jam selesai)</option> -->
+                                                        <option value="3">3 Hari</option>
+                                                        <option value="5">5 Hari</option>
+                                                        <option value="7">7 Hari</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Silahkan isi Durasi Waktu.

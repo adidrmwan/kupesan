@@ -16,6 +16,7 @@ use App\Districts;
 use App\Villages;
 use App\KebayaBooking;
 use App\KebayaProduct;
+use App\PartnerDurasi;
 class CustomerController extends Controller
 {
     public function dashboard()
@@ -108,8 +109,9 @@ class CustomerController extends Controller
         $kota = Regencies::where('id', $partner->pr_kota)->first();
         $kecamatan = Districts::where('id', $partner->pr_kec)->first();
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
+        $durasiPaket = PartnerDurasi::where('package_id', $id->id)->get();
 
-        return view('online-booking.fotostudio.step5', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('package', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas'));
+        return view('online-booking.fotostudio.step5', ['package' => $package, 'pid' => $package_id, 'partner_id' => $partner->user_id], compact('package', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket'));
  
     }
 

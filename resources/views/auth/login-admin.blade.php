@@ -10,7 +10,7 @@
                 <div class="col-sm-12">
                     
                     <div class="custom-form custom-form-fields">
-                        <h3>Log-In Partner-KU</h3>
+                        <h3>Log-In Admin</h3>
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}"> 
                             {{ csrf_field() }}
 
@@ -55,7 +55,7 @@
                                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="checkbox">
                                           <label>
-                                            <input type="text" name="flag" value="partner" hidden="">
+                                            <input type="text" name="flag" value="admin" hidden="">
                                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} style="margin-top: 12px;"> Remember Me
                                           </label>
                                         </div>

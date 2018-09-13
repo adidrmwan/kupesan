@@ -156,7 +156,7 @@
                                     @elseif(File::exists(public_path("logo/".$data->pr_logo.".JPG")))
                                     <img src="{{ asset('logo/'.$data->pr_logo.'.JPG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
                                     @else
-                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="kebaya-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                                    <img src="dist/images/studio-foto.png" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
                                     @endif
                             </div>
                             <div class="main-info tour-info">

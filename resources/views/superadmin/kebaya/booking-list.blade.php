@@ -177,7 +177,7 @@
                   </table>
                 </div>
                 <div class="tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                  <table id="example3" class="table table-bordered table-striped table-condensed">
+                  <table id="example5" class="table table-bordered table-striped table-condensed">
                     <thead>
                     <tr>
                       <th>No</th>

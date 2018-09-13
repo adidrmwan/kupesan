@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>HP (No Whatsapp)<small><b style="color: red;"> *</b></small></label>
+                                        <label>HP (Aktif Whatsapp)<small><b style="color: red;"> *</b></small></label>
                                           <input type="text" class="form-control" placeholder="Telepon/HP" aria-label="Username" aria-describedby="basic-addon1" name="pr_phone" value="{{$phone_number}}" required>
                                           <div class="invalid-feedback">
                                               Silahkan isi no. telepon aktif.

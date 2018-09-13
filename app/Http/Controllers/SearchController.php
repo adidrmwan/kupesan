@@ -177,11 +177,11 @@ class SearchController extends Controller
         if ($request->has('word')) {
             $word = $request->word;
 
-            $allThemes = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->orderBy('ps_package.pkg_price_them', 'asc')->get();
+            $allThemes = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->orderBy('ps_package.pkg_price_them', 'asc')->distinct()->get();
 
-            $studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->get();
+            $studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->get();
 
-            $cek_studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->first();
+            $cek_studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->first();
 
             $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
 
@@ -189,7 +189,7 @@ class SearchController extends Controller
                 return view('errors.search-not-found');
             }
             else {
-                return view('result-studio', compact('studio_data', 'allThemes', 'word'));
+                return view('search-result', compact('studio_data', 'allThemes', 'word'));
             }
         }
         return view('home');

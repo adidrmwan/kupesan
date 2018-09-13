@@ -21,6 +21,11 @@ use App\KebayaBooking;
 use App\KebayaCheck;
 class AdminController extends Controller
 {
+    public function showLoginForm()
+    {
+        return view('auth.login-admin');
+    }
+
     public function dashboard()
     {
         $booking = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')->where('booking_status', 'on_review')->get();

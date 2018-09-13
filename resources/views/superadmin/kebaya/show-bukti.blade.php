@@ -47,12 +47,18 @@
                     <th>Bukti Pembayaran</th>
                     <td>
                       @if(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpg")))
-                              <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpg')  }}" alt= "Bukti Transfer" />
-                              @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".png")))
-                              <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.png')  }}" alt= "Bukti Transfer" /> 
-                              @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpeg")))
-                              <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpeg')  }}" alt= "Bukti Transfer" /> 
-                              @endif
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpg')  }}" alt= "Bukti Transfer" />
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".png")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.png')  }}" alt= "Bukti Transfer" /> 
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpeg")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpeg')  }}" alt= "Bukti Transfer" /> 
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".JPG")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.JPG')  }}" alt= "Bukti Transfer" />
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".PNG")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.PNG')  }}" alt= "Bukti Transfer" /> 
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".JPEG")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.JPEG')  }}" alt= "Bukti Transfer" /> 
+                      @endif
                     </td>
                   </tr>
                   <tr>

@@ -138,8 +138,11 @@ class BookingController extends Controller
         $harga_paket = $paket[3];
         $pkg_price_them = $harga_paket;
         $booking_overtime = $request->jam_tambahan;
-        $jam_tambahan = $booking_overtime[0];
-
+        if(empty($booking_overtime)) {
+            $jam_tambahan = '0';
+        } else {
+            $jam_tambahan = $booking_overtime[0];        
+        }
         $package = PSPkg::where('id', $package_id)->get();
         $package_list = PSPkg::where('id', $package_id)->first();
         

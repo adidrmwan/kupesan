@@ -44,12 +44,6 @@
                     <td>{{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB</td>
                   </tr>
                   <tr>
-                    <th>Status Pesanan</th>
-                    @if($data->booking_status == 'paid')
-                    <td><span class="label label-success">Paid</span>&nbsp;<span class="label label-success">Unconfirmed</span></td>
-                    @endif
-                  </tr>
-                  <tr>
                     <th>Bukti Pembayaran</th>
                     <td>
                       @if(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpg")))
@@ -58,6 +52,12 @@
                       <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.png')  }}" alt= "Bukti Transfer" /> 
                       @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".jpeg")))
                       <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.jpeg')  }}" alt= "Bukti Transfer" /> 
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".JPG")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.JPG')  }}" alt= "Bukti Transfer" />
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".PNG")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.PNG')  }}" alt= "Bukti Transfer" /> 
+                      @elseif(File::exists(public_path("bukti_pembayaran/".$data->bukti_transfer.".JPEG")))
+                      <img style="height: auto; width: 300px;" class="img-responsive" src="{{ asset('../bukti_pembayaran/'.$data->bukti_transfer.'.JPEG')  }}" alt= "Bukti Transfer" /> 
                       @endif
                     </td>
                   </tr>
@@ -72,12 +72,12 @@
           <div class="row">
             <div class=""></div>
             <div class="col-lg-12 pull-right" >
+              @if($data->booking_status == 'confirmed')
+              @else
               <a href="{{route('cancel.bukti', ['id' => $data->booking_id])}}">
                 <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel this booking?')">Cancel</span>
                 </button>
               </a>
-              @if($data->status == '1')
-              @else
               <a href="{{route('confirm.bukti', ['id' => $data->booking_id])}}">
                 <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm this booking?')">Confirm</span>
                 </button>

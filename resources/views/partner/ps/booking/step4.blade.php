@@ -41,18 +41,8 @@
                                         <div class="col-lg-12">
                                           <div class="row">
                                             <div class="form-group col-lg-12">
-                                              <label><span>E-mail</span></label>
-                                              <input type="text" class="form-control" name="booking_user_email" placeholder="E-mail Customer" required="">
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="row">
-                                        <div class="col-lg-12">
-                                          <div class="row">
-                                            <div class="form-group col-lg-12">
-                                              <label><span>HP</span></label>
-                                              <input type="text" class="form-control" name="booking_user_nohp" placeholder="No HP Customer" required="">
+                                              <label><span>HP</span> (Opsional)</label>
+                                              <input type="text" class="form-control" name="booking_user_nohp" placeholder="No HP Customer">
                                             </div>
                                           </div>
                                         </div>
@@ -89,8 +79,10 @@
                                                           <td >Jadwal</td>
                                                           <td >
                                                             {{$data->booking_start_time}}:00 - {{$data->booking_end_time + $data->booking_overtime}}:00 WIB<br>
-                                                            Durasi Paket : {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB)<br>
+                                                            Paket : {{$data->booking_end_time - $data->booking_start_time}} Jam ({{$data->booking_start_time}}:00 - {{$data->booking_end_time}}:00 WIB)<br>
+                                                            @if($data->booking_overtime != '0')
                                                             Overtime : {{$data->booking_overtime}} Jam
+                                                            @endif
                                                           </td>
                                                       </tr>
                                                       <tr>

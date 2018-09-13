@@ -264,7 +264,13 @@ class PartnerController extends Controller
         $harga_paket = $paket[3];
 
         $booking_overtime = $request->jam_tambahan;
-        $jam_tambahan = $booking_overtime[0];
+        if(empty($booking_overtime)) {
+            $jam_tambahan = '0'; 
+        } else {
+            $jam_tambahan = $booking_overtime[0];
+        }
+
+        // dd($jam_tambahan);
 
         $durasi = PartnerDurasi::where('package_id', $package_id)->get();
         $package = PSPkg::where('id', $package_id)->get();

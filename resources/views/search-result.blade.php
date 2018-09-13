@@ -51,6 +51,14 @@
                             <img src="{{ asset('logo/'.$list->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
                             @elseif(File::exists(public_path("logo/".$list->pr_logo.".jpeg")))
                             <img src="{{ asset('logo/'.$list->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                            @elseif(File::exists(public_path("logo/".$list->pr_logo.".JPG")))
+                            <img src="{{ asset('logo/'.$list->pr_logo.'.JPG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; " />
+                            @elseif(File::exists(public_path("logo/".$list->pr_logo.".PNG")))
+                            <img src="{{ asset('logo/'.$list->pr_logo.'.PNG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                            @elseif(File::exists(public_path("logo/".$list->pr_logo.".JPEG")))
+                            <img src="{{ asset('logo/'.$list->pr_logo.'.JPEG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                            @else
+                            <img src="{{ asset('dist/images/studio-foto.png')}}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative;" />
                             @endif
                           </div>
                           
@@ -77,26 +85,25 @@
                 <div class="col-sm-12 col-md-12 col-lg-3">
                     <div class="main-block flight-block">
                         <div class="frame">
+                            @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
                             <div class="img-hover">
                                 <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-
-                                        @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                                        <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
                                 </a>
                             </div>
+                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
                             <div class="img-hover">
                                 <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                                        <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+                                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
                                 </a>
                             </div>
+                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
                             <div class="img-hover">
                                 <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                        @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                                        <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
-                                        @endif
+                                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
                                 </a>
-                            </div><!-- end flight-img -->
+                            </div>
+                            @endif
                             <div class = "details">
                                 <br>
                                 <br>

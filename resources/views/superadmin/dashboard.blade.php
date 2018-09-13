@@ -171,7 +171,7 @@
                   </table>
                 </div>
                 <div class="tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                  <table id="example3" class="table table-bordered table-striped table-condensed">
+                  <table id="example9" class="table table-bordered table-striped table-condensed">
                     <thead>
                     <tr>
                       <th>No</th>
@@ -189,7 +189,7 @@
                     @foreach($booking_confirmed as $key => $data)
                     <tr>
                       <td>{{$key + 1}}</td>
-                      <td>{{$data->kode_booking}}</td>
+                      <td class="text-uppercase">{{$data->kode_booking}}</td>
                       <td>{{$data->user_id}}</td>
                       <!-- <td>{{$data->package_id}}</td> -->
                       <td>{{date('d F Y', strtotime($data->booking_at))}}</td>
@@ -199,8 +199,10 @@
                       <td><span class="label label-success">Confirmed</span></td>
                       @endif -->
                       <td>
-                          <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;" data-toggle="modal" data-target="#show-pemesan"><span style="color: white; text-decoration: none;">Show</span>
+                        <a href="{{route('show.bukti', ['id' => $data->booking_id])}}">
+                          <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Show Bukti Pembayaran</span>
                           </button>
+                        </a>
                       </td>
                     </tr>
                     @endforeach

@@ -24,7 +24,7 @@
                                         Kami akan mengirimkan e-mail untuk memberitahukan status pesanan Anda maksimal 6 jam dari sekarang. 
                                         <br>
                                         <br>
-                                        Anda juda dapat melihat status pesanan pada menu <b class="text-uppercase">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b> diatas atau <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>
+                                        Anda juda dapat melihat status pesanan pada <b>profil Anda</b> diatas atau <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>
                                         <br>
                                         <br>
                                         Mohon kesediaan Anda untuk menunggu,

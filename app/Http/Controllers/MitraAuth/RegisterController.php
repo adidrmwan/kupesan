@@ -20,14 +20,14 @@ class RegisterController extends Controller
 
     protected $redirectPath = '/';
 
-    public function showLoginForm()
-    {
-        return view('auth.login-partner');
-    }
-
 	public function showRegistrationForm()
     {
         return view('auth.register-partner');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login-partner');
     }
 
 
@@ -36,7 +36,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:13',
+            'phone_number' => 'required|string|min:10|max:14',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed',
         ]);

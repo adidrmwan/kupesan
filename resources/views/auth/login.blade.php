@@ -55,6 +55,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               <div class="checkbox">                                       
                                 <label>
+                                  <input type="text" name="flag" value="customer" hidden="">
                                   <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} style="margin-top: 12px;"> Remember Me
                                 </label>
                               </div>

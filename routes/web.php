@@ -1,5 +1,7 @@
 <?php
 Auth::routes();
+Route::get('/admin/login', 'AdminController@showLoginForm')->name('admin.login');
+
 Route::get('/home', 'SearchController@home')->name('home');
 Route::group(['prefix' => 'partner-ku'], function(){
     Route::get('', 'PartnerController@showJadiMitra')->name('jadi.mitra');

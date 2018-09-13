@@ -43,7 +43,7 @@ class ResetPassword extends Notification
         return (new MailMessage)
                     
                     ->from('info@kupesan.id')
-                    ->subject( 'Reset Password | Kupesan.id' )
+                    ->subject( 'Kupesan.id - Reset Password' )
                     ->action('Reset Password', route('password.reset.token',['token' => $this->token]))
                     ->line('Terima Kasih Telah Menggunakan KUPESAN.ID');
     }

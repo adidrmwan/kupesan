@@ -28,6 +28,12 @@
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.png')  }}" alt= "Album / Portofolio Bisnis" />
                                         @elseif(File::exists(public_path("album/".$data->album_img_1.".jpeg")))
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.jpeg')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_1.".JPG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.JPG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_1.".PNG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.PNG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_1.".JPEG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_1.'.JPEG')  }}" alt= "Album / Portofolio Bisnis" />
                                         @endif
                                     @else
                                     <img style="text-align: center; align-content: center; width: 500px; height: auto; padding: 20px;" class="img-responsive" src="{{ asset('partners/images/studio-foto.png')  }}" alt= "Album / Portofolio Bisnis" />
@@ -49,6 +55,12 @@
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.png')  }}" alt= "Album / Portofolio Bisnis" />
                                         @elseif(File::exists(public_path("album/".$data->album_img_2.".jpeg")))
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.jpeg')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_2.".JPG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.JPG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_2.".PNG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.PNG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_2.".JPEG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_2.'.JPEG')  }}" alt= "Album / Portofolio Bisnis" />
                                         @endif
                                     @else
                                     <img style="text-align: center; align-content: center; width: 500px; height: auto; padding: 20px;" class="img-responsive" src="{{ asset('partners/images/studio-foto.png')  }}" alt= "Album / Portofolio Bisnis" />
@@ -70,6 +82,12 @@
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.png')  }}" alt= "Album / Portofolio Bisnis" />
                                         @elseif(File::exists(public_path("album/".$data->album_img_3.".jpeg")))
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.jpeg')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_3.".JPG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.JPG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_3.".PNG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.PNG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_3.".JPEG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_3.'.JPEG')  }}" alt= "Album / Portofolio Bisnis" />
                                         @endif
                                     @else
                                     <img style="text-align: center; align-content: center; width: 500px; height: auto; padding: 20px;" class="img-responsive" src="{{ asset('partners/images/studio-foto.png')  }}" alt= "Album / Portofolio Bisnis" />
@@ -91,6 +109,12 @@
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.png')  }}" alt= "Album / Portofolio Bisnis" />
                                         @elseif(File::exists(public_path("album/".$data->album_img_4.".jpeg")))
                                         <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.jpeg')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_4.".JPG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.JPG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_4.".PNG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.PNG')  }}" alt= "Album / Portofolio Bisnis" />
+                                        @elseif(File::exists(public_path("album/".$data->album_img_4.".JPEG")))
+                                        <img style="text-align: center; align-content: center; width: auto; height: 360px; padding: 20px;" class="img-responsive" src="{{ asset('album/'.$data->album_img_4.'.JPEG')  }}" alt= "Album / Portofolio Bisnis" />
                                         @endif
                                     @else
                                     <img style="text-align: center; align-content: center; width: 500px; height: auto; padding: 20px;" class="img-responsive" src="{{ asset('partners/images/studio-foto.png')  }}" alt= "Album / Portofolio Bisnis" />

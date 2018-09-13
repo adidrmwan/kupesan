@@ -43,7 +43,7 @@ class PartnerResetPassword extends Notification
         return (new MailMessage)
                     
                     ->from('info@kupesan.id')
-                    ->subject( 'Reset Password | Partner-KU' )
+                    ->subject( 'Kupesan.id - Reset Password | Partner-Ku' )
                     ->action('Reset Password', route('mitra.password.reset.token',['token' => $this->token]))
                     ->line('Terima Kasih Telah Menggunakan KUPESAN.ID');
     }
