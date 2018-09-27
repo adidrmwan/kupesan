@@ -14,15 +14,14 @@ use App\KebayaTema;
 use App\KebayaProduct;
 use App\Tag;
 use App\KebayaPartnerTema;
-
+use App\KebayaKategori;
 class SearchController extends Controller
 {
     public function home()
     {
         $tag = PartnerTag::join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')
                 ->distinct()->orderBy('tag_title', 'asc')->get(['ps_tag.tag_id', 'ps_tag.tag_title']);
-        $tema = kebayaTema::join('kebaya_partner_tema', 'kebaya_tema.tema_id', '=', 'kebaya_partner_tema.tema')->distinct()->orderBy('tema_name', 'asc')->get(['kebaya_tema.tema_name', 'kebaya_tema.tema_id']);
-        
+        $tema = KebayaKategori::get();
         $thumbnailStudio = Partner::where('pr_type', '1')->where('status', '1')->take(2)->get();
         return view('home', compact('thumbnailStudio', 'tema', 'tag'));
     }
@@ -30,7 +29,7 @@ class SearchController extends Controller
     public function searchKebaya(Request $request)
     {
         $tag_id = $request->tag_id;
-        $tema = KebayaTema::where('tema_id', $tag_id)->first();
+        $tema = KebayaProduct::where('category', $tag_id)->first();
 
         if (!empty($request->min_price)) {
             $min = $request->min_price;
@@ -68,34 +67,45 @@ class SearchController extends Controller
 
             if ($request->has('size')) {
                 $allThemes = KebayaProduct::where('status', '1')
-                            ->where('size', $request->size)
-                            ->whereBetween('kebaya_product.price', [$min_price, $max_price])
-                            ->orderBy('price', 'asc')->get();
+                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+
+                if($request->size != 'All_size' && !empty($request->size)) {
+                    $allThemes = KebayaProduct::where('status', '1')
+                                ->where('size', $request->size)
+                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
             }
         }
 
         elseif($tag_id != 'all'){
-            $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
-                        ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
-                        ->where('kebaya_product.status', '1')
-                        ->whereBetween('kebaya_product.price', [$min_price, $max_price])
-                        ->orderBy('kebaya_product.price', 'asc')->get();
+            $allThemes = KebayaProduct::where('category', $tag_id)
+                        ->where('status', '1')
+                        ->whereBetween('price', [$min_price, $max_price])
+                        ->orderBy('price', 'asc')->get();
 
             if($request->type != 'All_type' && !empty($request->type)){              
-                $allThemes = KebayaPartnerTema::where('kebaya_partner_tema.tema', $tag_id)
-                            ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_partner_tema.package_id')
-                            ->where('kebaya_product.status', '1')
+                $allThemes = KebayaProduct::where('category', $tag_id)
+                            ->where('status', '1')
                             ->where('set', $request->type)
-                            ->whereBetween('kebaya_product.price', [$min_price, $max_price])
-                            ->orderBy('kebaya_product.price', 'asc')->get();
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
             }
             
             if ($request->has('size')) {
+                $allThemes = KebayaProduct::where('category', $tag_id)
+                                ->where('status', '1')
+                                ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
 
-                $allThemes = KebayaProduct::where('status', '1')
-                            ->where('size', $request->size)
-                            ->whereBetween('kebaya_product.price', [$min_price, $max_price])
-                            ->orderBy('price', 'asc')->get();
+                if($request->size != 'All_size' && !empty($request->size)) {
+                    $allThemes = KebayaProduct::where('category', $tag_id)
+                                ->where('status', '1')
+                                ->where('size', $request->size)
+                                ->whereBetween('price', [$min_price, $max_price])
+                                ->orderBy('price', 'asc')->get();
+                }
             }
         }
         
@@ -188,7 +198,12 @@ class SearchController extends Controller
 
             $studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->get();
 
+            $kebaya_data = KebayaProduct::where('name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->get();
+
             $cek_studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->first();
+
+            $cek_kebaya_data = KebayaProduct::where('name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->first();
+
 
             // $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
             $cek_paket = PSPkg::where('pkg_name_them', 'LIKE', "%{$request->input('word')}%")
@@ -202,11 +217,11 @@ class SearchController extends Controller
                         ->orderBy('ps_package.pkg_price_them', 'asc')
                         ->first();
 
-            if (empty($cek_studio_data) && empty($cek_paket) && empty($cek_tag)) {
+            if (empty($cek_studio_data) && empty($cek_paket) && empty($cek_tag) && empty($cek_kebaya_data)) {
                 return view('errors.search-not-found');
             }
             else {
-                return view('search-result', compact('cek_studio_data', 'cek_paket', 'cek_tag', 'studio_data', 'allThemes', 'allThemes2', 'word'));
+                return view('search-result', compact('cek_studio_data', 'cek_paket', 'cek_tag', 'studio_data', 'allThemes', 'allThemes2', 'word', 'kebaya_data'));
             }
         }
         return view('home');

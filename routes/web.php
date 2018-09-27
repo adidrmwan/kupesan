@@ -160,6 +160,9 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
 
     // Kebaya
     Route::get('/profile/4', 'KebayaController@profile')->name('kebaya.profile');
+    Route::post('/profile/4', 'KebayaController@submitEditProfile')->name('kebaya.profile.submit');
+    Route::post('/profile/tnc/4', 'KebayaController@updateTNC')->name('kebaya.tnc.submit');
+    Route::get('/profile/tnc/delete', 'KebayaController@deleteTNC')->name('kebaya.delete.tnc');
     Route::get('/item/add', 'KebayaController@showAddItem')->name('add.item');
     Route::post('/item/add', 'KebayaController@addItem')->name('submit.item');
     Route::get('/item/list', 'KebayaController@listItem')->name('list.item');

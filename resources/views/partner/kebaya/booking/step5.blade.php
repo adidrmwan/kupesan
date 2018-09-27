@@ -4,7 +4,7 @@
 <div class="content">
     <div class="container-fluid">   
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-lg-6">
                 <div class="card">
                     <div class="row">
                         <div class="col-md-12">
@@ -23,12 +23,10 @@
                                   <div class="col-md-12">
                                     <div class="row">
                                       <div class="col-md-12">
-                                        <h5>Selamat! 
-                                        <br>
-                                        <br>
+                                        <h5>Selamat!</h5>
                                         Proses pemesanan kebaya Anda telah berhasil.
                                         <br>
-                                        Silahkan kembali ke <a href="{{route('kebaya.off-booking')}}" style="color: #EA410C;"><span style="color: #EA410C;"><b>halaman awal.</b></span></a></h5>
+                                        Silahkan kembali ke <a href="{{route('kebaya.off-booking')}}" style="color: #EA410C;"><span style="color: #EA410C;"><b>halaman awal.</b></span></a>
                                       </div>
                                     </div>
                                   </div>

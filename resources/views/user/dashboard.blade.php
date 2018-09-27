@@ -113,8 +113,8 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12">
                                                                 <li>Harga Paket : <span class="pull-right-booking">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right-booking">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right-booking"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                <li>Deposit : <span class="pull-right-booking">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
+                                                                <li>Total :<span class="pull-right-booking"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
                                                                 <li>
                                                                     <form role="form" action="{{ route('kebaya.booking.info') }}" method="post" enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
@@ -191,8 +191,8 @@
                                                             </div>
                                                             <div class="col-md-6 col-sm-12">
                                                                 <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
+                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
                                                                 <li>
                                                                     <a href="{{ route('kebaya.step6', ['bid' => $listpesanan->booking_id]) }}">
                                                                         <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
@@ -262,7 +262,8 @@
                                                             <div class="b-date"><p>{{ date('d F Y', strtotime($listpesanan->booking_start_date)) }}</p></div>
                                                         </td> -->
                                                         <td class="dash-list-text booking-list-detail">
-                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}</h3>
+                                                            <h3 style="padding:10px; ">{{$listpesanan->partner_name}}<span>
+                                                                <p><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></p></span></h3>
                                                             <ul class="list-unstyled booking-info">
                                                                 <div class="col-md-6 col-sm-12">
                                                                     <li>Nama Paket :<span class="pull-right">{{ $listpesanan->name }}</span></li>
@@ -270,11 +271,10 @@
                                                                     <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12">
-                                                                    <h4><b>Batas Waktu Pembayaran</b> <b style="color: #EA410C;">{{ date('d F Y', strtotime($listpesanan->booking_at)) }}, {{ date('H:i:s', strtotime($listpesanan->booking_at)) }} WIB</b></h4>
                                                                     <ul class="list-unstyled booking-info">
                                                                         <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                        <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                        <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                        <li>Deposit : <span class="pull-right">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
+                                                                        <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
                                                                         <li>
                                                                             <form role="form" action="{{ route('kebaya.step7') }}" method="post" enctype="multipart/form-data">
                                                                             {{ csrf_field() }}
@@ -354,8 +354,8 @@
                                                             </div>
                                                             <div class="col-md-6 col-sm-12">
                                                              <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
+                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
                                                                 <li>
                                                                     <form role="form" action="{{ route('kebaya.step9') }}" method="post" enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
@@ -430,7 +430,7 @@
                                                                 <div class="col-md-6 col-sm-12">
                                                                     <li>Set :<span class="pull-right">{{ $listpesanan->set }}</span></li>
                                                                     <li>Ukuran :<span class="pull-right">{{ $listpesanan->size }}</span></li>
-                                                                    <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $deposit, 0, ',','.')}}</span></li>
+                                                                    <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
                                                                     <li>
                                                                         <a class="btn btn-success" style="float: right; color: white;">Kode Booking: <span class="text-uppercase">{{$listpesanan->kode_booking}}</span></a>
                                                                     </li>

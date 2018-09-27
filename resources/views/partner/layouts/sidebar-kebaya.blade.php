@@ -23,7 +23,7 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('partner.profile') }}">
+    <a href="{{ route('kebaya.profile') }}">
         <i class="pe-7s-user"></i>
         <p>Partner Profile</p>
     </a>

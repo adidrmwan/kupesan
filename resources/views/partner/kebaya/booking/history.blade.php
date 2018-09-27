@@ -12,8 +12,8 @@
             <div class="content">
               <div class="bd-example bd-example-tabs">
                 <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#online" role="tab" aria-controls="home" aria-expanded="true">Online</a>
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#offline" role="tab" aria-controls="profile" aria-expanded="false">Offline</a>
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#online" role="tab" aria-controls="home" aria-expanded="true">Completed</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#offline" role="tab" aria-controls="profile" aria-expanded="false">Canceled</a>
                 </nav>
               </div>
               <br>
@@ -31,15 +31,15 @@
                           <th>Start Date</th>
                           <th>End Date</th>
                           <th>Name (Customer)</th> 
-                          <th>E-mail (Customer)</th> 
                           <th>Phone (Customer)</th> 
+                          <th>Status</th>
                           <th>Total (Rp)</th> 
                       </thead>
                       <tbody>
                         @foreach($booking as $key => $data)
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$data->kode_booking}}</td>
+                          <td class="text-uppercase">{{$data->kode_booking}}</td>
                           <td>{{$data->package_id}}</td>
                           <td>{{$data->name}}</td>
                           <td>{{$data->size}}</td>
@@ -49,7 +49,11 @@
                           <td>{{\Carbon\Carbon::parse($data->end_date)->format('d M Y')}}</td>
                           <td>{{$data->user_name}}</td> 
                           <td>{{$data->user_nohp}}</td> 
-                          <td>{{$data->user_email}}</td> 
+                          @if($data->booking_status == 'offline-booking-done')
+                          <td><h5><span class="badge badge-pill badge-warning">Off</span></h5></td> 
+                          @else
+                          <td><h5><span class="badge badge-pill badge-success">One</span></h5></td> 
+                          @endif
                           <td>Rp {{number_format($data->booking_total,0),',','.'}}</td> 
                         </tr>
                         @endforeach
@@ -69,7 +73,6 @@
                           <th>Start Date</th>
                           <th>End Date</th>
                           <th>Name (Customer)</th> 
-                          <th>E-mail (Customer)</th> 
                           <th>Phone (Customer)</th> 
                           <th>Total (Rp)</th> 
                       </thead>
@@ -77,7 +80,7 @@
                         @foreach($booking_offline as $key => $data)
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$data->kode_booking}}</td>
+                          <td class="text-uppercase">{{$data->kode_booking}}</td>
                           <td>{{$data->package_id}}</td>
                           <td>{{$data->name}}</td>
                           <td>{{$data->size}}</td>
@@ -87,7 +90,6 @@
                           <td>{{\Carbon\Carbon::parse($data->end_date)->format('d M Y')}}</td>
                           <td>{{$data->user_name}}</td> 
                           <td>{{$data->user_nohp}}</td> 
-                          <td>{{$data->user_email}}</td> 
                           <td>Rp. {{number_format($data->booking_total,0,',','.')}}</td> 
                         </tr>
                         @endforeach

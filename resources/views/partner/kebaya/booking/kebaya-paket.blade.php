@@ -24,16 +24,16 @@
           <div class="col-sm-12 col-md-12" style="padding: 25px;">
             <table class="table">
               <tbody>
-                <tr>
+                <!-- <tr>
                   <th>Tipe Kebaya</th>
                   <td style="text-align: right;">{{$data->category}}</td>
-                </tr>
+                </tr> -->
                 <tr>
                   <th>Ukuran</th>
                   <td style="text-align: right;">{{$data->size}}</td>
                 </tr>
                 <tr>
-                  <th>Biaya Sewa/hari</th>
+                  <th>Biaya Sewa</th>
                   <td style="text-align: right;">Rp {{number_format($data->price)}}</td>
                 </tr>
               </tbody>

@@ -99,7 +99,7 @@
                                                 <option selected value="">Pilih Tema</option>
                                                 <option value="all">Semua</option>
                                                 @foreach($tema as $list)
-                                                <option value="{{$list->tema_id}}">{{$list->tema_name}}</option>
+                                                <option value="{{$list->id}}">{{$list->category_name}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="fa fa-angle-down"></i>

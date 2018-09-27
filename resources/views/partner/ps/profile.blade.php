@@ -203,7 +203,12 @@
                         @include('partner.ps.upload-foto-usaha')
                     </div>
                     <div class="tab-pane fade" id="tnc" role="tabpanel" aria-labelledby="nav-profile-tab" aria-expanded="false">
-                        @include('partner.ps.tnc')
+                        <div class="card">
+                            <form role="form" action="{{ route('update.tnc') }}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                @include('partner.ps.tnc')
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

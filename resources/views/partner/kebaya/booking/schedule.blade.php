@@ -52,6 +52,7 @@
                 <th>No</th>
                 <th>Kode Booking</th>
                 <th>Package Name</th>
+                <th>Type</th>
                 <th>Size</th>
                 <th>Set</th>
                 <th>Quantity</th>
@@ -59,17 +60,18 @@
                 <th>End Date</th>
                 <th>Name (Customer)</th> 
                 <th>Phone (Customer)</th> 
+                <th>Deposit</th>
                 <th>Total (Rp)</th> 
                 <th>Status</th>
-                <th>Cancel</th>
-                <th>Confirm</th>
+                <th>Action</th>
               </thead>
               <tbody>
                 @foreach($booking as $key => $data)
                 <tr>
                   <td>{{$key + 1}}</td>
-                  <td>{{$data->kode_booking}}</td>
+                  <td class="text-uppercase">{{$data->kode_booking}}</td>
                   <td>{{$data->name}}</td>
+                  <td>{{$data->category_name}}</td>
                   <td>{{$data->size}}</td>
                   <td>{{$data->set}}</td>
                   <td>{{$data->quantity}}</td>
@@ -77,25 +79,23 @@
                   <td>{{\Carbon\Carbon::parse($data->end_date)->format('d M Y')}}</td>
                   <td>{{$data->user_name}}</td> 
                   <td>{{$data->user_nohp}}</td> 
+                  <td>Rp {{number_format($data->deposit,0,',','.')}}</td> 
                   <td>Rp {{number_format($data->booking_total,0,',','.')}}</td> 
                   @if($data->booking_status == 'offline-booking')
                   <td><h5><span class="badge badge-pill badge-warning">Off</span></h5></td> 
                   <td style="text-align: center;">
                     <a href="{{route('kebaya.booking.cancel', ['id' => $data->booking_id])}}">
-                      <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button>
+                      <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel this booking?')"><i class="fa fa-close"></i></button>
+                    </a>
+                    <a href="{{route('kebaya.booking.finished', ['id' => $data->booking_id])}}">
+                      <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure want to complete this booking?')"><i class="fa fa-check"></i></button>
                     </a>
                   </td> 
-                  <td style="text-align: center;">
-                    <a href="{{route('kebaya.booking.finished', ['id' => $data->booking_id])}}">
-                      <button type="submit" class="btn btn-success"><i class="fa fa-check"></i></button>
-                    </a>
-                  </td>
                   @elseif($data->booking_status == 'confirmed')
                   <td><h5><span class="badge badge-pill badge-success">On</span></h5></td> 
-                  <td></td>
                   <td style="text-align: center;">
                     <a href="{{route('kebaya.booking.finished.online', ['id' => $data->booking_id])}}">
-                      <button type="submit" class="btn btn-success"><i class="fa fa-check"></i></button>
+                      <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure want to complete this booking?')"><i class="fa fa-check"></i></button>
                     </a>
                   </td>
                   @endif

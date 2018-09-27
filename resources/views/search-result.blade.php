@@ -97,6 +97,11 @@
                     @include('search-result.fotostudio.paket')
                 </div>
                 @endforeach
+                @foreach($kebaya_data as $data)
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    @include('search-result.kebaya.paket')
+                </div>
+                @endforeach
             </div>
     	</div>
     </div>

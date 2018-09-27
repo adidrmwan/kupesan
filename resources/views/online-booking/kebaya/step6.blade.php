@@ -196,24 +196,20 @@
                                                     <table class="table">
                                                         <tbody>
                                                             <tr>
-                                                                <td>Tanggal Pesan</td>
-                                                                <td>{{ date('d F Y', strtotime($data->start_date)) }}</td>
+                                                                <td>Tanggal Sewa</td>
+                                                                <td>{{ date('d F Y', strtotime($data->start_date)) }} -{{ date('d F Y', strtotime($data->end_date)) }}</td>
                                                               </tr>
                                                               <tr>
-                                                                <td>Tanggal Pengembalian</td>
-                                                                <td>{{ date('d F Y', strtotime($data->end_date)) }}</td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Tipe Paket</td>
-                                                                <td>{{$data->category_name}}</td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Set Paket</td>
-                                                                <td>{{$data->set}}</td>
+                                                                <td>Tipe / Set Paket</td>
+                                                                <td>{{$data->category_name}} / {{$data->set}}</td>
                                                               </tr>
                                                               <tr>
                                                                 <td>Ukuran</td>
                                                                 <td>{{$data->size}}</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Kuantitas</td>
+                                                                <td>{{$data->kuantitas}} pcs</td>
                                                               </tr>
                                                         </tbody>
                                                     </table>
@@ -232,11 +228,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Deposit <b style="color: red;">*</b></td>
-                                                                <td>Rp. {{number_format($deposit, 0, ',', '.')}}</td>
+                                                                <td>Rp. {{number_format($data->deposit, 0, ',', '.')}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td><b>TOTAL</b></td>
-                                                                <th>Rp. {{number_format($data->booking_total + $deposit, 0, ',', '.')}}</th>
+                                                                <th>Rp. {{number_format($data->booking_total + $data->deposit, 0, ',', '.')}}</th>
                                                             </tr>
                                                         </tbody>
                                                     </table>

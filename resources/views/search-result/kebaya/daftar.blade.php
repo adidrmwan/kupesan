@@ -1,4 +1,4 @@
-@extends('layouts.master-studio')
+    @extends('layouts.master-studio')
 @section('title', 'Paket List')
 @section('content')
 <section class="innerpage-wrapper">
@@ -48,31 +48,16 @@
                                     <h3 style="margin-bottom: 20px;">Filter Ukuran</h3>
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <div class="form-check col-sm-12 col-md-3">
-                                              <input class="form-check-input" type="radio" name="size" id="exampleRadios1" value="S" checked>
-                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
-                                                S
-                                              </label>
-                                            </div>
-                                            <div class="form-check col-sm-12 col-md-3">
-                                              <input class="form-check-input" type="radio" name="size" id="exampleRadios1" value="M" >
-                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
-                                                M
-                                              </label>
-                                            </div> 
-                                            <div class="form-check col-sm-12 col-md-3">
-                                              <input class="form-check-input" type="radio" name="size" id="exampleRadios1" value="L" >
-                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
-                                                L
-                                              </label>
-                                            </div>
-                                            <div class="form-check col-sm-12 col-md-3">
-                                              <input class="form-check-input" type="radio" name="size" id="exampleRadios1" value="XL" >
-                                              <label class="form-check-label" for="exampleRadios1" style="color: white">
-                                                XL
-                                              </label>
-                                            </div>              
-                                        </div>    
+                                            <div class="form-group" >
+                                                <select  class="form-control" name="type" required>
+                                                    <option selected value="All_size">Semua Ukuran</option>
+                                                    <option value="S">Setelan</option>
+                                                    <option value="M">Atasan</option>
+                                                    <option value="L">Bawahan</option>
+                                                    <option value="XL">Setelan</option>
+                                                </select>
+                                            </div>             
+                                        </div>     
                                     </div>
                                     <hr>
                                     <h3 style="margin-bottom: 20px;">Filter Tipe Paket</h3>
@@ -80,7 +65,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group" >
                                                 <select  class="form-control" name="type" required>
-                                                    <option selected value="All_type">Semua</option>
+                                                    <option selected value="All_type">Semua Tipe</option>
                                                     <option value="Setelan">Setelan</option>
                                                     <option value="Atasan">Atasan</option>
                                                     <option value="Bawahan">Bawahan</option>
@@ -117,10 +102,13 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
                     <div class="col-sm-12 col-md-12">
+                        <h3><b>KEBAYA</b></h3> 
+                    </div>
+                    <div class="col-sm-12 col-md-12">
                         @if(empty($tema->tema_name))
-                        <h3><b><span style="color: #EA410C;">Semua Tema</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h3> 
+                        <h4><b><span style="color: #EA410C;">Semua Tema</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h4> 
                         @else
-                        <h3><b>Tema <span style="color: #EA410C;">{{$tema->tema_name}}</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h3> 
+                        <h4><b>Tema <span style="color: #EA410C;">{{$tema->tema_name}}</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h4> 
                         @endif
                     </div>
                 </div>
