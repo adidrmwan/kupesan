@@ -36,6 +36,7 @@ class AlbumController extends Controller
         // $album->save();
         // dd($request);
         $album = Album::where('user_id', $user->id)->first();
+        
 	    if ($request->hasFile('album_img_1')) {
     	    $album->album_img_1 = $album->id . '_' . $album->user_id . '_album1';
         	$album->save();
@@ -51,6 +52,15 @@ class AlbumController extends Controller
             if( File::exists(public_path('/album/' . $foto_new .'.png' ))){
                 File::delete(public_path('/album/' . $foto_new .'.png' ));
             }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPEG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPEG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.PNG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.PNG' ));
+            }
             $foto = $request->file('album_img_1');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->save( public_path('/album/' . $foto_name ) );
@@ -58,6 +68,7 @@ class AlbumController extends Controller
             $album = Album::where('user_id', $user->id)->first();
             $album->save();
         }
+        
         if ($request->hasFile('album_img_2')) {
     	    $album->album_img_2 = $album->id . '_' . $album->user_id . '_album2';
         	$album->save();
@@ -73,6 +84,15 @@ class AlbumController extends Controller
             if( File::exists(public_path('/album/' . $foto_new .'.png' ))){
                 File::delete(public_path('/album/' . $foto_new .'.png' ));
             }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPEG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPEG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.PNG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.PNG' ));
+            }
             $foto = $request->file('album_img_2');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->save( public_path('/album/' . $foto_name ) );
@@ -80,6 +100,7 @@ class AlbumController extends Controller
             $album = Album::where('user_id', $user->id)->first();
             $album->save();
         }
+        
         if ($request->hasFile('album_img_3')) {
     	    $album->album_img_3 = $album->id . '_' . $album->user_id . '_album3';
         	$album->save();
@@ -95,6 +116,15 @@ class AlbumController extends Controller
             if( File::exists(public_path('/album/' . $foto_new .'.png' ))){
                 File::delete(public_path('/album/' . $foto_new .'.png' ));
             }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPEG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPEG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.PNG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.PNG' ));
+            }
             $foto = $request->file('album_img_3');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->save( public_path('/album/' . $foto_name ) );
@@ -102,6 +132,7 @@ class AlbumController extends Controller
             $album = Album::where('user_id', $user->id)->first();
             $album->save();
         }
+        
         if ($request->hasFile('album_img_4')) {
     	    $album->album_img_4 = $album->id . '_' . $album->user_id . '_album4';
         	$album->save();
@@ -117,6 +148,15 @@ class AlbumController extends Controller
             if( File::exists(public_path('/album/' . $foto_new .'.png' ))){
                 File::delete(public_path('/album/' . $foto_new .'.png' ));
             }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPEG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPEG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.JPG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.JPG' ));
+            }
+            if( File::exists(public_path('/album/' . $foto_new .'.PNG' ))){
+                File::delete(public_path('/album/' . $foto_new .'.PNG' ));
+            }
             $foto = $request->file('album_img_4');
             $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
             Image::make($foto)->save( public_path('/album/' . $foto_name ) );
@@ -124,6 +164,7 @@ class AlbumController extends Controller
             $album = Album::where('user_id', $user->id)->first();
             $album->save();
         }
+        
         return redirect()->intended(route('partner.portofolio'));
         
     }

@@ -49,6 +49,8 @@ class PackageController extends Controller
         $package->pkg_fotografer = $request->input('pkg_fotografer');
         $package->pkg_print_size = $request->input('pkg_print_size');
         $package->pkg_edited_photo = $request->input('pkg_edited_photo');
+        $package->pkg_capacity = $request->input('pkg_capacity');
+        $package->pkg_frame = $request->input('pkg_frame');
         $package->pkg_overtime_them = $pkg_overtime_them;
         $package->status = '1';
         $package->save();
@@ -237,48 +239,57 @@ class PackageController extends Controller
             foreach ($overtime_array as $key => $value) {
                 $pkg_overtime_them = $pkg_overtime_them . $overtime_array[$key];
             }
+        } else {
+            $pkg_overtime_them = '0';
         }
-
+        
         $package->pkg_name_them = $request->input('pkg_name_them');
         $package->pkg_category_them = $request->input('pkg_category_them');
         $package->pkg_overtime_them = $request->input('pkg_overtime_them');
         $package->pkg_fotografer = $request->input('pkg_fotografer');
         $package->pkg_print_size = $request->input('pkg_print_size');
         $package->pkg_edited_photo = $request->input('pkg_edited_photo');
+        $package->pkg_capacity = $request->input('pkg_capacity');
+        $package->pkg_frame = $request->input('pkg_frame');
         $package->pkg_overtime_them = $pkg_overtime_them;
         $package->save();
 
         $package = PSPkg::findOrFail($id);
-        $dataSet = [];
-        if ($package->save()) {
-            for ($i = 0; $i < count($request->tag); $i++) {
-                $dataSet[] = [
-                    'package_id' => $package->id,
-                    'tag_id' => $request->tag[$i],
-                ];
-            }
-        }
-
-        PartnerTag::insert($dataSet);
-        $durasiSet = [];
-        if ($package->save()) {
-            for ($i = 0; $i < count($request->durasi_jam); $i++) {
-                $price = $request->durasi_harga[$i];
-                $price_array = explode(".", $price);
-                $pkg_price_them = '';
-                foreach ($price_array as $key => $value) {
-                    $pkg_price_them = $pkg_price_them . $price_array[$key];
+        
+        if(!empty($request->tag)) {
+            $dataSet = [];
+            if ($package->save()) {
+                for ($i = 0; $i < count($request->tag); $i++) {
+                    $dataSet[] = [
+                        'package_id' => $package->id,
+                        'tag_id' => $request->tag[$i],
+                    ];
                 }
-                $durasiSet[] = [
-                    'partner_id' => $partner->id,
-                    'package_id' => $package->id,
-                    'durasi_jam' => $request->durasi_jam[$i],
-                    'durasi_harga' => $pkg_price_them,
-                ];
             }
+            PartnerTag::insert($dataSet);
         }
-        PartnerDurasi::insert($durasiSet);
-
+        
+        if(!empty($request->durasi_jam)) {
+            $durasiSet = [];
+            if ($package->save()) {
+                for ($i = 0; $i < count($request->durasi_jam); $i++) {
+                    $price = $request->durasi_harga[$i];
+                    $price_array = explode(".", $price);
+                    $pkg_price_them = '';
+                    foreach ($price_array as $key => $value) {
+                        $pkg_price_them = $pkg_price_them . $price_array[$key];
+                    }
+                    $durasiSet[] = [
+                        'partner_id' => $partner->id,
+                        'package_id' => $package->id,
+                        'durasi_jam' => $request->durasi_jam[$i],
+                        'durasi_harga' => $pkg_price_them,
+                    ];
+                }
+            }
+            PartnerDurasi::insert($durasiSet);
+        }
+        
         if ($request->hasFile('pkg_img_them')) {
             $package->pkg_img_them = $package->id . '_' . $package->pkg_category_them . '_' . $package->pkg_name_them . '_1';
             $package->save();

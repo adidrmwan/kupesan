@@ -322,11 +322,11 @@ Author:			Star Travel
 	}
 	
 	.main-navbar.navbar-custom.affix .navbar-nav > li{
-		padding: 10px 0;
+		padding: 15px 0 5px;
 	}
 	
 	.main-navbar.navbar-custom.affix .navbar-brand{
-		padding-top: 12px;
+		padding-top: 20px;
 	}
 
 	.main-navbar.navbar-custom.affix .navbar-payment{

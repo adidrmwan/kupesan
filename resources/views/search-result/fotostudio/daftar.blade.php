@@ -78,7 +78,11 @@
                         @else
                         <h3><b>Tema <span style="color: #EA410C;">{{$tema->tag_title}}</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h3> 
                         @endif
+                        @if(Auth::check())
                         <small>Harga yang tercantum adalah harga minimum paket.</small> 
+                        @else
+                        <small>Harga hanya dapat dilhat jika sudah melakukan login.</small> 
+                        @endif
                     </div>
                 </div>
 

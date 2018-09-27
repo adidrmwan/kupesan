@@ -1,4 +1,4 @@
-@extends('partner.layouts.app-form')
+@extends('partner.layouts.app-add')
 @section('title', 'Add Package')
 @section('content')
 <div class="content">
@@ -26,24 +26,32 @@
                                   </div>
                                 </div>                                
                                 <div class="row">
-                                  <div class="col-md-6 col-lg-6">
+                                  <div class="col-md-2 col-lg-2">
+                                  </div>
+                                  <div class="col-md-8 col-lg-8">
+                                  <h4 style="text-align: center;">Foto Utama <span style="font-size: 15px;">*Wajib Diisi</span></h4> 
                                     <div class="file-loading">
-                                      <input id="file-0a" class="file" type="file" name="pkg_img_them" required="">
+                                      <input id="file-0a" class="file" type="file" name="pkg_img_them" required >
                                     </div>
                                   </div>
-                                  <div class="col-md-6 col-lg-6">
+                                  
+                                </div>
+                                <hr>
+                                <h4 style="text-align: center; padding: 10px;">Foto Pendukung</h4>
+                                <div class="row">
+
+                                  
+                                  <div class="col-md-4 col-lg-4">
                                     <div class="file-loading">
                                       <input id="file-0a" class="file" type="file" name="pkg_img_them2">
                                     </div>
                                   </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6 col-lg-6">
+                                  <div class="col-md-4 col-lg-4">
                                     <div class="file-loading">
                                       <input id="file-0a" class="file" type="file" name="pkg_img_them3">
                                     </div>
                                   </div>
-                                  <div class="col-md-6 col-lg-6">
+                                  <div class="col-md-4 col-lg-4">
                                     <div class="file-loading">
                                       <input id="file-0a" class="file" type="file" name="pkg_img_them4">
                                     </div>
@@ -150,8 +158,30 @@
                                   <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Frame</label>
+                                            <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_frame" required>
+                                                <option selected value="">Pilih Frame</option>
+                                                <option value="Include">Include</option>
+                                                <option value="Exclude">Exclude</option>
+                                            </select>
+                                            <div class="invalid-feedback">Wajib diisi.</div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label>Edited Photo</label>
                                             <input type="number" min="1" max="1000" class="form-control" placeholder="Jumlah foto" required="" name="pkg_edited_photo">
+                                            <div class="invalid-feedback">Wajib diisi.</div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Studio Capacity</label>
+                                            <input type="number" min="1" max="100" class="form-control" placeholder="Capacity" required="" name="pkg_capacity">
                                             <div class="invalid-feedback">Wajib diisi.</div>
                                         </div>
                                     </div>

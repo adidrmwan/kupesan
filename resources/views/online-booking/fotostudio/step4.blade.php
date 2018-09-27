@@ -81,6 +81,9 @@
                                             </table>
                                         </li>      
                                     </ul>
+                                    <div class="alert alert-warning">
+                                                      <b>Cek Ketersediaan</b> akan dilakukan pada <b>Jam Operasional {{$partner->pr_name}}</b> dari Pukul <b>{{$partner->open_hour}}:00 - {{$partner->close_hour - 1}}:00 WIB</b>
+                                                    </div>
                                 </div><!-- end columns -->
                                 
                             </div><!-- end row -->

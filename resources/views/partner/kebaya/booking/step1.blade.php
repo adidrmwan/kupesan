@@ -33,6 +33,12 @@
                                                 <img style="height: auto; width: 100px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" />
                                                 @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
                                                 <img style="height: auto; width: 100px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" />
+                                                @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                                                <img style="height: auto; width: 100px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.JPG')  }}" alt= "Package Image" />
+                                                @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                                                <img style="height: auto; width: 100px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.JPEG')  }}" alt= "Package Image" />
+                                                @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                                                <img style="height: auto; width: 100px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.PNG')  }}" alt= "Package Image" />
                                                 @endif
                                               </div>
                                               <div class="col-sm-12 col-md-12" style="padding: 25px;">

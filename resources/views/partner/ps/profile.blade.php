@@ -35,7 +35,7 @@
                                                     <div class="form-group">
                                                         <label>Kategori usaha</label>
                                                             <input type="text" class="form-control" placeholder="Nama Usaha"
-                                                          value="{{$tipe->type_name}}" disabled>
+                                                          value="{{$type->type_name}}" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,7 +181,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="file-loading">
-                                                    <input id="file-0a" class="file" type="file" name="pr_logo" required="">
+                                                    <input id="file-0a" class="file" type="file" name="pr_logo">
                                                 </div>
                                             </div>
                                         </div>

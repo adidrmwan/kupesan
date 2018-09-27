@@ -55,14 +55,14 @@
                                     <form role="form" action="{{route('partner.editpackage')}}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                       <input type="text" name="id" value="{{$data->id}}" hidden="">
-                                      <button type="submit" class="btn btn-primary pull-right" ><i class="fa fa-pencil-square-o"></i></button>
+                                      <button type="submit" class="btn btn-primary pull-right" >Edit</i></button>
                                     </form>
                                 </td>   
                                 <td>
                                     <form role="form" action="{{route('partner.deletepackage')}}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                       <input type="text" name="id" value="{{$data->id}}" hidden="">
-                                      <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure want to delete this package?')"><i class="fa fa-trash"></i></button>
+                                      <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure want to delete this package?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>

@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
 Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation');
 Route::get('/partner/activation/2/{token}', 'MitraAuth\RegisterController@userActivation');
 Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
+Route::get('/partner/dashboard/{token}', 'PartnerController@bookingActivation');
 Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
 Route::get('/booking/approved/kebaya/{token}', 'AdminController@bookingActivationKebaya');
 
@@ -186,8 +187,47 @@ Route::get('/studiolist', 'StudioController@studiolist')->name('studio-list');
 
 // Route Jadi Mitra
 
+//Clear Cache facade value:
+// Route::get('/clear-cache', function() {
+//     $exitCode = Artisan::call('cache:clear');
+//     return '<h1>Cache facade value cleared</h1>';
+// });
+
+//Reoptimized class loader:
+// Route::get('/optimize', function() {
+//     $exitCode = Artisan::call('optimize');
+//     return '<h1>Reoptimized class loader</h1>';
+// });
+
+//Route cache:
+// Route::get('/route-cache', function() {
+//     $exitCode = Artisan::call('route:cache');
+//     return '<h1>Routes cached</h1>';
+// });
+
+//Clear Route cache:
+
+// Route::get('/route-clear', function() {
+//     $exitCode = Artisan::call('route:clear');
+//     return '<h1>Route cache cleared</h1>';
+// });
+
+//Clear View cache:
+// Route::get('/view-clear', function() {
+//     $exitCode = Artisan::call('view:clear');
+//     return '<h1>View cache cleared</h1>';
+// });
+
+//Clear Config cache:
+// Route::get('/config-cache', function() {
+//     $exitCode = Artisan::call('config:cache');
+//     return '<h1>Clear Config cleared</h1>';
+// });
 
 Route::get('/pageerror', 'PageController@pageerror')->name('page-error');
+
+Route::get('/tnc', 'CustomerController@tnc')->name('term');
+Route::get('/privacy', 'CustomerController@privacy')->name('privacy');
 
 Route::get('/json-regencies','CountryController@regencies');
 Route::get('/json-districts', 'CountryController@districts');

@@ -60,7 +60,7 @@
                 <th>Total (Rp)</th> 
                 <th>Status</th>
                 <th>Cancel</th>
-                <th>Done</th>
+                <th>Complete</th>
               </thead>
               <tbody>
                 @foreach($booking as $key => $data)
@@ -82,13 +82,13 @@
                   <td style="text-align: center;">
                     @if($data->booking_status == 'offline-booking')
                     <a href="{{route('booking.cancel', ['id' => $data->booking_id])}}">
-                      <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel this booking?')"><i class="fa fa-close"></i></button>
+                      <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel this booking?')">Cancel</button>
                     </a>
                     @endif
                   </td>   
                   <td style="text-align: center;">
                     <a href="{{route('booking.finished', ['id' => $data->booking_id])}}">
-                      <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure want to complete this booking?')"><i class="fa fa-check"></i></button>
+                      <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure want to complete this booking?')">Complete</i></button>
                     </a>
                   </td>
                 </tr>

@@ -23,7 +23,7 @@ class SearchController extends Controller
                 ->distinct()->orderBy('tag_title', 'asc')->get(['ps_tag.tag_id', 'ps_tag.tag_title']);
         $tema = kebayaTema::join('kebaya_partner_tema', 'kebaya_tema.tema_id', '=', 'kebaya_partner_tema.tema')->distinct()->orderBy('tema_name', 'asc')->get(['kebaya_tema.tema_name', 'kebaya_tema.tema_id']);
         
-        $thumbnailStudio = Partner::where('pr_type', '1')->take(3)->get();
+        $thumbnailStudio = Partner::where('pr_type', '1')->where('status', '1')->take(2)->get();
         return view('home', compact('thumbnailStudio', 'tema', 'tag'));
     }
 
@@ -176,20 +176,37 @@ class SearchController extends Controller
         // dd($request);
         if ($request->has('word')) {
             $word = $request->word;
+            $allThemes = PSPkg::where('pkg_name_them', 'LIKE', "%{$request->input('word')}%")
+                        ->where('status', '1')
+                        ->get();
 
-            $allThemes = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->orderBy('ps_package.pkg_price_them', 'asc')->distinct()->get();
+            $allThemes2 = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                        ->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')
+                        ->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")
+                        ->where('ps_package.status', '1')
+                        ->orderBy('ps_package.pkg_price_them', 'asc')->distinct()->get();
 
             $studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->get();
 
             $cek_studio_data = Partner::where('pr_name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->first();
 
-            $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
+            // $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
+            $cek_paket = PSPkg::where('pkg_name_them', 'LIKE', "%{$request->input('word')}%")
+                        ->where('status', '1')
+                        ->first();
 
-            if (empty($cek_studio_data) && empty($cek_tag)) {
+            $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')
+                        ->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')
+                        ->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")
+                        ->where('ps_package.status', '1')
+                        ->orderBy('ps_package.pkg_price_them', 'asc')
+                        ->first();
+
+            if (empty($cek_studio_data) && empty($cek_paket) && empty($cek_tag)) {
                 return view('errors.search-not-found');
             }
             else {
-                return view('search-result', compact('studio_data', 'allThemes', 'word'));
+                return view('search-result', compact('cek_studio_data', 'cek_paket', 'cek_tag', 'studio_data', 'allThemes', 'allThemes2', 'word'));
             }
         }
         return view('home');

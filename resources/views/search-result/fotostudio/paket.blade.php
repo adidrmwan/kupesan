@@ -29,7 +29,8 @@
                 <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
                 <b>Print Size :</b> {{$data->pkg_print_size}}<br>
                 <b>Edited Photo :</b> {{$data->pkg_edited_photo}}<br>
-                <!-- <b>Capacity : </b> -->
+                <b>Frame : {{$data->pkg_frame}}</b><br>
+                <b>Capacity : {{$data->pkg_capacity}}</b>
             </p>
         </div>
     </div>
@@ -42,8 +43,9 @@
         
         <ul class="list-unstyled list-inline offer-price-1">
             <li class="price">{{$data->pkg_name_them}}</li><br>
-
+            @if(Auth::check())
             <li >Rp {{ number_format($data->pkg_price_them, 0, ',', '.') }} / Paket</li><br>
+            @endif
             <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
             <li>
                 <a href="{{route('ask.page', ['package_id' => $data->id])}}">

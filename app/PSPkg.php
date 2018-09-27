@@ -21,6 +21,8 @@ class PSPkg extends Model
         'pkg_fotografer',
         'pkg_print_size',
         'pkg_edited_photo',
+        'pkg_capacity',
+        'pkg_frame',
         'pkg_img_them',
         'pkg_img_them2',
         'pkg_img_them3',

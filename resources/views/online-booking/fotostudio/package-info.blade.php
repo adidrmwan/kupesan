@@ -24,17 +24,29 @@
                                       <td class="pull-right"><b>{{$data->pkg_name_them}}</b></td>
                                     </tr>
                                     <tr>
-                                      <td class="pull-left">Durasi / Harga Paket</td>
+                                      <td class="pull-left">Pricelist</td>
+                                      @if(Auth::check())
                                       <td class="pull-right">
                                         @foreach($durasiPaket as $paket)
-                                          <p>{{$paket->durasi_jam}} Jam / Rp {{number_format($paket->durasi_harga,0,',','.')}}</p>
+                                        <p>{{$paket->durasi_jam}} Jam / Rp {{number_format($paket->durasi_harga,0,',','.')}}</p>
                                         @endforeach
                                       </td>
+                                      @else
+                                      <td class="pull-right">
+                                        <p>Pricelist dapat dilihat jika sudah melakukan login</p>
+                                      </td>
+                                      @endif
                                     </tr>
                                     @if($data->pkg_overtime_them != '0')
                                     <tr>
                                       <td class="pull-left">Overtime</td>
+                                      @if(Auth::check())
                                       <td class="pull-right">Rp {{number_format($data->pkg_overtime_them,0,',','.')}} / Jam</td>
+                                      @else
+                                      <td class="pull-right">
+                                        <p>Harga Overtime dapat dilihat jika sudah melakukan login</p>
+                                      </td>
+                                      @endif
                                     </tr>
                                     @else
                                     <tr>
@@ -53,6 +65,14 @@
                                     <tr>
                                       <td class="pull-left">Edited Photo</td>
                                       <td class="pull-right">{{($data->pkg_edited_photo)}} Lembar</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="pull-left">Frame</td>
+                                      <td class="pull-right">{{($data->pkg_frame)}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="pull-left">Capacity</td>
+                                      <td class="pull-right">{{($data->pkg_capacity)}} Orang</td>
                                     </tr>
                                     <tr>
                                       <td colspan="2">Amenities</td>

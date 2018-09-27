@@ -17,31 +17,39 @@
                 <div class="row">
                   <div class="col-md-12 col-lg-12">
                     <div class="alert alert-info alert-dismissible">
-                      <h4>Upload Foto</h4>
+                      <h5>Upload Foto</h5>
                       Minimal upload 1(satu) foto dengan perbandingan <b>1:1</b><br>dalam format file <b>JPG, JPEG, atau PNG.</b> <br>
                         Ukuran Maksimal <b>512 KB</b>
                     </div>
                   </div>
-                </div> 
+                </div>                                
                 <div class="row">
-                  <div class="col-md-6 col-lg-6">
+                  <div class="col-md-2 col-lg-2">
+                  </div>
+                  <div class="col-md-8 col-lg-8">
+                  <h4 style="text-align: center;">Foto Utama <span style="font-size: 15px;">*Wajib Diisi</span></h4> 
                     <div class="file-loading">
                       <input id="file-0a" class="file" type="file" name="image" required="">
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-6">
+                  
+                </div>
+                <hr>
+                <h4 style="text-align: center; padding: 10px;">Foto Pendukung</h4>
+                <div class="row">
+
+                  
+                  <div class="col-md-4 col-lg-4">
                     <div class="file-loading">
                       <input id="file-0a" class="file" type="file" name="image2">
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-lg-6">
+                  <div class="col-md-4 col-lg-4">
                     <div class="file-loading">
                       <input id="file-0a" class="file" type="file" name="image3">
                     </div>
                   </div>
-                  <div class="col-md-6 col-lg-6">
+                  <div class="col-md-4 col-lg-4">
                     <div class="file-loading">
                       <input id="file-0a" class="file" type="file" name="image4">
                     </div>
@@ -52,8 +60,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Nama Barang</label>
-                        <input type="text" class="form-control" placeholder="Nama Barang" required="" name="name">
+                        <label>Nama <b style="color: red;">*</b></label>
+                        <input type="text" class="form-control" placeholder="Nama Produk" required="" name="name">
                         <div class="invalid-feedback">Wajib diisi.</div>
                       </div>
                     </div> 
@@ -61,11 +69,11 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Tipe</label>
+                        <label>Tipe <b style="color: red;">*</b></label>
                         <select  class="form-control" id="inlineFormCustomSelectPref" name="category" required>
                           <option selected value="">Pilih Tipe</option>
                           @foreach($kategori as $list)
-                          <option value="{{$list->id}}">Kebaya {{$list->category_name}}</option>
+                          <option value="{{$list->id}}">{{$list->category_name}}</option>
                           @endforeach
                         </select>
                         <div class="invalid-feedback">Wajib diisi.</div>
@@ -73,21 +81,56 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-lg-12">
+                      <div class="alert alert-warning alert-dismissible">
+                        <h5>Informasi Biaya</h5>
+                        <b>Biaya Sewa</b> berlaku untuk 3 hari penyewaan. <br>
+                        <b>Deposit</b> yang harus dibayar oleh penyewa. <br>
+                        <b>Biaya Dryclean</b> dicantumkan jika dibutuhkan. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
                       <div class="form-group">
-                        <label>Biaya Sewa Per Hari</label>
+                        <label>Biaya Sewa (Per 3 Hari) <b style="color: red;">*</b></label>
                         <div class="input-group mb-4">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Rp</span>
                           </div>
-                          <input type="number" class="form-control" placeholder="Biaya Sewa Per Hari" min="0" step="1000" aria-label="Username" aria-describedby="basic-addon1" data-number-stepfactor="100" name="price" value="10000" required>
+                          <input class="form-control number"  placeholder="Biaya Sewa" min="1000" name="price" required>
                           <div class="invalid-feedback">Wajib diisi.</div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-6">
                       <div class="form-group">
-                        <label>Kuantitas</label>
+                        <label>Deposit <b style="color: red;">*</b></label>
+                        <div class="input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                          </div>
+                          <input class="form-control number" placeholder="Deposit" min="1000" name="deposit" required>
+                          <div class="invalid-feedback">Wajib diisi.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label>Biaya Dryclean (Optional)</label>
+                        <div class="input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                          </div>
+                          <input class="form-control number" placeholder="Biaya Dryclean" min="1000" name="price_dryclean">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label>Jumlah Produk Tersedia <b style="color: red;">*</b></label>
                         <div class="input-group mb-4">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">@</span>
@@ -99,9 +142,9 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                       <div class="form-group">
-                        <label>Set</label>
+                        <label>Set <b style="color: red;">*</b></label>
                         <select  class="form-control" id="inlineFormCustomSelectPref" name="set" required>
                             <option selected value="">Pilih Set</option>
                             <option value="Atasan">Atasan</option>
@@ -111,9 +154,9 @@
                         <div class="invalid-feedback">Wajib diisi.</div>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                       <div class="form-group">
-                        <label>Ukuran</label>
+                        <label>Ukuran <b style="color: red;">*</b></label>
                         <select  class="form-control" id="inlineFormCustomSelectPref" name="size" required>
                             <option selected value="">Pilih Ukuran</option>
                             <option value="S">S</option>
@@ -125,28 +168,72 @@
                         </select>
                         <div class="invalid-feedback">Wajib diisi.</div>
                       </div>
-                    </div> 
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Warna</label>
-                        <select id="warna" class="form-control" name="warna[]"></select>
-                      </div>
                     </div>
                   </div>
+
                   <div class="row">
+                      <div class="col-lg-12">
+                          <button type="button" class="btn btn-info addUkuran">Add More</button>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <label>Detail Ukuran Produk</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label>Bagian <b style="color: red;">*</b></label>
+                                <select  class="form-control" id="inlineFormCustomSelectPref" name="bagian[]" required>
+                                    <option selected value="">Pilih Bagian</option>
+                                    <option value="Panjang Tangan">Panjang Tangan</option>
+                                    <option value="Panjang Bahu">Panjang Bahu (dari leher ke lengan)</option>
+                                    <option value="Panjang Baju">Panjang Baju (dari atas ke bawah)</option>
+                                    <option value="Panjang Lengan">Panjang Lengan</option>
+                                    <option value="Panjang Lengan Siku">Panjang Lengan Siku</option>
+                                    <option value="Lingkar Badan">Lingkar Badan</option>
+                                    <option value="Lingkar Pinggang">Lingkar Pinggang</option>
+                                    <option value="Lingkar Pinggul">Lingkar Pinggul</option>
+                                    <option value="Lingkar Ketiak">Lingkar Ketiak</option>
+                                    <option value="Lingkar Dada">Lingkar Dada</option>
+                                    <option value="Lingkar Leher">Lingkar Leher</option>
+                                    <option value="Lingkar Siku">Lingkar Siku</option>
+                                    <option value="Lingkar Pergelangan Tangan">Lingkar Pergelangan Tangan</option>
+                                    <option value="Lebar Pundak">Lebar Pundak (dari kanan ke kiri)</option>
+                                    <option value="Lebar Punggung">Lebar Punggung</option>
+                                </select>
+                                <div class="invalid-feedback">Wajib diisi.</div>
+                              </div>
+                            </div>
+                              <div class="col-lg-4">
+                                  <div class="form-group">
+                                      <label>Ukuran (cm) <b style="color: red;">*</b></label>
+                                      <input type="text" class="form-control" name="ukuran[]" placeholder="Ukuran (cm)" required="">
+                                      <div class="invalid-feedback">Wajib diisi.</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label>Warna <b style="color: red;">*</b></label>
+                        <select id="warna" class="form-control" name="warna[]"></select>
+                      </div>
+                    </div> 
+                  </div>
+                  <!-- <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Tema</label>
                         <select id="tema" class="form-control" name="tema[]"></select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Informasi Produk</label>
+                        <label>Informasi Tambahan (Optional)</label><br>
                         <small>(contoh: Bahan Balotely, Tidak untuk di setrika)</small>
                         <textarea class="form-control" name="description" style="height: 185px;"></textarea>
                       </div>
@@ -213,6 +300,27 @@
     });
 </script>
 
+<script type="text/javascript">
+$(document).on('click', '.addUkuran', function(){
+    var html = '<div class="row"><div class="col-lg-8"><div class="form-group"><select  class="form-control" id="inlineFormCustomSelectPref" name="bagian[]" required><option selected value="">Pilih Bagian</option><option value="Panjang Tangan">Panjang Tangan</option><option value="Panjang Bahu">Panjang Bahu (dari leher ke lengan)</option><option value="Panjang Baju">Panjang Baju (dari atas ke bawah)</option><option value="Panjang Lengan">Panjang Lengan</option><option value="Panjang Lengan Siku">Panjang Lengan Siku</option><option value="Lingkar Badan">Lingkar Badan</option><option value="Lingkar Pinggang">Lingkar Pinggang</option><option value="Lingkar Pinggul">Lingkar Pinggul</option><option value="Lingkar Ketiak">Lingkar Ketiak</option><option value="Lingkar Dada">Lingkar Dada</option><option value="Lingkar Leher">Lingkar Leher</option><option value="Lingkar Siku">Lingkar Siku</option><option value="Lingkar Pergelangan Tangan">Lingkar Pergelangan Tangan</option><option value="Lebar Pundak">Lebar Pundak (dari kanan ke kiri)</option><option value="Lebar Punggung">Lebar Punggung</option></select><div class="invalid-feedback">Wajib diisi.</div></div></div><div class="col-lg-4"><div class="form-group"><input type="text" class="form-control" name="ukuran[]" placeholder="Ukuran (cm)" required=""><div class="invalid-feedback">Wajib diisi.</div></div></div></div>';
+  $(this).parent().append(html);
+});
+</script>
+<script type="text/javascript">
+    $('input.number').keyup(function(event) {
+
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40) return;
+
+      // format number
+      $(this).val(function(index, value) {
+        return value
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        ;
+      });
+    });
+</script>
 @endsection
 
 

@@ -14,9 +14,9 @@
                <li >
                     <a class="nav-link" href="{{ route('partner.dashboard') }}"><i class="fa fa-home" aria-hidden="true" style="padding-right: 5px;"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li >
+                <!-- <li >
                     <a class="nav-link" href="{{ route('partner.dashboard') }}"><i class="fa fa-user" aria-hidden="true" style="padding-right: 5px;"></i> <b class="text-uppercase">{{$partner->pr_name}}</b> <span class="sr-only">(current)</span></a>
-                </li>
+                </li> -->
                 <li >
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out" aria-hidden="true" style="padding-right: 5px;"></i> Log-out <span class="sr-only">(current)</span>

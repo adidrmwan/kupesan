@@ -14,6 +14,12 @@
                     <img src="{{ asset('logo/'.$data->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
                     @elseif(File::exists(public_path("logo/".$data->pr_logo.".jpeg")))
                     <img src="{{ asset('logo/'.$data->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
+                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".JPG")))
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.JPG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
+                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".PNG")))
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.PNG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
+                    @elseif(File::exists(public_path("logo/".$data->pr_logo.".JPEG")))
+                    <img src="{{ asset('logo/'.$data->pr_logo.'.JPEG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 100%;" />
                     @endif
                 </div>
               </div>
@@ -174,46 +180,58 @@
                         
                         <div class="col-sm-8 col-md-8">
                           <section id="thematic-offers" class="">
-                                      <div class="col-sm-12">
+                                      <div class="col-lg-12">
                                           <div class="page-heading">
                                             <h2>A LA CARTE</h2>
                                             <hr class="heading-line" />
-                                          </div><!-- end page-heading -->
+                                          </div>
                                           
-                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-thematic-offers">
-                                            @foreach($carte as $listthem)  
-                                              @include('partner-profile.fotostudio.paket')                                             
-                                            @endforeach
+                                          <div class="" id="owl-alacarte-offers">
+                                            <ul class="list-unstyled list-inline offer-price-1">    
+                                              <li class="price"> 
+                                                @foreach($carte as $listthem)  
+                                                  @include('partner-profile.fotostudio.paket')                                             
+                                                @endforeach
+                                                </li>
+                                            </ul>
                                           </div>
                                       </div>
                           </section>
                           <section id="alacarte-offers" class="">
-                                      <div class="col-sm-12">
+                                      <div class="col-lg-12">
                                           <div class="page-heading">
                                               <h2>SPECIAL PACKAGE </h2>
                                               <hr class="heading-line" />
                                           </div>
                                           
-                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-alacarte-offers">    
-                                            @foreach($spack as $listthem)
-                                              @include('partner-profile.fotostudio.paket')                                             
-                                            @endforeach
+                                          <div class="" id="owl-alacarte-offers">
+                                            <ul class="list-unstyled list-inline offer-price-1">    
+                                              <li class="price"> 
+                                                @foreach($spack as $listthem)
+                                                  @include('partner-profile.fotostudio.paket')                                             
+                                                @endforeach
+                                              </li>
+                                            </ul>
                                           </div>
                                       </div>
 
                           </section>
 
                           <section id="special-offers" class="">
-                                      <div class="col-sm-12">
+                                      <div class="col-lg-12">
                                           <div class="page-heading">
                                               <h2>SPECIAL STUDIO</h2>
                                               <hr class="heading-line" />
                                           </div><!-- end page-heading -->
                                           
-                                          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-special-offers">
-                                              @foreach($studio as $listthem)
-                                                @include('partner-profile.fotostudio.paket')
-                                              @endforeach
+                                          <div class="" id="owl-alacarte-offers">
+                                                <ul class="list-unstyled list-inline offer-price-1">    
+                                                  <li class="price"> 
+                                                  @foreach($studio as $listthem)
+                                                    @include('partner-profile.fotostudio.paket')
+                                                  @endforeach
+                                                </li>
+                                              </ul>
                                               
                                           </div><!-- end owl-hotel-offers -->
                                       </div><!-- end columns -->
@@ -222,8 +240,7 @@
 
           </div><!-- end row -->
       <!-- </div> -->
-  </section><!-- end luxury-rooms -->
-
+  </section>
 
 @endforeach
 @include('layouts.footer')

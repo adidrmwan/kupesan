@@ -41,6 +41,9 @@
             
             <div class="col-sm-12 col-md-12 col-lg-12 content-side">
                 <h3><span class="label label-success">{{$word}}</span></h3>
+                @if(!empty($cek_studio_data))
+                <h5>Search by <b>Studio</b></h5>
+                @endif
                 @foreach($studio_data as $list)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <div class="main-block hotel-block section-padding">
@@ -67,11 +70,10 @@
                                   <p style="text-align: center; padding: 10px;"><b>{{$list->pr_name}}</b></p>
                                   <p style="text-align: center; padding-bottom: 10px;">SURABAYA</p>
                                   
-                                  <form role="form" action="{{route('detail.fotostudio')}}" method="post" enctype="multipart/form-data" style="float: none;margin: 0 auto; position: relative; display: flex;">
-                                    {{ csrf_field() }}
-                                        <input type="text" name="user_id" value="{{$list->user_id}}" hidden="">
-                                        <button type="submit" class="btn btn-orange btn-lg pull-left" style="float: none;margin: 0 auto; position: relative; display: flex;">View More</button>
-                                  </form>
+                                  <a href="{{route('detail.fotostudio', ['id' => $list->user_id])}}" style="text-align: center;">
+                                        <input type="text" name="id" value="{{$list->user_id}}" hidden="">
+                                        <button type="submit" class="btn btn-orange btn-lg" style="float: none;margin: 0 auto; position: relative; display: flex;">View More</button>
+                                  </a>
                                 
                               </div>
                           </div>
@@ -80,67 +82,19 @@
                 @endforeach
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 content-side">
+                @if(empty($cek_paket) && empty($cek_tag))
+                @else
+                <h5>Search by <b>Package</b></h5>
+                @endif
                 @foreach($allThemes as $data)
                 <div class="col-sm-12 col-md-12 col-lg-3">
-                    <div class="main-block flight-block">
-                        <div class="frame">
-                            @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                            <div class="img-hover">
-                                <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
-                                </a>
-                            </div>
-                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                            <div class="img-hover">
-                                <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
-                                </a>
-                            </div>
-                            @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                            <div class="img-hover">
-                                <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
-                                </a>
-                            </div>
-                            @endif
-                            <div class = "details">
-                                <br>
-                                <br>
-                                <br>
-                                <p style="text-align: center; color: white;">
-                                    <b>Type :</b> {{$data->pkg_category_them}} <br>
-                                    <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
-                                    <b>Print Size :</b> {{$data->pkg_print_size}}<br>
-                                    <b>Edited Photo :</b> {{$data->pkg_edited_photo}}
-                                </p>
-                            </div>
-                        </div>  
-                        <div class="flight-info">
-                            <div class="flight-title" style="text-align: center;">
-                                <h3>{{$data->partner_name}}</h3>
-                            </div><!-- end flight-title -->
-                            
-                            <ul class="list-unstyled list-inline offer-price-1">
-                                <li class="price">{{$data->pkg_name_them}}</li><br>
-
-                                <li >Rp {{ number_format($data->pkg_price_them) }} / Jam</li><br>
-                                <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
-                                <li>
-                                    <a href="{{route('ask.page', ['package_id' => $data->id])}}">
-                                        <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">Pesan</span>
-                                        </button>
-                                    </a>
-                                </li>
-                                <li >
-                                    <a href="{{route('check.auth', ['package_id' => $data->id])}}">
-                                        <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">View More</span>
-                                        </button>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    @include('search-result.fotostudio.paket')
+                </div>
+                @endforeach
+                @foreach($allThemes2 as $data)
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    @include('search-result.fotostudio.paket')
                 </div>
                 @endforeach
             </div>

@@ -187,7 +187,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="file-loading">
-                                                    <input id="file-0a" class="file" type="file" name="pr_logo" required="">
+                                                    <input id="file-0a" class="file" type="file" name="pr_logo">
                                                 </div>
                                             </div>
                                         </div>

@@ -74,6 +74,32 @@ class KebayaController extends Controller
     public function addItem(Request $request)
     {
         $user = Auth::user();
+
+        if (!empty($request->price_dryclean)) {
+            $price_dryclean = $request->price_dryclean;
+            $price_dryclean_array = explode(".", $price_dryclean);
+            $price_dryclean = '';
+            foreach ($price_dryclean_array as $key => $value) {
+                $price_dryclean = $price_dryclean . $price_dryclean_array[$key];
+            }
+        } else {
+            $price_dryclean = '0';
+        }
+
+        $deposit = $request->deposit;
+        $deposit_array = explode(".", $deposit);
+        $deposit = '';
+        foreach ($deposit_array as $key => $value) {
+            $deposit = $deposit . $deposit_array[$key];
+        }
+
+        $price = $request->price;
+        $price_array = explode(".", $price);
+        $price = '';
+        foreach ($price_array as $key => $value) {
+            $price = $price . $price_array[$key];
+        }
+
         $partner = Partner::where('user_id', $user->id)->first();
         $package = new KebayaProduct();
         $package->partner_id = $partner->user_id;
@@ -81,7 +107,9 @@ class KebayaController extends Controller
         $package->name = $request->input('name');
         $package->category = $request->input('category');
         $package->set = $request->input('set');
-        $package->price = $request->input('price');
+        $package->price = $price;
+        $package->deposit = $deposit;
+        $package->price_dryclean = $price_dryclean;
         $package->quantity = $request->input('quantity');
         $package->size = $request->input('size');
         $package->description = $request->input('description');
@@ -89,7 +117,7 @@ class KebayaController extends Controller
         $package->save();
 
         $dataSet = [];
-        if ($user) {
+        if (!empty($request->tema[0])) {
             for ($i = 0; $i < count($request->tema); $i++) {
                 $dataSet[] = [
                     'partner_id' => $user->id,
@@ -97,11 +125,11 @@ class KebayaController extends Controller
                     'tema' => $request->tema[$i],
                 ];
             }
+            KebayaPartnerTema::insert($dataSet);
         }
-        KebayaPartnerTema::insert($dataSet);
 
         $dataSet2 = [];
-        if ($user) {
+        if (!empty($request->warna[0])) {
             for ($i = 0; $i < count($request->warna); $i++) {
                 $dataSet2[] = [
                     'partner_id' => $user->id,
@@ -109,8 +137,21 @@ class KebayaController extends Controller
                     'warna' => $request->warna[$i],
                 ];
             }
+            KebayaPartnerWarna::insert($dataSet2);
         }
-        KebayaPartnerWarna::insert($dataSet2);
+
+        if (!empty($request->bagian[0])) {
+            for ($i = 0; $i < count($request->bagian); $i++) {
+                $dataSet3[] = [
+                    'partner_id' => $user->id,
+                    'package_id' => $package->id,
+                    'ukuran' => $package->size,
+                    'bagian' => $request->bagian[$i],
+                    'cm' => $request->ukuran[$i],
+                ];
+            }
+            KebayaUkuran::insert($dataSet3);
+        }
 
         $package = KebayaProduct::find($package->id);
         if(empty($package->id)) {
@@ -118,10 +159,10 @@ class KebayaController extends Controller
             $package->save();
         }
 
-        $package->image  = $package->id . '_1_' . $package->category . '_' . $package->size;
-        $package->image2 = $package->id . '_2_' . $package->category . '_' . $package->size;
-        $package->image3 = $package->id . '_3_' . $package->category . '_' . $package->size;
-        $package->image4 = $package->id . '_4_' . $package->category . '_' . $package->size;
+        $package->image  = $package->id . '1' . $package->category . $package->size;
+        $package->image2 = $package->id . '2' . $package->category . $package->size;
+        $package->image3 = $package->id . '3' . $package->category . $package->size;
+        $package->image4 = $package->id . '4' . $package->category . $package->size;
         $package->save();
         if ($request->hasFile('image')) {
             $foto_new = $package->image;
@@ -241,28 +282,64 @@ class KebayaController extends Controller
                     ->select('*')
                     ->first();
         $kategori = KebayaKategori::get();
-        return view('partner.kebaya.item.edit',['partner' => $partner, 'package' => $package, 'kategori' => $kategori]);
+        $pu = KebayaUkuran::where('package_id', $product_id)->get();
+        return view('partner.kebaya.item.edit',['partner' => $partner, 'package' => $package, 'kategori' => $kategori], compact('pu'));
     }
 
     public function editItem(Request $request)
     {
         $user = Auth::user();
+
+        if (!empty($request->price_dryclean)) {
+            $price_dryclean = $request->price_dryclean;
+            $price_dryclean_array = explode(".", $price_dryclean);
+            $price_dryclean = '';
+            foreach ($price_dryclean_array as $key => $value) {
+                $price_dryclean = $price_dryclean . $price_dryclean_array[$key];
+            }
+        } else {
+            $price_dryclean = '0';
+        }
+
+        $deposit = $request->deposit;
+        $deposit_array = explode(".", $deposit);
+        $deposit = '';
+        foreach ($deposit_array as $key => $value) {
+            $deposit = $deposit . $deposit_array[$key];
+        }
+
+        $price = $request->price;
+        $price_array = explode(".", $price);
+        $price = '';
+        foreach ($price_array as $key => $value) {
+            $price = $price . $price_array[$key];
+        }
+
         $product_id = $request->product_id;
         $package = KebayaProduct::find($product_id);
-        $package->name = $request->input('name');
-        $package->category = $request->input('category');
-        $package->set = $request->input('set');
-        $package->price = $request->input('price');
-        $package->quantity = $request->input('quantity');
-        $package->size = $request->input('size');
+        $package->name = $request->name;
+        $package->category = $request->category;
+        $package->set = $request->set;
+        $package->price = $price;
+        $package->deposit = $deposit;
+        $package->price_dryclean = $price_dryclean;
+        $package->quantity = $request->quantity;
+        $package->size = $request->size;
         $package->save();
-      	
-      	$package = KebayaProduct::find($package->id);
-        $package->image = $package->id . '_1_' . $package->category . '_' . $package->set . '_' . $package->size;
-        $package->image2 = $package->id . '_2_' . $package->category . '_' . $package->set . '_' . $package->size;
-        $package->image3 = $package->id . '_3_' . $package->category . '_' . $package->set . '_' . $package->size;
-        $package->image4 = $package->id . '_4_' . $package->category . '_' . $package->set . '_' . $package->size;
-        $package->save();
+
+        
+        if (!empty($request->bagian[0])) {
+            for ($i = 0; $i < count($request->bagian); $i++) {
+                $dataSet3[] = [
+                    'partner_id' => $user->id,
+                    'package_id' => $package->id,
+                    'ukuran' => $package->size,
+                    'bagian' => $request->bagian[$i],
+                    'cm' => $request->ukuran[$i],
+                ];
+            }
+            KebayaUkuran::insert($dataSet3);
+        }
 
         if ($request->hasFile('image')) {
         	$package = KebayaProduct::find($package->id);
@@ -348,7 +425,7 @@ class KebayaController extends Controller
             $package->save();
         }
         
-        return redirect()->intended(route('list.item')); 
+        return redirect()->intended(route('edit.item', ['product_id' => $product_id]));
     }
 
     public function showStep1()
@@ -385,15 +462,12 @@ class KebayaController extends Controller
 
     public function submitStep2(Request $request)
     {
+        $durasi_sewa = '3';
     	$sdate = explode('/', $request->start_date, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
     	$booking_start_date = $sy.'-'.$sm.'-'.$sd;
-    	$edate = explode('/', $request->end_date, 3); $em = $edate[0]; $ed = $edate[1]; $ey = $edate[2];
-    	$booking_end_date = $ey.'-'.$em.'-'.$ed;
-    	$time = '00:00:00';
-        $endtime = '23:59:59';
-
-    	$start_date = date('Y-m-d H:i:s', strtotime("$booking_start_date $time"));
-    	$end_date = date('Y-m-d H:i:s', strtotime("$booking_end_date $endtime"));
+        $time = '00:00:00';
+        $start_date = date('Y-m-d H:i:s', strtotime("$booking_start_date $time"));
+        
     	$quantity = $request->quantity;
     	$user_name = $request->user_name;
     	$user_nohp = $request->user_nohp;
@@ -406,26 +480,26 @@ class KebayaController extends Controller
                     ->first();
         $package = KebayaProduct::where('id', $product_id)->first();
         $cek_booking_sdate = KebayaCheck::where('package_id', $product_id)->where('booking_date', $sdate)->first();
-        $cek_booking_edate = KebayaCheck::where('package_id', $product_id)->where('booking_date', $edate)->first();
 
         
-        if(empty($cek_booking_sdate) && empty($cek_booking_edate)) {
-            // $kode_booking = str_random(4);
+        if(empty($cek_booking_sdate)) {
 
                 $booking = new KebayaBooking();
                 $booking->user_id = $user->id;
                 $booking->package_id = $product_id;
                 $booking->partner_id = $package->partner_id;
                 $booking->start_date = $start_date;
-                $booking->end_date = $end_date;
                 $booking->booking_status = 'cek_ketersediaan';
                 $booking->booking_price = $package->price;
-                $booking->booking_total = $total;
                 $booking->save();
 
-                
                 $booking_id = $booking->booking_id;
+                $end_date = $booking->start_date->addDays($durasi_sewa-1);
+                $edate = date('Y-m-d', strtotime("$end_date"));
+                $edate = explode('-', $edate, 3); $ey = $edate[0]; $em = $edate[1]; $ed = $edate[2];
 
+                $booking->end_date = $end_date;
+                $booking->save();
                 if($sm == $em && $sd <= $ed) {
                     for ($i=1; $i <= 31 ; $i++) { 
                         if($i >= $sd && $i <= $ed ){
@@ -542,7 +616,7 @@ class KebayaController extends Controller
         $datetime2 = new DateTime($tdate);
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a');
-        $total = ($package2->price * ($days + 1)) * $quantity;
+        $total = ($package2->price) * $quantity;
 
         $max_quantity = $package2->quantity;
         $kebaya_booking_check = KebayaCheck::where('package_id', $package_id)->whereBetween('booking_date', [$booking_start_date, $booking_end_date])->get();
@@ -781,8 +855,9 @@ class KebayaController extends Controller
     {
         $user = Auth::user();
         $pu = KebayaUkuran::find($request->id);
+        $product_id = $pu->package_id;
         $pu->delete();
 
-        return redirect()->intended(route('partner.profile'));
+        return redirect()->intended(route('edit.item', ['product_id' => $product_id]));
     }
 }

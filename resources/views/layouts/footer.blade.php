@@ -50,7 +50,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="termsandcondition">Terms & Condition</a></li>
+                        <li><a href="tnc">Terms & Condition</a></li>
                         <li><a href="privacy">Privacy Policy</a></li>
                     </ul>
                 </div><!-- end columns -->

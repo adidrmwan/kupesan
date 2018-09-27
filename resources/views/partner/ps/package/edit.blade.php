@@ -70,7 +70,7 @@
                                                 @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".PNG")))
                                                 <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.PNG')  }}" alt= "Package Image" />
                                                 @else
-                                                <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload-photo.PNG')  }}" alt= "Package Image" />
+                                                <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload_photo.png')  }}" alt= "Package Image" />
                                                 @endif
                                             </div>
                                         </div>
@@ -100,7 +100,7 @@
                                                 @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".PNG")))
                                                 <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.PNG')  }}" alt= "Package Image" />
                                                 @else
-                                                <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload-photo.PNG')  }}" alt= "Package Image" />
+                                                <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload_photo.png')  }}" alt= "Package Image" />
                                                 @endif
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                                 @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".PNG")))
                                                 <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.PNG')  }}" alt= "Package Image" />
                                                 @else
-                                                <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload-photo.PNG')  }}" alt= "Package Image" />
+                                                <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload_photo.png')  }}" alt= "Package Image" />
                                                 @endif
                                             </div>
                                         </div>
@@ -249,8 +249,29 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Frame</label>
+                                                <select  class="form-control" id="inlineFormCustomSelectPref" name="pkg_frame" required>
+                                                    <option selected value="{{$data->pkg_frame}}">{{$data->pkg_frame}}</option>
+                                                    <option value="{{$data->pkg_print_size}}">$data->pkg_print_size</option>
+                                                </select>
+                                                <div class="invalid-feedback">Wajib diisi.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Edited Photo (Lembar)</label>
                                                 <input type="number" min="1" max="1000" class="form-control" placeholder="Jumlah foto" required="" name="pkg_edited_photo" value="{{$data->pkg_edited_photo}}">
+                                                <div class="invalid-feedback">Wajib diisi.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Studio Capacity</label>
+                                                <input type="number" min="1" max="1000" class="form-control" placeholder="Jumlah Kapasitas" required="" name="pkg_capacity" value="{{$data->pkg_capacity}}">
                                                 <div class="invalid-feedback">Wajib diisi.</div>
                                             </div>
                                         </div>

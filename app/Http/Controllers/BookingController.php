@@ -16,6 +16,8 @@ use Carbon\Carbon;
 use App\BookingCheck;
 use File;
 use Image;
+use App\User;
+use Mail;
 use App\Provinces;
 use App\Regencies;
 use App\Districts;
@@ -105,9 +107,9 @@ class BookingController extends Controller
         $jam_klik_lanjut = $time_array[0];
         $now_time = $time_array[0] + 6;
 
-        if($jam_klik_lanjut >= $close - 1 || $jam_klik_lanjut < $open) {
-            return redirect()->route('check.auth', ['package_id' => $package_id])->with('warning',"Silahkan memesan pada saat");
-        }
+        // if($jam_klik_lanjut >= $close - 1 || $jam_klik_lanjut < $open) {
+        //     return redirect()->route('check.auth', ['package_id' => $package_id])->with('warning',"Silahkan memesan pada saat");
+        // }
 
         $jam_mulai = DB::table('jam')->where('num_hour', '>=', $partner->open_hour)
                         ->where('num_hour', '<', $partner->close_hour)->get();
@@ -307,6 +309,21 @@ class BookingController extends Controller
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
         $durasiPaket = PartnerDurasi::where('package_id', $id->id)->get();
 
+        $book = Booking::where('booking_id', $booking->booking_id)->select('booking_id')->first()->toArray();
+        $user = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')
+                ->join('partner', 'partner.user_id', '=', 'ps_package.user_id')
+                ->join('users', 'users.id', '=', 'partner.user_id')
+                ->select('booking.*', 'partner.pr_name', 'users.email', 'users.id',  'users.first_name', 'users.last_name', 'ps_package.pkg_name_them')
+                ->where('booking.booking_id', $booking->booking_id)->first()->toArray();
+        // dd($user);
+        $user['link'] = str_random(35);
+
+        DB::table('booking_activations')->insert(['id_user'=>$user['id'], 'booking_id'=>$book['booking_id'], 'token'=>$user['link']]);
+
+        Mail::send('emails.partner-booking-notification', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id - Booking Notification');
+        });
         return view('online-booking.fotostudio.step5', compact('bid', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'package'));
     }
 
@@ -331,7 +348,7 @@ class BookingController extends Controller
                         ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, ps_package.pkg_img_them, ((booking_overtime * booking_overtime_price) ) as total_overtime'))
                         ->get();
 
-            return view('online-booking.fotostudio.step6', compact('bid', 'review', 'package','partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'package'));
+            return view('online-booking.fotostudio.step6', compact('bid', 'review', 'package','partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'package', 'booking'));
         }
 
         return redirect()->route('index');

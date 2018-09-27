@@ -21,7 +21,7 @@
                                         <br>
                                         <b style="color: #EA410C;">KUPESAN.ID</b> sedang mengecek ketersediaan jadwal pada <b>{{$partner->pr_name}}</b>. 
                                         <br>
-                                        Kami akan mengirimkan e-mail untuk memberitahukan status pesanan Anda maksimal 6 jam dari sekarang. 
+                                        Kami akan mengirimkan e-mail untuk memberitahukan status pesanan Anda maksimal 6 jam dari waktu Anda melakukan cek ketersediaan (pengecekan jadwal hanya dilakukan pada jam operasional <b>{{$partner->pr_name}}</b> pada Pukul <b>{{$partner->open_hour}}:00 - {{$partner->close_hour - 1}}:00 WIB. </b>)
                                         <br>
                                         <br>
                                         Anda juda dapat melihat status pesanan pada <b>profil Anda</b> diatas atau <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>

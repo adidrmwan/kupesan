@@ -14,7 +14,7 @@
                                 <h4 class="title">Form Day Off (Hari Libur)</h4>
                             </div>
                             <div class="content">
-                                <div class="row">
+                                <!-- <div class="row"> -->
                                     <div class="col-md-5">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -25,7 +25,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7" style="padding: 0 15px;">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -49,9 +49,9 @@
                                                     <select  class="form-control" id="inlineFormCustomSelectPref" name="durasi_libur" required>
                                                         <option selected value="">Pilih Durasi Waktu</option>
                                                         <option value="full_day">Full Day (24 Jam)</option>
-                                                        <option value="3">3 Hari</option>
-                                                        <option value="5">5 Hari</option>
-                                                        <option value="7">7 Hari</option>
+                                                        <!--<option value="3">3 Hari</option>-->
+                                                        <!--<option value="5">5 Hari</option>-->
+                                                        <!--<option value="7">7 Hari</option>-->
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Silahkan isi Durasi Waktu.
@@ -97,9 +97,8 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        <div class="row"></div>
                                     </div>
-                                </div> 
+                                <!-- </div>  -->
                                 <div class="row">
                                     <div class="col-md-12">
                                             <button type="submit" class="btn btn-block btn-info pull-right">Submit</button> 

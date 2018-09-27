@@ -103,7 +103,7 @@
                                                 @endforeach
                                             </select>
                                             <i class="fa fa-angle-down"></i>
-                                        </div>                         
+                                       </div>                        
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon ">
@@ -112,8 +112,8 @@
                                                 <option value="0">Kota Surabaya</option>
                                             </select>
                                             <i class="fa fa-angle-down"></i>
-                                        </div>                         
-                                    </div>                       
+                                       </div>                        
+                                   </div>                      
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
                                         <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
                                     </div>
@@ -170,7 +170,7 @@
                     </div>
                     @endforeach
                     <div class="item">
-                        <a href="{{route('detail.fotostudio', ['id' => $data->user_id])}}">
+                        <a>
                         <div class="main-block tour-block">
                             <div class="main-img">
                                 <img src="dist/images/studio-foto.png" class="img-responsive" alt="kebaya-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />

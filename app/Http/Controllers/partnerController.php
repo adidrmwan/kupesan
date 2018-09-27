@@ -18,6 +18,7 @@ use App\Booking;
 use App\Partner;
 use App\PSPkg;
 use App\Jam;
+use App\User;
 use Carbon\Carbon;
 use Image;
 Use Alert;
@@ -597,7 +598,7 @@ class PartnerController extends Controller
 
         }
         else {
-            $tipe = DB::table('partner_type')
+            $type = DB::table('partner_type')
                     ->where('partner_type.id', '=', $partner->pr_type)
                     ->first();
             $phone_number = $user->phone_number;
@@ -613,7 +614,7 @@ class PartnerController extends Controller
             $partner->pr_type = '1';
 
         }
-        return view('partner.ps.profile', ['partner' => $partner, 'data' => $partner, 'tipe' => $tipe, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc'));
+        return view('partner.ps.profile', ['partner' => $partner, 'data' => $partner, 'type' => $type, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc'));
     }
 
     public function edit(Request $Request)
@@ -645,6 +646,30 @@ class PartnerController extends Controller
         $partner->open_hour = $request->input('open_hour');
         $partner->close_hour = $request->input('close_hour');
         $partner->save();
+        
+        $logo = Partner::where('user_id', $user->id)->first();
+        $logo->pr_logo = $logo->id . '_' . $logo->pr_type . '_' . $logo->pr_name;
+        $logo->save();
+        
+        if ($request->hasFile('pr_logo')) {
+            //Found existing file then delete
+            $foto_new = $logo->pr_logo;
+            if( File::exists(public_path('/logo/' . $foto_new .'.jpeg' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.jpeg' ));
+            }
+            if( File::exists(public_path('/logo/' . $foto_new .'.jpg' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.jpg' ));
+            }
+            if( File::exists(public_path('/logo/' . $foto_new .'.png' ))){
+                File::delete(public_path('/logo/' . $foto_new .'.png' ));
+            }
+            $foto = $request->file('pr_logo');
+            $foto_name = $foto_new . '.' .$foto->getClientOriginalExtension();
+            Image::make($foto)->save( public_path('/logo/' . $foto_name ) );
+            $user = Auth::user();
+            $logo = Partner::where('user_id', $user->id)->first();
+            $logo->save();
+        }
         return redirect()->intended(route('partner.profile'));
         
     }
@@ -889,5 +914,23 @@ class PartnerController extends Controller
 
         return redirect()->intended(route('partner.profile'));
     }
+
+    public function bookingActivation($token){
+      $check = DB::table('booking_activations')->where('token',$token)->first();
+      if(!is_null($check)){
+        $user = User::find($check->id_user);
+        $bid = $check->booking_id;
+
+        if ($user->is_activated == 1){
+
+            return redirect()->route('index');
+        }
+
+        $user->update(['is_activated' => 1]);
+
+        return redirect()->route('index');
+      }
+      return redirect()->to('home')->with('Warning',"Your token is invalid");
+    }   
 
 }

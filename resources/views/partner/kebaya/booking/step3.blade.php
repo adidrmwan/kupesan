@@ -34,7 +34,7 @@
                                         <div class="form-group">
                                           <label>Kuantitas</label>
                                           <select class="form-control" required="" name="quantity">
-                                            <option value="" selected="">Pilih Banyaknya Barang</option>
+                                            <option value="" selected="">Pilih Banyaknya Produk</option>
                                             @for ($i = 1; $i <= $quantity2; $i++) 
                                             <option value="{{$i}}">{{$i}}</option>
                                             @endfor
@@ -51,24 +51,24 @@
                                     <div class="row">
                                       <div class="col-md-12">
                                         <div class="form-group">
-                                          <label>Nama</label> 
-                                          <input type="text" class="form-control" name="user_name" placeholder="Nama" required="">
+                                          <label>Nama <b style="color: red;">*</b></label> 
+                                          <input type="text" class="form-control" name="user_name" placeholder="Nama Pelanggan" required="">
                                           <div class="invalid-feedback">Wajib diisi.</div>
                                         </div>
                                       </div>
                                     </div>
                                     <div class="row">
-                                      <div class="col-md-7">
-                                        <div class="form-group">
-                                          <label>E-mail</label> 
-                                          <input type="text" class="form-control" name="user_email" placeholder="E-mail">
-                                        </div>
-                                      </div>
                                       <div class="col-md-5">
                                         <div class="form-group">
-                                          <label>No HP</label> 
-                                          <input type="text" class="form-control" name="user_nohp" placeholder="No HP" required="">
+                                          <label>No HP <b style="color: red;">*</b></label> 
+                                          <input type="text" class="form-control" name="user_nohp" placeholder="No Handphone" required="">
                                           <div class="invalid-feedback">Wajib diisi.</div>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-7">
+                                        <div class="form-group">
+                                          <label>E-mail</label> <small>(Optional)</small>
+                                          <input type="text" class="form-control" name="user_email" placeholder="E-mail">
                                         </div>
                                       </div>
                                     </div>
@@ -79,7 +79,7 @@
                                     <small>Dengan menekan tombol dibawah, berarti Anda sudah yakin dengan pesanan Anda.</small>
                                     <br>
                                     <input type="text" name="booking_id" value="{{$booking_id}}" hidden="">
-                                    <button type="submit" class="btn btn-block btn-info pull-right">Cek Ketersediaan</button> 
+                                    <button type="submit" class="btn btn-block btn-info pull-right" onclick="return confirm('Are you sure want to booking this order?')">Cek Ketersediaan</button> 
                                   </div>
                                 </div> 
                               </form>  
@@ -92,46 +92,7 @@
             </div>
             <div class="col-md-4">
               @foreach($package as $data)
-              <div class="card">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="header">
-                      <h4 class="title" style="text-align: center;">{{$data->name}}</h4>
-                    </div>
-                    <div class="content">
-                      <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                          @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
-                          <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" />
-                          @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
-                          <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" />
-                          @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
-                          <img style="height: auto; width: 150px; margin: 0 auto; float: none; position: relative;display: flex;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" />
-                          @endif
-                        </div>
-                        <div class="col-sm-12 col-md-12" style="padding: 25px;">
-                          <table class="table">
-                            <tbody>
-                              <tr>
-                                <th>Tipe Kebaya</th>
-                                <td style="text-align: right;">{{$data->category}}</td>
-                              </tr>
-                              <tr>
-                                <th>Ukuran</th>
-                                <td style="text-align: right;">{{$data->size}}</td>
-                              </tr>
-                              <tr>
-                                <th>Biaya Sewa/hari</th>
-                                <td style="text-align: right;">Rp {{number_format($data->price)}}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                @include('partner.kebaya.booking.kebaya-paket')
               @endforeach
             </div>
         </div>

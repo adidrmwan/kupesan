@@ -28,9 +28,9 @@
                                                     </div>
 
                                                 @else
-                                                    <div class="alert alert-warning">
+                                                    <!-- <div class="alert alert-warning">
                                                       Pemesanan hanya dapat dilakukan pada <b>Jam Operasional {{$partner->pr_name}}</b> dari Jam <b>{{$partner->open_hour}}:00 - {{$partner->close_hour - 1}}:00 WIB</b>
-                                                    </div>
+                                                    </div> -->
                                                 @endif
                                             </div>
                                             <div class="row">

@@ -40,7 +40,7 @@
                                                 <select class="form-control" required="" name="pr_type">
                                                     <option value="">Pilih Kategori Usaha</option>
                                                     @foreach($type as $list)
-                                                    @if($list->id != '2' && $list->id != '3')
+                                                    @if($list->id != '2' && $list->id != '3' && $list->id != '4')
                                                     <option value="{{$list->id}}">{{$list->type_name}}</option>
                                                     @endif
                                                     @endforeach

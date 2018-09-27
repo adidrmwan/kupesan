@@ -9,7 +9,7 @@ class KebayaBooking extends Model
     protected $primaryKey = 'booking_id';
     protected $table = 'kebaya_booking';
     public $timestamps = true;
-    
+    protected $dates = ['created_at', 'updated_at', 'start_date', 'end_date'];
     protected $fillable = [
         'user_id',
         'package_id',

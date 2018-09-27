@@ -32,5 +32,22 @@ class StudioController extends Controller
         $tnc = Tnc::where('partner_id', $user_id)->get();
         return view('partner-profile.fotostudio.detail', ['detail' => $detail, 'album' => $album, 'fasilitas' => $fasilitas, 'booking_date' => $booking_date], compact('provinsi', 'kota', 'kecamatan', 'carte', 'spack', 'studio', 'tnc'));
     }
-
+    
+    public function detailFotostudio2(Request $request)
+    {
+    	$user_id = $request->id;
+        $booking_date = $request->booking_date;
+    	$detail = Partner::where('user_id', $user_id)->get();
+        $partner = Partner::where('user_id', $user_id)->first();
+    	$carte = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'A La Carte')->get();
+    	$spack = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Package')->get();
+    	$studio = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Studio')->get();
+    	$album = Album::where('user_id', $user_id)->get();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
+    	$fasilitas = FasilitasPartner::where('user_id', $user_id)->get();
+        $tnc = Tnc::where('partner_id', $user_id)->get();
+        return view('partner-profile.fotostudio.detail', ['detail' => $detail, 'album' => $album, 'fasilitas' => $fasilitas, 'booking_date' => $booking_date], compact('provinsi', 'kota', 'kecamatan', 'carte', 'spack', 'studio', 'tnc'));
+    }
 }
