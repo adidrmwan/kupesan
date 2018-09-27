@@ -1,4 +1,4 @@
-@extends('partner.layouts.app-form')
+@extends('partner.layouts.app-add')
 @section('title', 'Add Product')
 @section('content')
 <div class="content">
