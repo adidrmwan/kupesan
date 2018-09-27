@@ -67,12 +67,12 @@
                   </tr>
                   <tr>
                     <th>Deposito</th>
-                    <th>Rp {{number_format($deposito,0,',','.')}}</th>
+                    <th>Rp {{number_format($data->deposit,0,',','.')}}</th>
                   </tr>
 
                   <tr style="background-color: #4b75a7; color: white;">
                     <th>Total</th>
-                    <th>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</th>
+                    <th>Rp {{number_format($data->booking_total + $data->deposit,0,',','.')}}</th>
                   </tr>
                 </tbody>
               </table>            
@@ -82,13 +82,13 @@
             <div class=""></div>
             <div class="col-lg-12 pull-right" >
               <a href="{{route('kebaya.cancel.bukti', ['id' => $data->booking_id])}}">
-                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel?')">Cancel</span>
                 </button>
               </a>
               @if($data->status == '1')
               @else
               <a href="{{route('kebaya.confirm.bukti', ['id' => $data->booking_id])}}">
-                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm?')">Confirm</span>
                 </button>
               </a>
               @endif

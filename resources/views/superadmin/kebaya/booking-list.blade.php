@@ -94,8 +94,8 @@
                       <th>Tipe Paket</th>
                       <th>Ukuran</th>
                       <th>Kuantitas</th>
+                      <th>Deposit</th>
                       <th>Total</th>
-                      <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -112,17 +112,18 @@
                       <td>{{$data->set}}</td>
                       <td>{{$data->size}}</td>
                       <td>{{$data->quantity}} pcs</td>
-                      <td>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</td>
+                      <td>Rp {{number_format($data->deposit,0,',','.')}}</td>
+                      <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
                       <!-- @if($data->booking_status == 'un_approved')
                       <td><span class="label label-danger">On Review</span></td>
                       @endif -->
                       <td>  
                         <a href="{{route('kebaya.cancel.booking', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel?')">Cancel</span>
                           </button>
                         </a>
                         <a href="{{route('kebaya.approve.booking', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Approve</span>
+                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to approve?')">Approve</span>
                           </button>
                         </a>
                       </td> 
@@ -140,7 +141,7 @@
                       <th>No HP Pemesan</th>
                       <th>Tanggal Pesan</th>
                       <th>Tanggal Pengembalian</th>
-                      <th>Total</th>
+                      <th>Total + Deposit</th>
                       <!-- <th>Status</th> -->
                       <th>Action</th>
                     </tr>
@@ -153,7 +154,7 @@
                       <td>{{$data->user_nohp}}</td>
                       <td>{{date('d F Y', strtotime($data->start_date))}}</td>
                       <td>{{date('d F Y', strtotime($data->end_date))}}</td>
-                      <td>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</td>
+                      <td>Rp {{number_format($data->booking_total + $data->deposit,0,',','.')}}</td>
                       <!-- @if($data->booking_status == 'paid')
                       <td><span class="label label-success">Sudah Bayar</span></td>
                       @endif -->
@@ -163,11 +164,11 @@
                           </button>
                         </a>
                         <a href="{{route('kebaya.cancel.bukti', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Cancel</span>
+                          <button type="submit" class="btn btn-danger btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to cancel?')">Cancel</span>
                           </button>
                         </a>
                         <a href="{{route('kebaya.confirm.bukti', ['id' => $data->booking_id])}}">
-                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Confirm</span>
+                          <button type="submit" class="btn btn-success btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;" onclick="return confirm('Are you sure want to confirm?')">Confirm</span>
                           </button>
                         </a>
                       </td> 
@@ -187,7 +188,7 @@
                       <th>Tanggal Pesan</th>
                       <th>Tanggal Pengembalian</th>
                       <th>Harga</th>
-                      <th>Deposito</th>
+                      <th>Deposit</th>
                       <th>Total</th>
                     </tr>
                     </thead>
@@ -195,14 +196,14 @@
                     @foreach($booking_confirmed as $key => $data)
                     <tr>
                       <td>{{$key + 1}}</td>
-                      <td>{{$data->kode_booking}}</td>
+                      <td class="text-uppercase">{{$data->kode_booking}}</td>
                       <td>{{$data->user_id}}</td>
                       <!-- <td>{{$data->package_id}}</td> -->
                       <td>{{date('d F Y', strtotime($data->start_date))}}</td>
                       <td>{{date('d F Y', strtotime($data->end_date))}}</td>
                       <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
-                      <td>Rp {{number_format($deposito,0,',','.')}}</td>
-                      <td>Rp {{number_format($data->booking_total + $deposito,0,',','.')}}</td>
+                      <td>Rp {{number_format($data->deposit,0,',','.')}}</td>
+                      <td>Rp {{number_format($data->booking_total + $data->deposit,0,',','.')}}</td>
                     </tr>
                     @endforeach
                     </tbody>

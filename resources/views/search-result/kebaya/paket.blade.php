@@ -1,23 +1,22 @@
 <div class="main-block flight-block">
     <div class="frame">
         <div class="img-hover">
-            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-
-                    @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.jpg')  }}">
+                @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 320px;" />
             </a>
         </div>
         <div class="img-hover">
-            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}">
+                @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 320px;"/>
             </a>
         </div>
         <div class="img-hover">
-            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
-                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
-                    @endif
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.png')  }}">
+                @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 320px;" />
+                @endif
             </a>
         </div><!-- end flight-img -->
         <div class = "details">
@@ -39,8 +38,9 @@
         
         <ul class="list-unstyled list-inline offer-price-1">
             <li class="price">{{$data->name}}</li><br>
-
-            <li >Rp {{ number_format($data->price, 0, ',', '.') }} / Hari</li><br>
+            @if(Auth::check())
+            <li >Rp {{ number_format($data->price, 0, ',', '.') }}</li><br>
+            @endif
             <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
             <li>
                 <a href="{{route('kebaya.step1', ['package_id' => $data->id])}}">

@@ -1,7 +1,4 @@
 
- <div class="card">
-     <form role="form" action="{{ route('update.tnc') }}" method="post" enctype="multipart/form-data">
-{{ csrf_field() }}
          <div class="header">
              <h4 class="title">Syarat dan Ketentuan</h4>
          </div>
@@ -39,5 +36,3 @@
                 </div>
               </div>
          </div>
-     </form>
- </div>

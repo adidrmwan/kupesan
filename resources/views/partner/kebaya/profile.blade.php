@@ -8,14 +8,14 @@
                 <div class="bd-example bd-example-tabs">
                     <nav class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#daftarBooking" role="tab" aria-controls="home" aria-expanded="true">Detail Bisnis</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#ukuran" role="tab" aria-controls="profile" aria-expanded="false">Panduan Ukuran</a>
+                        <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#ukuran" role="tab" aria-controls="profile" aria-expanded="false">Panduan Ukuran</a> -->
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#tnc" role="tab" aria-controls="profile" aria-expanded="false">Syarat dan ketentuan</a>
                     </nav>
                 </div>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade active show" id="daftarBooking" role="tabpanel" aria-labelledby="nav-home-tab" aria-expanded="true">
                         <div class="card">
-                              <form role="form" action="{{ route('partner.profile.form.edit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                              <form role="form" action="{{ route('kebaya.profile.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                               {{ csrf_field() }}
                               <div class="row">
                                   <div class="col-md-7">
@@ -174,12 +174,20 @@
                                             <img src="{{ asset('logo/'.$partner->pr_logo.'.png')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
                                             @elseif(File::exists(public_path("logo/".$partner->pr_logo.".jpeg")))
                                             <img src="{{ asset('logo/'.$partner->pr_logo.'.jpeg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @elseif(File::exists(public_path("logo/".$partner->pr_logo.".JPG")))
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.JPG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @elseif(File::exists(public_path("logo/".$partner->pr_logo.".PNG")))
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.PNG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @elseif(File::exists(public_path("logo/".$partner->pr_logo.".JPEG")))
+                                            <img src="{{ asset('logo/'.$partner->pr_logo.'.JPEG')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; float: none; display: block;position: relative; border-radius: 25%;" />
+                                            @else
+                                            <img style="height: 270px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/upload-photo_kebaya.png')  }}" alt= "Package Image" />
                                             @endif
                                         @endif
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="file-loading">
-                                                    <input id="file-0a" class="file" type="file" name="pr_logo" required="">
+                                                    <input id="file-0a" class="file" type="file" name="pr_logo">
                                                 </div>
                                             </div>
                                         </div>
@@ -201,7 +209,48 @@
                         @include('partner.ps.upload-foto-usaha')
                     </div>
                     <div class="tab-pane fade" id="tnc" role="tabpanel" aria-labelledby="nav-profile-tab" aria-expanded="false">
-                        @include('partner.ps.tnc')
+                        <div class="card">
+                            <form role="form" action="{{ route('kebaya.tnc.submit') }}" method="post" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="header">
+                                     <h4 class="title">Syarat dan Ketentuan</h4>
+                                 </div>
+                                 <div class="content">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            @foreach($tnc as $key => $data)
+                                            <p>{{$key+1}}. {{$data->tnc_desc}} 
+                                                <a href="{{route('kebaya.delete.tnc', ['id' => $data->id])}}" class="btn btn-info btn-sm pull-right">Delete</a>
+                                            </p> 
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Silahkan isi Syarat dan Ketentuan</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-info addService">Add More</button>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" name="tnc[]" placeholder="Syarat dan Ketentuan">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="content">
+                                                <button type="submit" class="btn btn-block btn-info pull-right">Submit</button>
+                                                <div class="clearfix"></div> 
+                                            </div>  
+                                        </div>
+                                      </div>
+                                 </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="ukuran" role="tabpanel" aria-labelledby="nav-profile-tab" aria-expanded="false">
                         @include('partner.kebaya.panduan-ukuran')

@@ -54,7 +54,7 @@ class AdminController extends Controller
                             ->join('partner', 'kebaya_product.partner_id', '=', 'partner.user_id')
                             ->join('users', 'users.id', '=', 'partner.user_id')
                             ->where('kebaya_booking.booking_status', 'un_approved')
-                            ->select('kebaya_product.name','kebaya_product.set','kebaya_product.size','partner.pr_name','partner.pr_name','kebaya_booking.start_date', 'kebaya_booking.end_date','kebaya_booking.booking_id','kebaya_booking.package_id','kebaya_booking.booking_status', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'users.phone_number', 'users.email')
+                            ->select('kebaya_product.name','kebaya_product.set','kebaya_product.size','partner.pr_name','partner.pr_name','kebaya_booking.start_date', 'kebaya_booking.end_date','kebaya_booking.booking_id','kebaya_booking.package_id','kebaya_booking.booking_status', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'kebaya_booking.deposit', 'users.phone_number', 'users.email')
                             ->get();
         // dd($booking_unapprove);
         $booking_unconfirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.booking_status', 'paid')->get();
@@ -67,8 +67,7 @@ class AdminController extends Controller
         $total_booking_confirmed = Booking::where('booking_status', 'confirmed')->count();
         $total_booking = Booking::count();
 
-        $deposito = '100000';
-        return view('superadmin.kebaya.booking-list', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed', 'deposito'));
+        return view('superadmin.kebaya.booking-list', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed'));
     }
 
     public function approveBooking(Request $request)
@@ -309,8 +308,7 @@ class AdminController extends Controller
 
         $booking_id = $request->id;
         $booking = KebayaBooking::where('booking_id', $booking_id)->get();
-        $deposito = '100000';
-        return view('superadmin.kebaya.show-bukti', compact('booking', 'deposito'));
+        return view('superadmin.kebaya.show-bukti', compact('booking'));
     }
 
     public function partnerList()

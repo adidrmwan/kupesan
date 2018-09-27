@@ -19,10 +19,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12  user-detail">
                                         
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                      </div>
-                                    </div>
+                                    
                                     <br>
                                     <div class="row">
                                       <div class="col-md-12">
@@ -36,24 +33,20 @@
                                               <div class="col-md-12">
                                                 <table class="table">
                                                   <tr>
-                                                    <td>Tanggal Pesan</td>
-                                                    <td>{{ date('d F Y', strtotime($data->start_date)) }}</td>
+                                                    <td>Tanggal Sewa</td>
+                                                    <td>{{ date('d F Y', strtotime($data->start_date)) }} - {{ date('d F Y', strtotime($data->end_date)) }}</td>
                                                   </tr>
                                                   <tr>
-                                                    <td>Tanggal Pengembalian</td>
-                                                    <td>{{ date('d F Y', strtotime($data->end_date)) }}</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Tipe Paket</td>
-                                                    <td>{{$data->category_name}}</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Set Paket</td>
-                                                    <td>{{$data->set}}</td>
+                                                    <td>Tipe / Set Paket</td>
+                                                    <td>{{$data->category_name}} / {{$data->set}}</td>
                                                   </tr>
                                                   <tr>
                                                     <td>Ukuran</td>
                                                     <td>{{$data->size}}</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Kuantitas</td>
+                                                    <td>{{$data->kuantitas}} pcs</td>
                                                   </tr>
                                                 </table>
                                               </div>
@@ -74,19 +67,28 @@
                                                   </tr>
                                                   <tr>
                                                     <td>Deposit <b style="color: red;">*</b></td>
-                                                    <td>Rp. {{number_format($deposit, 0, ',', '.')}}</td>
+                                                    <td>Rp. {{number_format($data->deposit, 0, ',', '.')}}</td>
                                                   </tr>
                                                   <tr>
                                                     <th>Total</th>
-                                                    <th>Rp. {{number_format($data->booking_total + $deposit, 0, ',', '.')}}</th>
+                                                    <th>Rp. {{number_format($data->booking_total + $data->deposit, 0, ',', '.')}}</th>
                                                   </tr>
                                                 </table>
                                               </div>
                                             </div>
                                             @endforeach
                                       </div>
+
                                     </div>         
                                     </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="alert alert-warning">
+                                      <b>Cek Ketersediaan</b> akan dilakukan pada <b>Jam Operasional {{$partner->pr_name}}</b> dari Pukul <b>{{$partner->open_hour}}:00 - {{$partner->close_hour - 1}}:00 WIB</b>
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>

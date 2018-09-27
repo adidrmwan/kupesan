@@ -4,7 +4,7 @@
 <div class="content">
     <div class="container-fluid">   
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card">
                   <form role="form" action="{{ route('kebaya.off-booking.step4.submit') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   {{ csrf_field() }}
@@ -32,24 +32,20 @@
                                       <div class="col-md-12">
                                         <table class="table">
                                           <tr>
-                                            <td>Tanggal Pesanan</td>
-                                            <td>{{ date('d F Y', strtotime($data->start_date)) }}</td>
+                                            <td>Tanggal Sewa</td>
+                                            <td>{{ date('d F Y', strtotime($data->start_date)) }} - {{ date('d F Y', strtotime($data->end_date)) }}</td>
                                           </tr>
                                           <tr>
-                                            <td>Tanggal Pengembalian</td>
-                                            <td>{{ date('d F Y', strtotime($data->end_date)) }}</td>
-                                          </tr>
-                                          <tr>
-                                            <td>Tipe Paket</td>
-                                            <td>{{$data->category_name}}</td>
-                                          </tr>
-                                          <tr>
-                                            <td>Set Paket</td>
-                                            <td>{{$data->set}}</td>
+                                            <td>Tipe / Set Paket</td>
+                                            <td>{{$data->category_name}} / {{$data->set}}</td>
                                           </tr>
                                           <tr>
                                             <td>Ukuran</td>
                                             <td>{{$data->size}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Kuantitas</td>
+                                            <td>{{$data->kuantitas}} Barang</td>
                                           </tr>
                                         </table>
                                       </div>
@@ -69,7 +65,7 @@
                                             <td>Rp. {{number_format($data->booking_total, 0, ',', '.')}}</td>
                                           </tr>
                                           <tr>
-                                            <td>Deposit <b style="color: red;">*</b></td>
+                                            <td>Deposit</td>
                                             <td>Rp. {{number_format($deposit, 0, ',', '.')}}</td>
                                           </tr>
                                           <tr>
@@ -87,7 +83,7 @@
                                     <small>Dengan menekan tombol dibawah, berarti Anda sudah yakin dengan pesanan Anda.</small>
                                     <br>
                                     <input type="text" name="booking_id" value="{{$booking_id}}" hidden="">
-                                    <button type="submit" class="btn btn-block btn-info pull-right">Konfirmasi Pesanan</button> 
+                                    <button type="submit" class="btn btn-block btn-info pull-right" onclick="return confirm('Are you sure want to confirm this booking?')">Konfirmasi Pesanan</button> 
                                   </div>
                                 </div> 
                             </div>   
