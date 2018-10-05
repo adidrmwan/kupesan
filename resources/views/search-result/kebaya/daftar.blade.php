@@ -51,10 +51,13 @@
                                             <div class="form-group" >
                                                 <select  class="form-control" name="type" required>
                                                     <option selected value="All_size">Semua Ukuran</option>
-                                                    <option value="S">Setelan</option>
-                                                    <option value="M">Atasan</option>
-                                                    <option value="L">Bawahan</option>
-                                                    <option value="XL">Setelan</option>
+                                                    <option value="XS">XS</option>
+                                                    <option value="S">S</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
+                                                    <option value="XxXL">XxXL</option>
                                                 </select>
                                             </div>             
                                         </div>     
@@ -69,6 +72,19 @@
                                                     <option value="Setelan">Setelan</option>
                                                     <option value="Atasan">Atasan</option>
                                                     <option value="Bawahan">Bawahan</option>
+                                                </select>
+                                            </div>             
+                                        </div>    
+                                    </div>
+                                    <hr>
+                                    <h3 style="margin-bottom: 20px;">Filter Pria/Wanita</h3>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="form-group" >
+                                                <select  class="form-control" name="type" required>
+                                                    <option selected value="All_gender">Semua</option>
+                                                    <option value="Pria">Pria</option>
+                                                    <option value="Wanita">Wanita</option>
                                                 </select>
                                             </div>             
                                         </div>    
@@ -109,6 +125,11 @@
                         <h4><b><span style="color: #EA410C;">Semua Tema</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h4> 
                         @else
                         <h4><b>Tema <span style="color: #EA410C;">{{$tema->tema_name}}</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h4> 
+                        @endif
+                        @if(Auth::check())
+                        <small>Harga yang tercantum adalah harga minimum paket.</small> 
+                        @else
+                        <small>Harga hanya dapat dilhat jika sudah melakukan login.</small> 
                         @endif
                     </div>
                 </div>

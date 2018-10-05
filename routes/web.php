@@ -33,12 +33,16 @@ Route::get('/', function () {
     return redirect()->intended(route('home'));      
 })->name('index');
 
-// Search at Home
+//Detail Partner (Button View More)
+Route::get('ps/detail/partner', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+Route::get('kby/detail/partner', 'StudioController@detailKebaya')->name('detail.kebaya');
+
+//Search at Home by tag & kota
 Route::post('/ps/search', 'SearchController@searchFotostudio')->name('search.fotostudio');
-Route::get('/ps/detail', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 Route::post('/kby/search', 'SearchController@searchKebaya')->name('search.kebaya');
-Route::get('/kby/detail', 'StudioController@detailKebaya')->name('detail.kebaya');
-Route::post('/search/data', 'SearchController@searchData')->name('search.data');
+
+//Search at navigation box
+Route::post('/search', 'SearchController@searchData')->name('search.data');
 
 // Route untuk user yang admin
 Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superadmin']], function(){

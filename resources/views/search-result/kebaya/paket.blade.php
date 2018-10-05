@@ -26,7 +26,13 @@
             <p style="text-align: center; color: white;">
                 <b>Set :</b> {{$data->set}} <br>
                 <b>Size :</b> {{$data->size}}   <br>
-                <b>Quantity :</b> {{$data->quantity}}<br>            </p>
+                <b>Stock :</b> {{$data->quantity}}<br>
+                @if($data->price_dryclean == '0')
+                <b>Dryclean :</b> Exclude<br>
+                @elseif($data->price_dryclean != '0')
+                <b>Dryclean :</b> Include<br>
+                @endif
+            </p>
         </div>
     </div>
     
@@ -39,7 +45,7 @@
         <ul class="list-unstyled list-inline offer-price-1">
             <li class="price">{{$data->name}}</li><br>
             @if(Auth::check())
-            <li >Rp {{ number_format($data->price, 0, ',', '.') }}</li><br>
+            <li >Rp {{ number_format($data->price, 0, ',', '.') }} / Paket</li><br>
             @endif
             <!-- <li >Rp {{$data->pkg_overtime_them}} / Overtime</li><br> -->
             <li>
@@ -49,7 +55,7 @@
                 </a>
             </li>
             <li >
-                <a href="{{route('detail.fotostudio', ['id' => $data->user_id])}}">
+                <a href="{{route('detail.kebaya', ['id' => $data->partner_id])}}">
                     <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 6px;"><span style="color: white; text-decoration: none;">View More</span>
                     </button>
                 </a>
