@@ -7,10 +7,10 @@
       <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
         <div class="card">
           <div class="header">
-            <h4 class="title">Add Product</h4>
+            <h4 class="title">Add Package</h4>
           </div>
           <div class="content">
-            <form role="form" action="{{route('submit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form role="form" action="{{route('kebaya-package.store')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
             {{ csrf_field() }}
             <div class="row">
               <div class="col-lg-7">
@@ -81,28 +81,61 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-12">
-                      <div class="alert alert-warning alert-dismissible">
-                        <h5>Informasi Biaya</h5>
-                        <b>Biaya Sewa</b> berlaku untuk 3 hari penyewaan. <br>
-                        <b>Deposit</b> yang harus dibayar oleh penyewa. <br>
-                        <b>Biaya Dryclean</b> dicantumkan jika dibutuhkan. 
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Pria / Wanita <b style="color: red;">*</b></label>
+                        <select  class="form-control" id="inlineFormCustomSelectPref" name="priawanita" required>
+                          <option selected value="">Pilih Pria / Wanita</option>
+                          <option value="Pria">Pria</option>
+                          <option value="Wanita">Wanita</option>
+                        </select>
+                        <div class="invalid-feedback">Wajib diisi.</div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label>Biaya Sewa (Per 3 Hari) <b style="color: red;">*</b></label>
-                        <div class="input-group mb-4">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                      <div class="col-lg-12">
+                          <button type="button" class="btn btn-info addBiayaSewa"><i class="fa fa-plus-square"></i> Tambah Biaya Sewa</button>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <label>Biaya Sewa</label>
+                            </div>
                           </div>
-                          <input class="form-control number"  placeholder="Biaya Sewa" min="1000" name="price" required>
-                          <div class="invalid-feedback">Wajib diisi.</div>
-                        </div>
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label>Durasi Sewa <b style="color: red;">*</b></label>
+                                <select  class="form-control" id="inlineFormCustomSelectPref" name="durasiSewa[]" required>
+                                    <option selected value="">Pilih Durasi Sewa</option>
+                                    <option value="3">3 Hari</option>
+                                    <option value="5">5 Hari</option>
+                                    <option value="7">1 Minggu</option>
+                                    <option value="14">2 Minggu</option>
+                                    <option value="21">3 Minggu</option>
+                                    <option value="30">1 Bulan (30 Hari)</option>
+                                </select>
+                                <div class="invalid-feedback">Wajib diisi.</div>
+                              </div>
+                            </div>
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                      <label>Harga (Rp)<b style="color: red;">*</b></label>
+                                      <input class="form-control number" placeholder="Harga (Rp)" min="1000" name="biayaSewa[]" required="">
+                                      <div class="invalid-feedback">Wajib diisi.</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="alert alert-warning alert-dismissible">
+                        <h5>Informasi Biaya</h5>
+                        <b>Biaya Dryclean</b> dicantumkan jika penyewaan produk termasuk dry clean. 
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label>Deposit <b style="color: red;">*</b></label>
@@ -115,8 +148,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label>Biaya Dryclean (Optional)</label>
@@ -124,13 +155,15 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Rp</span>
                           </div>
-                          <input class="form-control number" placeholder="Biaya Dryclean" min="1000" name="price_dryclean">
+                          <input class="form-control number" placeholder="Biaya Dryclean (Rp)" min="1000" name="price_dryclean">
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label>Jumlah Produk Tersedia <b style="color: red;">*</b></label>
+                        <label>Jumlah Produk Tersedia (Stok Produk)<b style="color: red;">*</b></label>
                         <div class="input-group mb-4">
                           <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">@</span>
@@ -159,6 +192,7 @@
                         <label>Ukuran <b style="color: red;">*</b></label>
                         <select  class="form-control" id="inlineFormCustomSelectPref" name="size" required>
                             <option selected value="">Pilih Ukuran</option>
+                            <option value="XS">XS</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
@@ -173,10 +207,10 @@
 
                   <div class="row">
                       <div class="col-lg-12">
-                          <button type="button" class="btn btn-info addUkuran">Add More</button>
+                          <button type="button" class="btn btn-info addUkuran"><i class="fa fa-plus-square"></i> Tambah Detail Ukuran</button>
                           <div class="row">
                             <div class="col-lg-12">
-                              <label>Detail Ukuran Produk</label>
+                              <label>Detail Ukuran</label>
                             </div>
                           </div>
                           <div class="row">
@@ -298,6 +332,12 @@
       placeholder: "Pilih Tema Kebaya",
       width: "100%"
     });
+</script>
+<script type="text/javascript">
+$(document).on('click', '.addBiayaSewa', function(){
+    var html = '<div class="row"><div class="col-lg-6"><div class="form-group"><select  class="form-control" id="inlineFormCustomSelectPref" name="durasiSewa[]" required><option selected value="">Pilih Durasi Sewa</option><option value="3">3 Hari</option><option value="5">5 Hari</option><option value="7">1 Minggu</option><option value="14">2 Minggu</option><option value="21">3 Minggu</option><option value="30">1 Bulan (30 Hari)</option></select><div class="invalid-feedback">Wajib diisi.</div></div></div><div class="col-lg-6"><div class="form-group"><input type="number" class="form-control" name="biayaSewa[]" placeholder="Harga (Rp)" required=""><div class="invalid-feedback">Wajib diisi.</div></div></div></div>';
+  $(this).parent().append(html);
+});
 </script>
 
 <script type="text/javascript">

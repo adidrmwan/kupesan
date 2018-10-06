@@ -204,7 +204,6 @@ class SearchController extends Controller
 
             $cek_kebaya_data = KebayaProduct::where('name', 'LIKE', "%{$request->input('word')}%")->where('status', '1')->first();
 
-
             // $cek_tag = PartnerTag::join('ps_package', 'ps_package.id', '=', 'ps_package_tag.package_id')->join('ps_tag', 'ps_tag.tag_id', '=', 'ps_package_tag.tag_id')->where('ps_tag.tag_title', 'LIKE', "%{$request->input('word')}%")->where('ps_package.status', '1')->first();
             $cek_paket = PSPkg::where('pkg_name_them', 'LIKE', "%{$request->input('word')}%")
                         ->where('status', '1')
@@ -221,7 +220,7 @@ class SearchController extends Controller
                 return view('errors.search-not-found');
             }
             else {
-                return view('search-result', compact('cek_studio_data', 'cek_paket', 'cek_tag', 'studio_data', 'allThemes', 'allThemes2', 'word', 'kebaya_data'));
+                return view('search-result', compact('cek_studio_data', 'cek_paket', 'cek_tag', 'studio_data', 'allThemes', 'allThemes2', 'word', 'kebaya_data', 'cek_kebaya_data'));
             }
         }
         return view('home');

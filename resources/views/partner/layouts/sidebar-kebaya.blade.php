@@ -42,19 +42,19 @@
 </li> -->
 <li>
     <a>
-        <i class="pe-7s-photo"> </i> <p> Product</p> 
+        <i class="pe-7s-photo"> </i> <p> Package</p> 
     </a>
     <ul class="list-unstyled" id="pageSubmenu">
         <li style="margin-left: 35px;">
-            <a href="{{ route('add.item') }}">
+            <a href="{{ route('kebaya-package.create') }}">
                 <i class="pe-7s-plus"></i>
-                <p> Add Product </p>
+                <p> Add Package </p>
             </a>
         </li>
         <li style="margin-left: 35px;">
-            <a href="{{ route('list.item') }}">
+            <a href="{{ route('kebaya-package.index') }}">
                 <i class="pe-7s-note2"></i>
-                <p> List Product </p>
+                <p> List Package </p>
             </a>
         </li>
     </ul>

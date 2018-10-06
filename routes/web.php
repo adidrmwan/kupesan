@@ -163,16 +163,15 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/ps/package/duration/delete', 'PackageController@deleteDurasi')->name('durasi.delete');
 
     // Kebaya
+    Route::resource('kebaya-package', 'KebayaPackageController');
+    Route::get('kebaya-package/biaya/delete', 'KebayaPackageController@deleteBiayaSewa')->name('kebaya.delete.biaya');
+    Route::get('/kebaya-package/action/non-active', 'KebayaPackageController@setNonActive')->name('set.nonactive');
+    Route::get('/kebaya-package/action/active', 'KebayaPackageController@setActive')->name('set.active');
+
     Route::get('/profile/4', 'KebayaController@profile')->name('kebaya.profile');
     Route::post('/profile/4', 'KebayaController@submitEditProfile')->name('kebaya.profile.submit');
     Route::post('/profile/tnc/4', 'KebayaController@updateTNC')->name('kebaya.tnc.submit');
     Route::get('/profile/tnc/delete', 'KebayaController@deleteTNC')->name('kebaya.delete.tnc');
-    Route::get('/item/add', 'KebayaController@showAddItem')->name('add.item');
-    Route::post('/item/add', 'KebayaController@addItem')->name('submit.item');
-    Route::get('/item/list', 'KebayaController@listItem')->name('list.item');
-    Route::get('/item/delete', 'KebayaController@deleteItem')->name('delete.item');
-    Route::get('/item/edit', 'KebayaController@showEditItem')->name('edit.item');
-    Route::post('/item/edit', 'KebayaController@editItem')->name('submit.edit.item');
     Route::get('/booking/offline/4/1', 'KebayaController@showStep1')->name('kebaya.off-booking');
     Route::get('/booking/offline/4/2', 'KebayaController@showStep2')->name('kebaya.off-booking.step2');
     Route::post('/booking/offline/4/2', 'KebayaController@submitStep2')->name('kebaya.off-booking.step2.submit');
