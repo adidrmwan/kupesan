@@ -27,18 +27,18 @@
                         
                           <div class="feature-slider-nav">
                               <div>
-                                    @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
-                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
-                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
-                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
-                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.JPG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
-                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.JPEG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
-                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.PNG')  }}" alt= "Package Image" />
+                                    @if(File::exists(public_path("img_pkg/".$data->image2.".jpg")))
+                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.jpg')  }}" alt= "Package Image" />
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".jpeg")))
+                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.jpeg')  }}" alt= "Package Image" />
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".png")))
+                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.png')  }}" alt= "Package Image" />
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".JPG")))
+                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.JPG')  }}" alt= "Package Image" />
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".JPEG")))
+                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.JPEG')  }}" alt= "Package Image" />
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".PNG")))
+                                    <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.PNG')  }}" alt= "Package Image" />
                                     @endif
                               </div>
                               <div>
@@ -111,7 +111,7 @@
                                         <td class="pull-right">{{$data->size}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Biaya Sewa / 3 hari</td>
+                                        <td class="pull-left">Biaya Sewa</td>
                                         @if(Auth::check())
                                         <td class="pull-right">Rp {{number_format($data->price, 0,',','.')}}</td>
                                         @else
@@ -123,7 +123,15 @@
                                     </tr>
                                     <tr>
                                         <td class="pull-left">Deposit</td>
-                                        <td class="pull-right">Rp {{number_format(100000, 0,',','.')}}</td>
+                                        <td class="pull-right">Rp {{number_format($data->deposit, 0,',','.')}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pull-left">Dry Clean</td>
+                                        @if($data->price_dryclean == '0')
+                                        <td class="pull-right">Not Include</td>
+                                        @else
+                                        <td class="pull-right">Rp {{number_format($data->price_dryclean, 0,',','.')}}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="pull-left">Stock</td>

@@ -21,7 +21,7 @@ class StudioController extends Controller
         $booking_date = $request->booking_date;
     	$detail = Partner::where('user_id', $user_id)->get();
         $partner = Partner::where('user_id', $user_id)->first();
-
+        
     	$carte = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'A La Carte')->get();
     	$spack = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Package')->get();
     	$studio = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Studio')->get();
@@ -41,9 +41,9 @@ class StudioController extends Controller
         $detail = Partner::where('user_id', $user_id)->get();
         $partner = Partner::where('user_id', $user_id)->first();
 
-        $setelan = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'A La Carte')->get();
-        $atasan = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Package')->get();
-        $bawahan = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Studio')->get();
+        $carte = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'A La Carte')->get();
+        $spack = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Package')->get();
+        $studio = PSPkg::where('user_id', $user_id)->where('pkg_category_them','=', 'Special Studio')->get();
         $album = Album::where('user_id', $user_id)->get();
         $provinsi = Provinces::where('id', $partner->pr_prov)->first();
         $kota = Regencies::where('id', $partner->pr_kota)->first();

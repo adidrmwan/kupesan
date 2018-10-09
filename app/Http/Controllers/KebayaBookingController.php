@@ -369,9 +369,16 @@ class KebayaBookingController extends Controller
 
     public function uploadBukti(Request $request)
     {   
+        $mytime = Carbon::now();
+        $time = $mytime->toDateTimeString();        
+        $time_array = explode(' ', $time);
+        $now_date = $time_array[0];
+        $now_time = $time_array[1];
+        dd($time);
         $bid = $request->bid;
         $booking = KebayaBooking::find($bid);
         $booking->bukti_transfer = 'Kebaya_' . $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
+
         $booking->booking_status = 'paid';
         $booking->save();
 

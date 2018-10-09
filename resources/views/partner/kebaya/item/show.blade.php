@@ -7,11 +7,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Edit Product</h4>
+                        <h4 class="title">Edit Package</h4>
                     </div>
                     <div class="content">
-                        <form role="form" action="{{route('submit.edit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form role="form" action="{{route('kebaya-package.update', ['id' => $package_id])}}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                             {{ csrf_field() }}
+                            {{ method_field('PATCH') }}
                             @foreach($package as $data)
                             <div class="row">
                               <div class="col-md-12 col-xs-12 col-lg-7">
@@ -172,15 +173,69 @@
                                 </div>
 
                                 <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="form-group">
+                                      <label>Pria / Wanita <b style="color: red;">*</b></label>
+                                      <select  class="form-control" id="inlineFormCustomSelectPref" name="priawanita" required>
+                                        <option selected value="{{$data->priawanita}}">{{$data->priawanita}}</option>
+                                        @if($data->priawanita == 'Pria')
+                                        <option value="Wanita">Wanita</option>
+                                        @elseif($data->priawanita == 'Wanita')
+                                        <option value="Pria">Pria</option>
+                                        @endif
+                                      </select>
+                                      <div class="invalid-feedback">Wajib diisi.</div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                          <div class="col-lg-12">
+                                            <label>Biaya Sewa</label>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-lg-12">
+                                            <table class="table table-responsive">
+                                              <thead>
+                                                  <th>Durasi Sewa</th>
+                                                  <th>Biaya Sewa</th>
+                                                  <th>Action</th>
+                                              </thead>
+                                              @foreach($biayaSewa as $key => $value)
+                                              <tr>
+                                                  @if($value->kebaya_durasi_hari < '7')
+                                                  <td>{{$value->kebaya_durasi_hari}} Hari</td>
+                                                  @elseif($value->kebaya_durasi_hari == '7')
+                                                  <td>1 Minggu</td>
+                                                  @elseif($value->kebaya_durasi_hari == '14')
+                                                  <td>2 Minggu</td>
+                                                  @elseif($value->kebaya_durasi_hari == '21')
+                                                  <td>3 Minggu</td>
+                                                  @elseif($value->kebaya_durasi_hari == '30')
+                                                  <td>1 Bulan</td>
+                                                  @endif
+                                                  <td>Rp {{number_format($value->kebaya_biaya_sewa,0,',','.')}}</td>
+                                                  <td><a href="{{route('kebaya.delete.biaya', ['id' => $value->id_kebaya_biaya_sewa])}}" class="btn btn-info btn-sm pull-right" onclick="return confirm('Are you sure want to Delete?')">Delete</a></td>
+                                              </tr>
+                                              @endforeach
+                                          </table>
+                                          </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info addBiayaSewa"><i class="fa fa-plus-square"></i> Tambah Biaya Sewa</button>
+                                    </div>
+                                </div>
+                                <div class="row">
                                   <div class="col-lg-6">
                                     <div class="form-group">
-                                      <label>Biaya Sewa (Per 3 Hari) <b style="color: red;">*</b></label>
+                                      <label>Biaya Dryclean (Optional)</label>
                                       <div class="input-group mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="basic-addon1">Rp</span>
                                         </div>
-                                        <input class="form-control number"  placeholder="Biaya Sewa" min="1000" name="price" value="{{number_format($data->price,0,',','.')}}" required>
-                                        <div class="invalid-feedback">Wajib diisi.</div>
+                                        <input class="form-control number" placeholder="Biaya Dryclean" min="1000" name="price_dryclean" value="{{number_format($data->price_dryclean,0,',','.')}}">
                                       </div>
                                     </div>
                                   </div>
@@ -198,17 +253,6 @@
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-lg-6">
-                                    <div class="form-group">
-                                      <label>Biaya Dryclean (Optional)</label>
-                                      <div class="input-group mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="basic-addon1">Rp</span>
-                                        </div>
-                                        <input class="form-control number" placeholder="Biaya Dryclean" min="1000" name="price_dryclean" value="{{number_format($data->price_dryclean,0,',','.')}}">
-                                      </div>
-                                    </div>
-                                  </div>
                                   <div class="col-lg-6">
                                     <div class="form-group">
                                       <label>Jumlah Produk Tersedia <b style="color: red;">*</b></label>
@@ -270,7 +314,7 @@
                                               <tr>
                                                   <td>{{$value->bagian}}</td>
                                                   <td>{{$value->cm}} cm</td>
-                                                  <td><a href="{{route('kebaya.delete.pu', ['id' => $value->id])}}" class="btn btn-info btn-sm pull-right">Delete</a></td>
+                                                  <td><a href="{{route('kebaya.delete.pu', ['id' => $value->id])}}" class="btn btn-info btn-sm pull-right" onclick="return confirm('Are you sure want to Delete?')">Delete</a></td>
                                               </tr>
                                               @endforeach
                                           </table>
@@ -349,6 +393,13 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+$(document).on('click', '.addBiayaSewa', function(){
+    var html = '<div class="row"><div class="col-lg-6"><div class="form-group"><select  class="form-control" id="inlineFormCustomSelectPref" name="durasiSewa[]" required><option selected value="">Pilih Durasi Sewa</option><option value="3">3 Hari</option><option value="5">5 Hari</option><option value="7">1 Minggu</option><option value="14">2 Minggu</option><option value="21">3 Minggu</option><option value="30">1 Bulan (30 Hari)</option></select><div class="invalid-feedback">Wajib diisi.</div></div></div><div class="col-lg-6"><div class="form-group"><input type="number" class="form-control" name="biayaSewa[]" placeholder="Harga (Rp)" required=""><div class="invalid-feedback">Wajib diisi.</div></div></div></div>';
+  $(this).parent().append(html);
+});
+</script>
+
 <script type="text/javascript">
 $(document).on('click', '.addUkuran', function(){
     var html = '<div class="row"><div class="col-lg-8"><div class="form-group"><select  class="form-control" id="inlineFormCustomSelectPref" name="bagian[]" required><option selected value="">Pilih Bagian</option><option value="Panjang Tangan">Panjang Tangan</option><option value="Panjang Bahu">Panjang Bahu (dari leher ke lengan)</option><option value="Panjang Baju">Panjang Baju (dari atas ke bawah)</option><option value="Panjang Lengan">Panjang Lengan</option><option value="Panjang Lengan Siku">Panjang Lengan Siku</option><option value="Lingkar Badan">Lingkar Badan</option><option value="Lingkar Pinggang">Lingkar Pinggang</option><option value="Lingkar Pinggul">Lingkar Pinggul</option><option value="Lingkar Ketiak">Lingkar Ketiak</option><option value="Lingkar Dada">Lingkar Dada</option><option value="Lingkar Leher">Lingkar Leher</option><option value="Lingkar Siku">Lingkar Siku</option><option value="Lingkar Pergelangan Tangan">Lingkar Pergelangan Tangan</option><option value="Lebar Pundak">Lebar Pundak (dari kanan ke kiri)</option><option value="Lebar Punggung">Lebar Punggung</option></select><div class="invalid-feedback">Wajib diisi.</div></div></div><div class="col-lg-4"><div class="form-group"><input type="text" class="form-control" name="ukuran[]" placeholder="Ukuran (cm)" required=""><div class="invalid-feedback">Wajib diisi.</div></div></div></div>';
