@@ -26,6 +26,7 @@ class KebayaBooking extends Model
         'booking_at',
         'kode_booking',
         'bukti_transfer',
+        'upload_bukti_at',
         'alamat',
         'deposit',
     ];

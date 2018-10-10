@@ -25,6 +25,7 @@ use App\KebayaProduct;
 use App\KebayaUkuran;
 use App\KebayaCheck;
 use App\KebayaBooking;
+use App\KebayaBookingAddress;
 use App\KebayaBiayaSewa;
 use DateTime;
 class KebayaBookingController extends Controller
@@ -171,12 +172,15 @@ class KebayaBookingController extends Controller
                 }    
         }
         $quantity2 = $package2->quantity - $kuantitas;
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
 
         if ($kuantitas == $quantity2) {
             return redirect()->route('kebaya.step2', ['package_id' => $package_id])->with('warning', 'Stok kebaya sudah tidak tersedia.');
         }
 
-        return view('online-booking.kebaya.step3', compact('partner', 'quantity2', 'partner_id', 'package_id', 'package', 'package2', 'booking', 'booking_id', 'pu', 'provinces'));    
+        return view('online-booking.kebaya.step3', compact('partner', 'quantity2', 'partner_id', 'package_id', 'package', 'package2', 'booking', 'booking_id', 'pu', 'provinces', 'provinsi', 'kota', 'kecamatan'));    
 
     }
 
@@ -187,13 +191,16 @@ class KebayaBookingController extends Controller
         $user_email = Auth::user()->email;
         $user_nohp = Auth::user()->phone_number;
 
-        $booking = KebayaBooking::find($request->booking_id);
+        $booking_id = $request->booking_id;
+        $booking = KebayaBooking::find($booking_id);
 
-        $package = KebayaProduct::where('id', $booking->package_id)->get();
-        $package2 = KebayaProduct::where('id', $booking->package_id)->first();
-
-        $package_id = $package2->id;
-        $booking_id = $booking->booking_id;
+        $package_id = $booking->package_id;
+        $package = KebayaProduct::where('id', $package_id)->get();
+        $package2 = KebayaProduct::where('id', $package_id)->first();
+        $partner = Partner::where('user_id', $package2->partner_id)->first();
+        $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+        $kota = Regencies::where('id', $partner->pr_kota)->first();
+        $kecamatan = Districts::where('id', $partner->pr_kec)->first();
 
         $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
         $booking_end_date = date('Y-m-d', strtotime("$booking->end_date"));
@@ -206,7 +213,6 @@ class KebayaBookingController extends Controller
         $days = $interval->format('%a');
         $total = $package2->price * $quantity;
         $deposit = $package2->deposit;
-        
         $max_quantity = $package2->quantity;
 
         $kebaya_booking_check = KebayaCheck::where('package_id', $package_id)->whereBetween('booking_date', [$booking_start_date, $booking_end_date])->get();
@@ -235,6 +241,32 @@ class KebayaBookingController extends Controller
             $booking->alamat = $request->alamat;
             $booking->save();
 
+            if($request->lokasiAmbil == 'partnerku') {
+                $alamat_booking = new KebayaBookingAddress();
+                $alamat_booking->user_id = $booking->user_id;
+                $alamat_booking->booking_id = $booking->booking_id;
+                $alamat_booking->pr_addr = $partner->pr_addr;
+                $alamat_booking->pr_prov = $partner->pr_prov;
+                $alamat_booking->pr_kota = $partner->pr_kota;
+                $alamat_booking->pr_kel = $partner->pr_kel;
+                $alamat_booking->pr_kec = $partner->pr_kec;
+                $alamat_booking->pr_postal_code = $partner->pr_postal_code;
+                $alamat_booking->flag = $request->lokasiAmbil;
+                $alamat_booking->save();
+            } elseif ($request->lokasiAmbil == 'userku') {
+                $alamat_booking = new KebayaBookingAddress();
+                $alamat_booking->user_id = $booking->user_id;
+                $alamat_booking->booking_id = $booking->booking_id;
+                $alamat_booking->pr_addr = $request->pr_addr;
+                $alamat_booking->pr_prov = $request->pr_prov;
+                $alamat_booking->pr_kota = $request->pr_kota;
+                $alamat_booking->pr_kel = $request->pr_kel;
+                $alamat_booking->pr_kec = $request->pr_kec;
+                $alamat_booking->pr_postal_code = $request->pr_postal_code;
+                $alamat_booking->flag = $request->lokasiAmbil;
+                $alamat_booking->save();
+            }
+
         }
 
         $detail_pesanan = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
@@ -243,10 +275,7 @@ class KebayaBookingController extends Controller
                             ->select('kebaya_category.category_name', 'kebaya_product.*', 'kebaya_booking.*', 'kebaya_booking.quantity as kuantitas')
                             ->get();
 
-
-        $partner = Partner::where('user_id', $package2->partner_id)->first();
-
-        return view('online-booking.kebaya.step4', ['partner' => $partner], compact('package_id', 'package', 'booking', 'booking_id', 'detail_pesanan')); 
+        return view('online-booking.kebaya.step4', ['partner' => $partner], compact('package_id', 'package', 'booking', 'booking_id', 'detail_pesanan', 'provinsi', 'kota', 'kecamatan')); 
     }
 
     public function submitStep4(Request $request)
@@ -269,9 +298,9 @@ class KebayaBookingController extends Controller
 
         DB::table('booking_activations_kebaya')->insert(['id_user'=>$user['id'], 'booking_id'=>$book['booking_id'], 'token'=>$user['link']]);
 
-        Mail::send('emails.kebaya-booking-notification', $user, function($message) use ($user){
+        Mail::send('emails.booking-notification.kebaya', $user, function($message) use ($user){
           $message->to($user['email']);
-          $message->subject('Kupesan.id - Booking Notification');
+          $message->subject('Kupesan.id -| Notifikasi Pesanan Pelanggan');
         });
 
         return view('online-booking.kebaya.step5', compact('partner', 'package'));
@@ -281,18 +310,22 @@ class KebayaBookingController extends Controller
     {
         if (Auth::check()) {
             $booking = KebayaBooking::find($request->bid);
-
+            $package_id = $booking->package_id;
+            $partner_id = $booking->partner_id;
             $bid = $booking->booking_id;
 
-            $package = KebayaProduct::where('id', $booking->package_id)->get();
-            // $partner = Partner::where('user_id', $package2->partner_id)->first();
+            $package = KebayaProduct::where('id', $package_id)->get();
+            $partner = Partner::where('user_id', $partner_id)->first();
+            $provinsi = Provinces::where('id', $partner->pr_prov)->first();
+            $kota = Regencies::where('id', $partner->pr_kota)->first();
+            $kecamatan = Districts::where('id', $partner->pr_kec)->first();
 
             $review = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
                 ->join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')
                 ->select('kebaya_category.category_name', 'kebaya_product.*', 'kebaya_booking.*', 'kebaya_booking.quantity as kuantitas')
                 ->where('booking_id', $bid)->get();
 
-            return view('online-booking.kebaya.step6', compact('bid', 'review', 'package','partner'));
+            return view('online-booking.kebaya.step6', compact('bid', 'review', 'package','partner', 'provinsi', 'kota', 'kecamatan'));
         }
 
         return redirect()->route('index');
@@ -340,15 +373,11 @@ class KebayaBookingController extends Controller
     public function uploadBukti(Request $request)
     {   
         $mytime = Carbon::now();
-        $time = $mytime->toDateTimeString();        
-        $time_array = explode(' ', $time);
-        $now_date = $time_array[0];
-        $now_time = $time_array[1];
-        dd($time);
+        $time = $mytime->toDateTimeString();    
         $bid = $request->bid;
         $booking = KebayaBooking::find($bid);
         $booking->bukti_transfer = 'Kebaya_' . $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
-
+        $booking->upload_bukti_at = $time;
         $booking->booking_status = 'paid';
         $booking->save();
 

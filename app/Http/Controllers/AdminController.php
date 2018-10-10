@@ -137,6 +137,18 @@ class AdminController extends Controller
     	$kode_booking = str_random(7);
         $booking = Booking::where('booking_id', $booking_id)->first();
         $booking->kode_booking = $kode_booking;
+        $booking->save();
+
+        $user = Booking::join('users', 'users.id', '=', 'booking.user_id')
+                ->join('ps_package', 'ps_package.id', '=', 'booking.package_id')
+                ->where('booking.booking_id', $booking_id)
+                ->first()->toArray();
+        
+        Mail::send('emails.kode-booking.kebaya', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id | Kode Booking ');
+        });
+        
         $booking->booking_status = 'confirmed';
         $booking->save();
 
@@ -270,9 +282,13 @@ class AdminController extends Controller
         $booking = KebayaBooking::find($booking_id);
         $kode_booking = '4x'.str_random(7);
         $booking->kode_booking = $kode_booking;
+        $booking->save();
 
         $user = KebayaBooking::join('users', 'users.id', '=', 'kebaya_booking.user_id')
+                ->join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                ->join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')
                 ->where('booking_id', $booking_id)
+                ->select('users.*', 'kebaya_booking.*', 'kebaya_product.*', 'kebaya_category.category_name', 'kebaya_booking.quantity as kuantitas_pesanan')
                 ->first()->toArray();
         
         Mail::send('emails.kode-booking.kebaya', $user, function($message) use ($user){

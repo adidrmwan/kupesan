@@ -165,6 +165,10 @@ class SearchController extends Controller
                             ->orderBy('price', 'asc')->get();
             }
         }
+
+        if(empty($allThemes[0])) {
+            return view('search-result.kebaya.notfound', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
+        }
         
         return view('search-result.kebaya.daftar', ['allThemes' => $allThemes], compact('tag_id', 'tema'));
     }

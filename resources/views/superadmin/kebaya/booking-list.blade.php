@@ -80,8 +80,8 @@
                 <li><a href="#sales-chart" data-toggle="tab">Confirmed <i class="glyphicon glyphicon-ok-circle"></i></a></li>
               </ul>
               <div class="tab-content no-padding">
-                <div class="tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                  <table id="example1" class="table table-bordered table-striped table-condensed">
+                <div class="tab-pane active" id="revenue-chart" class="table-responsive" style="position: relative; height: 300px;">
+                  <table id="example1" class="table table-bordered table-striped table-condensed ">
                     <thead>
                     <tr>
                       <th>No</th>
@@ -133,7 +133,7 @@
                   </table>
                 </div>
                 <div class="tab-pane" id="unconfirmed" style="position: relative; height: 300px;">
-                  <table id="example3" class="table table-bordered table-striped table-condensed">
+                  <table id="example3" class="table table-bordered table-striped table-condensed table-responsive">
                     <thead>
                     <tr>
                       <th>No</th>
@@ -178,7 +178,7 @@
                   </table>
                 </div>
                 <div class="tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                  <table id="example5" class="table table-bordered table-striped table-condensed">
+                  <table id="example5" class="table table-bordered table-striped table-condensed table-responsive">
                     <thead>
                     <tr>
                       <th>No</th>
