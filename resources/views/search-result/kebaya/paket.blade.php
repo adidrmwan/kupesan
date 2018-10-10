@@ -1,21 +1,21 @@
 <div class="main-block flight-block">
-    <div class="frame">
+    <div class="frame" style="">
         <div class="img-hover">
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.jpg')  }}">
                 @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
-                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 320px;" />
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpg')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;" />
             </a>
         </div>
         <div class="img-hover">
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}">
                 @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
-                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 320px;"/>
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;"/>
             </a>
         </div>
         <div class="img-hover">
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.png')  }}">
                 @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
-                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 320px;" />
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;" />
                 @endif
             </a>
         </div><!-- end flight-img -->
@@ -23,7 +23,7 @@
             <br>
             <br>
             <br>
-            <p style="text-align: center; color: white;">
+            <p style="color: white; margin-left: 25%;">
                 <b>Set :</b> {{$data->set}} <br>
                 <b>Size :</b> {{$data->size}}   <br>
                 <b>Stock :</b> {{$data->quantity}}<br>
