@@ -43,7 +43,7 @@
         </div><!-- end flight-title -->
         
         <ul class="list-unstyled list-inline offer-price-1">
-            <li class="price">{{$data->name}}</li><br>
+            <li class="price">{{$data->name}} <b>{{$data->size}}</b></li><br>
             @if(Auth::check())
             <li >Rp {{ number_format($data->price, 0, ',', '.') }} / Paket</li><br>
             @endif

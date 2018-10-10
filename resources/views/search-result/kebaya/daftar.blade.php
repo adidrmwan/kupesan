@@ -49,8 +49,8 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group" >
-                                                <select  class="form-control" name="type" required>
-                                                    <option selected value="All_size">Semua Ukuran</option>
+                                                <select class="form-control" name="size" required>
+                                                    <option selected value="All_size">Semua</option>
                                                     <option value="XS">XS</option>
                                                     <option value="S">S</option>
                                                     <option value="M">M</option>
@@ -68,7 +68,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group" >
                                                 <select  class="form-control" name="type" required>
-                                                    <option selected value="All_type">Semua Tipe</option>
+                                                    <option selected value="All_type">Semua</option>
                                                     <option value="Setelan">Setelan</option>
                                                     <option value="Atasan">Atasan</option>
                                                     <option value="Bawahan">Bawahan</option>
@@ -81,7 +81,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="form-group" >
-                                                <select  class="form-control" name="type" required>
+                                                <select  class="form-control" name="gender" required>
                                                     <option selected value="All_gender">Semua</option>
                                                     <option value="Pria">Pria</option>
                                                     <option value="Wanita">Wanita</option>

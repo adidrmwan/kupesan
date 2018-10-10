@@ -84,7 +84,7 @@ class AdminController extends Controller
 
         Mail::send('emails.booking-approve', $user, function($message) use ($user){
           $message->to($user['email']);
-          $message->subject('Kupesan.id - Booking Approved');
+          $message->subject('Kupesan.id | Pesanan Tersedia');
         });
 
         $booking->booking_status = 'approved';
@@ -121,7 +121,7 @@ class AdminController extends Controller
         
         Mail::send('emails.booking-cancel', $user, function($message) use ($user){
           $message->to($user['email']);
-          $message->subject('Kupesan.id - Booking Tidak Tersedia');
+          $message->subject('Kupesan.id | Pesanan Tidak Tersedia');
         });
         
         $booking->booking_status = 'canceled_by_admin';
@@ -216,7 +216,7 @@ class AdminController extends Controller
 
         Mail::send('emails.booking-approve-kebaya', $user, function($message) use ($user){
           $message->to($user['email']);
-          $message->subject('Kupesan.id - Booking Approved');
+          $message->subject('Kupesan.id | Pesanan Tersedia');
         });
 
         $booking->booking_status = 'approved';
@@ -254,7 +254,7 @@ class AdminController extends Controller
         
         Mail::send('emails.booking-cancel', $user, function($message) use ($user){
           $message->to($user['email']);
-          $message->subject('Kupesan.id - Booking Tidak Tersedia');
+          $message->subject('Kupesan.id | Pesanan Tidak Tersedia');
         });
         
         $booking->booking_status = 'canceled_by_admin';
@@ -270,6 +270,16 @@ class AdminController extends Controller
         $booking = KebayaBooking::find($booking_id);
         $kode_booking = '4x'.str_random(7);
         $booking->kode_booking = $kode_booking;
+
+        $user = KebayaBooking::join('users', 'users.id', '=', 'kebaya_booking.user_id')
+                ->where('booking_id', $booking_id)
+                ->first()->toArray();
+        
+        Mail::send('emails.kode-booking.kebaya', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id | Kode Booking ');
+        });
+        
         $booking->booking_status = 'confirmed';
         $booking->save();
 

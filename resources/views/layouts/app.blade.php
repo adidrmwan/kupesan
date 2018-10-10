@@ -183,12 +183,32 @@
       maxDate: "+3M"
     });
     </script>
-    
+
     <script type="text/javascript">
       $('#datepicker2').change(function(){
           $('#datepicker').datepicker('setDate', $(this).val());
       });
     </script>
+  
+    <script>
+      $( "#datepickerkebaya" ).datepicker({
+       // prevText: '<i class="fa fa-fw fa-angle-left"></i>',
+      // nextText: '<i class="fa fa-fw fa-angle-right"></i>',
+      inline: true,
+      altField: '#datepickerkebaya2',
+      altFormat: "yy-mm-dd",
+      minDate: 3,
+      maxDate: "+3M"
+    });
+    </script>
+
+    <script type="text/javascript">
+      $('#datepickerkebaya2').change(function(){
+          $('#datepickerkebaya').datepicker('setDate', $(this).val());
+      });
+    </script>
+    
+    
 
 <!--     <script type="text/javascript">
     
@@ -326,6 +346,147 @@
           minDate:1,
           maxDate: "+3M"
       });
+    </script>
+
+  <script type="text/javascript">
+        $('#provinces3').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var split = text.split(',');
+          var durasiPaket = +split[0] - 1;
+          var tanggalPengembalian = split[1];
+          var endDate = new Date(tanggalPengembalian);
+          endDate.setDate(endDate.getDate() + +durasiPaket);
+          var dd = endDate.getDate();
+          var mm = endDate.getMonth() + 1;
+          var y = endDate.getFullYear();
+          var tanggalPengembalian = y + '-' + mm + '-' + dd;
+          $.get('/json-regencies3?durasiPaket=' + durasiPaket + '&tanggalPengembalian=' + tanggalPengembalian + '&callback=?',function(data) {
+            console.log(data);
+            $('#regencies3').empty();
+            $('#regencies3').append('<option value="'+ tanggalPengembalian +'" disable="true" selected="true" >'+ tanggalPengembalian +'</option>');
+
+            $('#districts2').empty();
+            $('#districts2').append('<option value="" disable="true" selected="true">Pilih Jam Selesai</option>');
+
+            $('#villages2').empty();
+            $('#villages2').append('<option value="" disable="true" selected="true">Tidak Ada</option>');
+
+            $.each(data, function(index, regenciesObj){
+              $('#regencies2').append('<option value="'+ regenciesObj.num_hour +','+ durasi +','+ pack_id +','+ date +'">'+ regenciesObj.num_hour +':00</option>');
+            })
+          });
+        });
+
+        $('#regencies3').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var jam_mulai = spl[0];
+          var durasi2 = spl[1];
+          var pack_id = spl[2];
+          var date = spl[3];
+          var jam_selesai = +spl[0] + +spl[1];
+          $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
+            console.log(data);
+            $('#districts2').empty();
+            $('#districts2').append('<option class="text-center" value="" disable="true" selected="true">Pilih Jam Selesai</option>');
+
+            $('#villages2').empty();
+            $('#villages2').append('<option class="text-center" value="'+ 0 +','+ jam_selesai +','+ jam_mulai + '" disable="true" selected="true">Tidak Ada</option>');
+
+            $('#terpilih').empty();
+            $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
+            $.each(data, function(index, villagesObj){
+              $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
+            })
+          });
+        });
+
+        $('#districts3').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var jam_selesai = spl[0];
+          var durasi2 = spl[1];
+          var pack_id = spl[2];
+          var date = spl[3];
+          var jam_mulai = spl[4];
+          $.get('/json-village1?jam_selesai=' + jam_selesai + '&durasi2=' + durasi2 + '&pack_id=' + pack_id + '&date=' + date + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
+            console.log(data);
+            $('#villages2').empty();
+            $('#villages2').append('<option class="text-center" value="0" disable="true" selected="true">Tidak Ada</option>');
+            $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + jam_selesai + ':00' + '</option>');
+            $.each(data, function(index, villagesObj){
+              $('#villages2').append('<option class="text-center" value="'+ villagesObj.num_hour +','+ jam_selesai +','+ jam_mulai + '">'+ villagesObj.num_hour +' Jam</option>');
+            })
+          });
+        });
+        $('#villages3').on('change', function(e){
+          console.log(e);
+          var text = e.target.value;
+          var spl = text.split(',');
+          var jam_overtime = spl[0];
+          var jam_selesai = spl[1];
+          var jam_mulai = spl[2];
+          var total = +spl[0] + +spl[1];
+          $.get('/json-village2?jam_selesai=' + jam_selesai + '&jam_overtime=' + jam_overtime + '&jam_mulai=' + jam_mulai + '&callback=?',function(data) {
+            console.log(data);
+            $('#terpilih').empty();
+            $('#terpilih').append('<option class="text-center" value="0" disable="true" selected="true">'+ jam_mulai + ':00 - ' + total + ':00' + '</option>');
+          });
+        });
+  </script>
+
+  <script type="text/javascript">
+      $('#provinces').on('change', function(e){
+        console.log(e);
+        var province_id = e.target.value;
+        $.get('/json-regencies?province_id=' + province_id,function(data) {
+          console.log(data);
+          $('#regencies').empty();
+          $('#regencies').append('<option value="0" disable="true" selected="true">Pilih Kota/Kabupaten</option>');
+
+          $('#districts').empty();
+          $('#districts').append('<option value="0" disable="true" selected="true">Pilih Kecamatan</option>');
+
+          $('#villages').empty();
+          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Kelurahan</option>');
+
+          $.each(data, function(index, regenciesObj){
+            $('#regencies').append('<option value="'+ regenciesObj.id +'">'+ regenciesObj.name +'</option>');
+          })
+        });
+      });
+
+      $('#regencies').on('change', function(e){
+        console.log(e);
+        var regencies_id = e.target.value;
+        $.get('/json-districts?regencies_id=' + regencies_id,function(data) {
+          console.log(data);
+          $('#districts').empty();
+          $('#districts').append('<option value="0" disable="true" selected="true">Pilih Kecamatan</option>');
+
+          $.each(data, function(index, districtsObj){
+            $('#districts').append('<option value="'+ districtsObj.id +'">'+ districtsObj.name +'</option>');
+          })
+        });
+      });
+
+      $('#districts').on('change', function(e){
+        console.log(e);
+        var districts_id = e.target.value;
+        $.get('/json-village?districts_id=' + districts_id,function(data) {
+          console.log(data);
+          $('#villages').empty();
+          $('#villages').append('<option value="0" disable="true" selected="true">Pilih Kelurahan</option>');
+
+          $.each(data, function(index, villagesObj){
+            $('#villages').append('<option value="'+ villagesObj.name +'">'+ villagesObj.name +'</option>');
+          })
+        });
+      });
+
     </script>
 </body>
 </html>

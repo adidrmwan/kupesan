@@ -25,6 +25,7 @@ use App\KebayaProduct;
 use App\KebayaUkuran;
 use App\KebayaCheck;
 use App\KebayaBooking;
+use App\KebayaBiayaSewa;
 use DateTime;
 class KebayaBookingController extends Controller
 {
@@ -61,6 +62,8 @@ class KebayaBookingController extends Controller
         $booking_check = KebayaCheck::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking_check.package_id')->where('kebaya_booking_check.package_id', $package_id)->where('kebaya_booking_check.kuantitas', '=', $package2->quantity)->select('booking_date as disableDates')->get();
         $disableDates = array_column($booking_check->toArray(), 'disableDates');
 
+        
+
         if(empty($request->booking_date)) {
             return view('online-booking.kebaya.step2', compact('package','package_id','partner_id','partner', 'pu', 'disableDates'));
         }
@@ -69,125 +72,92 @@ class KebayaBookingController extends Controller
 
     public function submitStep2(Request $request)
     {
-    	$package_id = $request->package_id;
-        $sdate = explode('/', $request->start_date, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
-        $booking_start_date = $sy.'-'.$sm.'-'.$sd;
+        $package_id = $request->package_id;
+        $start_date = $request->start_date;
         $time = '00:00:00';
-        $start_date = date('Y-m-d H:i:s', strtotime("$booking_start_date $time"));
-        
-        $package = KebayaProduct::where('id', $package_id)->first();
+        $start_date = date('Y-m-d H:i:s', strtotime("$start_date $time"));
+
+        $package = KebayaProduct::find($package_id);
+
         $partner = Partner::where('user_id', $package->partner_id)->first();
         $partner_id = $partner->user_id;
-        // $partner_open_hour = $partner->open_hour;
-        // $partner_close_hour = $partner->close_hour;
 
-        // $mytime = Carbon::now();
-        // $waktu = $mytime->toDateTimeString();        
-        // $waktu_array = explode(' ', $waktu);
-        // $now_date = $waktu_array[0];
-        // $now_time = $waktu_array[1];
-        // $time_array = explode(':', $now_time);
-        // $on_click_lanjut_time = $time_array[0];
+        if(empty($booking_id)) {
+            $booking = new KebayaBooking();
+            $booking->user_id = Auth::user()->id;
+            $booking->package_id = $package_id;
+            $booking->partner_id = $package->partner_id;
+            $booking->start_date = $start_date;
+            $booking->booking_status = 'cek_ketersediaan_online';
+            $booking->save();
+            $booking_id = $booking->booking_id;
+        }
         
-        // if($on_click_lanjut_time >= $partner_close_hour || $on_click_lanjut_time < $partner_open_hour) {
-        //     return redirect()->route('kebaya.step2', ['package_id' => $package_id])->with('warning',"Silahkan memesan pada saat");
-        // }
+        return redirect()->intended(route('kebaya.step2a', ['bid' => $booking_id]));
+        
+    }
 
-        $cek_booking_sdate = KebayaCheck::where('package_id', $package_id)->where('booking_date', $sdate)->first();
+    public function step2a(Request $request) 
+    {
+        $booking_id = $request->bid;
+        $booking = KebayaBooking::find($booking_id);
 
-        if(empty($cek_booking_sdate)) {
+        $package_id = $booking->package_id;
+        $partner_id = $booking->partner_id;
 
-                $booking = new KebayaBooking();
-                $booking->user_id = Auth::user()->id;
-                $booking->package_id = $package_id;
-                $booking->partner_id = $package->partner_id;
-                $booking->start_date = $start_date;
-                $booking->booking_status = 'cek_ketersediaan_online';
-                $booking->save();
+        $package = KebayaProduct::where('id', $package_id)->get();
+        $package2 = KebayaProduct::find($package_id);
+        $partner = Partner::where('user_id', $partner_id)->first();
+        $pu = KebayaUkuran::where('package_id', $package_id)->get();
+        $durasiSewa = KebayaBiayaSewa::where('fk_package_id', $package_id)->get();
+        $tanggalPenerimaan = $booking->start_date;
 
-                $booking_id = $booking->booking_id;
-                $durasi_sewa = '3';
-                $end_date = $booking->start_date->addDays($durasi_sewa-1);
-                $edate = date('Y-m-d', strtotime("$end_date"));
-                $edate = explode('-', $edate, 3); $ey = $edate[0]; $em = $edate[1]; $ed = $edate[2];
-                $endtime = '23:59:59';
-                $isi_edate = $ey . '-' . $em . '-' . $ed;
-                $end_date = date('Y-m-d H:i:s', strtotime("$isi_edate $endtime"));
-                $booking->end_date = $end_date;
-                $booking->save();
+        $booking_check = KebayaCheck::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking_check.package_id')->where('kebaya_booking_check.package_id', $package_id)->where('kebaya_booking_check.kuantitas', '=', $package2->quantity)->select('booking_date as disableDates')->get();
+        $disableDates = array_column($booking_check->toArray(), 'disableDates');
 
-                for ($i=0; $i < $durasi_sewa; $i++) { 
-                    $booking_date = $booking->start_date->addDays($i);
-                    if (empty($kebaya_booking_check_2)) {
-                        $booking_check = new KebayaCheck();
-                        $booking_check->package_id = $package_id;
-                        $booking_check->booking_date = $booking_date;
-                        $booking_check->save();
-                    }
-                }
-                // if($sm == $em && $sd <= $ed) {
-                //     for ($i=1; $i <= 31 ; $i++) { 
-                //         if($i >= $sd && $i <= $ed ){
-                //             $new_date = $sy.'-'.$sm.'-'.$i;
-                //             $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-                //             $kebaya_booking_check_2 = KebayaCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
-                //             if (empty($kebaya_booking_check_2)) {
-                //                 $booking_check = new KebayaCheck();
-                //                 $booking_check->package_id = $package_id;
-                //                 $booking_check->booking_date = $booking_date;
-                //                 $booking_check->save();
-                //             }
-                //         }
-                //     }
-                    
-                // } elseif ($sm < $em) {
-                //     for ($i=1; $i <=31 ; $i++) { 
-                //         if($i >= $sd) {
-                //             $new_date = $sy.'-'.$sm.'-'.$i;
-                //             $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-                //             $kebaya_booking_check_2 = KebayaCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
-                //             if (empty($kebaya_booking_check_2)) {
-                //                 $booking_check = new KebayaCheck();
-                //                 $booking_check->package_id = $package_id;
-                //                 $booking_check->booking_date = $booking_date;
-                //                 $booking_check->save();
-                //             }
-                //         }
-                //         elseif ($i <= $ed) {
-                //             $new_date = $sy.'-'.$em.'-'.$i;
-                //             $booking_date = date('Y-m-d H:i:s', strtotime("$new_date $time"));
-                //             $kebaya_booking_check_2 = KebayaCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
-                //             if (empty($kebaya_booking_check_2)) {
-                //                 $booking_check = new KebayaCheck();
-                //                 $booking_check->package_id = $package_id;
-                //                 $booking_check->booking_date = $booking_date;
-                //                 $booking_check->save();
-                //             }
-                //         }
-                //     }
-                // }
+        return view('online-booking.kebaya.step2a', compact('package','package_id','partner_id','partner', 'pu', 'disableDates', 'durasiSewa', 'tanggalPenerimaan', 'booking_id'));
+    }
 
-            
+    public function submitStep2a(Request $request){
+        $booking_id = $request->booking_id;
+        $durasi_paket = explode(',', $request->durasi_paket, 2); 
+        $durasi_sewa = $durasi_paket[0];
+
+        $booking = KebayaBooking::find($booking_id);
+        $package_id = $booking->package_id;
+        $start_date = $booking->start_date;
+        $end_date = $start_date->addDays($durasi_sewa-1);
+        $edate = date('Y-m-d', strtotime("$end_date"));
+        $endtime = '23:59:59';
+        $end_date = date('Y-m-d H:i:s', strtotime("$edate $endtime"));
+        $booking->end_date = $end_date;
+        $booking->save();
+
+        for ($i=0; $i < $durasi_sewa; $i++) { 
+            $booking_date = $booking->start_date->addDays($i);
+            $cek_booking_sdate = KebayaCheck::where('package_id', $package_id)->where('booking_date', $booking_date)->first();
+            if (empty($cek_booking_sdate)) {
+                $booking_check = new KebayaCheck();
+                $booking_check->package_id = $package_id;
+                $booking_check->booking_date = $booking_date;
+                $booking_check->save();
+            }
+        }
             return redirect()->intended(route('kebaya.step3', ['bid' => $booking_id]));
-
-        } else {
-            return redirect()->intended(route('kebaya.step2', ['package_id' => $package_id])); 
-        } 
     }
 
     public function step3(Request $request)
     {
-        $booking = KebayaBooking::find($request->bid);
-
-        $package = KebayaProduct::where('id', $booking->package_id)->get();
-        $package2 = KebayaProduct::where('id', $booking->package_id)->first();
-
+        $booking_id = $request->bid;
+        $booking = KebayaBooking::find($booking_id);
+        $package_id = $booking->package_id;
+        $package = KebayaProduct::where('id', $package_id)->get();
+        $package2 = KebayaProduct::where('id', $package_id)->first();
         $partner = Partner::where('user_id', $package2->partner_id)->first();
         $partner_id = $package2->partner_id;
-        $package_id = $package2->id;
-        $booking_id = $booking->booking_id;
 
-        $pu = KebayaUkuran::where('partner_id', $package2->partner_id)->get();
+        $provinces = Provinces::where('name', 'JAWA TIMUR')->get();
+        $pu = KebayaUkuran::where('package_id', $package_id)->get();
 
         $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
         $booking_end_date = date('Y-m-d', strtotime("$booking->end_date"));
@@ -206,7 +176,7 @@ class KebayaBookingController extends Controller
             return redirect()->route('kebaya.step2', ['package_id' => $package_id])->with('warning', 'Stok kebaya sudah tidak tersedia.');
         }
 
-        return view('online-booking.kebaya.step3', ['partner' => $partner], compact('quantity2', 'partner_id', 'package_id', 'package', 'booking', 'booking_id', 'pu'));    
+        return view('online-booking.kebaya.step3', compact('partner', 'quantity2', 'partner_id', 'package_id', 'package', 'package2', 'booking', 'booking_id', 'pu', 'provinces'));    
 
     }
 
@@ -412,6 +382,16 @@ class KebayaBookingController extends Controller
         $review = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->join('kebaya_category', 'kebaya_category.id', '=', 'kebaya_product.category')->where('booking_id', $bid)->get();
 
         return view('online-booking.kebaya.step9', ['review' => $review]);
+    }
+
+    public function regencies3()
+    {
+        $durasiPaket = Input::get('durasiPaket');
+        $tanggalPenerimaan = Input::get('tanggalPenerimaan');
+        // $tanggalPengembalian = $tanggalPenerimaan->addDays($durasiPaket-1);
+        $regencies = Jam::all();
+
+        return response()->json($regencies);
     }
 
 }

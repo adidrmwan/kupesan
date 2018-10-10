@@ -78,7 +78,7 @@
                                         <td class="pull-right">Rp {{number_format($data->deposit, 0,',','.')}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Dry Clean</td>
+                                        <td class="pull-left">Dry Clean Cost</td>
                                         @if($data->price_dryclean == '0')
                                         <td class="pull-right">Not Include</td>
                                         @else

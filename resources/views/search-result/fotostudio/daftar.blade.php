@@ -73,6 +73,9 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
                     <div class="col-sm-12 col-md-12">
+                        <h3><b>FOTOSTUDIO</b></h3> 
+                    </div>
+                    <div class="col-sm-12 col-md-12">
                         @if(empty($tema->tag_title))
                         <h3><b><span style="color: #EA410C;">Semua Tema</span> di <span style="color: #EA410C;">Kota Surabaya</span></b></h3>
                         @else

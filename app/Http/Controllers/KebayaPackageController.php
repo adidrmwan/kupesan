@@ -142,6 +142,9 @@ class KebayaPackageController extends Controller
 
         $package = KebayaProduct::find($package->id);
 
+        $biayaSewaMin = KebayaBiayaSewa::where('fk_package_id', $package->id)->min('kebaya_biaya_sewa');
+        $package->price = $biayaSewaMin;
+
         $uniqid = uniqid();
         $package->image  = 'KBYPACK' . '1' . $package->category . $package->size . $uniqid;
         $package->image2 = 'KBYPACK' . '2' . $package->category . $package->size . $uniqid;
@@ -294,7 +297,6 @@ class KebayaPackageController extends Controller
         $package->quantity = $request->quantity;
         $package->size = $request->size;
         $package->save();
-
         
         if (!empty($request->bagian[0])) {
             for ($i = 0; $i < count($request->bagian); $i++) {
@@ -328,6 +330,10 @@ class KebayaPackageController extends Controller
             }
             KebayaBiayaSewa::insert($dataSet4);
         }
+
+        $biayaSewaMin = KebayaBiayaSewa::where('fk_package_id', $package->id)->min('kebaya_biaya_sewa');
+        $package->price = $biayaSewaMin;
+        $package->save();
 
         if ($request->hasFile('image')) {
             $package = KebayaProduct::find($package->id);

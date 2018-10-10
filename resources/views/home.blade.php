@@ -115,6 +115,9 @@
                                        </div>                        
                                    </div>                      
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
+                                        <input type="text" name="type" value="All_type" hidden="">
+                                        <input type="text" name="size" value="All_size" hidden="">
+                                        <input type="text" name="gender" value="All_gender" hidden="">
                                         <button type="submit" class="btn btn-orange"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;Search</button>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>

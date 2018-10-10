@@ -34,12 +34,12 @@ Route::get('/', function () {
 })->name('index');
 
 //Detail Partner (Button View More)
-Route::get('ps/detail/partner', 'StudioController@detailFotostudio')->name('detail.fotostudio');
-Route::get('kby/detail/partner', 'StudioController@detailKebaya')->name('detail.kebaya');
+Route::get('detail/partner/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
+Route::get('detail/partner/kebaya', 'StudioController@detailKebaya')->name('detail.kebaya');
 
 //Search at Home by tag & kota
-Route::post('/ps/search', 'SearchController@searchFotostudio')->name('search.fotostudio');
-Route::post('/kby/search', 'SearchController@searchKebaya')->name('search.kebaya');
+Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
+Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.kebaya');
 
 //Search at navigation box
 Route::post('/search', 'SearchController@searchData')->name('search.data');
@@ -99,6 +99,8 @@ Route::group(['prefix' => '2', 'middleware' => ['auth','role:user']], function()
     // kebaya 
     Route::get('/booking/kebaya/2', 'KebayaBookingController@step2')->name('kebaya.step2');
     Route::post('/booking/kebaya/2', 'KebayaBookingController@submitStep2')->name('kebaya.submit.step2');
+    Route::get('/booking/kebaya/2a', 'KebayaBookingController@step2a')->name('kebaya.step2a');
+    Route::post('/booking/kebaya/2a', 'KebayaBookingController@submitStep2a')->name('kebaya.submit.step2a');
     Route::get('/booking/kebaya/3', 'KebayaBookingController@step3')->name('kebaya.step3');
     Route::post('/booking/kebaya/3', 'KebayaBookingController@submitStep3')->name('kebaya.submit.step3');
     Route::get('/booking/kebaya/4', 'KebayaBookingController@step4')->name('kebaya.step4');
@@ -243,4 +245,6 @@ Route::get('/json-regencies1','BookingController@regencies');
 Route::get('/json-districts1', 'BookingController@districts');
 Route::get('/json-village1', 'BookingController@villages');
 Route::get('/json-village2', 'BookingController@villages2');
+
+Route::get('/json-regencies3', 'KebayaBookingController@regencies3');
 

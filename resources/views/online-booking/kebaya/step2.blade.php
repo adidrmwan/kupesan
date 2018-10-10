@@ -12,7 +12,7 @@
                 @include('online-booking.kebaya.package-info')
                 <form role="form" action="{{ route('kebaya.submit.step2') }}" method="post" enctype="multipart/form-data" class="lg-booking-form">
                 {{ csrf_field() }}
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-5 content-side">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 content-side">
                     <div class="panel panel-default">
                         <div class="panel-heading"><h4>Pesanan-KU</h4></div>
                             <div class="panel-body">
@@ -28,26 +28,27 @@
                                                     <div class="alert alert-danger"> 
                                                       {{ $message }}
                                                     </div>
-
-                                                @else
-                                                    <div class="alert alert-warning">
-                                                      <b>Durasi sewa</b> yaitu 3 hari dari tanggal pesan.
-                                                    </div>
                                                 @endif
                                             </div>
                                             <div class="row">
-                                              <div class="col-lg-12">
-                                                <div class="form-group">
-                                                  <label>Tanggal Pesan</label> 
-                                                  <input  class="form-control" id="startDate" name="start_date" data-date-format="yyyy-mm-dd" required="" placeholder="Tanggal Pesan (Pengambilan)">
+                                              <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Pilih Tanggal Penerimaan</label>
+                                                        <div id="datepickerkebaya"name="booking_date"></div>            
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="row">
+                                                      <div class="col-md-12"> 
+                                                        <div class="form-group text-center">
+                                                          <label>Tanggal Terpilih</label>
+                                                          <input type="text" class="form-control text-center" id="datepickerkebaya2" name="start_date" hidden="">
+                                                        </div>
+                                                      </div>
+                                                    </div>
                                                 </div>
                                               </div>
-                                              <!-- <div class="col-md-6">
-                                                <div class="form-group">
-                                                  <label>Tanggal Pengembalian</label> 
-                                                  <input  class="form-control" id="endDate" name="end_date" data-date-format="yyyy-mm-dd" placeholder="Tanggal Pengembalian" />
-                                                </div>
-                                              </div> -->
                                             </div>
                                         </div>          
                                     </div>
@@ -77,22 +78,9 @@
                         <input type="text" name="package_id" value="{{$package_id}}" hidden="">
                         <div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12"  >
                             <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                            <button type="submit" class="btn btn-orange" style="float: right;">Lanjut Pilih Jadwal</button>
+                            <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                         </div><!-- end checkbox -->
                     </div> 
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-3">
-                    <table class="table table-bordered" style="text-align: center;">
-                        <tr>
-                            <th colspan="3">Panduan ukuran</th>
-                        </tr>
-                        @foreach($pu as $data)
-                        <tr>
-                            <td style="text-align: left;">{{$data->bagian}}</td>
-                            <td style="text-align: right;">{{$data->cm}} cm</td>
-                        </tr>
-                        @endforeach
-                    </table>
                 </div>
                 </form> 
             </div>

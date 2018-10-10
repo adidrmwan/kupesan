@@ -21,15 +21,23 @@
                                         
                                     <div class="row">
                                       <div class="col-md-12">
-                                        <h5>Tersedia <b>{{$quantity2}}</b> kebaya pada tanggal <b>{{ date('d F Y', strtotime($booking->start_date)) }}</b> sampai dengan <b>{{ date('d F Y', strtotime($booking->end_date)) }}</b>.</h5>
+                                        <h5>Tersedia <b style="color: #EA410C;">{{$quantity2}} stok</b> pada tanggal <b>{{ date('d F Y', strtotime($booking->start_date)) }}</b> sampai dengan <b>{{ date('d F Y', strtotime($booking->end_date)) }}</b>.</h5>
                                       </div>
                                     </div>
                                     <br>
                                     <div class="row">
+                                      <div class="col-md-12"> 
+                                        <div class="form-group text-center">
+                                          <label>Ukuran</label>
+                                          <input type="text" class="form-control text-center" placeholder="{{$package2->size}}" disabled="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
                                       <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Kuantitas</label>
-                                          <select class="form-control" required="" name="quantity">
+                                        <div class="form-group text-center">
+                                          <label>Kuantitas Pesanan</label>
+                                          <select class="form-control text-center" required="" name="quantity">
                                             <option value="" selected="">Pilih Banyaknya Barang</option>
                                             @for ($i = 1; $i <= $quantity2; $i++) 
                                             <option value="{{$i}}">{{$i}}</option>
@@ -37,23 +45,148 @@
                                           </select>
                                         </div>
                                       </div>
-                                    </div>   
+                                    </div>  
                                     <div class="row">
                                       <div class="col-md-12">
-                                        <h5><b>Kupesan.id</b> akan mengirim pesanan ke alamat Anda.
-                                            <br>Isi alamat dengan lengkap dan jelas.</h5>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Alamat Lengkap</label>
-                                          <small>(include: Kelurahan, Kecamatan, Kode Pos, No Rumah)</small>
-                                          <textarea class="form-control" required="" name="alamat" style="resize: none; height: 60px;">
-                                          </textarea>
+                                        <div class="form-group text-center">
+                                          <label>Cara Penerimaan Pesanan</label>
                                         </div>
+                                        <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Diambil di lokasi Partner-Ku.</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Anda diharapkan untuk mengambil pada lokasi Partner-Ku di
+                <br>alamat.
+            </h5>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Dikirim ke lokasi Anda.</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+        
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <h5>Pesanan akan dikirimkan ke lokasi Anda. Pastikan lokasi Anda sudah benar.
+                                            <br>Terdapat biaya tambahan untuk pengiriman, akan muncul di detail pesanan.
+                                        </h5>
                                       </div>
-                                    </div>      
+                                    </div> 
+                                      <div class="col-md-12">
+                                        <h4 class="title">Alamat</h4>
+                                      </div>
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Provinsi<small><b style="color: red;"> *</b></small></label>
+                                                    <select class="form-control" name="pr_prov" id="provinces" required>
+                                                        <option value="{{$partner->pr_prov}}" disable="true" selected="true">Pilih Provinsi</option>
+                                                        @foreach ($provinces as $key => $value)
+                                                        <option value="{{$value->id}}">{{ $value->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                      Wajib disi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Kota/Kabupaten<small><b style="color: red;"> *</b></small></label>
+                                                    <select class="form-control" name="pr_kota" id="regencies" required>
+                                                      <option value="{{$partner->pr_kota}}" disable="true" selected="true">Pilih Kota/Kabupaten</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                      Wajib diisi. 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Kecamatan<small><b style="color: red;"> *</b></small></label>
+                                                    <select class="form-control" name="pr_kec" id="districts" required>
+                                                      <option value="{{$partner->pr_kec}}" disable="true" selected="true">Pilih Kecamatan</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                      Wajib diisi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Kelurahan<small><b style="color: red;"> *</b></small></label>
+                                                    <select class="form-control" name="pr_kel" id="villages">
+                                                      <option value="{{$partner->pr_kel}}" disable="true" selected="true">Pilih Kelurahan</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                      Wajib diisi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Kode Pos<small><b style="color: red;"> *</b></small></label>
+                                                    @if(!empty($partner->pr_postal_code))
+                                                    <input type="text" class="form-control" placeholder="Kode Pos" value="{{$partner->pr_postal_code}}" name="pr_postal_code" required>
+                                                    @else
+                                                    <input type="text" class="form-control" placeholder="Kode Pos" name="pr_postal_code" required>
+                                                    @endif
+                                                    <div class="invalid-feedback">
+                                                      Wajib diisi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if(!empty($partner_prov->name))
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-info">
+                                                    <p>{{$partner->pr_kel}}, {{$partner_kec->name}}, {{$partner_kota->name}}, {{$partner_prov->name}}, {{$partner->pr_postal_code}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Alamat Lengkap<small><b style="color: red;"> *</b></small></label>
+                                                    @if(!empty($partner->pr_addr))
+                                                    <textarea class="form-control" placeholder="Tuliskan lokasi penerimaan barang dengan benar dan lengkap." name="pr_addr"  style="resize: none; height: 100px;">{{$partner->pr_addr}}</textarea>
+                                                    @else
+                                                    <textarea class="form-control" placeholder="Tuliskan lokasi Anda penerimaan barang dan lengkap." name="pr_addr"  style="resize: none; height: 100px;"></textarea>
+                                                    @endif
+                                                    <div class="invalid-feedback">
+                                                      Wajib diisi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+      </div>
+    </div>
+  </div>
+</div>
+                                            </div>
+                                        </div>    
                                     </div>
                                 </div>
                             </div>

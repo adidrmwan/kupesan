@@ -1,4 +1,4 @@
-Hello, {{$partner_name}}.
+Halo, {{$partner_name}}.
 <br>
 <br>
 Berikut adalah detail pesanan dari pelanggan Kupesan,

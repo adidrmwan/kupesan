@@ -1,7 +1,7 @@
-Halo, {{$partner_name}}.
+Halo, {{ $first_name }} {{ $last_name}}!
 <br>
 <br>
-Berikut adalah detail pesanan dari pelanggan Kupesan,
+Berikut adalah detail pesanan Anda,
 <br>
 <table class="table table-bordered">
 	<tr>
@@ -23,7 +23,5 @@ Berikut adalah detail pesanan dari pelanggan Kupesan,
 		<th style="text-align: left;">Total : Rp {{number_format($booking_total + $deposit,0,',','.')}}</th>
 	</tr>
 </table>
-
-Apakah anda akan menerima pesanan ini?<br>
 
 {{ url('partner/dashboard', $link)}}

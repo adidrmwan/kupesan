@@ -15,6 +15,8 @@ use App\KebayaProduct;
 use App\Tag;
 use App\KebayaPartnerTema;
 use App\KebayaKategori;
+use App\KebayaBiayaSewa;
+
 class SearchController extends Controller
 {
     public function home()
@@ -39,9 +41,8 @@ class SearchController extends Controller
                 $min_price = $min_price . $min_array[$key];
             }
         } else {
-            $min_price = KebayaProduct::min('price');
+            $min_price = KebayaBiayaSewa::min('kebaya_biaya_sewa');
         }
-
         if (!empty($request->max_price)) {
             $max  = $request->max_price;
             $max_array = explode(".", $max);
@@ -50,32 +51,57 @@ class SearchController extends Controller
                 $max_price = $max_price . $max_array[$key];
             }
         } else {
-            $max_price = KebayaProduct::max('price');
+            $max_price = KebayaBiayaSewa::max('kebaya_biaya_sewa');
         }
 
         if($tag_id == 'all'){
             $allThemes = KebayaProduct::where('status', '1')
                         ->whereBetween('price', [$min_price, $max_price])
                         ->orderBy('price', 'asc')->get();
-
-            if($request->type != 'All_type' && !empty($request->type)){                    
+            if($request->type == 'All_type' && $request->size == 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type == 'All_type' && $request->size == 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type == 'All_type' && $request->size != 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('size', $request->size)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size == 'All_size' && $request->gender == 'All_gender'){
                 $allThemes = KebayaProduct::where('status', '1')
                             ->where('set', $request->type)
                             ->whereBetween('price', [$min_price, $max_price])
                             ->orderBy('price', 'asc')->get();
-            }
-
-            if ($request->has('size')) {
+            } elseif($request->type == 'All_type' && $request->size != 'All_size' && $request->gender != 'All_gender'){
                 $allThemes = KebayaProduct::where('status', '1')
-                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
-                                ->orderBy('price', 'asc')->get();
-
-                if($request->size != 'All_size' && !empty($request->size)) {
-                    $allThemes = KebayaProduct::where('status', '1')
-                                ->where('size', $request->size)
-                                ->whereBetween('kebaya_product.price', [$min_price, $max_price])
-                                ->orderBy('price', 'asc')->get();
-                }
+                            ->where('size', $request->size)
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size != 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('set', $request->type)
+                            ->where('size', $request->size)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size == 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('set', $request->type)
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size != 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('set', $request->type)
+                            ->where('size', $request->size)
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->orderBy('price', 'asc')->get();
             }
         }
 
@@ -85,27 +111,58 @@ class SearchController extends Controller
                         ->whereBetween('price', [$min_price, $max_price])
                         ->orderBy('price', 'asc')->get();
 
-            if($request->type != 'All_type' && !empty($request->type)){              
-                $allThemes = KebayaProduct::where('category', $tag_id)
-                            ->where('status', '1')
+            if($request->type == 'All_type' && $request->size == 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type == 'All_type' && $request->size == 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type == 'All_type' && $request->size != 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('size', $request->size)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size == 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
                             ->where('set', $request->type)
                             ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
                             ->orderBy('price', 'asc')->get();
-            }
-            
-            if ($request->has('size')) {
-                $allThemes = KebayaProduct::where('category', $tag_id)
-                                ->where('status', '1')
-                                ->whereBetween('price', [$min_price, $max_price])
-                                ->orderBy('price', 'asc')->get();
-
-                if($request->size != 'All_size' && !empty($request->size)) {
-                    $allThemes = KebayaProduct::where('category', $tag_id)
-                                ->where('status', '1')
-                                ->where('size', $request->size)
-                                ->whereBetween('price', [$min_price, $max_price])
-                                ->orderBy('price', 'asc')->get();
-                }
+            } elseif($request->type == 'All_type' && $request->size != 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('size', $request->size)
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size != 'All_size' && $request->gender == 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('set', $request->type)
+                            ->where('size', $request->size)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size == 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('set', $request->type)
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
+            } elseif($request->type != 'All_type' && $request->size != 'All_size' && $request->gender != 'All_gender'){
+                $allThemes = KebayaProduct::where('status', '1')
+                            ->where('set', $request->type)
+                            ->where('size', $request->size)
+                            ->where('priawanita', $request->gender)
+                            ->whereBetween('price', [$min_price, $max_price])
+                            ->where('category', $tag_id)
+                            ->orderBy('price', 'asc')->get();
             }
         }
         
