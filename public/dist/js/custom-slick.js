@@ -6,7 +6,7 @@
   arrows: false,
   fade: true,
   asNavFor: '.feature-slider-nav',
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 4000,
   adaptiveHeight: true
 });
@@ -28,7 +28,7 @@ $('.feature-slider-nav').slick({
   slidesToScroll: 1,
   focusOnSelect: true,
   asNavFor: '.feature-slider',
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 4000,
   adaptiveHeight: true,
   infinite:true,

@@ -16,29 +16,124 @@
                                 <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
                                 @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
                                 <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
                                 <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
                                 <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPEG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
                                 <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.PNG')  }}" alt= "Package Image" />
                                 @endif
                               </div>
-                          </div>
-                        
-                          <div class="feature-slider-nav">
                               <div>
-                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                                <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
-                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                                <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
-                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                                <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
-                                <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPG')  }}" alt= "Package Image" />
-                                <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPEG')  }}" alt= "Package Image" />
-                                
-
-                                <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.PNG')  }}" alt= "Package Image" />
+                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".jpg")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.jpg')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".jpeg")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.jpeg')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".png")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.png')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".JPG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.JPG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".JPEG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.JPEG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them2.".PNG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.PNG')  }}" alt= "Package Image" />
                                 @endif
-                              </div>       
+                              </div>
+
+                              <div>
+                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".jpg")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.jpg')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".jpeg")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.jpeg')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".png")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.png')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".JPG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.JPG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".JPEG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.JPEG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them3.".PNG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.PNG')  }}" alt= "Package Image" />
+                                @endif
+                              </div>
+                              <div>
+                                @if(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".jpg")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.jpg')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".jpeg")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.jpeg')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".png")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.png')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".JPG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.JPG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".JPEG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.JPEG')  }}" alt= "Package Image" />
+                                @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them4.".PNG")))
+                                <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.PNG')  }}" alt= "Package Image" />
+                                @endif
+                              </div>
                           </div>
+
+                          <div class="feature-slider-nav">
+                            <div>
+                              @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPEG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.PNG')  }}" alt= "Package Image" />
+                              @endif
+                            </div>
+                            <div>
+                              @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.jpg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.jpeg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.png')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.JPG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.JPEG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them2.'.PNG')  }}" alt= "Package Image" />
+                              @endif
+                            </div> 
+                            <div>
+                              @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.jpg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.jpeg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.png')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.JPG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.JPEG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them3.'.PNG')  }}" alt= "Package Image" />
+                              @endif
+                            </div> 
+                            <div>
+                              @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.jpg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.jpeg')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.png')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.JPG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.JPEG')  }}" alt= "Package Image" />
+                              @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
+                              <img style="height: 75px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->pkg_img_them4.'.PNG')  }}" alt= "Package Image" />
+                              @endif
+                            </div>  
+                          </div>      
                       </div>
 
                         <div class="table-responsive">

@@ -4,27 +4,44 @@
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
 
                     @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
-                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
             </a>
         </div>
         <div class="img-hover">
-            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
-                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;"/>
+                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;"/>
             </a>
         </div>
         <div class="img-hover">
-            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
-                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 250px;" />
+                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
+            </a>
+        </div>
+        <div class="img-hover">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPG')  }}">
+                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
+                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
+            </a>
+        </div>
+        <div class="img-hover">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPEG')  }}">
+                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
+                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
+            </a>
+        </div>
+        <div class="img-hover">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.PNG')  }}">
+                    @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
+                    <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
                     @endif
             </a>
-        </div><!-- end flight-img -->
+        </div>
         <div class = "details">
             <br>
             <br>
-            <br>
-            <p style="text-align: center; color: white;">
+            <p style="margin-left: 25%; color: white;">
                 <b>Type :</b> {{$data->pkg_category_them}} <br>
                 <b>Photografer :</b> {{$data->pkg_fotografer}}   <br>
                 <b>Print Size :</b> {{$data->pkg_print_size}}<br>

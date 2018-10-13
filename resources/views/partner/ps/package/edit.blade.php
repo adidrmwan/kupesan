@@ -1,5 +1,5 @@
-@extends('partner.layouts.app-form')
-
+@extends('partner.layouts.app-add')
+@section('title', 'Edit Package')
 @section('content')
 <div class="content">
     <div class="container-fluid">
