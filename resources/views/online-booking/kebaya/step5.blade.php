@@ -23,7 +23,7 @@
                                         Kami akan mengirimkan e-mail untuk memberitahukan status pesanan Anda maksimal 6 jam dari waktu Anda melakukan cek ketersediaan (pengecekan jadwal hanya dilakukan pada jam operasional <b>{{$partner->pr_name}}</b> pada Pukul <b>{{$partner->open_hour}}:00 - {{$partner->close_hour - 1}}:00 WIB. </b>)
                                         <br>
                                         <br>
-                                        Anda juda dapat melihat status pesanan pada <b>profil Anda</b> diatas atau <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>
+                                        Anda juga dapat melihat status pesanan pada <b>profil Anda</b> diatas atau <a href="{{route('dashboard')}}" style="color: #EA410C;"><b>disini.</b></a>
                                         <br>
                                         <br>
                                         Mohon kesediaan Anda untuk menunggu,

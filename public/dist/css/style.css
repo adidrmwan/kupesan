@@ -1442,7 +1442,7 @@ h1,h2,h3,h4,h5,h6,.main-title a, .flight-info h3 .flight-destination,.blog-post-
 }
 
 .flight-info {
-	border-left: 3px solid #EA410C;
+	border-left: 2px solid #EA410C;
 	border-right: 2px solid #EA410C;
 	border-bottom: 2px solid #EA410C;
 }

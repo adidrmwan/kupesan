@@ -1,44 +1,44 @@
 <div class="main-block flight-block">
-    <div class="frame">
-        <div class="img-hover">
+    <div class="frame" style="outline: solid #EA410C;" >
+        <div class="img-hover" >
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}">
 
                     @if(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpg")))
                     <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpg')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
             </a>
         </div>
-        <div class="img-hover">
+        <div class="img-hover" >
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".jpeg")))
                     <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.jpeg')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;"/>
             </a>
         </div>
-        <div class="img-hover">
+        <div class="img-hover" >
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".png")))
                     <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
             </a>
         </div>
-        <div class="img-hover">
+        <div class="img-hover" >
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPG')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPG")))
                     <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
             </a>
         </div>
-        <div class="img-hover">
+        <div class="img-hover" >
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.JPEG')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".JPEG")))
                     <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
             </a>
         </div>
-        <div class="img-hover">
+        <div class="img-hover" >
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->pkg_img_them.'.PNG')  }}">
                     @elseif(File::exists(public_path("img_pkg/".$data->pkg_img_them.".PNG")))
                     <img class="" src="{{ asset('img_pkg/'.$data->pkg_img_them.'.png')  }}" alt= "Package Image" style="max-width: 100%; height: 300px; margin: 0 auto; width: auto; float: none; display: block;position: relative;" />
                     @endif
             </a>
         </div>
-        <div class = "details">
+        <div class = "details" >
             <br>
             <br>
             <p style="margin-left: 25%; color: white;">
@@ -53,7 +53,7 @@
     </div>
     
     
-    <div class="flight-info">
+    <div class="flight-info" style="outline: solid #EA410C; ">
         <div class="flight-title" style="text-align: center;">
             <h3>{{$data->partner_name}}</h3>
         </div><!-- end flight-title -->

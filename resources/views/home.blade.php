@@ -34,6 +34,7 @@
                             <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
+                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Foto Studio</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >
@@ -67,6 +68,7 @@
                         <div id="fotografer" class="tab-pane">
                             <form>
                                 <div class="row">
+                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Fotografer</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
                                         <h1>Coming Soon</h1>        
                                     </div><!-- end columns -->
@@ -78,7 +80,7 @@
                         <div id="mua" class="tab-pane">
                             <form>
                                 <div class="row">
-                                
+                                <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Penata Rias</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="float: none; margin: 0 auto; display: block; position: relative; text-align: center;">
                                         <h1>Coming Soon</h1>        
                                     </div><!-- end columns -->
@@ -91,7 +93,8 @@
                         <div id="kebaya" class="tab-pane">
                             <form role="form" action="{{ route('search.kebaya') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                                <div class="row">
+                                <div class="row"> 
+                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Kebaya</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >

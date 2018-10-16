@@ -1,5 +1,5 @@
 <div class="main-block flight-block">
-    <div class="frame" style="">
+    <div class="frame"style="outline: solid #EA410C;">
         <div class="img-hover">
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.jpg')  }}">
                 @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
@@ -16,9 +16,27 @@
             <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.png')  }}">
                 @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
                 <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.png')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;" />
+            </a>
+        </div>
+        <div class="img-hover">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.JPG')  }}">
+                @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.JPG')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;" />
+            </a>
+        </div>
+        <div class="img-hover">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.JPEG')  }}">
+                @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.JPEG')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;" />
+            </a>
+        </div>
+        <div class="img-hover">
+            <a class="image-popup-no-margins" href="{{ asset('img_pkg/'.$data->image.'.PNG')  }}">
+                @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                <img class="img-responsive" src="{{ asset('img_pkg/'.$data->image.'.PNG')  }}" alt= "Package Image" style="max-width: 100%;height: auto; margin: 0 auto; display: block; float: none;position: relative;" />
                 @endif
             </a>
-        </div><!-- end flight-img -->
+        </div>
         <div class = "details">
             <br>
             <br>
@@ -37,7 +55,7 @@
     </div>
     
     
-    <div class="flight-info">
+    <div class="flight-info" style="outline: solid #EA410C;">
         <div class="flight-title" style="text-align: center;">
             <h3>{{$data->partner_name}}</h3>
         </div><!-- end flight-title -->
