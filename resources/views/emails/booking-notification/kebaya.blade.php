@@ -19,11 +19,17 @@ Berikut adalah detail pesanan dari pelanggan Kupesan,
 	<tr>
 		<th style="text-align: left;">Ukuran : <span style="text-transform: uppercase;">{{$size}}</span></th>
 	</tr>
+	@if($flag == 'userku')
 	<tr>
-		<th style="text-align: left;">Total : Rp {{number_format($booking_total + $deposit,0,',','.')}}</th>
+		<th style="text-align: left;">Total : Rp {{number_format($booking_total + $deposit + $price_dryclean + 10000,0,',','.')}}</th>
 	</tr>
+	@else
+	<tr>
+		<th style="text-align: left;">Total : Rp {{number_format($booking_total + $deposit + $price_dryclean,0,',','.')}}</th>
+	</tr>
+	@endif
 </table>
 
 Apakah anda akan menerima pesanan ini?<br>
 
-{{ url('partner/dashboard', $link)}}
+{{ url('partner/dashboard/busana', $link)}}

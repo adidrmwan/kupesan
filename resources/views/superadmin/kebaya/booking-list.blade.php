@@ -87,6 +87,7 @@
                       <th>No</th>
                       <th>Nama Partner</th>
                       <th>No Hp Partner</th>
+                      <th>Tanggal Pesan</th>
                       <th>Tanggal Pengambilan</th>
                       <th>Tanggal Pengembalian</th>
                       <th>ID Paket</th>
@@ -94,8 +95,11 @@
                       <th>Tipe Paket</th>
                       <th>Ukuran</th>
                       <th>Kuantitas</th>
-                      <th>Deposit</th>
-                      <th>Total</th>
+                      <th>Harga Paket (Rp)</th>
+                      <th>Deposit (Rp)</th>
+                      <th>Dryclean (Rp)</th>
+                      <th>Biaya Kirim (Rp)</th>
+                      <th>Total (Rp)</th>
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -105,6 +109,7 @@
                       <td>{{$key + 1}}</td>
                       <td>{{$data->pr_name}}</td>
                       <td>{{$data->phone_number}}</td>
+                      <td>{{date('d F Y H:i:s', strtotime($data->updated_at))}}</td>
                       <td>{{date('d F Y', strtotime($data->start_date))}}</td>
                       <td>{{date('d F Y', strtotime($data->end_date))}}</td>
                       <td>{{$data->package_id}}</td>
@@ -112,8 +117,7 @@
                       <td>{{$data->set}}</td>
                       <td>{{$data->size}}</td>
                       <td>{{$data->quantity}} pcs</td>
-                      <td>Rp {{number_format($data->deposit,0,',','.')}}</td>
-                      <td>Rp {{number_format($data->booking_total,0,',','.')}}</td>
+                      @include('superadmin.kebaya.detail-harga-kebaya')
                       <!-- @if($data->booking_status == 'un_approved')
                       <td><span class="label label-danger">On Review</span></td>
                       @endif -->
@@ -139,10 +143,15 @@
                       <th>No</th>
                       <th>Nama Pemesan</th>
                       <th>No HP Pemesan</th>
-                      <th>Tanggal Pesan</th>
+                      <th>Tanggal Bayar</th>
+                      <th>Batas Pembayaran</th>
+                      <th>Tanggal Pengambilan</th>
                       <th>Tanggal Pengembalian</th>
-                      <th>Total + Deposit</th>
-                      <!-- <th>Status</th> -->
+                      <th>Harga Paket (Rp)</th>
+                      <th>Deposit (Rp)</th>
+                      <th>Dryclean (Rp)</th>
+                      <th>Biaya Kirim (Rp)</th>
+                      <th>Total (Rp)</th>
                       <th>Action</th>
                     </tr>
                     </thead>
@@ -152,12 +161,11 @@
                       <td>{{$key + 1}}</td>
                       <td>{{$data->user_name}}</td>
                       <td>{{$data->user_nohp}}</td>
+                      <td>{{date('d F Y H:i:s', strtotime($data->upload_bukti_at))}}</td>
+                      <td>{{date('d F Y H:i:s', strtotime($data->booking_at))}}</td>
                       <td>{{date('d F Y', strtotime($data->start_date))}}</td>
                       <td>{{date('d F Y', strtotime($data->end_date))}}</td>
-                      <td>Rp {{number_format($data->booking_total + $data->deposit,0,',','.')}}</td>
-                      <!-- @if($data->booking_status == 'paid')
-                      <td><span class="label label-success">Sudah Bayar</span></td>
-                      @endif -->
+                      @include('superadmin.kebaya.detail-harga-kebaya')
                       <td>  
                         <a href="{{route('kebaya.show.bukti', ['id' => $data->booking_id])}}">
                           <button type="submit" class="btn btn-primary btn-xs" style=" padding: 3px 15px;"><span style="color: white; text-decoration: none;">Show Bukti Pembayaran</span>

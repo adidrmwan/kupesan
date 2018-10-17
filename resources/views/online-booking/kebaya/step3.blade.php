@@ -184,7 +184,7 @@
                         <input type="text" name="booking_id" value="{{$booking_id}}" hidden="">
                         <div class="checkbox col-xs-12 col-sm-12 col-md-12 col-lg-12"  >
                             <label> By continuing, you are agree to the <a href="#">Terms and Conditions.</a></label>
-                            <button type="submit" class="btn btn-orange" style="float: right;">Lanjut Pilih Jadwal</button>
+                            <button type="submit" class="btn btn-orange" style="float: right;">Lanjutkan</button>
                         </div>
                     </div> 
                 </div>

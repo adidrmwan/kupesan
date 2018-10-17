@@ -6,7 +6,7 @@
 
         <div class="row">
 
-            <div class="col-lg-8 col-md-12 col-xs-12 col-sm-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 @if($partner->status == '0')
                 <div class="card ">
                     <div class="header">
@@ -28,15 +28,11 @@
                     </div>
                 </div>
                 @elseif($partner->status == '1')
-                <div class="card ">
-                    <div class="header">
-                        <h4 class="title">Event</h4>
-                        <small>Upcoming Event</small>
-                    </div>
-                    <div class="content">
-                        <h3>There is no event..</h3>
-                    </div>
-                </div>
+                    @if($partner->pr_type == '4')
+                        @include('partner.kebaya.dashboard')
+                    @elseif($partner->pr_type == '1')
+                        @include('partner.ps.dashboard')
+                    @endif
                 @elseif($partner->status == '2')
                 <div class="card ">
                     <div class="header">

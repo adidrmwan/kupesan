@@ -53,21 +53,26 @@ class AdminController extends Controller
         $booking_unapprove = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
                             ->join('partner', 'kebaya_product.partner_id', '=', 'partner.user_id')
                             ->join('users', 'users.id', '=', 'partner.user_id')
+                            ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                             ->where('kebaya_booking.booking_status', 'un_approved')
-                            ->select('kebaya_product.name','kebaya_product.set','kebaya_product.size','partner.pr_name','partner.pr_name','kebaya_booking.start_date', 'kebaya_booking.end_date','kebaya_booking.booking_id','kebaya_booking.package_id','kebaya_booking.booking_status', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'kebaya_booking.deposit', 'users.phone_number', 'users.email')
+                            ->select('kebaya_product.name','kebaya_product.set','kebaya_product.size','partner.pr_name','partner.pr_name','kebaya_booking.start_date', 'kebaya_booking.end_date','kebaya_booking.booking_id','kebaya_booking.package_id','kebaya_booking.booking_status', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'kebaya_booking.deposit', 'users.phone_number', 'users.email', 'kebaya_booking.updated_at', 'kebaya_booking_address.flag', 'kebaya_product.price_dryclean')
                             ->get();
         // dd($booking_unapprove);
-        $booking_unconfirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.booking_status', 'paid')->get();
+        $booking_unconfirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                            ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
+                            ->where('kebaya_booking.booking_status', 'paid')->get();
 
-        $booking_confirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')->where('kebaya_booking.booking_status', 'confirmed')->get();
+        $booking_confirmed = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                            ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
+                            ->where('kebaya_booking.booking_status', 'confirmed')->get();
 
         $total_partner = Partner::count();
         $total_user = User::join('role_user', 'role_user.user_id', '=', 'users.id')->where('role_user.role_id', '=', '2')->count();
         $total_booking_paid = Booking::where('booking_status', 'paid')->count();
         $total_booking_confirmed = Booking::where('booking_status', 'confirmed')->count();
         $total_booking = Booking::count();
-
-        return view('superadmin.kebaya.booking-list', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed'));
+        $biayaKirim = '10000';
+        return view('superadmin.kebaya.booking-list', ['booking' => $booking, 'booking_confirmed' => $booking_confirmed], compact('total_user', 'total_partner', 'total_booking', 'total_booking_paid', 'total_booking_confirmed', 'booking_unapprove', 'booking_unconfirmed', 'biayaKirim'));
     }
 
     public function approveBooking(Request $request)
@@ -144,7 +149,7 @@ class AdminController extends Controller
                 ->where('booking.booking_id', $booking_id)
                 ->first()->toArray();
         
-        Mail::send('emails.kode-booking.kebaya', $user, function($message) use ($user){
+        Mail::send('emails.kode-booking.fotostudio', $user, function($message) use ($user){
           $message->to($user['email']);
           $message->subject('Kupesan.id | Kode Booking ');
         });
@@ -331,10 +336,13 @@ class AdminController extends Controller
 
     public function showBuktiKebaya(Request $request)
     {
-
         $booking_id = $request->id;
-        $booking = KebayaBooking::where('booking_id', $booking_id)->get();
-        return view('superadmin.kebaya.show-bukti', compact('booking'));
+        $booking = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
+                    ->where('kebaya_booking.booking_id', $booking_id)
+                    ->get();
+        $biayaKirim = '10000';
+        return view('superadmin.kebaya.show-bukti', compact('booking', 'biayaKirim'));
     }
 
     public function partnerList()

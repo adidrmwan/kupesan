@@ -52,7 +52,7 @@
                             </div>
                             <div id="dsh-booking" class="tab-pane fade in active">
                             	<div class="dashboard-content booking-trips col-xs-12 col-sm-10 col-md-10">
-                                    <h2 class="dash-content-title" style="color: #EA410C">PESANANAN-KU</h2>
+                                    <h2 class="dash-content-title" style="color: #EA410C">PESANAN-KU</h2>
                                     <h3><span class="label label-warning">SEDANG DIPROSES</span></h3>
                                     <div class="dashboard-listing booking-listing">
                                         <div class="table-responsive">
@@ -112,9 +112,7 @@
                                                                 <li>Tanggal Pengembalian :<span class="pull-right-booking">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12">
-                                                                <li>Harga Paket : <span class="pull-right-booking">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right-booking">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right-booking"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
+                                                                @include('user.detail-harga-kebaya')
                                                                 <li>
                                                                     <form role="form" action="{{ route('kebaya.booking.info') }}" method="post" enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
@@ -190,9 +188,7 @@
                                                                 <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
                                                             </div>
                                                             <div class="col-md-6 col-sm-12">
-                                                                <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
+                                                                @include('user.detail-harga-kebaya')
                                                                 <li>
                                                                     <a href="{{ route('kebaya.step6', ['bid' => $listpesanan->booking_id]) }}">
                                                                         <button type="submit" class="btn btn-orange" style="float: right; color: white;"><b>Lanjutkan</b></button>
@@ -272,9 +268,7 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12">
                                                                     <ul class="list-unstyled booking-info">
-                                                                        <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                        <li>Deposit : <span class="pull-right">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
-                                                                        <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
+                                                                        @include('user.detail-harga-kebaya')
                                                                         <li>
                                                                             <form role="form" action="{{ route('kebaya.step7') }}" method="post" enctype="multipart/form-data">
                                                                             {{ csrf_field() }}
@@ -353,9 +347,7 @@
                                                                 <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
                                                             </div>
                                                             <div class="col-md-6 col-sm-12">
-                                                             <li>Harga Paket : <span class="pull-right">Rp {{number_format($listpesanan->booking_total, 0, ',', '.')}}</span></li>
-                                                                <li>Deposit : <span class="pull-right">Rp {{number_format($listpesanan->deposit, 0, ',', '.')}}</span></li>
-                                                                <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
+                                                                @include('user.detail-harga-kebaya')
                                                                 <li>
                                                                     <form role="form" action="{{ route('kebaya.step9') }}" method="post" enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
@@ -428,9 +420,7 @@
                                                                     <li>Tanggal Pengembalian :<span class="pull-right">{{ date('d F Y', strtotime($listpesanan->end_date)) }}</span></li>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12">
-                                                                    <li>Set :<span class="pull-right">{{ $listpesanan->set }}</span></li>
-                                                                    <li>Ukuran :<span class="pull-right">{{ $listpesanan->size }}</span></li>
-                                                                    <li>Total :<span class="pull-right"> Rp {{number_format($listpesanan->booking_total + $listpesanan->deposit, 0, ',','.')}}</span></li>
+                                                                    @include('user.detail-harga-kebaya')
                                                                     <li>
                                                                         <a class="btn btn-success" style="float: right; color: white;">Kode Booking: <span class="text-uppercase">{{$listpesanan->kode_booking}}</span></a>
                                                                     </li>

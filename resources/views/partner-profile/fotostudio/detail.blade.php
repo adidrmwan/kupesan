@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Studio Foto')
+@section('title', 'Partner-Ku Profile')
 @section('content')
 @foreach($detail as $data)
 <section class="page-cover section-padding" id="cover-hotel-detail" style="margin-top: 4.5%;">

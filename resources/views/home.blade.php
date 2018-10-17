@@ -22,8 +22,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs center-tabs">
-                        <li class="active"><a href="#studio" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Foto Studio</span></a></li>
-                        <li><a href="#kebaya" data-toggle="tab"><span><i class="fa fa-female"></i></span><span class="st-text">Kebaya</span></a></li>
+                        <li class="active"><a href="#studio" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Spot Foto</span></a></li>
+                        <li><a href="#kebaya" data-toggle="tab"><span><i class="fa fa-female"></i></span><span class="st-text">Busana</span></a></li>
                         <li><a href="#fotografer" data-toggle="tab"><span><i class="fa fa-camera"></i></span><span class="st-text">Fotografer</span></a></li>
                         <li><a href="#mua" data-toggle="tab"><span><i class="fa fa-certificate"></i></span><span class="st-text">Penata Rias</span></a></li>
                     </ul>
@@ -34,7 +34,7 @@
                             <form role="form" action="{{ route('search.fotostudio') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
-                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Foto Studio</h4>
+                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Spot Foto</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >
@@ -94,7 +94,7 @@
                             <form role="form" action="{{ route('search.kebaya') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row"> 
-                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Kebaya</h4>
+                                    <h4 style="text-align: center; margin-top: -20px;" class="info-mobile-header">Busana</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-1"></div>
                                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                                         <div class="form-group right-icon" >
@@ -139,7 +139,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>FOTO STUDIO </h2>
+                    <h2>SPOT FOTO </h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
@@ -179,7 +179,7 @@
                         <a>
                         <div class="main-block tour-block">
                             <div class="main-img">
-                                <img src="dist/images/studio-foto.png" class="img-responsive" alt="kebaya-img" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
+                                <img src="dist/images/studio-foto.png" class="img-responsive" alt="image" style="max-width: 100%; margin: 0 auto; height: 270px; width: auto; float: none; display: block;position: relative;" />
                             </div>
                             <div class="main-info tour-info">
                                 <div class="main-title tour-title">
@@ -201,7 +201,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>KEBAYA </h2>
+                    <h2>BUSANA </h2>
                     <hr class="heading-line" />
                 </div><!-- end page-heading -->
                 
@@ -229,7 +229,7 @@
                         <div class="main-block tour-block">
                             <div class="main-img">
                                 <a href="#">
-                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="kebaya-img" />
+                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="image" />
                                 </a>
                             </div><!-- end offer-img -->
                                 
@@ -246,7 +246,7 @@
                         <div class="main-block tour-block">
                             <div class="main-img">
                                 <a href="#">
-                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="kebaya-img" />
+                                    <img src="dist/images/kebaya.png" class="img-responsive" alt="image" />
                                 </a>
                             </div><!-- end offer-img -->
                                 
@@ -452,7 +452,7 @@
                 <div class="b-feature-block">
                     <span><i class="fa fa-cogs"></i></span>
                     <h3>Change How Things Are</h3>
-                    <p> Sekarang bisa pesan Foto Studio, Kebaya, Fotografer, dan Penata Rias dengan mudah melalui KUPESAN.ID.</p>
+                    <p> Sekarang bisa pesan Spot Foto, Busana, Fotografer, dan Penata Rias dengan mudah melalui KUPESAN.ID.</p>
                 </div><!-- end b-feature-block -->
            </div><!-- end columns -->
            

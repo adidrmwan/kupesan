@@ -16,14 +16,26 @@
                                 <p></p>
                             </div>
                             <div class="content">
-                              <form role="form" action="{{route('submit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-                              {{ csrf_field() }}
                                 <div class="row">
                                   <div class="col-lg-12">
                                     <div class="row">
                                       <div class="col-lg-12">
                                         <h5>Durasi Sewa</h5>
                                         <small><b style="color: red;">*</b> Durasi sewa yaitu 3 hari dari tanggal mulai sewa.</small>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-lg-12">
+                                        <div class="form-group">
+                                          <label>Durasi Sewa</label>
+                                          <select class="form-control" required="" name="durasi_paket">
+                                            <option value="" selected="">Pilih Durasi Sewa</option>
+                                            @foreach($biayaSewa as $value)
+                                            <option value="{{$value->kebaya_durasi_hari}}">{{$value->kebaya_durasi_hari}} Hari</option>
+                                            @endforeach
+                                          </select>
+                                          <div class="invalid-feedback">Wajib diisi.</div>
+                                        </div>
                                       </div>
                                     </div>
                                     <div class="row">
@@ -41,20 +53,7 @@
                                         </div>
                                       </div> -->
                                     </div>
-                                    <!-- <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label>Kuantitas</label>
-                                          <select class="form-control" required="" name="quantity">
-                                            <option value="" selected="">Pilih Banyaknya Barang</option>
-                                            @for ($i = 1; $i <= $quantity2; $i++) 
-                                            <option value="{{$i}}">{{$i}}</option>
-                                            @endfor
-                                          </select>
-                                          <div class="invalid-feedback">Wajib diisi.</div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                    <!-- 
 
                                     <div class="row">
                                       <div class="col-md-12">
@@ -93,7 +92,6 @@
                                     <button type="submit" class="btn btn-block btn-info pull-right">Cek Ketersediaan</button> 
                                   </div>
                                 </div> 
-                              </form>  
                             </div>   
                         </div>     
                     </div>

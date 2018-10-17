@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\FasilitasPartner;
 use App\PartnerDurasi;
+use App\KebayaBooking;
 use App\KebayaUkuran;
 use App\BookingCheck;
 use App\Fasilitas;
@@ -24,6 +25,7 @@ use Image;
 Use Alert;
 use Auth;
 use File;
+use Mail;
 use App\Tnc;
 
 class PartnerController extends Controller
@@ -47,12 +49,26 @@ class PartnerController extends Controller
                 return redirect()->intended(route('partner.facilities.form'));
             }
             elseif (!empty($fasilitas->facilities_id)) {
-               return view('partner.home', ['partner' => $partner]);
+                $booking_unapprove = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')
+                            ->join('partner', 'ps_package.user_id', '=', 'partner.user_id')
+                            ->join('users', 'users.id', '=', 'partner.user_id')
+                            ->where('booking.booking_status', 'un_approved')
+                            ->select('ps_package.*','partner.*','booking.*', 'users.phone_number', 'users.email')
+                            ->get();
+               return view('partner.home', ['partner' => $partner], compact('booking_unapprove'));
             }
         }
         // kebaya
         if ($partner->pr_type == '4') {
-            return view('partner.home', ['partner' => $partner]);
+            $booking_unapprove = KebayaBooking::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking.package_id')
+                            ->join('partner', 'kebaya_product.partner_id', '=', 'partner.user_id')
+                            ->join('users', 'users.id', '=', 'partner.user_id')
+                            ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
+                            ->where('kebaya_booking.booking_status', 'un_approved')
+                            ->select('kebaya_product.name','kebaya_product.set','kebaya_product.size','partner.pr_name','partner.pr_name','kebaya_booking.start_date', 'kebaya_booking.end_date','kebaya_booking.booking_id','kebaya_booking.package_id','kebaya_booking.booking_status', 'kebaya_booking.quantity', 'kebaya_booking.booking_total', 'kebaya_booking.deposit', 'users.phone_number', 'users.email', 'kebaya_booking.updated_at', 'kebaya_booking_address.flag', 'kebaya_product.price_dryclean')
+                            ->get();
+            $biayaKirim = '10000';
+            return view('partner.home', ['partner' => $partner], compact('booking_unapprove', 'biayaKirim'));
         }
 
 
@@ -82,6 +98,7 @@ class PartnerController extends Controller
         $partner->pr_name = $request->input('pr_name');
         $partner->pr_owner_name = $request->input('pr_owner_name');
         $partner->pr_type = $request->input('pr_type');
+        $partner->pr_subtype = $request->input('pr_subtype');
         $partner->open_hour = $request->input('open_hour');
         $partner->close_hour = $request->input('close_hour');
         $partner->pr_desc = $request->input('pr_desc');
@@ -612,9 +629,12 @@ class PartnerController extends Controller
             $fasilitas = DB::table('facilities_partner')->where('user_id', $user->id)->select('*')->first();
             $tnc = Tnc::where('partner_id', $user->id)->get();
             $partner->pr_type = '1';
+            $subkategori = DB::table('partner_type')
+                    ->where('partner_type.id', '=', $partner->pr_subtype)
+                    ->first();
 
         }
-        return view('partner.ps.profile', ['partner' => $partner, 'data' => $partner, 'type' => $type, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec', 'tnc'));
+        return view('partner.ps.profile', ['partner' => $partner, 'data' => $partner, 'type' => $type, 'email' => $email, 'jam' => $jam, 'fasilitas' => $fasilitas, 'phone_number' => $phone_number], compact('provinces', 'partner_prov', 'partner_kota', 'partner_kel', 'partner_kec','subkategori', 'tnc'));
     }
 
     public function edit(Request $Request)
@@ -824,9 +844,9 @@ class PartnerController extends Controller
         return view('partner.ps.detail-booking', ['partner' => $partner, 'booking' => $booking, 'package' => $package]);
     }
 
-    public function showJadiMitra()
+    public function showPartnerKu()
     {
-        return view('partner.jadi-mitra');
+        return view('partner.partner-ku');
     }
 
     public function bookingFinished(Request $request)
@@ -923,14 +943,75 @@ class PartnerController extends Controller
 
         if ($user->is_activated == 1){
 
-            return redirect()->route('index');
+            return redirect()->route('partner.dashboard');
         }
 
         $user->update(['is_activated' => 1]);
 
-        return redirect()->route('index');
+        return redirect()->route('partner.dashboard');
       }
       return redirect()->to('home')->with('Warning',"Your token is invalid");
     }   
+
+    public function bookingActivationBusana($token)
+    {
+      $check = DB::table('booking_activations_kebaya')->where('token',$token)->first();
+      if(!is_null($check)){
+        $user = User::find($check->id_user);
+        $bid = $check->booking_id;
+
+        if ($user->is_activated == 1){
+
+            return redirect()->route('partner.dashboard');
+        }
+
+        $user->update(['is_activated' => 1]);
+
+        return redirect()->route('partner.dashboard');
+      }
+      return redirect()->to('home')->with('Warning',"Your token is invalid");
+    } 
+
+    public function approveBooking(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->first();
+        $book = Booking::where('booking_id', $booking_id)->select('booking_id')->first()->toArray();
+        $user = User::where('id', $booking->user_id)->first()->toArray();
+        
+        $user['link'] = str_random(35);
+
+        DB::table('booking_activations')->insert(['id_user'=>$user['id'], 'booking_id'=>$book['booking_id'], 'token'=>$user['link']]);
+
+        Mail::send('emails.booking-approve', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id | Pesanan Tersedia');
+        });
+
+        $booking->booking_status = 'approved';
+        $booking->save();
+
+        return redirect()->back();
+    }
+
+    public function cancelBooking(Request $request)
+    {
+        // dd($request);
+        $booking_id = $request->id;
+        $booking = Booking::where('booking_id', $booking_id)->first();
+        $book = Booking::where('booking_id', $booking_id)->select('booking_id')->first()->toArray();
+        $user = User::where('id', $booking->user_id)->first()->toArray();
+        
+        Mail::send('emails.booking-cancel', $user, function($message) use ($user){
+          $message->to($user['email']);
+          $message->subject('Kupesan.id | Pesanan Tidak Tersedia');
+        });
+        
+        $booking->booking_status = 'canceled_by_partner';
+        $booking->save();
+
+        return redirect()->back();
+    }
 
 }

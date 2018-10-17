@@ -66,7 +66,7 @@
                                                     <div class="form-group text-center">
                                                         <label>Tanggal Pengembalian</label>
                                                         <select class="form-control text-center" name="jam_mulai" id="regencies3" required>
-                                                          <option value="" disable="true" class="text-center" selected="true">Pilih Jam</option>
+                                                          <option value="" disable="true" class="text-center" selected="true">0000-00-00</option>
                                                         </select>
                                                     </div>
                                                 </div>

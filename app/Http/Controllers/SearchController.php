@@ -197,11 +197,6 @@ class SearchController extends Controller
                 $max_price = $max_price . $max_array[$key];
             }
         } else {
-            // $max_price = PartnerDurasi::join('ps_package', 'ps_durasi.package_id', '=', 'ps_package.id')
-            //                 ->select('ps_durasi.package_id', DB::raw('MAX(ps_durasi.durasi_harga) as harga_min'))
-            //                 ->groupBy('ps_durasi.package_id')
-            //                 ->havingRaw('MAX(ps_durasi.durasi_harga) > ?', [999])
-            //                 ->get();
             $max_price = PartnerDurasi::max('durasi_harga');
 
         }

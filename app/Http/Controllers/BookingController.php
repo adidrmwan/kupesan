@@ -309,21 +309,25 @@ class BookingController extends Controller
         $fasilitas = DB::table('facilities_partner')->where('user_id', $partner->user_id)->select('*')->first();
         $durasiPaket = PartnerDurasi::where('package_id', $id->id)->get();
 
-        $book = Booking::where('booking_id', $booking->booking_id)->select('booking_id')->first()->toArray();
-        $user = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')
-                ->join('partner', 'partner.user_id', '=', 'ps_package.user_id')
-                ->join('users', 'users.id', '=', 'partner.user_id')
-                ->select('booking.*', 'partner.pr_name', 'users.email', 'users.id',  'users.first_name', 'users.last_name', 'ps_package.pkg_name_them')
-                ->where('booking.booking_id', $booking->booking_id)->first()->toArray();
-        // dd($user);
-        $user['link'] = str_random(35);
 
-        DB::table('booking_activations')->insert(['id_user'=>$user['id'], 'booking_id'=>$book['booking_id'], 'token'=>$user['link']]);
+        if ($booking->booking_status == 'belum_cek_ketersediaan' || $booking->booking_status == 'un_approved') {
+            $book = Booking::where('booking_id', $booking->booking_id)->select('booking_id')->first()->toArray();
+            $user = Booking::join('ps_package', 'ps_package.id', '=', 'booking.package_id')
+                    ->join('partner', 'partner.user_id', '=', 'ps_package.user_id')
+                    ->join('users', 'users.id', '=', 'partner.user_id')
+                    ->select('booking.*', 'partner.pr_name', 'users.email', 'users.id',  'users.first_name', 'users.last_name', 'ps_package.pkg_name_them')
+                    ->where('booking.booking_id', $booking->booking_id)->first()->toArray();
+            $user['link'] = str_random(35);
 
-        Mail::send('emails.partner-booking-notification', $user, function($message) use ($user){
-          $message->to($user['email']);
-          $message->subject('Kupesan.id - Booking Notification');
-        });
+            DB::table('booking_activations')->insert(['id_user'=>$user['id'], 'booking_id'=>$book['booking_id'], 'token'=>$user['link']]);
+
+            Mail::send('emails.booking-notification.fotostudio', $user, function($message) use ($user){
+              $message->to($user['email']);
+              $message->subject('Kupesan.id | Notifikasi Pesanan Pelanggan');
+            });
+        } else {
+            return redirect()->route('dashboard');
+        }
         return view('online-booking.fotostudio.step5', compact('bid', 'partner', 'provinsi', 'kota', 'kecamatan', 'fasilitas', 'durasiPaket', 'package'));
     }
 
@@ -370,10 +374,12 @@ class BookingController extends Controller
     {   
         $mytime = Carbon::now();
         $waktu = $mytime->toDateTimeString();        
-
-
         $bid = $request->bid;
         $booking = Booking::find($request->bid);
+
+        if(!empty($booking->upload_bukti_at)) {
+            return redirect()->intended(route('voucher', ['bid' => $bid])); 
+        }
 
         if(empty($booking->booking_at)) {
             $booking_at = date("Y-m-d H:i:s", strtotime("+1 hours"));
@@ -402,17 +408,27 @@ class BookingController extends Controller
     public function showKonfirmasi(Request $request)
     {   
         $bid = $request->bid;
+        $booking = Booking::find($request->bid);
+        if(!empty($booking->upload_bukti_at)) {
+            return redirect()->intended(route('voucher', ['bid' => $bid])); 
+        }
 
         return view('online-booking.fotostudio.step8', compact('bid'));
     }
 
     public function uploadBukti(Request $request)
     {   
+        $mytime = Carbon::now();
+        $time = $mytime->toDateTimeString(); 
         $bid = $request->bid;
         $booking = Booking::find($bid);
-        $booking->bukti_transfer = $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
-        $booking->booking_status = 'paid';
-        $booking->save();
+
+        if(empty($booking->upload_bukti_at)) {
+            $booking->bukti_transfer = $booking->booking_date . '_' . $booking->booking_id . '_' . $booking->user_id. '_' . $booking->booking_total;
+            $booking->upload_bukti_at = $time;
+            $booking->booking_status = 'paid';
+            $booking->save();
+        }
 
         if ($request->hasFile('bukti_pembayaran')) {
             //Found existing file then delete

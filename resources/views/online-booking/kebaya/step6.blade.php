@@ -187,73 +187,14 @@
                                 <div class="panel-heading"><h4><b>Pesanan-KU</b></h4></div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        
                                         <div class="col-sm-12 col-md-12  user-detail">
-                                            <h5><b>Detail Pesanan</b></h5>
-                                            <ul class="list-unstyled" >
-                                                <li></li>
-                                                <li>
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Tanggal Sewa</td>
-                                                    <td>{{ date('d F Y', strtotime($data->start_date)) }} -{{ date('d F Y', strtotime($data->end_date)) }}</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Tipe / Set Paket</td>
-                                                    <td>{{$data->category_name}} / {{$data->set}}</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Ukuran</td>
-                                                    <td>{{$data->size}}</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Kuantitas Pesanan</td>
-                                                    <td>{{$data->kuantitas}} pcs</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <th>Tanggal Penerimaan</th>
-                                                    <th>{{ date('d F Y', strtotime($data->start_date)) }} <br>
-                                                      <h5 class="text-muted">Anda diharapkan untuk mengambil pesanan pada lokasi Partner-Ku di <br>
-                                                        <b style="color: #EA410C;">{{$partner->pr_addr}}, {{$partner->pr_kel}}, {{$kecamatan->name}}, {{$kota->name}}, {{$provinsi->name}}, {{$partner->pr_postal_code}}</b> pada tanggal 
-                                                        <b>{{ date('d F Y', strtotime($data->start_date)) }}</b>.<br>
-                                                        Kontak <b>{{$data->partner_name}}</b> akan diberikan setelah menyelesaikan konfirmasi pembayaran.</h5>
-                                                    </th>
-                                                  </tr>
-                                                  <tr>
-                                                    <th>Tanggal Penerimaan</th>
-                                                    <th>{{ date('d F Y', strtotime($data->end_date)) }}</th>
-                                                  </tr>
-                                                              
-                                                        </tbody>
-                                                    </table>
-                                                </li>         
-                                            </ul>
-                                            <hr class="style5">
-                                            <h5><b>Detail Harga</b></h5>
-                                            <ul class="list-unstyled" >
-                                                <li></li>
-                                                <li>
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Harga Paket</td>
-                                                                <td>Rp. {{number_format($data->booking_total, 0, ',', '.')}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Deposit <b style="color: red;">*</b></td>
-                                                                <td>Rp. {{number_format($data->deposit, 0, ',', '.')}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><b>TOTAL</b></td>
-                                                                <th>Rp. {{number_format($data->booking_total + $data->deposit, 0, ',', '.')}}</th>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </li>      
-                                            </ul>
-                                        </div><!-- end columns -->
-                                        
+                                            <br>
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                 @include('online-booking.kebaya.table-detail-pesanan')
+                                              </div>
+                                            </div>         
+                                        </div>
                                     </div><!-- end row -->
                                     <input type="text" name="xxx" value="{{$data->total}}" hidden="">
                                 </div><!-- end panel-body -->

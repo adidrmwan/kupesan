@@ -27,13 +27,13 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ route('login') }}">Log-In</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
-                        <li><a href="{{route('jadi.mitra')}}">Daftar PARTNER-KU</a></li>
+                        <li><a href="{{ route('jadi.mitra') }}">Register PARTNER-KU</a></li>
                     </ul>
                 </div><!-- end columns -->
 
                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-about">
                     <h3 class="footer-heading">About US</h3>
-                    <p style="text-align: justify;">Kupesan.id adalah sebuah marketplace online yang ingin membawa perubahan dalam bentuk memudahkan masyarakat untuk mencari persewaan spot foto (dalam atau luar ruangan), persewaan gaun dan kebaya, penyedia jasa fotografer, serta penyedia jasa tata rias (make-up artist).</p>
+                    <p style="text-align: justify;">Kupesan.id adalah sebuah marketplace online yang ingin membawa perubahan dalam bentuk memudahkan masyarakat untuk mencari persewaan spot foto (dalam atau luar ruangan), persewaan busana, penyedia jasa fotografer, serta penyedia jasa tata rias (make-up artist).</p>
                     
                 </div><!-- end columns -->
                 

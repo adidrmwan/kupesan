@@ -14,6 +14,7 @@ class Partner extends Model
         'user_id',
         'pr_logo',
         'pr_type',
+        'pr_subtype',
         'pr_name',
         'pr_owner_name',
         'pr_addr',

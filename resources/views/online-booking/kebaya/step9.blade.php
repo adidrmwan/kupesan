@@ -143,9 +143,9 @@
                                                 <div class="space-right">
                                                     <div class="thank-you-note">
                                                        @if($data->booking_status == 'paid')
-                                                       <h3>Pemesananmu belum dikonfirmasi.</h3>
+                                                       <h3>Pesanan-Mu belum dikonfirmasi.</h3>
                                                        @elseif($data->booking_status == 'confirmed')
-                                                       <h3>Pemesananmu sudah dikonfirmasi.</h3>
+                                                       <h3>Pesanan-Mu sudah dikonfirmasi.</h3>
                                                        @endif
                                                        <p>Terima kasih telah melakukan pemesanan melalui KUPESAN.ID,<br>Mohon menunggu Kode Booking anda selama kurang lebih 30 menit dan akan dikirimkan ke-email dan nomor handphone yang terdaftar. Terima Kasih.</p>
                                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"  >
@@ -181,7 +181,7 @@
                                                                             <td></td>
                                                                         </tr> -->
                                                                         <tr>
-                                                                            <td>Nama Butik:</td>
+                                                                            <td>Nama Partner:</td>
                                                                             <td>{{$data->partner_name}}</td>
                                                                         </tr>
                                                                         <tr>

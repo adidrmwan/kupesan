@@ -4,7 +4,7 @@ Route::get('/admin/login', 'AdminController@showLoginForm')->name('admin.login')
 
 Route::get('/home', 'SearchController@home')->name('home');
 Route::group(['prefix' => 'partner-ku'], function(){
-    Route::get('', 'PartnerController@showJadiMitra')->name('jadi.mitra');
+    Route::get('', 'PartnerController@showPartnerKu')->name('jadi.mitra');
     Route::get('login', 'MitraAuth\RegisterController@showLoginForm')->name('mitra.login');
     Route::get('register', 'MitraAuth\RegisterController@showRegistrationForm')->name('mitra.daftar');
     Route::post('register', 'MitraAuth\RegisterController@register')->name('mitra.daftar.submit');
@@ -59,12 +59,12 @@ Route::group(['prefix' => 'admin-kupesan', 'middleware' => ['auth','role:superad
     Route::get('/cancel/partner', 'AdminController@cancelPartner')->name('cancel.partner');
 
     // kebaya
-    Route::get('/kebaya/approve/booking', 'AdminController@approveBookingKebaya')->name('kebaya.approve.booking');
-    Route::get('/kebaya/cancel/booking', 'AdminController@cancelBookingKebaya')->name('kebaya.cancel.booking');
-    Route::get('/kebaya/confirm/bukti', 'AdminController@confirmBuktiKebaya')->name('kebaya.confirm.bukti');
-    Route::get('/kebaya/cancel/bukti', 'AdminController@cancelBuktiKebaya')->name('kebaya.cancel.bukti');
-    Route::get('kebaya//show/bukti', 'AdminController@showBuktiKebaya')->name('kebaya.show.bukti');
-    Route::get('/list/booking/kebaya', 'AdminController@listBookingKebaya')->name('list.booking.kebaya');
+    Route::get('/busana/approve/booking', 'AdminController@approveBookingKebaya')->name('kebaya.approve.booking');
+    Route::get('/busana/cancel/booking', 'AdminController@cancelBookingKebaya')->name('kebaya.cancel.booking');
+    Route::get('/busana/confirm/bukti', 'AdminController@confirmBuktiKebaya')->name('kebaya.confirm.bukti');
+    Route::get('/busana/cancel/bukti', 'AdminController@cancelBuktiKebaya')->name('kebaya.cancel.bukti');
+    Route::get('busana//show/bukti', 'AdminController@showBuktiKebaya')->name('kebaya.show.bukti');
+    Route::get('/busanalist/booking', 'AdminController@listBookingKebaya')->name('list.booking.kebaya');
 
 });
 
@@ -73,8 +73,9 @@ Route::get('/user/activation/{token}', 'Auth\RegisterController@userActivation')
 Route::get('/partner/activation/2/{token}', 'MitraAuth\RegisterController@userActivation');
 Route::get('/partner/activation/{token}', 'AdminController@partnerActivation');
 Route::get('/partner/dashboard/{token}', 'PartnerController@bookingActivation');
+Route::get('/partner/dashboard/busana/{token}', 'PartnerController@bookingActivationBusana');
 Route::get('/booking/approved/{token}', 'AdminController@bookingActivation');
-Route::get('/booking/approved/kebaya/{token}', 'AdminController@bookingActivationKebaya');
+Route::get('/booking/approved/busana/{token}', 'AdminController@bookingActivationKebaya');
 
 
 // Route untuk user yang member
@@ -153,6 +154,8 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::post('/profile/upload/logo', 'PartnerController@uploadLogo')->name('partner.upload.logo');
     Route::get('/booking/ps/finished', 'PartnerController@bookingFinished')->name('booking.finished');
     Route::get('/booking/ps/cancel', 'PartnerController@bookingCancel')->name('booking.cancel');
+    Route::get('/approve/booking', 'PartnerController@approveBooking')->name('sp.approve.booking');
+    Route::get('/cancel/booking', 'PartnerController@cancelBooking')->name('sp.cancel.booking');
 
     // fotostudio paket
     Route::get('/ps/package/add', 'PackageController@showAddPackage')->name('partner.addpackage');
@@ -173,7 +176,7 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/profile/4', 'KebayaController@profile')->name('kebaya.profile');
     Route::post('/profile/4', 'KebayaController@submitEditProfile')->name('kebaya.profile.submit');
     Route::post('/profile/tnc/4', 'KebayaController@updateTNC')->name('kebaya.tnc.submit');
-    Route::get('/profile/tnc/delete', 'KebayaController@deleteTNC')->name('kebaya.delete.tnc');
+    Route::get('/profile/tnc/delete/4', 'KebayaController@deleteTNC')->name('kebaya.delete.tnc');
     Route::get('/booking/offline/4/1', 'KebayaController@showStep1')->name('kebaya.off-booking');
     Route::get('/booking/offline/4/2', 'KebayaController@showStep2')->name('kebaya.off-booking.step2');
     Route::post('/booking/offline/4/2', 'KebayaController@submitStep2')->name('kebaya.off-booking.step2.submit');
@@ -187,6 +190,9 @@ Route::group(['prefix' => 'partner', 'middleware' => ['auth','role:partner']], f
     Route::get('/booking/finished/online', 'KebayaController@bookingFinishedOnline')->name('kebaya.booking.finished.online');
     Route::post('/profile/panduan-ukuran/update', 'KebayaController@updatePU')->name('kebaya.update.pu');
     Route::get('/profile/panduan-ukuran/delete', 'KebayaController@deletePU')->name('kebaya.delete.pu');
+
+    Route::get('/approve/booking/4', 'AdminController@approveBookingKebaya')->name('partner.approve.booking');
+    Route::get('/cancel/booking/4', 'AdminController@cancelBookingKebaya')->name('partner.cancel.booking');
 });
 
 //Route untuk studio foto

@@ -20,7 +20,7 @@
       <div class="main-info hotel-info">
           <div class="main-title hotel-title">
             @if(Auth::check())  
-            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_price_them)}} / Paket </p>
+            <p><span>Rp</span>&nbsp;&nbsp;{{number_format($listthem->pkg_price_them, 0, ',', '.')}} / Paket </p>
             @endif
             <a href="{{route('ask.page', ['package_id' => $listthem->id])}}">
               <button type="submit" class="btn btn-orange" style=" padding: 5px 15px; margin-top: 10px;"><span style="color: white; text-decoration: none;">Pesan</span>

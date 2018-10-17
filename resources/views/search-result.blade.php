@@ -42,7 +42,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12 content-side">
                 <h3><span class="label label-success">{{$word}}</span></h3>
                 @if(!empty($cek_studio_data))
-                <h4>Search by <b>Studio</b></h4>
+                <h4>Search by <b>Spot Foto Partner</b></h4>
                 @endif
                 @foreach($studio_data as $list)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
@@ -85,7 +85,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12 content-side">
                 @if(empty($cek_paket) && empty($cek_tag))
                 @else
-                <h4>Search by <b>Studio Package</b></h4>
+                <h4>Search by <b>Spot Foto Package</b></h4>
                 @endif
                 @foreach($allThemes as $data)
                 <div class="col-sm-12 col-md-12 col-lg-3">
@@ -100,7 +100,7 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12 content-side">
                 @if(!empty($cek_kebaya_data))
-                <h4>Search by <b>Kebaya Package</b></h4>
+                <h4>Search by <b>Busana Package</b></h4>
                 @endif
                 @foreach($kebaya_data as $data)
                 <div class="col-sm-12 col-md-12 col-lg-3">

@@ -24,47 +24,47 @@
                                     @endif
                               </div>
                               <div>
-                                    @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
+                                    @if(File::exists(public_path("img_pkg/".$data->image2.".jpg")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.jpg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".jpeg")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.jpeg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".png")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.png')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".JPG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.JPG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".JPEG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.JPEG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image2.".PNG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image2.'.PNG')  }}" alt= "Package Image" />
                                     @endif
                               </div>
                               <div>
-                                    @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
+                                    @if(File::exists(public_path("img_pkg/".$data->image3.".jpg")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.jpg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".jpeg")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.jpeg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".png")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.png')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".JPG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.JPG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".JPEG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.JPEG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".PNG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.PNG')  }}" alt= "Package Image" />
                                     @endif
                               </div>
                               <div>
-                                    @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
+                                    @if(File::exists(public_path("img_pkg/".$data->image4.".jpg")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.jpg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".jpeg")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.jpeg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".png")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.png')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".JPG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.JPG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".JPEG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.JPEG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".PNG")))
                                     <img style="height: 250px; width: auto; margin: 0 auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.PNG')  }}" alt= "Package Image" />
                                     @endif
                               </div>
@@ -103,32 +103,32 @@
                               </div>
                               
                               <div>
-                                    @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
+                                    @if(File::exists(public_path("img_pkg/".$data->image3.".jpg")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.jpg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".jpeg")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.jpeg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".png")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.png')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".JPG")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.JPG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".JPEG")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.JPEG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image3.".PNG")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image3.'.PNG')  }}" alt= "Package Image" />
                                     @endif
                               </div>
                               <div>
-                                    @if(File::exists(public_path("img_pkg/".$data->image.".jpg")))
+                                    @if(File::exists(public_path("img_pkg/".$data->image4.".jpg")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.jpg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".jpeg")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".jpeg")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.jpeg')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".png")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".png")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.png')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".JPG")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.JPG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".JPEG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".JPEG")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.JPEG')  }}" alt= "Package Image" />
-                                    @elseif(File::exists(public_path("img_pkg/".$data->image.".PNG")))
+                                    @elseif(File::exists(public_path("img_pkg/".$data->image4.".PNG")))
                                     <img style="height: 55px; width: auto;" class="img-responsive" src="{{ asset('img_pkg/'.$data->image4.'.PNG')  }}" alt= "Package Image" />
                                     @endif
                               </div>           
@@ -139,46 +139,50 @@
                         </div>
                                 
                         <div class="table">
-                            <table class="table">
+                            <table class="table table-responsive">
                                 <tbody>
                                     <tr>
-                                        <td class="pull-left">Nama Paket</td>
-                                        <td class="pull-right"><b>{{$data->name}}</b></td>
+                                        <td style="text-align: left;">Nama Paket</td>
+                                        <td style="text-align: right;"><b>{{$data->name}}</b></td>
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Set Paket</td>
-                                        <td class="pull-right">{{$data->set}}</td>
+                                        <td style="text-align: left;">Set Paket</td>
+                                        <td style="text-align: right;">{{$data->set}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Ukuran</td>
-                                        <td class="pull-right">{{$data->size}}</td>
+                                        <td style="text-align: left;">Ukuran</td>
+                                        <td style="text-align: right;">{{$data->size}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Biaya Sewa</td>
+                                        <td style="text-align: left;">Biaya Sewa</td>
                                         @if(Auth::check())
-                                        <td class="pull-right">Rp {{number_format($data->price, 0,',','.')}}</td>
+                                        <td style="text-align: right;">
+                                            @foreach($biayaSewa as $paket)
+                                            <p>{{$paket->kebaya_durasi_hari}} Hari / Rp {{number_format($paket->kebaya_biaya_sewa,0,',','.')}}</p>
+                                            @endforeach
+                                        </td>
                                         @else
-                                        <td class="pull-right">
+                                        <td style="text-align: right;">
                                         <p>Biaya Sewa dapat dilihat jika sudah melakukan login</p>
                                         </td>
                                         @endif
                                         
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Deposit</td>
-                                        <td class="pull-right">Rp {{number_format($data->deposit, 0,',','.')}}</td>
+                                        <td style="text-align: left;">Deposit</td>
+                                        <td style="text-align: right;">Rp {{number_format($data->deposit, 0,',','.')}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Dry Clean Cost</td>
+                                        <td style="text-align: left;">Dry Clean Cost</td>
                                         @if($data->price_dryclean == '0')
-                                        <td class="pull-right">Not Include</td>
+                                        <td style="text-align: right;">Not Include</td>
                                         @else
-                                        <td class="pull-right">Rp {{number_format($data->price_dryclean, 0,',','.')}}</td>
+                                        <td style="text-align: right;">Rp {{number_format($data->price_dryclean, 0,',','.')}}</td>
                                         @endif
                                     </tr>
                                     <tr>
-                                        <td class="pull-left">Stock</td>
-                                        <td class="pull-right">{{($data->quantity)}} pcs</td>
+                                        <td style="text-align: left;">Stock</td>
+                                        <td style="text-align: right;">{{($data->quantity)}} pcs</td>
                                     </tr>
                                     <tr></tr>
                                 </tbody>

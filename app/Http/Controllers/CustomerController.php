@@ -32,10 +32,9 @@ class CustomerController extends Controller
                     ->get();
         $kebaya_unapproved = KebayaBooking::where('kebaya_booking.user_id', $user_id)
                     ->join('kebaya_product','kebaya_booking.package_id','=', 'kebaya_product.id')
-                    ->select(DB::raw('kebaya_booking.*, kebaya_product.*'))
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                     ->where('kebaya_booking.booking_status', '=', 'un_approved')
                     ->get();
-
         $pesanan_approved = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
                     ->select(DB::raw('booking.*, ps_package.pkg_name_them, ps_package.pkg_category_them, booking_total as total'))
@@ -43,10 +42,9 @@ class CustomerController extends Controller
                     ->get();
         $kebaya_approved = KebayaBooking::where('kebaya_booking.user_id', $user_id)
                     ->join('kebaya_product','kebaya_booking.package_id','=', 'kebaya_product.id')
-                    ->select(DB::raw('kebaya_booking.*, kebaya_product.*'))
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                     ->where('kebaya_booking.booking_status', '=', 'approved')
                     ->get();
-                    // dd($kebaya_approved);
 
         $pesanan_pembayaran = Booking::where('booking.user_id', $user_id)
                     ->join('ps_package','booking.package_id','=', 'ps_package.id')
@@ -55,7 +53,7 @@ class CustomerController extends Controller
                     ->get();
         $kebaya_pembayaran = KebayaBooking::where('kebaya_booking.user_id', $user_id)
                     ->join('kebaya_product','kebaya_booking.package_id','=', 'kebaya_product.id')
-                    ->select(DB::raw('kebaya_booking.*, kebaya_product.*'))
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                     ->where('kebaya_booking.booking_status', '=', 'on_pembayaran')
                     ->get();
 
@@ -66,7 +64,7 @@ class CustomerController extends Controller
                     ->get();
         $kebaya_paid = KebayaBooking::where('kebaya_booking.user_id', $user_id)
                     ->join('kebaya_product','kebaya_booking.package_id','=', 'kebaya_product.id')
-                    ->select(DB::raw('kebaya_booking.*, kebaya_product.*'))
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                     ->where('kebaya_booking.booking_status', '=', 'paid')
                     ->get();
 
@@ -77,7 +75,7 @@ class CustomerController extends Controller
                     ->get();
         $kebaya_confirmed = KebayaBooking::where('kebaya_booking.user_id', $user_id)
                     ->join('kebaya_product','kebaya_booking.package_id','=', 'kebaya_product.id')
-                    ->select(DB::raw('kebaya_booking.*, kebaya_product.*'))
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                     ->where('kebaya_booking.booking_status', '=', 'confirmed')
                     ->get();
 
@@ -88,13 +86,12 @@ class CustomerController extends Controller
                     ->get();
         $kebaya_riwayat = KebayaBooking::where('kebaya_booking.user_id', $user_id)
                     ->join('kebaya_product','kebaya_booking.package_id','=', 'kebaya_product.id')
-                    ->select(DB::raw('kebaya_booking.*, kebaya_product.*'))
+                    ->join('kebaya_booking_address', 'kebaya_booking_address.booking_id', '=', 'kebaya_booking.booking_id')
                     ->where('kebaya_booking.booking_status', '=', 'done')
                     ->get();
 
-        $deposit = '100000';
-        // dd($pesanan);
-        return view('user.dashboard', ['user' => $user, 'pesanan_pembayaran' => $pesanan_pembayaran, 'pesanan_paid' => $pesanan_paid, 'pesanan_confirmed' => $pesanan_confirmed, 'riwayat' => $riwayat], compact('pesanan_unapprove', 'pesanan_approved', 'kebaya_unapproved', 'kebaya_approved', 'kebaya_pembayaran', 'kebaya_paid', 'kebaya_confirmed', 'kebaya_riwayat', 'deposit'));
+        $biayaKirim = '10000';
+        return view('user.dashboard', ['user' => $user, 'pesanan_pembayaran' => $pesanan_pembayaran, 'pesanan_paid' => $pesanan_paid, 'pesanan_confirmed' => $pesanan_confirmed, 'riwayat' => $riwayat], compact('pesanan_unapprove', 'pesanan_approved', 'kebaya_unapproved', 'kebaya_approved', 'kebaya_pembayaran', 'kebaya_paid', 'kebaya_confirmed', 'kebaya_riwayat', 'biayaKirim'));
     }
 
     public function showInfo(Request $request) {

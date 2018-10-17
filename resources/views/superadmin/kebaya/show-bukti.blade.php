@@ -66,13 +66,28 @@
                     <th>Rp {{number_format($data->booking_total,0,',','.')}}</th>
                   </tr>
                   <tr>
-                    <th>Deposito</th>
+                    <th>Deposit</th>
                     <th>Rp {{number_format($data->deposit,0,',','.')}}</th>
                   </tr>
-
+                  <tr>
+                    <th>Dryclean Cost</th>
+                    @if($data->price_dryclean == '0')
+                    <th>-</th>
+                    @else
+                    <th>Rp {{number_format($data->price_dryclean,0,',','.')}}</th>
+                    @endif
+                  </tr>
+                  <tr>
+                    <th>Biaya Kirim</th>
+                    @if($data->flag == 'userku')
+                    <th>Rp {{number_format($biayaKirim,0,',','.')}}</th>
+                    @else
+                    <th>-</th>
+                    @endif
+                  </tr>
                   <tr style="background-color: #4b75a7; color: white;">
                     <th>Total</th>
-                    <th>Rp {{number_format($data->booking_total + $data->deposit,0,',','.')}}</th>
+                    <th>Rp {{number_format($data->booking_total + $data->deposit + $data->price_dryclean + $biayaKirim,0,',','.')}}</th>
                   </tr>
                 </tbody>
               </table>            

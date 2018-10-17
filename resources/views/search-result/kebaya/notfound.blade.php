@@ -1,4 +1,4 @@
-    @extends('layouts.master-studio')
+@extends('layouts.master-studio')
 @section('title', 'Paket List')
 @section('content')
 <section class="innerpage-wrapper">
@@ -118,7 +118,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 content-side">
                     <div class="col-sm-12 col-md-12">
-                        <h3><b>KEBAYA</b></h3> 
+                        <h3><b>BUSANA</b></h3> 
                     </div>
                     <div class="col-sm-12 col-md-12">
                         @if(empty($tema->tema_name))
@@ -134,10 +134,10 @@
                         <br>
                         <br>
                         <h3 style="text-align: center;">
-                           <b> Oppss... Sorry :(</b>
+                           <b> Oops, Sorry :(</b>
                         </h3>
                         <h4 style="text-align: center;">
-                            Tidak ada pencarian yang available untuk kriteria Anda, silakan pilih kriteria lainnya.
+                            Tidak ada pencarian yang tersedia untuk kriteria Anda, silakan pilih kriteria lainnya.
                         </h4>
                     </div>
                 </div>

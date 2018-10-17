@@ -19,8 +19,6 @@
                                 <p></p>
                             </div>
                             <div class="content">
-                              <form role="form" action="{{route('submit.item')}}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-                              {{ csrf_field() }}
                                 <div class="row">
                                   <div class="col-md-12">
                                     <div class="row">
@@ -82,7 +80,6 @@
                                     <button type="submit" class="btn btn-block btn-info pull-right" onclick="return confirm('Are you sure want to booking this order?')">Cek Ketersediaan</button> 
                                   </div>
                                 </div> 
-                              </form>  
                             </div>   
                         </div>     
                     </div>

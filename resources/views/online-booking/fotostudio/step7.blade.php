@@ -217,11 +217,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="panel panel-default" style="margin-top: 35px;">
+                                        <!-- <div class="panel panel-default" style="margin-top: 35px;">
                                             <div class="panel-heading"><h4>Masukkan Kupon</h4></div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    
                                                     <div class="col-sm-12 col-md-12  user-detail">
                                                         <form class="form-horizontal">
                                                           <div class="col-xs-12 col-sm-12 col-md-8">   
@@ -237,12 +236,10 @@
                                                             <button type="submit" class="btn btn-orange" style="color: white;">Tambah</button>
                                                         </div>
                                                         </form>
-                                                    </div><!-- end columns -->
-                                                    
-                                                </div><!-- end row -->
-                                                
-                                            </div><!-- end panel-body -->
-                                        </div><!-- end panel-detault -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
                             @foreach($review as $data)
                             
                                     </div><!-- end columns -->

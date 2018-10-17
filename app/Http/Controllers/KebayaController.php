@@ -26,6 +26,7 @@ use App\Villages;
 use App\Tnc;
 use App\KebayaPartnerTema;
 use App\KebayaPartnerWarna;
+use App\KebayaBiayaSewa;
 use DateTime;
 
 class KebayaController extends Controller
@@ -160,15 +161,15 @@ class KebayaController extends Controller
         $booking_check = KebayaCheck::join('kebaya_product', 'kebaya_product.id', '=', 'kebaya_booking_check.package_id')->where('kebaya_booking_check.package_id', $product_id)->where('kebaya_booking_check.kuantitas', '=', $package2->quantity)->select('booking_date as disableDates')->get();
   
         $disableDates = array_column($booking_check->toArray(), 'disableDates');
-
+        $biayaSewa = KebayaBiayaSewa::where('fk_package_id', $product_id)->get();
         $package2 = KebayaProduct::where('id', $product_id)->first();
         $quantity2 = $package2->quantity;
-        return view('partner.kebaya.booking.step2', ['partner' => $partner], compact('dates', 'package', 'product_id', 'disableDates', 'quantity2'));    
+        return view('partner.kebaya.booking.step2', ['partner' => $partner], compact('dates', 'package', 'product_id', 'disableDates', 'quantity2', 'biayaSewa'));    
     }
 
     public function submitStep2(Request $request)
     {
-        $durasi_sewa = '3';
+        $durasi_sewa = $request->durasi_paket;
     	$sdate = explode('/', $request->start_date, 3); $sm = $sdate[0]; $sd = $sdate[1]; $sy = $sdate[2];
     	$booking_start_date = $sy.'-'.$sm.'-'.$sd;
         $time = '00:00:00';
@@ -286,6 +287,7 @@ class KebayaController extends Controller
         $booking = KebayaBooking::find($request->booking_id);
         $package = KebayaProduct::where('id', $booking->package_id)->get();
         $package2 = KebayaProduct::where('id', $booking->package_id)->first();
+        $biayaSewa = KebayaBiayaSewa::where('fk_package_id', $package2->id)->get();
         $package_id = $package2->id;
         $booking_id = $booking->booking_id;
         $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
@@ -304,7 +306,7 @@ class KebayaController extends Controller
             return redirect()->route('kebaya.off-booking')->with('warning', 'Stok kebaya sudah tidak tersedia.');
         }
 
-        return view('partner.kebaya.booking.step3', ['partner' => $partner], compact('quantity2', 'package_id', 'package', 'booking', 'booking_id'));    
+        return view('partner.kebaya.booking.step3', ['partner' => $partner], compact('quantity2', 'package_id', 'package', 'booking', 'booking_id', 'biayaSewa'));    
 
     }
 
@@ -325,6 +327,7 @@ class KebayaController extends Controller
         $package2 = KebayaProduct::where('id', $booking->package_id)->first();
         $package_id = $package2->id;
         $booking_id = $booking->booking_id;
+        $biayaSewa = KebayaBiayaSewa::where('fk_package_id', $package_id)->get();
         $booking_start_date = date('Y-m-d', strtotime("$booking->start_date"));
         $booking_end_date = date('Y-m-d', strtotime("$booking->end_date"));
         
@@ -369,7 +372,7 @@ class KebayaController extends Controller
                             ->select('kebaya_product.*', 'kebaya_booking.*', 'kebaya_category.*', 'kebaya_booking.quantity as kuantitas')->get();
 
 
-        return view('partner.kebaya.booking.step4', ['partner' => $partner], compact('quantity2', 'package_id', 'package', 'booking', 'booking_id', 'detail_pesanan', 'deposit')); 
+        return view('partner.kebaya.booking.step4', ['partner' => $partner], compact('quantity2', 'package_id', 'package', 'booking', 'booking_id', 'detail_pesanan', 'deposit', 'biayaSewa')); 
     }
 
     public function submitStep4(Request $request)

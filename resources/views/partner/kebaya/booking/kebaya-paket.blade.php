@@ -33,8 +33,19 @@
                   <td style="text-align: right;">{{$data->size}}</td>
                 </tr>
                 <tr>
-                  <th>Biaya Sewa</th>
-                  <td style="text-align: right;">Rp {{number_format($data->price)}}</td>
+                  <th>Set</th>
+                  <td style="text-align: right;">{{$data->set}}</td>
+                </tr>
+                <tr>
+                  <th colspan="2">Biaya Sewa</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td style="text-align: right;">
+                    @foreach($biayaSewa as $paket)
+                    <p>{{$paket->kebaya_durasi_hari}} Hari / Rp {{number_format($paket->kebaya_biaya_sewa,0,',','.')}}</p>
+                    @endforeach
+                  </td>
                 </tr>
               </tbody>
             </table>

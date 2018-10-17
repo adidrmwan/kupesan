@@ -1,9 +1,9 @@
 Dear, {{ $first_name }} {{ $last_name}}!
 <br>
 <br>
-Pesanan “Fotostudio” Anda
+Pesanan “Spot Foto” Anda
 <br>
-BOOKING CODE : {{$kode_booking}}
+BOOKING CODE : <b>{{$kode_booking}}</b>
 <table class="table table-bordered">
 	<tr>
 		<th style="text-align: left;">Name Partner : {{$partner_name}}</th>

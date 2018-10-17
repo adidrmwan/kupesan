@@ -1,18 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Jadi PARTNER-KU')
+@section('title', 'PARTNER-KU')
 @section('content')
 
 <section class="innerpage-wrapper">
 	<div id="about-content-2 " class="innerpage-section-padding-mitra">
 		<div class="container">
 			<div class="row">
-                
-                <!-- <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-                	<div id="abt-cnt-2-img">
-                    	<img src=" {{URL::asset('dist/images/logo-navbar.png')}} " class="img-responsive" alt="about-img" />
-                    </div>
-                </div> -->
-                
             	<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8" style=" float: none;margin: 0 auto; position: relative; display: block;">
             		<div id="abt-cnt-2-img">
                     	<img src=" {{URL::asset('dist/images/logo-navbar.png')}} " class="img-responsive" alt="about-img" style="max-width: 50%;  float: none;margin: 0 auto; position: relative; display: flex;" />
@@ -20,10 +13,8 @@
             		<div id="abt-cnt-2-text" style="text-align: center;" class="section-padding">
                         <h3>Temukan berbagai kemungkinan baru untuk terhubung  dengan konsumen  dan mengembangkan usaha Anda dengan <br><b>KUPESAN.ID</b></h3>
                         <a href="{{route('mitra.daftar')}}" style="color: white; text-decoration: none;">
-                            <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; ">Daftar PARTNER-KU</button>
+                            <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px; ">Register PARTNER-KU</button>
                         </a>
-                    
-                    
                         <a href="{{route('mitra.login')}}" style="color: white; text-decoration: none;">
                             <button class="btn btn-orange" style=" padding: 10px 30px; margin-top: 6px;" >Log-In PARTNER-KU</button>
                         </a>

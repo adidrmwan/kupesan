@@ -25,17 +25,24 @@
                                     </div>
                                     <div class="content">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Nama Usaha</label>
                                                         <input type="text" class="form-control" value="{{$partner->pr_name}}" disabled>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Kategori usaha</label>
                                                             <input type="text" class="form-control" placeholder="Nama Usaha"
                                                           value="{{$type->type_name}}" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Sub Kategori</label>
+                                                            <input type="text" class="form-control" placeholder="Nama Usaha"
+                                                          value="{{$subkategori->type_name}}" disabled>
                                                     </div>
                                                 </div>
                                             </div>

@@ -24,7 +24,7 @@
                         <div class="content">
                                 <div class="row">
                                 <!-- pr_name -->
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Nama Usaha<small><b style="color: red;"> *</b></small></label>
                                               <input type="text" class="form-control" placeholder="Nama Usaha"
@@ -34,13 +34,13 @@
                                     </div>
                                 <!-- ./pr_name -->
                                 <!-- pr_typr -->
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Kategori usaha<small><b style="color: red;"> *</b></small></label>
                                                 <select class="form-control" required="" name="pr_type">
                                                     <option value="">Pilih Kategori Usaha</option>
                                                     @foreach($type as $list)
-                                                    @if($list->id != '2' && $list->id != '3' && $list->id != '4')
+                                                    @if($list->id != '2' && $list->id != '3')
                                                     <option value="{{$list->id}}">{{$list->type_name}}</option>
                                                     @endif
                                                     @endforeach
@@ -49,6 +49,20 @@
                                         </div>
                                     </div>
                                 <!-- ./pr_type -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Sub Kategori<small><b style="color: red;"> *</b> khusus kategori spot foto</small></label>
+                                                <select class="form-control" required="" name="pr_type">
+                                                    <option value="">Pilih Sub Kategori</option>
+                                                    @foreach($type as $list)
+                                                    @if($list->id == '5' || $list->id == '6' || $list->id == '7')
+                                                    <option value="{{$list->id}}">{{$list->type_name}}</option>
+                                                    @endif
+                                                    @endforeach
+                                                </select>
+                                                <div class="invalid-feedback">Silahkan pilih kategori usaha Anda.</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                 <!-- pr_owner_name -->

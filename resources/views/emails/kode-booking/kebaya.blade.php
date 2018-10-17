@@ -3,7 +3,7 @@ Dear, {{ $first_name }} {{ $last_name}}!
 <br>
 Pesanan “{{$category_name}}” Anda
 <br>
-BOOKING CODE : {{$kode_booking}}
+BOOKING CODE : <b>{{$kode_booking}}</b>
 <table class="table table-bordered">
 	<tr>
 		<th style="text-align: left;">Name Partner : {{$partner_name}}</th>
