@@ -1,19 +1,19 @@
 <div class="item" style="padding: 10px;">
-  <div class="main-block hotel-block ">
+  <div class="main-block hotel-block " style="outline: solid #EA410C;">
     <div class="main-img img-hover">
       <a class="image-popup-fit-width" href="{{ URL::asset('img_pkg/'.$listthem->image.'.jpg')  }}" >
         @if(File::exists(public_path("img_pkg/".$listthem->image.".jpg")))
-          <img style="height: 300px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.jpg')  }}" id="myImg" alt= "Package Image" /> 
+          <img style="height: auto; width: auto; margin: 0 auto; float: none;display: block;position: relative;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.jpg')  }}" id="myImg" alt= "Package Image" /> 
         @elseif(File::exists(public_path("img_pkg/".$listthem->image.".jpeg")))
-          <img style="height: 300px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.jpeg')  }}" id="myImg" alt= "Package Image" />
+          <img style="height: auto; width: auto; margin: 0 auto; float: none;display: block;position: relative;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.jpeg')  }}" id="myImg" alt= "Package Image"  />
         @elseif(File::exists(public_path("img_pkg/".$listthem->image.".png")))
-          <img style="height: 300px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.png')  }}" id="myImg" alt= "Package Image" />
+          <img style="height: auto; width: auto; margin: 0 auto; float: none;display: block;position: relative;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.png')  }}" id="myImg" alt= "Package Image" />
         @elseif(File::exists(public_path("img_pkg/".$listthem->image.".JPG")))
-          <img style="height: 300px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.JPG')  }}" id="myImg" alt= "Package Image" /> 
+          <img style="height: auto; width: auto; margin: 0 auto; float: none;display: block;position: relative;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.JPG')  }}" id="myImg" alt= "Package Image" /> 
         @elseif(File::exists(public_path("img_pkg/".$listthem->image.".JPEG")))
-          <img style="height: 300px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.JPEG')  }}" id="myImg" alt= "Package Image" />
+          <img style="height: auto; width: auto; margin: 0 auto; float: none;display: block;position: relative;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.JPEG')  }}" id="myImg" alt= "Package Image"  />
         @elseif(File::exists(public_path("img_pkg/".$listthem->image.".PNG")))
-          <img style="height: 300px; width: auto;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.PNG')  }}" id="myImg" alt= "Package Image" />
+          <img style="height: auto; width: auto; margin: 0 auto; float: none;display: block;position: relative;" class="img-responsive" src="{{ URL::asset('img_pkg/'.$listthem->image.'.PNG')  }}" id="myImg" alt= "Package Image" />
         @endif
       </a>
       <div class="main-mask">

@@ -37,6 +37,7 @@
 
 <section id="studio" class="section-padding">
   <div class="row">
+    <div class="col-sm-1 col-md-1"></div>
     <div class="col-sm-4 col-md-4">
       <div class="row">
         <section id="thematic-offers" class="">
@@ -170,55 +171,54 @@
         </div>                           
       </div>
     </div>
-    <div class="col-sm-8 col-md-8">
-      <section id="thematic-offers" class="">
+    <div class="col-sm-6 col-md-6">
+      <section id="setelan-offers" class="">
         <div class="col-lg-12">
             <div class="page-heading">
               <h2>Setelan</h2>
               <hr class="heading-line" />
             </div>
-            <div class="" id="owl-alacarte-offers">
-              <ul class="list-unstyled list-inline offer-price-1">    
-                <li class="price"> 
-                  @foreach($setelan as $listthem)  
-                    @include('partner-profile.kebaya.paket')                                             
-                  @endforeach
-                  </li>
-              </ul>
+            <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-setelan-offers">
+              <!-- <ul class="list-unstyled list-inline offer-price-1"> -->
+              @foreach($setelan as $listthem)    
+                <!-- <li class="price">  -->
+                    @include('partner-profile.kebaya.paket')
+                <!-- </li> -->
+              @endforeach
+              <!-- </ul> -->
             </div>
         </div>
       </section>
-      <section id="thematic-offers" class="">
+      <section id="atasan-offers" class="">
         <div class="col-lg-12">
             <div class="page-heading">
                 <h2>Atasan</h2>
                 <hr class="heading-line" />
             </div>
-            <div class="" id="owl-alacarte-offers">
-              <ul class="list-unstyled list-inline offer-price-1">    
-                <li class="price"> 
-                  @foreach($atasan as $listthem)
+            <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-atasan-offers">
+              <!-- <ul class="list-unstyled list-inline offer-price-1"> -->
+                @foreach($atasan as $listthem)    
+                <!-- <li class="price">    -->
                     @include('partner-profile.kebaya.paket')                                             
-                  @endforeach
-                </li>
-              </ul>
+                <!-- </li> -->
+                @endforeach
             </div>
         </div>
       </section>
-      <section id="thematic-offers" class="">
+      <section id="bawahan-offers" class="">
         <div class="col-lg-12">
           <div class="page-heading">
             <h2>Bawahan</h2>
             <hr class="heading-line" />
           </div>
-          <div class="" id="owl-alacarte-offers">
-            <ul class="list-unstyled list-inline offer-price-1">    
-              <li class="price"> 
-              @foreach($bawahan as $listthem)
+          <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-bawahan-offers">
+            <!-- <ul class="list-unstyled list-inline offer-price-1"> -->
+            @foreach($bawahan as $listthem)    
+              <!-- <li class="price"> -->
                 @include('partner-profile.kebaya.paket')
-              @endforeach
-              </li>
-            </ul>
+              <!-- </li> -->
+            @endforeach
+            <!-- </ul> -->
           </div>
         </div>
       </section>

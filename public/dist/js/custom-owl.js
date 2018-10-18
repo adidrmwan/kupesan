@@ -10,6 +10,9 @@
 		alacarteOffers			=$("#owl-alacarte-offers"),
 		specialOffers			=$("#owl-special-offers"),
 		kebayaOffers			=$("#owl-kebaya-offers"),
+		setelanOffers			=$("#owl-setelan-offers"),
+		atasanOffers			=$("#owl-atasan-offers"),
+		bawahanOffers			=$("#owl-bawahan-offers"),
 		kebaya					=$("#owl-kebaya"),
 		portofolio				=$("#owl-portofolio"),
 		holidayTours			=$(".owl-holidays"),
@@ -143,6 +146,7 @@
 		responsiveBaseWidth: window,    
 	});
 
+
 	muaOffers.owlCarousel({
 		items : 3,
 		itemsCustom : false,
@@ -268,6 +272,98 @@
 		responsiveBaseWidth: window,    
 	});
 	
+	setelanOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
+
+	atasanOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
+
+	bawahanOffers.owlCarousel({
+		items : 3,
+		itemsCustom : false,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [991,2],
+		itemsTablet: [768,2],
+		itemsTabletSmall: [600,1],
+		itemsMobile : [479,1],
+		singleItem : false,
+		itemsScaleUp : false,
+	
+		//Autoplay
+		autoPlay : true,
+		stopOnHover : true,
+	 
+		// Navigation
+		navigation : true,
+		navigationText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		rewindNav : true,
+		scrollPerPage : false,
+	 
+		//Pagination
+		pagination : false,
+		paginationNumbers: false,
+	 
+		// Responsive 
+		responsive: true,
+		responsiveRefreshRate : 200,
+		responsiveBaseWidth: window,    
+	});
 	
 	// Owl Car Offers
 	portofolio.owlCarousel({
