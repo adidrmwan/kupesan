@@ -17,14 +17,32 @@
             
         <!-- Custom Stylesheets --> 
         <link rel="stylesheet" href=" {{URL::asset('dist/css/style.css ')}}">
-        <link rel="stylesheet" id="cpswitch" href=" {{URL::asset('dist/css/orange.css ')}}">
+        <link rel="stylesheet" id="cpswitch" href=" {{URL::asset('dist/css/orange.css')}}">
         <link rel="stylesheet" href=" {{URL::asset('dist/css/responsive.css ')}}">
         
         <!--Date-Picker Stylesheet-->
         <link rel="stylesheet" href=" {{URL::asset('dist/css/datepicker.css ')}}">
+
+        <!-- Owl Carousel Stylesheet -->
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/owl.carousel.css') }} ">
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/owl.theme.css') }} ">
+
+        <!-- Flex Slider Stylesheet -->
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/flexslider.css') }} " type="text/css" />
+        
+        <!-- Magnific Gallery -->
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/magnific-popup.css') }} ">
         
         <!-- Color Panel -->
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/jquery.colorpanel.css') }} ">
+
+        <!-- Slick Stylesheet -->
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/slick.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('dist/css/slick-theme.css') }}">
+
+        <!-- Color Panel -->
         <link rel="stylesheet" href=" {{URL::asset('dist/css/jquery.colorpanel.css')}}">
+
         <style type="text/css">
             hr.style5 {
                 background-color: #fff;
@@ -289,10 +307,36 @@
     <script src="{{URL::asset('dist/js/jquery.min.js')}} "></script>
     <script src="{{URL::asset('dist/js/jquery.colorpanel.js')}} "></script>
     <script src="{{URL::asset('dist/js/bootstrap.min.js')}} "></script>
+    <script src="{{URL::asset('dist/js/jquery.flexslider.js') }} "></script>
+    <script src="{{URL::asset('dist/js/slick.min.js') }} "></script>
     <script src="{{URL::asset('dist/js/bootstrap-datepicker.js')}} "></script>
     <script src="{{URL::asset('dist/js/custom-navigation.js')}} "></script>
     <script src="{{URL::asset('dist/js/custom-date-picker.js')}} "></script>
+    <script src="{{URL::asset('dist/js/owl.carousel.min.js') }} "></script>
+    <script src="{{URL::asset('dist/js/custom-flex.js') }} "></script>
+    <script src="{{URL::asset('dist/js/custom-owl.js') }} "></script>
+    <script src="{{URL::asset('dist/js/custom-slick.js') }} "></script>
+    
+    <script src="{{ URL::asset('dist/js/jquery.flexslider.js') }} "></script>
 
+    <script src="{{ URL::asset('dist/js/jquery.magnific-popup.min.js') }} "></script>
+    
+    <script src="{{ URL::asset('dist/js/owl.carousel.min.js') }} "></script>
 
+    <script src="{{ URL::asset('dist/js/popup-ad.js') }} "></script>
+    <script src=" {{ URL::asset('dist/js/custom-gallery.js') }} "></script>
+
+    <!-- pesan (jangan diubah) -->
+    <!-- Scripts -->
+    <script src="{{ URL::asset('js/app.js') }}"></script>
+
+    <script src=" {{ URL::asset('partners/js/jquery-ui.js') }} " type="text/javascript"></script>
+
+    <!--  Charts Plugin -->
+    <script src=" {{ URL::asset('partners/js/chartist.min.js') }} "></script>
+
+    <!-- DataTables -->
+    <script src="{{URL::asset('partners/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('partners/js/dataTables.bootstrap.min.js')}}"></script>
     </body>
 </html>

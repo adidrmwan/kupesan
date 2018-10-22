@@ -37,7 +37,7 @@ Route::get('/', function () {
 Route::get('detail/partner/fotostudio', 'StudioController@detailFotostudio')->name('detail.fotostudio');
 Route::get('detail/partner/kebaya', 'StudioController@detailKebaya')->name('detail.kebaya');
 
-//Search at Home by tag & kota
+//Search at Home by tag & kota 
 Route::post('/search/fotostudio', 'SearchController@searchFotostudio')->name('search.fotostudio');
 Route::post('/search/kebaya', 'SearchController@searchKebaya')->name('search.kebaya');
 

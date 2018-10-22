@@ -1,5 +1,5 @@
 @extends('layouts.master-studio')
-@section('title', 'Studio List')
+@section('title', 'Search Result')
 @section('content')
         
 <section class="innerpage-wrapper">
@@ -39,15 +39,15 @@
 	<div id="hotel-listing" class="bottom-padding">
         <div class="container">
             
-            <div class="col-sm-12 col-md-12 col-lg-12 content-side">
+            <div class="col-sm-12 col-md-12 col-lg-12 content-side" >
                 <h3><span class="label label-success">{{$word}}</span></h3>
                 @if(!empty($cek_studio_data))
                 <h4>Search by <b>Spot Foto Partner</b></h4>
                 @endif
                 @foreach($studio_data as $list)
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="main-block hotel-block section-padding">
-                          <div class="main-img img-hover">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+                        <div class="main-block hotel-block section-padding" >
+                          <div class="main-img img-hover"style="outline: solid #EA410C;" >
                             @if(File::exists(public_path("logo/".$list->pr_logo.".jpg")))
                             <img src="{{ asset('logo/'.$list->pr_logo.'.jpg')  }}" class="img-responsive" alt="about-img" style="max-width: 100%; margin: 0 auto; height: 150px; width: auto; float: none; display: block;position: relative; " />
                             @elseif(File::exists(public_path("logo/".$list->pr_logo.".png")))
@@ -65,7 +65,7 @@
                             @endif
                           </div>
                           
-                          <div class="main-info hotel-info">
+                          <div class="main-info hotel-info" style="outline: solid #EA410C;">
                               <div class="main-title hotel-title">
                                   <p style="text-align: center; padding: 10px;"><b>{{$list->pr_name}}</b></p>
                                   <p style="text-align: center; padding-bottom: 10px;">SURABAYA</p>
@@ -82,7 +82,7 @@
                 @endforeach
             </div>
 
-            <div class="col-sm-12 col-md-12 col-lg-12 content-side">
+            <div class="col-sm-12 col-md-12 col-lg-12 content-side" >
                 @if(empty($cek_paket) && empty($cek_tag))
                 @else
                 <h4>Search by <b>Spot Foto Package</b></h4>

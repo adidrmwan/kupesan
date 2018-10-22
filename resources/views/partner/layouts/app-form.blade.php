@@ -89,7 +89,8 @@
 
     <!--  File Input Plugin    -->
     <script src=" {{ URL::asset('partners/js/plugins/purify.min.js') }} "></script>
-    <script src=" {{ URL::asset('partners/js/fileinput.min.js') }} "></script>
+    <!-- <script src=" {{ URL::asset('partners/js/fileinput.min.js') }} "></script> -->
+    <script src=" {{ URL::asset('partners/js/fileinput.js') }} "></script>
     <script src=" {{ URL::asset('partners/js/theme.min.js') }} "></script>
 
     <!--  Notifications Plugin    -->

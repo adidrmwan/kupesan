@@ -1,5 +1,5 @@
 @extends('partner.layouts.app-form')
-
+@section('title', 'Application Form')
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -209,6 +209,7 @@
                       </div>
                       <!-- upload fisik bangunan -->
                   </div>
+                  <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-12">
                         <div class="content">
@@ -217,6 +218,7 @@
                         </div>  
                     </div>
                   </div>
+              </div>
                   </form>
                 </div>
             </div>
